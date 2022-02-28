@@ -47,24 +47,28 @@ describe('standards-scraper', () => {
           continue;
         }
       }
+      try {
+        await browser.reloadSession();
+        await browser.url(standard.documentation_link);
+        await browser.pause(2000);
+        const hidden = await browser.$$(hiddenElementSelector);
+        const imgComparison = await browser.checkFullPageScreen(standard.name, {
+          hideScrollBars: true,
+          hideElements: [
+            ...hidden
+          ]
+        });
+        const content = await browser.$(contentSelectors[org]);
+        const text = await content.getText();
 
-      await browser.reloadSession();
-      await browser.url(standard.documentation_link);
-      await browser.pause(2000);
-      const hidden = await browser.$$(hiddenElementSelector);
-      const imgComparison = await browser.checkFullPageScreen(standard.name, {
-        hideScrollBars: true,
-        hideElements: [
-          ...hidden
-        ]
-      });
-      const content = await browser.$(contentSelectors[org]);
-      const text = await content.getText();
-
-      if (imgComparison !== 0 || text !== baselineText) {
-        hasChanged++;
-        msg += `\n* ${name}`;
-        await writeFile(`./actualTexts/${name}.txt`, text);
+        if (imgComparison !== 0 || text !== baselineText) {
+          hasChanged++;
+          msg += `\n* ${name}`;
+          await writeFile(`./actualTexts/${name}.txt`, text);
+        }
+      } catch (e) {
+        console.error(`Failed to check standard: ${name}`);
+        console.error(e);
       }
     }
 
