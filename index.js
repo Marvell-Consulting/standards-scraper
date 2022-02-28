@@ -37,14 +37,14 @@ describe('standards-scraper', () => {
 
       if (!contentSelectors[org]) {
         console.log(`Unknown organisation: ${org}`);
-        break;
+        continue;
       }
 
       try {
         baselineText = await readFile(`./baselineTexts/${name}.txt`);
       } catch (e) {
         if (e.code !== 'ENOENT') {
-          break;
+          continue;
         }
       }
 
