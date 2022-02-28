@@ -1,0 +1,107 @@
+Assessment Discharge and Withdrawal - FHIR API
+
+Support transfer of care from hospital to social services for patients with care and support needs.
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status
+Service level
+Technology
+Network access
+Security and authorisation
+Environments and testing
+Onboarding
+Interactions
+
+This specification is under review following changes to discharge process guidance during 2020 to reflect Discharge to Assess (D2A). Contact enquires@nhsdigital.nhs.uk if you have any questions.
+
+Overview
+
+Use this API to support transfer of care from hospital to social services for patients with care and support needs, as described in the Care Act 2014. It enables the exchange of structured information between hospitals and social care organisations.
+
+You can send:
+
+hospital assessment notices to inform social services that an assessment of a patient's care and support needs is required
+hospital discharge notices to confirm a patient's proposed discharge date
+withdrawal notices to withdraw a previous assessment or discharge notice
+
+You can also send an admissions notice with this API so a hospital can inform social services that a patient has been admitted.
+
+Information Standard SCCI2075 defines the minimum data sets that you must use for Assessment, Discharge and Withdrawal (ADW) notices. There is also additional message guidance on the implementation and use of ADW FHIR messages and some divergences from this ADW Information Standard.
+
+For more details see Assessment Discharge and Withdrawal - FHIR API.
+
+Before you begin any development work using this API, contact us to discuss your best options.
+
+Who can use this API
+
+This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. 
+
+You must have made this request before you can go live (see 'Onboarding' below).
+
+Related APIs
+
+The following APIs are related to this one:
+
+Message Exchange for Social Care and Health (MESH) API - use this API to transfer messages and large files securely across health and social care organisations
+API status
+
+This API is in beta.
+
+Service level
+
+This API uses MESH which is a silver service, meaning it is operational  24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+
+For more details, see service levels.
+
+Technology
+
+This API is a FHIR API. Specifically, it sends a DSTU2 payload over MESH.
+
+For more details, see FHIR.
+
+Network access
+
+You can access this API via:
+
+the Health and Social Care Network (HSCN)
+the internet
+
+For more details, see Network access for APIs.
+
+Security and authorisation
+
+This API uses MESH which is an application-restricted API.
+
+The API does not perform any end user authentication or authorisation checks. Rather, the calling system is expected to perform them. The authorisation rules are specified in our national Role Based Access Control (RBAC) database.
+
+For more details see our national Role Based Access Control (RBAC) database on the registration authorities and smartcards page.
+
+Environments and testing
+
+This API uses MESH.
+
+We have developed an ADW-MESH validator to help you check your messages are valid when sending ADW messages over the MESH transport.
+
+As a developer, you are most likely to want to connect to MESH using either the MESH client or the MESH API.
+
+For more details about using the MESH client, see MESH client.
+
+For the MESH API, there are several independent, externally accessible instances of MESH you can use for testing. For full details, see MESH API - Environments and testing.
+
+Onboarding
+
+You need to get your software approved by us before it can go live with this API. We call this onboarding. The onboarding process can sometimes be quite long, so it’s worth planning well ahead.
+
+To onboard for this API, follow the Supplier Conformance Assessment List (SCAL) process.
+
+Interactions
+
+For a full list of interactions for this API, see Social Care Assessment, Discharge and Withdrawal.
+
+For details on the general structure of the interactions, see FHIR.
+
+Last edited: 15 February 2022 3:52 pm

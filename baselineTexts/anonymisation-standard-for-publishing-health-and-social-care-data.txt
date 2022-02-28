@@ -1,0 +1,37 @@
+ISB1523: Anonymisation Standard for Publishing Health and Social Care Data
+
+This process standard for publishing health and social care data provides an agreed and standardised approach to anonymisation.
+
+Page contents
+Top of page
+About this information standard
+Current release
+About this information standard
+
+The law pulls in two opposite directions. Human Rights and Data Protection legislation, along with our domestic common law duty to respect confidentiality, require us to protect information that could identify an individual. The Freedom of Information Act requires public authorities to release information about their activities, and this message is reinforced by the governments transparency agenda.
+
+Although the law makes a clear distinction between identifying and non-identifying data, where that line should be drawn may be far from clear in practice.
+
+That is why this anonymisation standard for publishing health and social care data is needed. This process standard provides an agreed and standardised approach, grounded in the law, enabling organisations to:
+
+distinguish between identifying and non-identifying information
+deploy a standard approach and a set of standard tools to anonymise information to ensure that, as far as it is reasonably practicable to do so, information published does not identify individuals.
+
+Note that this information standard was approved for publication by the Information Standards Board for Health and Social Care (ISB). It has not yet been accepted by SCCI for publication under the Health and Social Care Act 2012.
+
+August 2019: Update: Note that DCB has been made aware of the need to update this information standard to align with the General Data Protection Regulation (GDPR) and the Data Protection Act 2018. However, work to update the standard is dependent upon the Information Commissioner's Office (ICO) updating its guidance on anonymisation and as yet there is no firm date for this. As soon as this is published NHS Digital, as developer, will publish further information about the timescales for updating this standard. In the meantime, if you have any questions about this standard please contact NHS Digital:  Email enquiries@nhsdigital.nhs.uk or telephone on 0300 303 5678.
+
+Current release
+Release date	25/02/2013
+Release number	Amd 20/2010
+Release title	Initial Standard
+Stage	Maintenance
+Key documents	
+Specification (Amd 20/2010)
+
+Supporting documents	
+Guidance (Amd 20/2010)
+Information Standards Notice (Amd 20/2010)
+Planning Record (Amd 20/2010)
+
+Last edited: 28 August 2019 9:45 am

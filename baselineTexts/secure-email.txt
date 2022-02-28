@@ -1,0 +1,71 @@
+DCB1596: Secure email
+
+This information standard defines the minimum non-functional requirements for a secure email service.
+
+Page contents
+Top of page
+About this information standard
+Current release
+Previous releases
+About this information standard
+
+This information standard defines the minimum non-functional requirements for a secure email service, covering the storage and transmission of email, including where email is used for the sharing of patient identifiable data. The standard includes:
+
+the information security of the email service
+transfer of sensitive information over insecure email
+access from the Internet or mobile devices
+exchange of information outside the boundaries of the secure standard.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales and the other listed documents provide further detail for those who have to implement the information standard.
+
+Current release
+Release date	09/01/2020
+Release number	Amd 75/2019
+Release title	Version 2.3
+Stage	Implementation
+Key documents	
+Requirements Specification (Amd 75/2019)
+Implementation Guidance (Amd 75/2019)
+Change Specification (Amd 75/2019)
+Information Standards Notice (Amd 75/2019)
+
+More information	
+
+More guidance is available from the developer webpages on the NHS Digital website.
+
+Previous releases
+Version 2.2
+Release date	08/04/2019
+Release number	Amd 5/2019
+Stage	Maintenance
+Key documents	
+Requirements Specification (Amd 5/2019)
+Implementation Guidance (Amd 5/2019)
+Change Specification (Amd 5/2019)
+Information Standards Notice (Amd 5/2019)
+Version 2.1
+Release date	28/09/2017
+Release number	Amd 77/2017
+Stage	Retirement
+Key documents	
+Requirements Specification (Amd 77/2017)
+Implementation Guidance (Amd 77/2017)
+Information Standards Notice (Amd 77/2017)
+Version 2
+
+Release date
+
+	15/03/2017
+Release number	Amd 3/2016
+Stage	Retirement
+Key documents	
+Requirements Specification (Amd 3/2016)
+Implementation Guidance (Amd 3/2016)
+Change Specification (Amd 3/2016)
+Information Standards Notice (Amd 3/2016)
+
+Previous releases	
+
+Please see the ISB website for information on Version 1
+
+Last edited: 9 January 2020 9:26 am

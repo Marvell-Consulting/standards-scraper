@@ -1,0 +1,145 @@
+Summary Care Record - HL7 V3 API
+
+Access a patient's Summary Care Record using our HL7 V3 API.
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status
+Service level
+Technology
+Network access
+Security and authorisation
+Testing
+Onboarding
+Interactions
+
+If you are developing a new integration, consider using the Summary Care Record - FHIR API instead.
+
+Overview
+
+Use this API to access a patient's Summary Care Record (SCR) - a national electronic record of important patient information, created from GP summaries of medical records. SCRs can be seen and used by authorised staff in other areas of the health and care system involved in the patient's direct care.
+
+Summary Care Record was previously known as Personal Spine Information Service (PSIS).
+
+Also use this API to access the Access Control Service (ACS) - which manages consent to share information for SCR. GP systems must check consent to share before sharing a patient's Summary Care Record.
+
+You can:
+
+create or add to a patient's Summary Care Record - as a GP system capable of uploading GP summaries
+retrieve a patient's Summary Care Record
+set and check consent to share information - via the Access Control Service (ACS)
+
+You cannot use this API to update GP medical records.
+
+Spine Mini Service Provider (SMSP) options
+
+There are also commercially available products which give easier access to SCR, known as Spine Mini Service Providers (SMSPs). 
+
+These and other conforming software products are listed in our Conformance Catalogue.
+
+If you are interested in becoming a provider of one of these products, see Summary Care Record - SMSP API standards.
+
+Who can use this API
+
+This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development.
+
+You must do this before you can go live (see ‘Onboarding’ below).
+
+Related APIs
+
+The following APIs are related to this one:
+
+Summary Care Record - FHIR API - use this API to access a patient's Summary Care Record (SCR), an electronic record of important patient information created from GP medical records, using our FHIR API.
+Legitimate Relationship Service - HL7 V3 API - use this API to access a patient's Legitimate Relationships, using our HL7 V3 API.
+API status
+
+This API is stable.
+
+We are working on a Summary Care Record FHIR API to provide an easier integration.
+
+Service level
+
+This API is a platinum service, meaning it is operational and supported 24 x 7 x 365.
+
+For more details, see service levels.
+
+Technology
+
+This API is an HL7 V3 API. It is a mixture of:
+
+synchronous interactions, using HL7 V3 SOAP web services
+asynchronous interactions, using HL7 V3 ebXML messaging
+
+The synchronous pattern is used for interactions which need an immediate response and run quickly, for example:
+
+PSIS Document List Data Request
+PSIS Document Data Request
+
+The asynchronous pattern is used for interactions which either do not require an immediate response or might take longer, for example:
+
+initial upload of a GP Summary
+GP Summary (add to an existing GP summary)
+
+For more details, see HL7 V3.
+
+Message Handling System (MHS) adaptor
+
+To remove the complexity of building your own Message Handling System, we offer a pre-assured, client side MHS adaptor that you can integrate into your own infrastructure.
+
+It makes it easier to connect to the NHS Spine and perform business operations by exposing a RESTful API that confirms to the HL7 V3 standard. 
+
+Network access
+
+You need a Health and Social Care Network (HSCN) connection to use this API.
+
+For more details, see Network access for APIs.
+
+Security and authorisation
+Authentication
+
+This API is user-restricted, meaning an end user must be present and authenticated to use it.
+
+The end user must be:
+
+a healthcare worker
+strongly authenticated, using either an NHS smartcard or a modern alternative
+
+We support the following security patterns:
+
+user-restricted HL7 V3 API, using NHS Care Identity Service 2 (NHS CIS2)
+user-restricted HL7 V3 API, using CIS
+
+For more details see user-restricted APIs.
+
+Authorisation
+
+For some activities, the end user must be authorised to perform that activity.
+
+The API itself does not perform any authorisation checks. Rather, the calling system is expected to perform them. The authorisation rules are specified in our national Role Based Access Control (RBAC) database.
+
+For more details see our national Role Based Access Control (RBAC) database on the registration authorities and smartcards page.
+
+Testing
+
+You can test this API using our Path to Live environments.
+
+Onboarding
+
+You must get your software onboarded before it can go live.
+
+As part of onboarding, this API uses the Common Assurance Process (CAP), which is tailored for each NHS service. For more details, contact us.
+
+Interactions
+
+For details of interactions for this API:
+
+for SCR updates (creations and additions), see the 'GP Summary' domain in the Spine Message Implementation Manual (MIM)
+for SCR retrievals, see the 'PSIS Query' domain in the Spine Message Implementation Manual (MIM)
+for consent to share interactions - the Access Control Service (ACS) - see part 11 of the Spine External Interface Specification.
+
+For details on the general structure of the interactions, see HL7 V3.
+
+Last edited: 15 February 2022 4:17 pm

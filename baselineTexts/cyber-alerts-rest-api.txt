@@ -1,0 +1,77 @@
+Cyber Alerts - REST API
+
+Access a feed of alerts issued by our cyber security centre.
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status
+Service level
+Technology
+Network access
+Security and authorisation
+Environments and testing
+Onboarding
+Interactions
+Overview
+
+Use this API to access a feed of alerts issued by our NHS Digital cyber security centre.
+
+You can:
+
+get a list of cyber alerts according to certain parameters 
+get details of a single cyber alert
+choose to get a concise subset or full details of the alerts
+Who can use this API
+
+This API can only be used to help support the delivery of health and social care.
+
+Related APIs
+
+None.
+
+API status
+
+This API is in beta.
+
+Service level
+
+This API is a silver service, meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+
+For more details, see service levels.
+
+Technology
+
+This API is a REST API.
+
+For more details, see Basic REST.
+
+Network access
+
+This API is available on the internet and, indirectly, on the Health and Social Care Network (HSCN).
+
+For more details see Network access for APIs.
+
+Security and authorisation
+
+This API is open-access - we do not authenticate or authorise the calling application, or the end user.
+
+Environments and testing
+
+This API is available in production.
+
+The base URL is https://digital.nhs.uk/restapi/CyberAlert/
+
+We do not have any test environments outside this, but you can test reasonably in production.
+
+Onboarding
+
+This API is open-access, no onboarding is required.
+
+Interactions
+
+For a full list of interactions for this API, see the Cyber alerts API feed.
+
+Last edited: 20 January 2022 3:31 pm

@@ -1,0 +1,41 @@
+Clinical Decision Support API standards
+
+API standards to support the triage and onward referral of patients who are interacting with Urgent and Emergency Care services, such as NHS 111.
+
+Page contents
+Top of page
+Overview
+API standards
+Overview
+
+Use these API standards to support the triage and onward referral of patients who are interacting with Urgent and Emergency Care services such as NHS 111.
+
+These API standards support:
+
+self-triage by the patient
+triage by non-clinical staff, such as call handlers
+triage by clinicians
+
+They support the following interactions:
+
+triage through a series of questions and responses to determine the correct outcome or onward referral for the patient
+directory look-up to identify services that can meet the need or outcome identified for the patient
+onward referral of the patient to the appropriate healthcare service along with an encounter report that contains structured triage and other information 
+
+Before you begin any development work using these API standards, contact us to discuss your best options.
+
+API standards
+Date	Name	Version	Status & Notes	Links
+2020 	
+
+Clinical Decision Support API
+
+	
+
+2.0-alpha
+
+	Current version of the specification	https://developer.nhs.uk/apis/cds-api/
+
+ 
+
+Last edited: 28 September 2021 11:35 am

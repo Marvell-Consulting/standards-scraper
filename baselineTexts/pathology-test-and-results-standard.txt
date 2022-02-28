@@ -1,0 +1,52 @@
+DAPB4017: Pathology Test and Results Standard
+
+An information standard to form the basis of sharing pathology test requests and results for all of England.
+
+Page contents
+Top of page
+About this information standard
+Current release
+About this information standard
+
+This information standard comprises 3 inter-related specifications, aligned with clinical, commissioning and patient needs, to:
+
+help standardise information exchanged between clinical pathology laboratories and laboratory information systems
+enable the sharing of pathology results across the NHS, and across care settings and organisational boundaries.
+
+These specifications are:
+
+Unified Test List (UTL) - a national catalogue of pathology test requests and results, using SNOMED CT
+Units of Measures (UoM) - a national set of standardised units of measure, using The Unified Code for Units of Measure (UCUM), aligned with the UTL and HL7 FHIR
+Message Specification - a message specification, using Health Level 7 (HL7) Fast Healthcare Interoperability Resources (FHIR).
+
+These specifications are designed to support a generic pathology test request and test report cycle process, but have been further developed to exchange:
+
+high volume haematology and clinical biochemistry (also known as chemical pathology) information
+pathology domain information currently exchanged via EDIFACT and the Pathology Bounded Code List (PBCL)
+COVID-19 pathology test and result information.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the Specification and Implementation Guidance documents provide further detail for those who have to implement the information standard.
+
+Current release
+Release date	17 August 2021
+Release number	Amd 44/2020
+Release title	Version 1.0
+Key documents	
+Information Standards Notice (Amd 44/2020)
+Specification (Amd 44/2020)
+Implementation Guidance (Amd 44/2020)
+
+Supporting documents	
+Consultation Report (Amd 44/2020)
+
+
+
+Further information
+
+	
+
+ Find out more on NHS Digital's Pathology and Diagnostics Information Standards Collaboration Space.
+
+ 
+
+Last edited: 17 August 2021 9:25 am

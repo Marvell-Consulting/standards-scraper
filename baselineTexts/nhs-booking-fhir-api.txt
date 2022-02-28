@@ -1,0 +1,52 @@
+NHS Booking - FHIR API
+
+Search for free slots and book an appointment with this API formerly known as FHIR NHS Scheduling API
+
+Page contents
+Top of page
+Overview
+API status
+Service level
+Technology
+Interactions
+Overview
+
+Use this API to retrieve available slots and book an appointment for a specific health and care service, for example, from NHS 111 into an Urgent Treatment Centre (UTC).
+
+API status
+
+This API is stable.
+
+Service level
+
+This API is a bronze service, meaning it is operational and supported only during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+
+For more details, see service levels.
+
+Technology
+
+This API is a FHIR API.
+
+It is based on the HL7 FHIR STU3.
+
+For more details, see FHIR.
+
+Interactions
+
+All versions are based on the FHIR® STU3 standard.
+
+Status	Release Version	Release Date	Containing Capabilities	Version
+Live	FHIR NHS Booking 2.04	June 2021	Search for free slots, book appointment	Current version 2.0.4
+Beta	FHIR NHS Booking 2.0.3	April 2021	Search for free slots, book appointment	2.0.3
+Beta	FHIR NHS Booking 2.0.2 Beta	March 2021	Search for free slots, book appointment	2.0.2
+Beta	FHIR NHS Booking 2.0.1 Beta	November 2020	Search for free slots, book appointment	2.0.1
+Beta	FHIR NHS Booking 2.0.0 Beta	August 2020	Search for free slots, book appointment	2.0.0
+Alpha	FHIR NHS Scheduling 1.0.6 Alpha	April 2020	Search for free slots, book appointment	1.0.6
+Alpha	FHIR NHS Scheduling 1.0.5 Alpha	January 2020	Search for free slots, book appointment	1.0.5
+Alpha	FHIR NHS Scheduling 1.0.4 Alpha	June 2019	Search for free slots, book appointment	1.0.4
+Alpha	FHIR NHS Scheduling 1.0.3 Alpha	December 2018	Search for free slots, book appointment	1.0.3
+Alpha	FHIR NHS Scheduling 1.0.2 Alpha	November 2018	Search for free slots, book appointment	1.0.2
+
+For more details on the specifics of this use case, see Urgent & Emergency Care Appointment Booking
+
+Last edited: 1 February 2022 11:37 am

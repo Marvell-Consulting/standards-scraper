@@ -1,0 +1,127 @@
+Electronic Prescription Service Tracker - REST API
+
+Track a patient’s prescriptions using our Electronic Prescription Service (EPS) Tracker API.
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status and roadmap
+Service level
+Technology
+Network access
+Security and authorisation
+Environments and testing
+Onboarding
+Interactions
+Overview
+
+Use this API to track a patient’s prescriptions within the Electronic Prescription Service (EPS) using our Electronic Prescription Service Tracker.
+
+You can search for a list of prescriptions that meet your query parameters by providing: 
+
+patient's NHS number (mandatory)
+format (mandatory)
+prescription date range (optional)
+prescription status (optional)
+prescription version (optional)
+
+Once you find the prescription, or if you already know its details, you can retrieve it by providing:
+
+prescription ID (mandatory)
+format (mandatory)
+issue number (optional)
+
+For more details, see Introduction to Spine EPS Tracker.
+
+This API is only for use when the end user is a healthcare worker, not a patient. You can vote to make it available to patients on our interactive backlog. 
+
+Who can use this API
+
+This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development, by contacting us at epsonboarding@nhs.net.
+
+You must do this before you can go live (see ‘Onboarding’ below).
+
+Related APIs
+
+The following endpoint of the Electronic Prescription Service (EPS) FHIR API is currently in development and also gives access to prescription tracking:
+
+EPS FHIR API Tracker endpoint - use this to search for summary details about a prescription
+
+The following APIs also give access to EPS:
+
+Electronic Prescription Service - FHIR API - access the Electronic Prescription Service (EPS) - currently you can only use this new API to prescribe, not dispense or track prescriptions
+
+Electronic Prescription Service - HL7 V3 API - use this if you want to use functions that are not yet available in the FHIR API
+
+Signing Service - use this to digitally sign a prescription
+
+The following APIs may be required when accessing EPS:
+
+Personal Demographics Service - FHIR API - use this to obtain patient data
+API status and roadmap
+
+This API is in beta, meaning:
+
+it's available in production to all comers
+
+it might still be subject to breaking changes
+
+To see our roadmap, or to suggest, comment or vote on features for this API, see our interactive product backlog.
+
+Service level
+
+This API is a platinum service, meaning it is operational and supported 24 x 7 x 365.
+
+For more details, see service levels.
+
+Technology
+
+This API is a REST API.
+
+For more details, see Basic REST.
+
+Network access
+
+This API is available on the internet and, indirectly, on the Health and Social Care Network (HSCN). 
+
+For more details see Network access for APIs.
+
+Security and authorisation
+
+This API is application-restricted, meaning:
+
+the calling application is authenticated - we do care who it is
+
+the end user is not authenticated - we do not verify who it is or whether they are present
+
+In particular, it uses TLS Mutual Authentication (TLS-MA).
+
+This API is only for use when the end user is a healthcare worker, not a patient.
+
+In addition, we require calling applications to:
+
+authenticate end users locally with a minimum of user ID and password
+
+use role-based access control (RBAC) locally to control end user access to the patient data
+
+keep an audit trail locally of all accesses to patient data by end users
+
+Environments and testing
+
+You can test this API using our Path to Live environments.
+
+The base URL for production is https://mm-sync.national.ncrs.nhs.uk/mm/prescriptions
+
+Onboarding
+
+You need to get your software approved by us before it can go live with this API. We call this onboarding. The onboarding process can sometimes be quite long, so it’s worth planning well ahead.
+
+To onboard for this API, follow the Supplier Conformance Assessment List (SCAL) process after contacting us at epsonboarding@nhs.net.
+
+Interactions
+
+For a full list of interactions for this API, see the Development Overview.
+
+Last edited: 19 January 2022 5:13 pm

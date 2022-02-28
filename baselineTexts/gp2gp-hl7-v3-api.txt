@@ -1,0 +1,119 @@
+GP2GP - HL7 V3 API
+
+Transfer patients' electronic health records, securely and quickly, between their old and new practices when they change GPs.
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status
+Service level
+Technology
+Network access
+Security and authorisation
+Testing
+Onboarding
+Interactions
+Additional guidance
+Overview
+
+Use this API to transfer patients' electronic health records between old and new practices when they change GPs.
+
+You can:
+
+include large records and those with many attachments
+reduce paper printing when patients leave a practice
+integrate (file) the electronic health record for returning patients
+log issues easily with easy-to-understand and more informative error messages
+monitor in real time the processes to track issues and performance
+
+For more details, see GP2GP.
+
+Who can use this API
+
+This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development.
+
+You must do this before you can go live (see ‘Onboarding’ below). 
+
+Related APIs
+
+The following APIs are related to this one:
+
+Personal Demographics Service - FHIR API - use this new API to search for patients, retrieve patients by NHS number and update patients.
+Personal Demographics Service - HL7 V3 API - use this if you want to use functions that are not yet available on the FHIR API.
+Personal Demographics Service - SMSP API - use this if you want to get PDS data without an authenticated end user (no smartcard required). It is, however, read-only and searches are limited to a single result.
+Spine Directory Service - LDAP API - use this to access data in the Spine using Directory Service (SDS), our LDAP API, which provides details of organisations, people and systems registered with the Spine.
+NHAIS GP Links API - use this to manage GP registrations and other patient data in NHAIS.
+Organisation Data Service - FHIR API - use this to search a national repository of NHS Organisation Reference Data using a FHIR interface.
+Organisation Data Service - ORD API - use this to search a national repository of NHS Organisation Reference Data using an ORD interface.
+Messaging Exchange for Social care and Health (MESH) - use this component of the Spine to deliver messages and files to registered recipients, in this case, to send audit information.
+API status
+
+This API is stable.
+
+Service level
+
+This API is a silver service, meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+
+For more details, see service levels.
+
+Technology
+
+This API is an HL7 V3 API.
+
+For more details, see HL7 V3.
+
+Message Handling System (MHS) adaptor
+
+To remove the complexity of building your own Message Handling System, we offer a pre-assured, client side MHS adaptor that you can integrate into your own infrastructure.
+
+It makes it easier to connect to the NHS Spine and perform business operations by exposing a RESTful API that confirms to the HL7 V3 standard. 
+
+Network access
+
+You need a Health and Social Care Network (HSCN) connection to use this API.
+
+For more details, see Network access for APIs.
+
+Security and authorisation
+Authentication
+
+This API is user-restricted, meaning an end user must be present and authenticated to use it.
+
+The end user must be:
+
+a healthcare worker
+strongly authenticated using an NHS smartcard
+
+For more details see user-restricted APIs.
+
+Authorisation
+
+For some activities, the end user must be authorised to perform that activity.
+
+The API itself does not perform any authorisation checks. Rather, the calling system is expected to perform them. The authorisation rules are specified in our national Role Based Access Control (RBAC) database.
+
+For more details see our national Role Based Access Control (RBAC) database on the registration authorities and smartcards page.
+
+Testing
+
+You can test this API using our Path to Live environments.
+
+Onboarding
+
+You must get your software onboarded before it can go live.
+
+As part of onboarding, this API uses the Common Assurance Process (CAP), which is tailored for each NHS service. For more details, contact us.
+
+Interactions
+
+For a full list of interactions for this API, see the GP2GP domain in the Spine Message Implementation Manual (MIM).
+
+For details on the general structure of the interactions, see HL7 V3.
+
+Additional guidance
+
+For more details about requirements and specifications of the record transfer mechanism, see the GP2GP section in the GP IT Futures Capabilities and Standards guidance.
+
+Last edited: 16 February 2022 12:21 pm

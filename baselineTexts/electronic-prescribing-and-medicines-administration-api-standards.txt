@@ -1,0 +1,32 @@
+Electronic Prescribing and Medicines Administration API standards
+
+Use these API standards to share medication requests between ePMA systems and hospital pharmacy or stock control systems.
+
+Page contents
+Top of page
+Overview
+API standards
+Overview
+
+Use these API standards to share medication requests between electronic hospital patient medicines administration (ePMA) systems and hospital pharmacy or stock control systems.
+
+In particular, they define the structure of the FHIR MedicationRequest which acts as a medication order request to the pharmacy for a given patient under care on the ward.
+
+There is guidance for the STU3 implementation of the FHIR standard and for the FHIR UK Core (R4) standard.
+
+For more details see Implementation guide for digital medicines.
+
+API standards
+Year	Name	Version	Status & Notes	Links
+2021	
+
+Implementation Guidance for Medicines for FHIR R4 / UK Core
+
+	1.3.0-private-beta	Beta - under active development	Implementation Guide for Digital Medicines - SIMPLIFIER.NET
+2020	ePMA Implementation Guidance for FHIR STU3	1.1.0-private-beta	Beta - under active development 	
+
+ePMA Implementation Guidance for FHIR STU3
+
+ 
+
+Last edited: 8 December 2021 11:11 am

@@ -1,0 +1,41 @@
+DCB2094: Sexual Orientation Monitoring
+
+DCB2094 Sexual Orientation Monitoring is a new fundamental information standard which monitors the sexual orientation of service users.
+
+Page contents
+Top of page
+About this information standard
+Current release
+About this information standard
+
+This is a new information standard which provides the mechanism for recording the sexual orientation of all patients/ service users aged 16 years and over across all health services and Local Authorities with responsibilities for adult social care in England, for the purposes of compliance with the Equality Act 2010.
+
+Monitoring of sexual orientation will help to ensure that:
+
+care providers and commissioners are able to demonstrate that there is equitable access for lesbian, gay and bisexual (LGB) individuals;
+care providers and commissioners have an improved understanding of the impact of inequalities on health and care outcomes for LGB populations;
+policy makers, care providers and commissioners can better identify health risks at a population level. This will support targeted preventative and early intervention work to address health inequalities for LGB populations, thereby reducing expenditure linked to treatment costs further down the line.
+
+The standard has been based on research conducted by the Office for National Statistics (ONS) and the Equality and Human Rights Commission (EHRC), and on current practice by those organisations which monitor sexual orientation.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the other documents provide further detail for those who have to implement the information standard.
+
+Current release
+Release date	5 October 2017
+Release number	Amd 51/2015
+Release title	Initial Standard
+Stage	Implementation
+Key documents	
+Requirements Specification (Amd 51/2015) 
+Implementation Guidance (Amd 51/2015) 
+Information Standards Notice (Amd 51/2015)
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request -1572 (Basic CR) (Amd 51/2015)
+NHS Data Model and Dictionary Change Request -1572 (Data Set CR) (Amd 51/2015)
+
+Further information	
+
+Further guidance is published by NHS England
+
+Last edited: 1 November 2018 3:26 pm

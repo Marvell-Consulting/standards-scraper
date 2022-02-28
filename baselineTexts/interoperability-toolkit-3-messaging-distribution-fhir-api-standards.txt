@@ -1,0 +1,82 @@
+Interoperability Toolkit 3 Messaging Distribution FHIR API standards
+
+API standards for a set of generic messaging components using FHIR STU3 to create a unified approach to NHS message and document flows across England. 
+
+Page contents
+Top of page
+Overview
+API standards
+Overview
+
+These API standards cover a set of generic FHIR messaging components we developed using FHIR STU3 running over MESH to create a unified approach to NHS message and document flows across England. 
+
+Payloads are not specified as these components can carry any payload.
+
+These components, along with the NHS Digital FHIR Message and FHIR Document specifications, make up the Interoperability Toolkit 3 (ITK3) solution which is accompanied by an ITK3 test harness.
+
+The FHIR Messaging components were developed by NHS Digital and use CareConnect profiles created in collaboration with the INTEROPen community.
+
+For further information, contact the ITK conformance team.
+
+API standards
+Year 
+	
+Name
+	
+Version
+	
+Status & Notes
+	
+Links
+
+
+
+2022
+
+	
+
+ITK3
+Messaging Distribution 
+
+	
+
+V2.10.0
+Live
+
+	
+
+HL7 FHIR STU3 based messaging components standard.   This newer version contains addition ITK3 response codes which can be used. The NHS Digital programme which owns the implementation guide should be consulted for which version of the response codes to use.
+
+ 
+
+	
+
+https://developer.nhs.uk/apis/itk3messagedistribution-2-10-0/index.html
+
+
+2021	
+
+ITK3
+Messaging Distribution 
+
+	V2.9.0
+Live	
+
+HL7 FHIR STU3 based messaging components standard
+
+	https://developer.nhs.uk/apis/itk3messagedistribution-2-9-0/index.html
+2020	
+
+ITK3
+Messaging Distribution
+
+	
+
+V2.8.0
+public beta and earlier
+
+	Previous ITK3 specifications	https://digital.nhs.uk/services/interoperability-toolkit/developer-resources/itk3-test-harness/itk3-messaging-distribution-specification-versions
+
+ 
+
+Last edited: 27 January 2022 12:26 pm

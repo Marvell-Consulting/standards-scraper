@@ -1,0 +1,53 @@
+SCCI1580: Palliative Care Co-ordination: Core Content
+
+This information standard specifies the core content to be held in electronic palliative care co-ordination systems (EPaCCS) and supports NHS England's objective to increase the use of technology to help people manage their health and care.
+
+Page contents
+Top of page
+About this information standard
+Current release
+About this information standard
+
+Improving the co-ordination and quality of care provided for people at the end of life is a priority for NHS England. This information standard specifies the core content to be held in electronic palliative care co-ordination systems (EPaCCS) and supports NHS England's objective to increase the use of technology to help people manage their health and care. All Electronic Palliative Care Co-ordination Systems (EPaCCS) must comply with this information standard .
+
+Note that this current release (Amd 11/2015) introduces a change of name for the standard, from End of Life Care Co-ordination: Core Content.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the Requirements Specification and Implementation Guidance documents provide further detail for those who have to implement the information standard.
+
+Supporting documentation including the Record Keeping Guidance is available on the National End of Life Care Intelligence Network website.
+
+Additional supporting resources for EPaCCS are available on the NHS Improving Quality website.
+
+Update 6 January 2016: The latest release (SCCI1580 Amd 11/2015) was published on 18 September 2015.  A corrigendum has now been published which provides supplemental information in relation to:
+
+•    confirmation of the release of terminology codes
+•    impact of the uplift of SNOMED CT to the international edition
+•    clarification of interoperability requirements on behalf of NHS England.
+
+The corrigendum will be incorporated in the next release of this information standard.
+
+Current release
+Release date	18/09/2015
+Release number	Amd 11/2015
+Release title	Version 4.0
+Stage	Implementation
+Key documents	
+Requirements Specification (Amd 11/2015)
+Implementation Guidance (Amd 11/2015)
+Change Specification (Amd 11/2015)
+Implementing the Changes (Amd 11/2015)
+Information Standards Notice (Amd 11/2015)
+Corrigendum (Amd 11/2015)
+
+Supporting documents	
+Clinical Safety Report (Amd 11/2015)
+Record Keeping Guidance (Amd 11/2015)
+Clinical Hazard Log Final (Amd 11/2015)
+NHS Data Model and Dictionary Change Request 1521 (Amd 11/2015)
+
+EPACCS IT System Requirements (Amd 11/2015)
+
+
+Further information	PHE - National End of Life Care Intelligence Network
+
+Last edited: 6 January 2022 9:52 am

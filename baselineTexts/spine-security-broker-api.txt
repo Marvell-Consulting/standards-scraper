@@ -1,0 +1,60 @@
+Spine Security Broker API
+
+Provide single sign-on for healthcare workers using NHS smartcards.
+
+Page contents
+Top of page
+Overview
+API status
+Service level
+Technology
+Network access
+Interactions
+
+If you are developing a new integration, we strongly recommend using the NHS Care Identity Service 2 API instead.
+
+Overview
+
+Use this API to implement single sign-on for healthcare workers using NHS smartcards.
+
+You can:
+
+access the Identity Server which serves up SSO Tokens and manages the sessions for users who have been successfully authenticated
+access the Identity Agent on the end user's workstation, which mediates the authentication transaction and serves subsequent user information on demand as part of the application's authorisation process
+access the Client Signing Interface, which provides client-side digital signing functions for the purposes of Content Commitment. This interface primarily uses cryptographic functions that execute on a user’s smart card.
+
+Users can only be authenticated if they are formally registered to the Spine. This includes creating a user profile, stored in the Spine Directory Service (SDS), containing the user’s roles and other information that the Registration Authority or Service deems necessary to make appropriate data access decisions.
+
+This authentication service is also known as the Care Identity Service (CIS). It makes use of smartcards to provide strong authentication for health care workers to control access to national services. It is being replaced by NHS Care Identity Service 2 (NHS CIS2), which provides additional authentication methods for scenarios where a smartcard might not be preferred or appropriate.
+
+This API is described fully in the Spine External Interface Specification (EIS). Part 6 has the overview and part 7 the formal API specifications. These are a set of Word documents that provide system developers - architects, designers and builders - with the necessary information to connect to Spine national services.
+
+API status
+
+This API is stable.
+
+Service level
+
+This API is a platinum service, meaning it is operational and supported 24 x 7 x 365.
+
+For more details, see service levels.
+
+Technology
+
+This API is a SOAP API.
+
+For more details, see Basic SOAP.
+
+Network access
+
+You need an HSCN connection to use this API. This is because the client-side Identity Agent component requires HSCN to talk to its server-side counterparts.
+
+For a similar API that is available on the internet, consider NHS CIS2.
+
+For more details, see Network access for APIs.
+
+Interactions
+
+For a full list of interactions for this API, see the Spine External Interface Specification (EIS). Part 6 has the overview and part 7 the formal specifications of the Java and C APIs.
+
+Last edited: 19 January 2022 5:23 pm

@@ -1,0 +1,149 @@
+Organisation Data Service - FHIR API
+
+Access a reduced dataset of health and social care organisations in England and Wales, such as trusts or GP practices, using our Organisation Data Service (ODS) FHIR API. 
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status and roadmap
+Service level
+Technology
+Network access
+Security and authorisation
+Environments and testing
+Onboarding
+Interactions
+
+Rate limits
+
+This API is not designed for high volume usage - to ensure a good level of service you should aim to keep usage below 5 requests per second.
+
+We are working on increasing the capacity of the API. If you have an exceptional need for higher throughput, contact us to discuss your options.
+
+Overview
+
+Use this API to access a reduced dataset of health and social care organisations in England and Wales, such as trusts or GP practices, using our Organisation Data Service (ODS). This FHIR API contains a reduced dataset, most useful for helping with transactions, while the ODS ORD API contains the full dataset from ODS.
+
+You can search for information about an organisation using one or more of their:
+
+ODS code
+last updated date
+name
+active or inactive status
+postcode or city
+organisation's role or primary role, such as trusts or GP practices
+
+You can also limit the number of results returned, or just request a count of the number of search results.
+
+For more details, see the Introduction to FHIR® ODS Lookup API.
+
+You cannot:
+
+access the full dataset from ODS
+
+search for an organisation with an address
+
+An ODS code is a unique identification codes for an organisation that interact with any area of the NHS. This API returns the following reduced dataset of an organisation, when searched with an ODS code:
+
+organisation - ODS code, name, open date, close  date, last change date and status if active or inactive
+address - house or flat number, line 1, line 2, line 3, town, postcode and country
+contacts - email, website, telephone and fax
+roles - primary and non-primary roles
+
+For an alternative API that returns full dataset, see Related APIs below.
+
+Who can use this API
+
+This API can only be used to support the delivery of health and social care.
+
+Related APIs
+
+The following API also gives access to the Organisation Data Service:
+
+ODS Organisation Reference Data (ORD) API - use this API to access the full dataset from ODS. 
+
+To choose which API best suits your needs, see the Benefits of the ODS API suite.
+
+The following API is also related to this API:
+
+Spine Directory Service - FHIR API - use this API to access ASID information and messaging endpoint details in the Spine Directory Service (SDS) using our FHIR-conformant API.
+
+API status and roadmap
+
+This API is stable.
+
+To see our roadmap, or to suggest, comment or vote on features for this API, see our interactive product backlog.
+
+If you have any other queries, contact us.
+
+Service level
+
+This API is a bronze service, meaning it is operational and supported only during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+
+For more details, see service levels.
+
+Technology
+
+This API is RESTful.
+
+It also conforms to the FHIR global standard for health care data exchange. Specifically, it is based on the HL7 FHIR STU3 Messaging Implementation.
+
+You do not need to know much about FHIR to use this API - FHIR APIs are just RESTful APIs that follow specific rules. In particular:
+
+resource names are capitalised, singular and in American English, for example /Organization not /organisations
+
+array names are singular, for example line not lines for address lines
+
+data items that are country-specific and thus not included in the FHIR global base resources are usually wrapped in an extension object
+
+There are libraries and SDKs available to help with FHIR API integration. 
+
+Network access
+
+This API is available on the internet and, indirectly, on the Health and Social Care Network (HSCN).
+
+Security and authorisation
+
+This API is open-access, which means:
+
+we do not authenticate or authorise the calling application
+we do not authenticate or authorise the end user - they might not even be present
+
+We generally use open-access APIs for public data, where security is not a concern. Our open-access APIs are generally RESTful APIs. For more details on how to access them, see our open-access REST API tutorial.
+
+Environments and testing
+Environments	Base URLs
+
+
+User acceptance test (UAT)
+
+	https://uat.directory.spineservices.nhs.uk/STU3/
+Production	https://directory.spineservices.nhs.uk/STU3/
+
+For example:
+
+https://uat.directory.spineservices.nhs.uk/STU3/Organization/RJY 
+
+returns the reduced dataset for the organisation whose ODS code is RJY. 
+
+Integration testing
+
+You can use the UAT environment to perform your integration testing.
+
+Onboarding
+
+This API is open-access, and there is no onboarding process or assurance required.
+
+Interactions
+
+The following table summarises the endpoints of this API.
+
+Endpoint	Endpoint URLs	Description
+Read	https://directory.spineservices.nhs.uk/STU3/Organization/[ODS code]	Returns the reduced dataset of a single organisation for the specified ODS code.
+Search	https://directory.spineservices.nhs.uk/STU3/Organization?[SearchParameters]	Returns a summary of multiple organisations when searched with one or many search parameters.
+
+For details on the general structure of the interactions, see FHIR.
+
+Last edited: 15 February 2022 3:58 pm

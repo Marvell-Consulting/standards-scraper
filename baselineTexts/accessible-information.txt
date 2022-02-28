@@ -1,0 +1,53 @@
+DCB1605: Accessible Information
+
+This information standard aims to make sure that people who have a disability, impairment or sensory loss get appropriate information and communication support from NHS and adult social care services.
+
+Page contents
+Top of page
+About this information standard
+Releases
+Previous releases
+About this information standard
+
+This information standard aims to make sure that people who have a disability, impairment or sensory loss get appropriate information and communication support from NHS and adult social care services.
+
+It requires all applicable organisations to identify, record, flag, share and meet the information and communication support needs of patients, service users, carers and parents with a disability, impairment or sensory loss. Successful implementation will lead to improved outcomes and experiences, and the provision of safer and more personalised care and services to those individuals who come within the scope of the standard.
+
+The standard applies to service providers across the NHS and adult social care system, and effective implementation will require such organisations to make changes to policy, procedure, human behaviour and, where applicable, electronic systems. Commissioners of NHS and publicly-funded adult social care must also have regard to this standard, in so much as they must ensure that contracts, frameworks and performance management arrangements with provider bodies enable and promote the standard's requirements.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the Specification and Implementation Guidance Documents provide further detail for those who have to implement the information standard. In addition, NHS England has produced a summary of the clinical terminology codes used within the standard; a link to this document is provided below.
+
+Note: A post-implementation review (PIR) of the Initial Standard was conducted from January to March 2017; details of the review findings were provided in a report which was presented to the Data Coordination Board in June 2017 as part of the approval of Version 1.1 of the standard. For further information about the PIR and to view the report, please see the NHS England website (please note that this is an external link).
+
+Releases
+Release date	10 August 2017
+Release number	Amd 27/2017
+Release title	Version 1.1
+Stage	Implementation
+Key documents	
+Specification (Amd 27/2017)
+Specification - Change Paper (Amd 27/2017)
+Implementation Guidance (Amd 27/2017)
+Implementation Guidance - Change Paper (Amd 27/2017)
+Information Standards Notice (Amd 27/2017)
+
+Supporting documents	
+Clinical Safety case (NHS England) (Initial Standard and Version 1.1)
+
+Further information	Accessible Information web pages
+Previous releases
+Release date	03 July 2015
+Release number	Amd 8/2013
+Release title	Initial Standard
+Stage	Retirement
+Key documents	
+Specification (Amd 8/2013)
+Implementation Guidance (Amd 8/2013)
+Information Standards Notice (Amd 8/2013)
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request 1475 (Amd 8/2013)
+
+Further information	Accessible Information web pages
+
+Last edited: 1 November 2018 3:18 pm

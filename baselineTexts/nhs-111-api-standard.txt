@@ -1,0 +1,44 @@
+NHS 111 API standard
+
+API standard to share information between NHS 111 and other organisations, such as GPs and ambulance services, and query the Repeat Caller Service.
+
+Page contents
+Top of page
+Overview
+API status
+Technology
+Interactions
+Overview
+
+Use this API standard for point-to-point messaging to share information between NHS 111 and other organisations, such as GPs and ambulance services, when a patient interacts with NHS 111. 
+
+It supports the following communication types from NHS 111:
+
+advise a healthcare facility or GP of an expected visit from a patient who has called NHS 111
+advise a patient's GP when a patient is referred to another healthcare facility
+advise the ambulance service that a patient requires an ambulance
+query the Repeat Caller Service
+
+Note there is a later version of this API standard which was developed but not used, called the Integrated Urgent Care Domain Message Specification V3.0. We recommend you do not use it. Instead use the version recommended in Interactions below.
+
+API status
+
+This API standard is stable.
+
+Technology
+
+This API standard uses synchronous ITK SOAP with an ITK CDA payload.
+
+NHS 111 Report adaptor
+
+If you are building a system that receives NHS 111 reports, you can use our NHS 111 Report adaptor to receive SOAP messages and convert them to an easy-to-use FHIR-compliant format. 
+
+Interactions
+
+For a full list of interactions for this API standard, download the NHS 111 Domain Message Specification in the zip file below.
+
+NHS 111 Domain Message Specification V2.1 RC1
+
+ZIP 18 MB
+
+Last edited: 21 October 2021 3:53 pm

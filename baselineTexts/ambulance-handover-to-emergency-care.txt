@@ -1,0 +1,22 @@
+Ambulance Handover to Emergency Care Standard V1.0
+Emergency care needs fast, effective sharing of information. When clinicians have access to the information they need, they can better ensure safe and high-quality care for patients. To facilitate this, The Professional Record Standards Body (PRSB) has developed a standard for the information that is shared when care is transferred from ambulances to emergency departments. Once implemented, the standard for handover will improve continuity of care, as emergency care will have the information they need available to them on a timely basis. Whichever ambulance service brings the patient to the hospital, there will be a consistent set of information available to the emergency department. It means that patient safety will be improved, because emergency care professionals will know what medications have been administered, what diagnostic tests have been done, whether the patient has any allergies and other important information. Sharing clinical information with emergency care will also support professionals in arranging patient discharge and preventing unnecessary admissions. The PRSB have collaborated with the Royal College of Physicians Health Informatics Unit on this project. Clinical leadership was provided by clinicians from the Royal College of Emergency Medicine and the College of Paramedics (CoP). The standard has been developed with the support of professionals and patients. The standard is published as a draft while we seek endorsement from relevant members and other organisations.
+Endorsed by:
+Association of Ambulance Chief Executives
+Chartered Society of Physiotherapists
+College of Paramedics
+Royal College of Emergency Medicine
+Royal College of Nursing
+Royal College of Obstetricians and Gynaecologists
+Royal College of Occupational Therapists
+Royal College of Physicians
+Royal College of Surgeons
+Royal College of Psychiatrists
+Information model
+Ambulance handover standard final report v1.0
+Implementation guidance v1.0
+Clinical Safety Case Report v1.0
+Hazard log v1.0
+
+Despite vigilance when filing information in records, mistakes can occur. The Institute of Health Records and Information Management has guidance to support professionals in making corrections following errors.
+
+VIEW THE GUIDANCE

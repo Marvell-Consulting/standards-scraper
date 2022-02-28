@@ -1,0 +1,37 @@
+Interoperability Toolkit Messaging HL7 V2 API standards
+
+API standards for a set of messaging components using HL7 V2.
+
+Page contents
+Top of page
+Overview
+API standards
+Overview
+
+These API standards cover a set of HL7 V2 messaging specifications known as the Interoperability Toolkit (ITK). For example, for sending messages about the admission, discharge and transfer (ADT) of a patient.
+
+For more details on this API standard, see the Interoperability Toolkit Core download below.
+
+These API standards were supplemented by the Interoperability Toolkit 3 (ITK3) Messaging Distribution FHIR API standards to support newer specifications, for example Transfer of Care, which is not supported under ITK V2.
+
+For further information, contact the ITK conformance team.
+
+API standards
+
+Click to download a zip file and extract all the files into a folder on your local PC. 
+Select the index file to view the API standard.
+
+Interoperability Toolkit Core - V1.1 Final
+
+ZIP 3 MB
+
+Interoperability Toolkit Architecture - V2.1 Final
+
+ZIP 6 MB
+ARTICLE
+
+Interoperability Toolkit Architecture - V2.2 Final
+
+ITK Architecture V2.2
+
+Last edited: 22 November 2021 5:05 pm

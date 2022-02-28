@@ -1,0 +1,185 @@
+Vaccination APIs
+
+Provide information to NHS Digital relating to coronavirus (COVID-19) and seasonal flu 2021-22 vaccinations.
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status
+Service level
+Technology
+Network access
+Security and authorisation
+Environments and testing
+Onboarding
+Latest addenda
+Interactions
+Additional guidance
+Overview
+
+Use these APIs to provide vaccination information to us at NHS Digital.
+
+You can send us information relating to:
+
+coronavirus (COVID-19) vaccinations
+COVID-19 extended data attributes
+COVID-19 hourly vaccination aggregate data for the NHS Foundry
+seasonal flu 2021-22 vaccinations
+measles, mumps and rubella (MMR) vaccinations
+
+These APIs specify the flow of vaccination-related information from healthcare settings including:
+
+hospital hubs - NHS providers vaccinating on site 
+
+local vaccine services – community or primary care led services which could include primary care facilities, retail, community facilities, temporary structures or roving teams 
+
+vaccination centres – large sites such as sports and conference venues set up for high volumes of people 
+
+These APIs consist of delimited files sent to us over MESH.
+
+For more details on how to interact with end users to collect COVID-19 information safely, see the functional specifications under 'Additional guidance'.
+
+For FHIR standards relating to the flow of information directly back to the patient's GP, see Digital Medicine - FHIR API.
+
+For FHIR standards relating to the flow of information to other care providers such as Child Health, see Vaccination Events - FHIR API.
+
+Who can use this API
+
+These APIs can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development, by contacting us.
+
+You must do this before you can go live (see ‘Onboarding’ below). 
+
+Related APIs
+
+The following APIs are also related to these:
+
+Vaccination Adverse Reactions COVID-19 API - use this to provide information to NHS Digital on adverse reactions relating to coronavirus (COVID-19) vaccinations.
+Vaccination Events - FHIR API - use this to send and receive messages about changes to a patient's vaccination details.
+Digital Medicine - FHIR API - use this to notify a patient's registered GP practice of care services provided by a pharmacy, such as immunisation.
+API status
+
+These APIs are stable.
+
+Service level
+
+This API uses MESH which is a silver service, meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+
+For more details, see service levels.
+
+Technology
+
+These APIs consist of delimited files you send to us over MESH.
+
+Some are pipe-delimited, others are not-sign-delimited files. For details, see the individual specification.
+
+Network access
+
+These APIs are available on the internet and on the Health and Social Care Network (HSCN).
+
+For more details see Network access for APIs.
+
+Security and authorisation
+
+These APIs use MESH which is an application-restricted API.
+
+These APIs do not perform any end user authentication or authorisation checks. Rather, the calling system is expected to perform them. 
+
+Environments and testing
+
+These APIs use MESH.
+
+As a developer, you are most likely to want to connect to MESH using either the MESH client or the MESH API.
+
+For more details about using the MESH client, see MESH client.
+
+For the MESH API, there are several independent, externally accessible instances of MESH you can use for testing. For full details, see MESH API - Environments and testing.
+
+Onboarding
+
+You must get your software onboarded before it can go live.
+
+For more details, contact us at vaccinations.assurance@nhs.net.
+
+Latest addenda
+
+These are Microsoft Word files. To request a different format, contact us.
+
+POC system updates to accommodate COVID-19 vaccinations for ‘at-risk’ 5 to 11 children V1.2
+
+DOCX 117 KB
+
+POC system updates to support the UK vaccine response to the Omicron variant V1.0
+
+DOCX 104 KB
+
+Responsible clinician and consent addendum V1.0
+
+DOCX 95 KB
+
+Spikevax® (Moderna) and Comirnaty® (PfizerBioNtech) vaccine name changes
+
+DOCX 103 KB
+
+Moderna half dose / booster warnings addendum V1.0 – COVID-19
+
+DOCX 107 KB
+
+Child immunisation addendum V1.1 - COVID-19
+
+DOCX 92 KB
+Interactions
+
+These are Microsoft Word files. To request a different format, contact us.
+
+Daily clinical vaccination specification V3.5 - COVID-19
+
+DOCX 496 KB
+
+Extended attributes for additional data capture V1.4 - COVID-19
+
+DOCX 435 KB
+
+Hourly vaccination system aggregate data specification V1.2 - COVID-19
+
+DOCX 494 KB
+
+Daily clinical vaccination specification V2.3 - seasonal flu 2021-22
+
+DOCX 455 KB
+
+MMR vaccination - technical specification for GPIT suppliers to NHS Digital delimited extract V1.0
+
+DOCX 489 KB
+Additional guidance
+
+Use these functional specifications to understand how your system must interact with end users in order to collect information safely and assist in decision making, relating to COVID-19 vaccinations.
+
+These are Microsoft Word files. To request a different format, contact us.  
+
+Functional specification for additional point of care data capture V2.3 - COVID-19
+
+DOCX 431 KB
+
+Overall specification for point of care systems V4.0 – COVID-19
+
+DOCX 2 MB
+
+Vaccine specific information for suppliers of point of care systems V3.2 - COVID-19
+
+DOCX 427 KB
+
+Functional specification for capture of clinical screening questions at point of care V3.4 - COVID-19
+
+DOCX 430 KB
+
+Functional specification for vaccination coadministration V1.1 - flu and COVID-19
+
+DOCX 467 KB
+
+Functional specification for immunisation status V1.0 - flu and COVID-19
+
+DOCX 970 KB
+
+Last edited: 1 February 2022 11:29 am

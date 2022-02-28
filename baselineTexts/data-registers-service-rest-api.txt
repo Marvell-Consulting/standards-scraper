@@ -1,0 +1,97 @@
+Data Registers Service - REST API
+
+Access a wide range of live lists of reference data with our Data Registers Service.
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status
+Service level
+Technology
+Network access
+Security and authorisation
+Environments and testing
+Onboarding
+Interactions
+Overview
+
+Use this API to access a wide range of live lists of reference data with our Data Registers Service which includes historic data. Each register is managed by a custodian across a range of organisations. In each case, they represent the approved version of that data. 
+
+Examples of these data registers include:
+
+organisation codes
+postcodes
+diagnosis codes
+
+You can see what data registers are available using our data registers tool.
+
+If you're looking for richer functionality from a data source, such as being able to test data validity, extract a subset or map data across different schemas then take a look at our Terminology Server - FHIR API - the terminology server provides a richer view of the SNOMED data set only. This also conforms to the international FHIR standards for its APIs.
+
+You can use this API if you have a use case which needs historical data snapshots, and you have not subscribed to TRUD and kept historic releases from TRUD.
+
+Who can use this API
+
+This API can only be used to support the delivery of health and social care.
+
+Related APIs
+
+The following APIs are related to this one:
+
+Organisation Data Service - FHIR API - use this to search a national repository of NHS Organisation Reference Data using a FHIR or an ORD interface
+
+Organisation Data Service - ORD API - use this API to access details of health and social care organisations in England and Wales, such as trusts or GP practices, using our Organisation Data Service (ODS)
+
+Technology Reference data Update Distribution (TRUD) - use this API to automate the download of Technology Reference data Update Distribution (TRUD) release files
+Terminology server API - use this API to retrieve content from the NHS Digital Terminology Server
+API status
+
+This API is in beta.
+
+Service level
+
+This API is a bronze service, meaning it is operational and supported only during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+
+For more details, see service levels.
+
+Technology
+
+This API is a REST API.
+
+For more details, see Basic REST.
+
+Network access
+
+This API is available on the internet and, indirectly, on the Health and Social Care Network (HSCN).
+
+For more details, see Network access for APIs.
+
+Security and authorisation
+
+This API is open-access, which means:
+
+we do not authenticate or authorise the calling application
+
+we do not authenticate or authorise the end user - they might not even be present
+
+We generally use open-access APIs for public data, where security is not a concern. Our open-access APIs are generally RESTful APIs. For more details on how to access them, see our open-access REST API tutorial.
+
+Environments and testing
+
+The base URL is for the production environment.  There are no test or integration environments.  
+
+Environment	Base URL
+Production	https://digital.nhs.uk/services/data-registers-service/
+
+You should use the production environment for early developer testing, formal integration testing and production use.
+
+Onboarding
+
+This API is open-access, and there is no onboarding process or assurance required.
+
+Interactions
+
+For a full list of interactions for this API, see the API user endpoints.
+
+Last edited: 18 February 2022 10:29 am

@@ -1,0 +1,73 @@
+Demographics Batch Service API
+
+Submit a file of patient information to the Spine for tracing against the Personal Demographics Service (PDS).
+
+Page contents
+Top of page
+Overview
+API status
+Service level
+Technology
+Network access
+Interactions
+Additional guidance
+DBS user guide
+Overview
+
+Use this API to submit a file of patient information to the Spine for tracing against the Personal Demographics Service (PDS) for direct care purposes.
+
+The service is provided for organisations that do not want to write their own software - typically NHS trusts or local authorities.
+
+It returns a limited set of PDS data items, as for PDS SMSP.
+
+It requires PDS access approval before you can use it.
+
+You can:
+
+install a DBS client in a secure location, for example in a server room not a desktop PC
+download and complete the DBS End Point Registration form (below under Additional guidance) and submit it to the DBS Implementation Team at demographics@nhs.net. You should receive endpoint information within 7 days.
+submit a test file to DBS to confirm connectivity over Secure FTP
+use the DBS client to submit batch trace requests and receive batch responses to them
+
+DBS requires a secure network connection. It is an offline service so does not require smartcards.
+
+API status
+
+This API is stable.
+
+Service level
+
+This API is a gold service, meaning it is operational and supported 24 x 7 x 365.
+
+For more details, see service levels.
+
+Technology
+
+DBS accepts fixed length text files or comma separated variable (CSV) files via the DBS client.
+
+The DBS client is a Secure File Transfer Protocol (SFTP) client that sends a specifically formatted file to the Spine which is then used to interrogate PDS. DBS notifies the DBS client user when a response is available, who can then receive the response file.
+
+Network access
+
+You need a Health and Social Care Network (HSCN) connection to use this API.
+
+For more details, see Network access for APIs.
+
+Interactions
+
+For a full list of interactions for this API, see the DBS User Guide under Additional guidance.
+
+Additional guidance
+DBS user guide
+
+These are a Portable Document Format file and an Excel spreadsheet. To request a different format, contact us. 
+
+DBS user guide
+
+PDF 683 KB
+
+DBS End Point Registration form
+
+XLS 29 KB
+
+Last edited: 19 January 2022 4:29 pm

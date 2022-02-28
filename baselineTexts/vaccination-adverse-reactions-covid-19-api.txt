@@ -1,0 +1,113 @@
+Vaccination Adverse Reactions COVID-19 API
+
+Provide information to NHS Digital on adverse reactions relating to coronavirus (COVID-19) vaccinations.
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status
+Service level
+Technology
+Network access
+Security and authorisation
+Environments and testing
+Onboarding
+Interactions
+Overview
+
+Use this API to provide information to us at NHS Digital on adverse reactions.
+
+You can send us information on adverse reactions relating to: 
+
+coronavirus (COVID-19) vaccinations.
+
+This API specifies the flow of information relating to vaccination-related adverse reactions from any healthcare setting including:
+
+hospital hubs - NHS providers vaccinating on site 
+
+local vaccine services – community or primary care led services which could include primary care facilities, retail, community facilities, temporary structures or roving teams 
+
+vaccination centres – large sites such as sports and conference venues set up for high volumes of people 
+
+This API consists of pipe-delimited files to send us over MESH.
+
+For FHIR standards relating to the flow of information directly back to the patient's GP, see Digital Medicine - FHIR API.
+
+Regulatory reporting
+
+This information flow captures any adverse reactions which occur within the first fifteen minutes after administration of the coronavirus (COVID-19) vaccination. 
+
+At NHS Digital, we must share this information with the Medicines and Healthcare products Regulatory Agency (MHRA) Yellow Card scheme. This scheme is the UK system for collecting and monitoring information on suspected safety concerns or incidents involving medicines and medical devices, including vaccines. 
+
+The information we share with MHRA as part of this scheme is anonymised.
+
+Who can use this API
+
+This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development, by contacting us.
+
+You must do this before you can go live (see ‘Onboarding’ below). 
+
+Related APIs
+
+The following APIs are also related to this one:
+
+Vaccination API - use this to provide information to NHS Digital relating to coronavirus (COVID-19) and seasonal flu 2020-21 vaccinations
+Vaccination Events - FHIR API - use this to publish and receive messages about changes to a patient's vaccination details
+Digital Medicine - FHIR API - use this to notify a patient's registered GP practice of care services provided by a pharmacy, such as immunisation
+API status
+
+This API is stable.
+
+Service level
+
+This API uses MESH which is a silver service, meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+
+For more details, see service levels.
+
+Technology
+
+This API specifies pipe-delimited files sent over MESH.
+
+For more details, see MESH.
+
+Network access
+
+This API is available on the internet and on the Health and Social Care Network (HSCN).
+
+For more details see Network access for APIs.
+
+Security and authorisation
+
+This API uses MESH which is an application-restricted API.
+
+This APIs does not perform any end user authentication or authorisation checks. Rather, the calling system is expected to perform them. 
+
+Environments and testing
+
+This API uses MESH.
+
+As a developer, you are most likely to want to connect to MESH using either the MESH client or the MESH API.
+
+For more details about using the MESH client, see MESH client.
+
+For the MESH API, there are several independent, externally accessible instances of MESH you can use for testing. For full details, see MESH API - Environments and testing.
+
+Onboarding
+
+You must get your software onboarded before it can go live.
+
+For more details, contact us at vaccinations.assurance@nhs.net.
+
+Interactions
+
+This is a Microsoft Word file.  To request a different format, contact us.
+
+Adverse Reaction specification V1.1 - COVID-19
+
+DOCX 444 KB
+
+Vaccination Adverse Reactions COVID-19 API
+
+Last edited: 21 January 2022 11:59 am

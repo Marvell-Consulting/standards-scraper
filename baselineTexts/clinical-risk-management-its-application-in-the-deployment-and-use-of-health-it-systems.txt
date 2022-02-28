@@ -1,0 +1,99 @@
+DCB0160: Clinical Risk Management: its Application in the Deployment and Use of Health IT Systems
+
+Prepared by the NHS Digital Clinical Safety team, this standard is designed to help health and care organisations assure the clinical safety of their health IT software
+
+Page contents
+Top of page
+About this information standard
+Current release
+Previous release
+About this information standard
+
+This standard provides a set of requirements suitably structured to promote and ensure the effective application of clinical risk management by those health organisations that are responsible for the deployment, use, maintenance or decommissioning of Health IT Systems within the health and care environment.
+
+The standard includes implementation guidance and is supported by the related standard for the application of clinical risk management in the manufacture of Health IT Systems - DCB0129.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the other documents provide further detail for those who have to implement the information standard.
+
+October 2020: Update: Confirmation from the NHS Digital Clinical Safety Group that this has returned to business as usual activity.
+
+Current release
+Release date	
+
+07/06/2018
+
+
+Release number	Amd 25/2018
+Release title	2018 Update
+Stage	Implementation
+Key documents	
+Change Specification (Amd 25/2018)
+Specification (Amd 25/2018)
+Implementation Guidance (Amd 25/2018)
+Information Standards Notice (Amd 25/2018)
+
+Further information	Please see the  NHS Digital website  for further information about the Clinical Safety team.
+Previous release
+
+Release date
+
+	
+
+15/02/2013 (updated 05/05/2016)
+
+
+
+
+Release number
+
+	
+
+Amd 38/2012
+
+
+
+
+Release title
+
+	
+
+Version 3
+
+
+
+
+Stage
+
+	
+
+Maintenance
+
+
+
+
+Key documents
+
+	
+Specification (Amd 38/2012)
+Implementation Guidance (Amd 38/2012)
+Information Standards Notice (Amd 38/2012)
+
+
+
+Guidance documents
+
+	
+Compliance Assessment Template (Amd 38/2012)
+Agile Development (Amd 38/2012)
+Middleware (Amd 38/2012)
+Telehealth and mobile health solutions (Amd 38/2012)
+
+
+
+Previous releases
+
+	
+
+Please see the ISB website for information on the previous releases.
+
+Last edited: 28 October 2020 3:38 pm

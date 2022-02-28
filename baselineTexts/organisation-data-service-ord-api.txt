@@ -1,0 +1,162 @@
+Organisation Data Service - ORD API
+
+Access the full dataset of health and social care organisations in England and Wales, such as trusts or GP practices, using our Organisation Data Service (ODS) ORD API. 
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status and roadmap
+Service level
+Technology
+Network access
+Security and authorisation
+Environments and testing
+Onboarding
+Interactions
+
+Rate limits
+
+This API is not designed for high volume usage - to ensure a good level of service you should aim to keep usage below 5 requests per second.
+
+We are working on increasing the capacity of the API. If you have an exceptional need for higher throughput, contact us to discuss your options.
+
+Overview
+
+Use this API to access details of health and social care organisations in England and Wales, such as trusts or GP practices, using our Organisation Data Service (ODS). This ORD compatible API contains the full dataset from ODS, and the ODS FHIR API contains a reduced dataset, most useful for helping with transactions
+
+You can:
+
+search for organisations
+get the organisation details for a given ODS code
+get a list of recently modified organisations
+get metadata for roles, relationships and record classes
+get a list of organisations that have been modified since a specific date to synchronise data locally
+
+An ODS code is a unique identification codes for an organisation that interact with any area of the NHS. For more details, see Organisation Data Service: Guidance for developers .
+
+This API returns the following full dataset for an organisation, when searched with an ODS code:
+
+organisation - ODS code, name, open date, close  date, last change date and status if active or inactive
+address - house or flat number, line 1, line 2, line 3, town, postcode and country
+contacts - email, website, telephone and fax
+roles - primary and non-primary roles
+relationships - legal and operational relationships including history where it was captured by ODS
+succession - history of legal succession following reconfiguration or mergers
+additional attributes - data items included to support policy and pragmatic change
+
+For an alternative API that returns reduced dataset, see Related APIs below.
+
+Who can use this API
+
+This API can only be used to support the delivery of health and social care.
+
+Related APIs
+
+The following API also gives access to the Organisation Reference Data:
+
+ODS Organisation Data Service - FHIR API - use this API to access a reduced dataset of the full ODS record, providing a simple way to support health transactions and interoperability.
+
+To choose which API best suits your needs, see Benefits of the ODS API suite.
+
+The following API is also related to this API:
+
+Spine Directory Service - FHIR API - Use this API to access ASID information and messaging endpoint details in the Spine Directory Service (SDS) using our FHIR-conformant API.
+
+API status and roadmap
+
+This API is stable.
+
+To see our roadmap, or to suggest, comment or vote on features for this API, see our interactive product backlog.
+
+If you have any other queries, contact us.
+
+Service level
+
+This API is a bronze service, meaning it is operational and supported only during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+
+For more details, see service levels.
+
+Technology
+
+This API is a REST API.
+
+Response payloads conform to the Organisation Reference Data (ORD) information standard (DCB0090), and you can choose to receive either JSON or XML.
+
+Network access
+
+This API is available on the internet and, indirectly, on the Health and Social Care Network (HSCN).
+
+Security and authorisation
+
+This API is open-access, which means:
+
+we do not authenticate or authorise the calling application
+
+we do not authenticate or authorise the end user - they might not even be present
+
+We generally use open-access APIs for public data, where security is not a concern. Our open-access APIs are generally RESTful APIs. For more details on how to access them, see our open-access REST API tutorial.
+
+Environments and testing
+Environment	Base URL
+
+
+User acceptance test (UAT)
+
+	
+
+https://uat.directory.spineservices.nhs.uk/ORD/2-0-0/
+
+
+Production	https://directory.spineservices.nhs.uk/ORD/2-0-0/
+
+For example:
+
+https://uat.directory.spineservices.nhs.uk/ORD/2-0-0/organisations/RJY
+returns the full dataset for the organisation with ODS code RJY.
+
+Integration testing
+
+You can use the UAT environment to perform your integration testing.
+
+Onboarding
+
+This API is open-access, and there is no onboarding process or assurance required.
+
+Interactions
+
+The following table summarises the endpoints of this API.
+
+ 
+
+Endpoint
+
+	Endpoint URLs	Description
+Organisation	
+
+https://directory.spineservices.nhs.uk/ORD/2-0-0/organisations/<ods_code>?
+
+	Returns the full dataset of a single organisation for the specified ODS code.
+Search	
+
+https://directory.spineservices.nhs.uk/ORD/2-0-0/organisations?{search parameters}
+
+ 
+
+	
+
+Return a summary of multiple organisations when searched with one or many search parameters.
+
+
+Synchronise	https://directory.spineservices.nhs.uk/ORD/2-0-0/sync?{search parameters}	Returns a list of organisation records that have been modified since a specified date.
+Roles	https://directory.spineservices.nhs.uk/ORD/2-0-0/roles/<RoleId>?{parameters}	Retrieves CodeSystems information for Roles meta data when searched for a specified role id.
+ 	https://directory.spineservices.nhs.uk/ORD/2-0-0/roles?{parameters}	Retrieves CodeSystems information for Roles meta data for all roles.
+Relationships	https://directory.spineservices.nhs.uk/ORD/2-0-0/rels/<RelId>?{parameters}	Retrieves CodeSystems information for Relationships meta data when searched for a specific relationship id.
+ 	https://directory.spineservices.nhs.uk/ORD/2-0-0/rels?{parameters}	Retrieves CodeSystems information for Relationships meta data for all relationships.
+Record classes	https://directory.spineservices.nhs.uk/ORD/2-0-0/recordclasses/<RecordClassId>?{parameters}	Retrieves CodeSystems information for Record Classes meta data when searched for a specific record class id.
+ 	https://directory.spineservices.nhs.uk/ORD/2-0-0/recordclasses?{parameters}	Retrieves CodeSystems information for Record Classes meta data for all record classes.
+
+For details on the general structure of the interactions, see Organisation Data Service: Guidance for developers.
+
+Last edited: 15 February 2022 4:00 pm

@@ -1,0 +1,46 @@
+Urgent and Emergency Care Continuous Quality Improvement API
+
+Submit 111 or 999 call triage data for quality monitoring purposes, following an NHS Pathways patient phone assessment.
+
+Page contents
+Top of page
+Overview
+API status
+Service level
+Technology
+Interactions
+Overview
+
+Use this API to submit 111 or 999 call triage data to us for quality monitoring purposes, following an NHS Pathways patient phone assessment.
+
+As a 111 and 999 telephony provider's host system developer, you must submit triage data to us in real time following an NHS Pathways patient phone assessment. This is to comply with the Continuous Quality Improvement (CQI) requirement of the Pathways licence agreement.
+
+Providers and their regional commissioning groups can also log in to view this data using the Intelligent Data Tool (IDT) dashboard.
+
+Because of the dashboard name, this API is sometimes referred to as the Intelligent Data Tool (IDT) web service.
+
+You need a valid account to use this API to submit data.
+
+API status
+
+This API is stable.
+
+Service level
+
+This API is a bronze service, meaning it is operational and supported only during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+
+For more details, see service levels.
+
+Technology
+
+This API is a REST API.
+
+For more details, see Basic REST.
+
+Interactions
+
+For a full list of interactions for this API, and to obtain a user account, contact a member of the NHS Pathways technical team at pathwaysidtreports@nhs.net.
+
+For more context, see the Intelligent Data Tool (IDT) web service.
+
+Last edited: 1 February 2022 11:41 am

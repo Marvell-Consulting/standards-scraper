@@ -1,0 +1,97 @@
+National Health Application and Infrastructure Services - NHAIS GP Links API
+
+Manage GP registrations and other patient data in NHAIS.
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status
+Service level
+Technology
+Network access
+Security and authorisation
+Testing
+Onboarding
+Interactions
+Overview
+
+Use this API to manage GP registrations and other patient data in National Health Application and Infrastructure Services (NHAIS).
+
+You can:
+
+register a patient at a GP practice
+receive a patient deregistration (deduction) notification at the previous GP practice
+update patient demographics information, such as address
+
+This API forms part of the end-to-end GP registration process. For more details on the end-to-end process, contact us.
+
+Who can use this API
+
+This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development, by contacting us.
+
+You must do this before you can go live (see ‘Onboarding’ below). 
+
+Related APIs
+
+The following APIs are related to this one:
+
+GP2GP - HL7 V3 API - use this API to transfer patients' electronic health records between old and new practices when they change GPs.
+Personal Demographics Service - FHIR API - use this new API to search for patients, retrieve patients by NHS number and update patients.
+Personal Demographics Service - HL7 V3 API - use this if you want to use functions that are not yet available on the FHIR API.
+Personal Demographics Service - SMSP API - use this if you want to get PDS data without an authenticated end user (no smartcard required). It is, however, read-only and searches are limited to a single result.
+Messaging Exchange for Social care and Health (MESH) - use this component of the Spine to deliver messages and files to registered recipients.
+API status
+
+This API is stable.
+
+Service level
+
+This API uses MESH which is a silver service, meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+
+For more details, see service levels.
+
+Technology
+Native API
+
+This API is an asynchronous messaging API. In particular:
+
+you send and receive messages via our MESH messaging hub
+the message payload format is EDIFACT
+
+For more details on using the native API, see our NHAIS developer document library.
+
+RESTful adaptor
+
+Alternatively, you can access this API via our NHAIS GP Links adaptor - a component you deploy yourself that provides an easy-to-use FHIR-compliant RESTful API.
+
+Network access
+
+This API uses MESH which is available on both the Health and Social Care Network (HSCN) and the internet.
+
+For more details, see Network access for APIs.
+
+Security and authorisation
+
+This API uses MESH which is an application-restricted API.
+
+The API does not perform any end user authentication or authorisation checks. Rather, the calling system is expected to perform them. The authorisation rules are specified in our national Role Based Access Control (RBAC) database.
+
+For more details see our national Role Based Access Control (RBAC) database on the registration authorities and smartcards page.
+
+Testing
+
+For more details, contact us.
+
+Onboarding
+
+You must get your software onboarded before it can go live.
+
+For more details, contact us.
+
+Interactions
+
+For more details on using the native API, see our NHAIS developer document library.
+
+Last edited: 24 January 2022 12:40 pm

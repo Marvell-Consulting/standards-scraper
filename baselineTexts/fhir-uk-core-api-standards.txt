@@ -1,0 +1,25 @@
+FHIR UK Core API standards
+
+API standards using FHIR release 4 to create a unified approach to interoperability across England, Scotland, Wales and Northern Ireland. 
+
+Page contents
+Top of page
+Overview
+API standards
+Overview
+
+These API standards are being developed as FHIR UK Core using FHIR release 4 to create a unified approach to interoperability across England, Scotland, Wales and Northern Ireland. This is to enable consistent information flows across borders to improve health and care outcomes for all patients.
+
+The specification is published as a work in progress to support discussion and evaluation but not for implementation.
+
+This development builds on work we did with INTEROPen, HL7 UK and the FHIR community to produce an England-centric FHIR STU3 set of profiles called CareConnect which were published in November 2018.
+
+For queries and comments please email the Interoperability Team.
+
+API standards
+Year 	Name	Version	Status & Notes	Links
+2021-onwards	HL7 FHIR® UK Core 	V1.0.0 - STU1 onwards	UK Core version history	https://simplifier.net/guide/ukcoreversionhistory/home
+
+ 
+
+Last edited: 28 September 2021 11:38 am

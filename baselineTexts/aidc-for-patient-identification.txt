@@ -1,0 +1,68 @@
+DCB1077: AIDC for Patient Identification
+
+AIDC for Patient Identification defines how to encode NHS approved patient identifiers into a two-dimensional barcode.
+
+Page contents
+Top of page
+About this information standard
+Change control
+About this information standard
+
+Automatic Identification and Data Capture (AIDC) for Patient Identification defines how to encode the NHS approved patient identifiers into the GS1 DataMatrix barcode (a two-dimensional barcode) and covers production, verification and printing rules for the barcode.
+
+This standard supports the accurate, timely and safer identification of NHS patients in England, by using barcodes for positive patient identification.
+
+The standard uses ISB 0099: Patient Identifiers for Identity Bands and the GS1 System of Standards for code numbering and barcoding, which is outlined in ISB 0108: AIDC: Automatic Identification and Data Capture.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the Specification and Implementation Guidance Documents provide further detail for those who have to implement the information standard.
+
+Current release
+Release date	26/03/2020
+Release number	Amd 67/2018
+Release title	SRIN, GLN and Hospital Identifiers Wristband Update
+Stage 	
+
+Implementation
+
+
+Key documents	
+Requirements Specification (Amd 67/2018)
+Change Specification (Amd 67/2018)
+Implementation Guidance (Amd 67/2018)
+Information Standards Notice (Amd 67/2018)
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request 1677 (Basic CR) (Amd 67/2018)
+NHS Data Model and Dictionary Change Request 1677 (Data Set CR) (Amd 67/2018)
+
+Further documents 	
+
+This information standard is related to ISB 0108 AIDC: Automatic Identification and Data Capture and ISB 0099 Patient Identifiers and Identity Bands.
+
+ 
+
+Change control
+
+Update 12 November 2021: Corrections have been made to a number of broken hyperlinks in the documentation for Amd 67/2018. The updated Requirements Specification and Change Specification are available in the release table above. 
+
+Note that there are no changes to the content of the standard and the documents retain their original versioning and publication dates. 
+
+Previous release
+Release date	02/04/2012
+Release number	Amd 3/2012
+Release title	Minor Amendments to the Specification
+Stage 	
+
+Maintenance
+
+
+Key documents	
+Information Standards Notice (Amd 3/2012)
+Specification (Amd 3/2012)
+Change Request (Amd 3/2012)
+
+Supporting documents	NHS Data Model and Dictionary Change Request 1264 (Amd 3/2012)
+
+ 
+
+Last edited: 15 November 2021 2:11 pm

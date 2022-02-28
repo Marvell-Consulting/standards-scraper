@@ -1,0 +1,28 @@
+Digital Maternity API standards
+
+API standards to enable sharing and updating of digital maternity records.
+
+Page contents
+Top of page
+Overview
+API standards
+Overview
+
+Use this API standard to enable sharing and updating of digital maternity records.
+
+For more details, see the Digital maternity specifications - developer guidance.
+
+NHSX has taken over responsibility for the delivery of the Digital Maternity programme. If you have any questions about future digital maternity work please email england.digitalmaternitynhsx@nhs.net.
+
+API standards
+Year 	Name	Version	Status & Notes	Links
+2019	
+
+Maternity Record FHIR API
+
+	1.0.0-
+Experimental	Experimental - for consultation and discussion only	https://developer.nhs.uk/apis/digital-maternity-1-0-0/index.html
+
+ 
+
+Last edited: 28 September 2021 11:33 am

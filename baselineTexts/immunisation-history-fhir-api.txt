@@ -1,0 +1,555 @@
+Immunisation History - FHIR API
+
+Access a patient’s coronavirus (COVID-19) immunisation history.
+
+Page content
+Top of page
+Overview
+Who can use this API
+API status and roadmap
+Service level
+Technology
+Network access
+Security and authorisation
+Environments and testing
+Onboarding
+Endpoints
+Get immunisation history
+Overview
+
+Use this API to access a patient’s immunisation history.
+
+You can:
+
+get a patient's coronavirus (COVID-19) immunisation history, based on their NHS number
+
+You cannot currently use this API to:
+
+get details of other types of immunisation
+get the immunisation history for a specific date range
+
+You get the following data:
+
+immunisation event details
+patient demographic details, as captured at the point of immunisation
+
+The patient demographic details might differ from those held in the Personal Demographics Service (PDS). To get demographic details from PDS, use the Personal Demographics Service FHIR API.
+
+Data availability, timing and quality
+
+All immunisation records are verified to ensure the NHS number is correct before making them available via the API.
+
+In most cases this is automatic, and the record is available within 48 hours of the immunisation event, sometimes sooner.
+
+Where automated NHS number verification fails, we verify the NHS number manually, which can take longer.
+
+In a very small number of cases, we are unable to verify the NHS number, and we do not make the immunisation record available at all.
+
+Who can use this API
+
+This API:
+
+is only for use by patient-facing applications
+is only for non-clinical use
+can only be used where there is a legal basis to do so
+
+Make sure you have a valid use case before you go too far with your development. To do this, contact us.
+
+You must do this before you can go live (see ‘Onboarding’ below).
+
+API status and roadmap
+Status
+
+This API is in private beta, meaning:
+
+it's available in production but only to a limited number of connecting applications
+it's more stable, but might still be subject to minor breaking changes
+
+If you would like to be involved in our beta programme, contact us.
+
+Roadmap
+
+To see our roadmap, or to suggest, comment or vote on features for this API, see our interactive product backlog.
+
+If you have any other queries, please contact us.
+
+Service level
+
+This API is a platinum service, meaning it is operational and supported 24 x 7 x 365.
+
+For more details, see service levels.
+
+Technology
+
+This API is RESTful.
+
+It also conforms to the FHIR global standard for health care data exchange. Specifically, it is aligned with FHIR UK Core, which is built on FHIR Release 4.
+
+You don’t need to know much about FHIR to use this API - FHIR APIs are just RESTful APIs that follow specific rules. In particular:
+
+resource names are capitalised and singular, and use US spellings, for example /Immunization not /immunisations
+array names are singular, for example entry not entries for address lines
+data items that are country-specific and thus not included in the FHIR global base resources are usually wrapped in an extension object
+
+There are libraries and SDKs available to help with FHIR API integration.
+
+Network access
+
+This API is available on the internet and, indirectly, on the Health and Social Care Network (HSCN).
+
+For more details see Network access for APIs.
+
+Security and authorisation
+
+This API is user-restricted, meaning an end user must be present and authenticated.
+
+Specifically, it uses the following security pattern:
+
+User-restricted RESTful APIs - NHS login separate authentication and authorisation
+
+Note that:
+
+the end user must be a patient
+the calling application must strongly authenticate the end user using NHS login
+the end user must have their identity verified to 'high' (P9) level
+the NHS number in the request must match the NHS number in the NHS login account
+Environments and testing
+Environment	Base URL
+Sandbox	https://sandbox.api.service.nhs.uk/immunisation-history/FHIR/R4/
+Integration test	https://int.api.service.nhs.uk/immunisation-history/FHIR/R4/
+Production	Not yet available
+Sandbox testing
+
+Our sandbox environment:
+
+is for early developer testing
+only covers a limited set of scenarios
+is open access, so does not allow you to test authorisation
+
+For details of sandbox test scenarios, or to try out the sandbox using our 'Try this API' feature, see the documentation for each endpoint.
+
+Alternatively, you can try out the sandbox using our Postman collection:
+
+Integration testing
+
+Our integration test environment:
+
+is for formal integration testing
+includes authorisation
+
+It also includes ready-to-use immunisation history test data.
+
+For more details see integration testing with our RESTful APIs.
+
+Onboarding
+
+You need to get your software approved by us before it can go live with this API. We call this onboarding. The onboarding process can sometimes be quite long, so it’s worth planning well ahead.
+
+Details to follow.
+
+Endpoints
+Get immunisation history
+GET /Immunization
+Try this API
+
+Given an NHS number, get the patient's immunisation history. Also returns the patient's demographic details, as captured at the point of immunisation.
+
+Sandbox testing
+
+You can test the following scenarios in our sandbox environment:
+
+Scenario	Request	Response
+Immunisation history found	patient.identifier=https://fhir.nhs.uk/Id/nhs-number|9000000009	HTTP Status 200 with immunisation data in response body
+No immunisations found	patient.identifier=https://fhir.nhs.uk/Id/nhs-number|9000000033	HTTP Status 200 with empty bundle in response body
+Bad Request	patient.identifier= anything else	HTTP Status 400 Bad Request
+
+You can try out the sandbox using the 'Try this API' feature on this page.
+
+Alternatively, you can try out the sandbox using our Postman collection:
+
+Request
+Query parameters
+Name	Description
+patient.identifier	
+
+String
+
+The patient's NHS number. Expressed as <type>|<value> where <type> must be https://fhir.nhs.uk/Id/nhs-number and <value> must be a valid NHS number.
+
+Example: https://fhir.nhs.uk/Id/nhs-number|9000000009
+
+Required
+
+procedure-code:below	
+
+String
+
+Parent SNOMED immunisation procedure code. For example, 90640007, which is the parent code for all COVID-19 vaccinations.
+
+Example: 90640007
+
+Required
+
+_include	
+
+String
+
+Specifies other resources to be included in the response along with the immunisations. Must be Immunization:patient, which will include patient demographic details.
+
+Example: Immunization:patient
+
+Required
+Headers
+Name	Description
+Authorization	
+
+String (^Bearer\ [[:ascii:]]+$)
+
+An OAuth 2.0 bearer token, obtained using our NHS login pattern.
+
+Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
+
+Required
+
+X-Correlation-ID	
+
+String
+
+An optional ID which you can use to track transactions across multiple systems. It can take any value, but we recommend avoiding . characters.
+
+Mirrored back in a response header.
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+Response
+HTTP status: 200
+
+The request was valid, and the response contains immunisation history and associated patient details. If there are no immunisations for the given NHS number, the response bundle will be empty.
+
+Headers
+Name	Description
+X-Correlation-Id	
+
+String
+
+The X-Correlation-ID from the request header, if supplied, mirrored back.
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+Body
+
+Content type: application/fhir+json
+
+Example
+
+Copy
+{
+  "resourceType" : "Bundle",
+  "type" : "searchset",
+  "total" : 2,
+  "entry" : [ {
+    "fullUrl" : "urn:uuid:d11c69d8-7a50-4a54-a848-7648121e995f",
+    "resource" : {
+      "resourceType" : "Immunization",
+      "extension" : [ {
+        "url" : "https://fhir.hl7.org.uk/StructureDefinition/Extension-UKCore-VaccinationProcedure",
+        "valueCodeableConcept" : {
+          "coding" : [ {
+            "system" : "http://snomed.info/sct",
+            "code" : "1324681000000101",
+            "display" : "Administration of first dose of severe acute respiratory syndrome coronavirus 2 vaccine (procedure)"
+          } ]
+        }
+      } ],
+      "identifier" : [ {
+        "use" : "secondary",
+        "system" : "https://supplierABC/identifiers/vacc",
+        "value" : "1324761000000100"
+      } ],
+      "status" : "completed",
+      "statusReason" : [ {
+        "coding" : [ {
+          "system" : "http://snomed.info/sct"
+        } ]
+      } ],
+      "vaccineCode" : {
+        "coding" : [ {
+          "system" : "http://snomed.info/sct",
+          "code" : "39114911000001105",
+          "display" : "COVID-19 Vaccine AstraZeneca (ChAdOx1 S [recombinant]) 5x10,000,000,000 viral particles/0.5ml dose solution for injection multidose vials (AstraZeneca UK Ltd) (product)"
+        } ]
+      },
+      "patient" : {
+        "reference" : "urn:uuid:124fcb63-669c-4a3c-af2b-caf55de167ec",
+        "type" : "Patient",
+        "identifier" : {
+          "system" : "https://fhir.nhs.uk/Id/nhs-number",
+          "value" : "9000000009"
+        }
+      },
+      "occurrenceDateTime" : "2020-12-10T13:00:08.476000+00:00",
+      "recorded" : "2020-12-10",
+      "primarySource" : true,
+      "manufacturer" : {
+        "display" : "AstraZeneca Ltd"
+      },
+      "lotNumber" : "R04X",
+      "expirationDate" : "2021-04-29",
+      "site" : {
+        "coding" : [ {
+          "system" : "http://snomed.info/sct",
+          "code" : "368208006",
+          "display" : "Left upper arm structure (body structure)"
+        } ]
+      },
+      "route" : {
+        "coding" : [ {
+          "system" : "http://snomed.info/sct",
+          "code" : "78421000",
+          "display" : "Intramuscular route (qualifier value)"
+        } ]
+      },
+      "doseQuantity" : {
+        "system" : "http://snomed.info/sct",
+        "value" : 1,
+        "unit" : "pre-filled disposable injection",
+        "code" : "3318611000001103"
+      },
+      "reportOrigin" : { },
+      "performer" : [ {
+        "actor" : {
+          "type" : "Organization",
+          "identifier" : {
+            "system" : "https://fhir.nhs.uk/Id/ods-organization-code",
+            "value" : "RX809"
+          },
+          "display" : "TEST-SITE"
+        }
+      } ],
+      "reasonCode" : [ {
+        "coding" : [ {
+          "system" : "http://snomed.info/sct",
+          "code" : "443684005",
+          "display" : "Disease outbreak (event)"
+        } ]
+      } ],
+      "protocolApplied" : [ {
+        "doseNumberPositiveInt" : 1
+      } ]
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  }, {
+    "fullUrl" : "urn:uuid:8da02505-db94-40b6-a8ed-d5af5628e28c",
+    "resource" : {
+      "resourceType" : "Immunization",
+      "extension" : [ {
+        "url" : "https://fhir.hl7.org.uk/StructureDefinition/Extension-UKCore-VaccinationProcedure",
+        "valueCodeableConcept" : {
+          "coding" : [ {
+            "system" : "http://snomed.info/sct",
+            "code" : "1324681000000102",
+            "display" : "Administration of first dose of severe acute respiratory syndrome coronavirus 2 vaccine (procedure)"
+          } ]
+        }
+      } ],
+      "identifier" : [ {
+        "use" : "secondary",
+        "system" : "https://supplierABC/identifiers/vacc",
+        "value" : "1324761000000102"
+      } ],
+      "status" : "completed",
+      "statusReason" : [ {
+        "coding" : [ {
+          "system" : "http://snomed.info/sct"
+        } ]
+      } ],
+      "vaccineCode" : {
+        "coding" : [ {
+          "system" : "http://snomed.info/sct",
+          "code" : "39114911000001105",
+          "display" : "COVID-19 Vaccine AstraZeneca (ChAdOx1 S [recombinant]) 5x10,000,000,000 viral particles/0.5ml dose solution for injection multidose vials (AstraZeneca UK Ltd) (product)"
+        } ]
+      },
+      "patient" : {
+        "reference" : "urn:uuid:124fcb63-669c-4a3c-af2b-caf55de167ec",
+        "type" : "Patient",
+        "identifier" : {
+          "system" : "https://fhir.nhs.uk/Id/nhs-number",
+          "value" : "9000000009"
+        }
+      },
+      "occurrenceDateTime" : "2020-12-31T13:00:08.476000+00:00",
+      "recorded" : "2020-12-31",
+      "primarySource" : true,
+      "manufacturer" : {
+        "display" : "AstraZeneca Ltd"
+      },
+      "lotNumber" : "R04X",
+      "expirationDate" : "2021-04-29",
+      "site" : {
+        "coding" : [ {
+          "system" : "http://snomed.info/sct",
+          "code" : "368208006",
+          "display" : "Left upper arm structure (body structure)"
+        } ]
+      },
+      "route" : {
+        "coding" : [ {
+          "system" : "http://snomed.info/sct",
+          "code" : "78421000",
+          "display" : "Intramuscular route (qualifier value)"
+        } ]
+      },
+      "doseQuantity" : {
+        "system" : "http://snomed.info/sct",
+        "value" : 1,
+        "unit" : "pre-filled disposable injection",
+        "code" : "3318611000001103"
+      },
+      "reportOrigin" : { },
+      "performer" : [ {
+        "actor" : {
+          "type" : "Organization",
+          "identifier" : {
+            "system" : "https://fhir.nhs.uk/Id/ods-organization-code",
+            "value" : "RX809"
+          },
+          "display" : "TEST-SITE"
+        }
+      } ],
+      "reasonCode" : [ {
+        "coding" : [ {
+          "system" : "http://snomed.info/sct",
+          "code" : "443684005",
+          "display" : "Disease outbreak (event)"
+        } ]
+      } ],
+      "protocolApplied" : [ {
+        "doseNumberPositiveInt" : 1
+      } ]
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  }, {
+    "fullUrl" : "urn:uuid:124fcb63-669c-4a3c-af2b-caf55de167ec",
+    "resource" : {
+      "resourceType" : "Patient",
+      "identifier" : [ {
+        "system" : "https://fhir.nhs.uk/Id/nhs-number",
+        "value" : "9000000009"
+      } ],
+      "birthDate" : "1965-02-28"
+    },
+    "search" : {
+      "mode" : "include"
+    }
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+FHIR Bundle containing the query results - a list of matching immunisations and associated patients.
+
+
+
+resourceType
+string
+required
+	
+
+FHIR resource type. Always Bundle.
+
+Example: Bundle
+
+
+type
+string
+required
+	
+
+Indicates how the bundle is intended to be used. Always searchset.
+
+Example: searchset
+
+
+total
+integer
+required
+	
+
+Number of matching immunisations found.
+
+Example: 2
+
+
+entry
+array
+required
+	
+
+List of matching immunisations and associated patients. If there were no matching immunisations, this is an empty list.
+
+HTTP status: 4XX
+
+An error occurred as follows:
+
+HTTP status	Error code	Description
+400	processing	Missing or invalid NHS number
+400	processing	Missing or invalid parent SNOMED code
+401	processing	Missing or invalid ID token
+401	processing	Missing or invalid OAuth 2.0 bearer token
+401	processing	NHS number in request doesn't match NHS number in NHS login account
+
+For details see the diagnostics field.
+
+Body
+
+Content type: application/fhir+json
+
+Example
+
+Copy
+{
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "processing",
+    "diagnostics" : "Unknown search parameter 'codeing' for resource type 'Immunization'."
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+Outcome of an operation that does not result in a resource or bundle being returned, for example an error or an async/batch submission. There are a number of possible error codes that can be returned along with a more detailed description in the diagnostics field.
+
+
+
+resourceType
+string
+required
+	
+
+FHIR Resource Type.
+
+Default: OperationOutcome
+
+
+issue
+array
+required
+	
+
+List of issues that have occurred.
+
+Min items: 1

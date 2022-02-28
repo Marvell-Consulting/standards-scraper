@@ -1,0 +1,64 @@
+DCB0028: Treatment Function and Main Specialty Standard
+
+This information standard defines the Treatment Function and Main Specialty classifications used to support the national reporting and analysis of clinical workforce activity throughout the NHS.
+
+Page contents
+Top of page
+Current release
+
+The Treatment Function and Main Specialty Standard classifications support the national reporting and analysis of clinical workforce activity throughout the NHS, through administrative data sets such as the Commissioning Data Sets (CDS).
+
+A Treatment Function is a division of clinical work and is based on main specialties. Treatment Function Codes are used to record, report on, extract and flow activity undertaken, irrespective of the type of healthcare professional who performs it.
+
+A Main Specialty is the specialty within which a Consultant is recognised or contracted to an organisation. The Main Specialties list is aligned to specialties recognised by the Royal Colleges and Faculties and the General Dental Council.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the other listed documents provide further detail for those who have to implement the information standard.
+
+Update 16 December 2020: Following publication of Version 2.0, the need for minor changes has been identified and a Corrigendum has been issued (see below). Note that there is no impact on either the published Requirements Specification or the Implementation Guidance. However changes have been made to the Change Specification (v1.1) and this should be read in conjunction with the Corrigendum. 
+
+Update 7 January 2021: An urgent update to Version 2.0 has been approved, to allow for the insertion of one new treatment function code (TFC 348) for Post-COVID-19 Syndrome Services. Full details are in the Addendum; though note that changes have been made to the Code List Specification (now v1.2) and Data Dictionary Change Request. All documents are provided in the current release section below. 
+
+Current release
+Release date	02/04/2020
+Release number	Amd 45/2019
+Release title 	Version 2.0
+Stage	Implementation
+Key documents	
+Information Standards Notice (Amd 45/2019)
+Change Specification v1.1 (Amd 45/2019)
+Requirements Specification (Amd 45/2019)
+Implementation Guidance (Amd 45/2019)
+Addendum (Amd 45/2019)
+Corrigendum (Amd 45/2019)
+
+Supporting documents 	
+Code List Specification v1.2 (Amd 45/2019)
+NHS Data Model and Dictionary Change Request 1811 (Amd 45/2019)
+Treatment Function Maintenance Group - Terms of Reference (Amd 45/2019)
+Treatment Function Maintenance Group - Acceptance Criteria (Amd 45/2019)
+
+Further information 	Further guidance is available on the NHS Digital website 
+
+ 
+
+Previous release
+Release date	31/08/2012
+Release number	Amd 17/2012
+Release title 	Changes to Treatment Function Codes 2012
+Stage	Maintenance 
+Key documents	
+Information Standards Notice (Amd 17/2012)
+Specification (Amd 17/2012)
+Change Request (Amd 17/2012)
+Technical Specification (Amd 17/2012)
+
+Supporting documents 	
+NHS Data Model and Dictionary Change Request 1286 (Amd 17/2012)
+Guidance (Amd 17/2012)
+Maintenance Plan (Amd 17/2012)
+Treatment Function Maintenance Group Terms of Reference (Amd 17/2012)
+Treatment Function Maintenance Group Acceptance Criteria (Amd 17/2012)
+
+ 
+
+Last edited: 7 January 2021 3:48 pm

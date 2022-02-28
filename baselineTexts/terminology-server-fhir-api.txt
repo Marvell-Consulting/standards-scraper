@@ -1,0 +1,53 @@
+Terminology Server - FHIR API
+
+Retrieve terminologies and classifications from the NHS Digital Terminology Server.
+
+Page contents
+Top of page
+Overview
+API status
+Service level
+Technology
+Interactions
+Overview
+
+Use this API to retrieve content from the NHS Digital Terminology Server. The content is in the form of a syndicated feed of terminology and classifications in a machine readable, FHIR-compliant terminology module format.
+
+The feed includes:
+
+international terminologies and classifications - such as SNOMED-CT and ICD-10
+national terminologies - such as NHS Data Model and Dictionary codes
+
+This content can be syndicated across a group of terminology servers. You can also share your own terminologies with others.
+
+As well as an API, there are a number of terminology browsing tools available.
+
+Some content in the NHS Digital Terminology Server is freely available for read access, such as Data Dictionary. Other content is subject to access controls appropriate to the license, such as SNOMED CT.
+
+To see what terminologies and classifications you can retrieve, see Content in the NHS Digital Terminology Server.
+
+For more information, see Terminology servers.
+
+If you're looking for less functionality from quicker, simpler tabular data sources then take a look at our Data Registers Service - REST API.
+
+API status
+
+This API is stable.
+
+Service level
+
+This API is a platinum service, meaning it is operational and supported 24 x 7 x 365.
+
+For more details, see service levels.
+
+Technology
+
+This API is a FHIR API.
+
+For more details, see FHIR.
+
+Interactions
+
+For a full list of interactions for this API, see API endpoints.
+
+Last edited: 3 February 2022 11:30 am

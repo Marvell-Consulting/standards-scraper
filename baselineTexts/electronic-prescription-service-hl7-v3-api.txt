@@ -1,0 +1,246 @@
+Electronic Prescription Service - HL7 V3 API
+
+Access the Electronic Prescription Service (EPS) to send prescriptions from prescribers such as GPs to dispensers such as pharmacies using our HL7 V3 API.
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status
+Service level
+Technology
+Network access
+Security and authorisation
+Testing
+Onboarding
+Interactions
+Additional guidance
+
+If you are developing a new integration, consider using the Electronic Prescription Service - FHIR API instead.
+
+Overview
+
+Use this API to access the Electronic Prescription Service (EPS). EPS allows a prescriber (such as a GP) to send prescriptions electronically to a dispenser (such as a pharmacy) of the patient's choice. This makes the prescribing and dispensing process more efficient and convenient for patients and staff.
+
+You can do different things, depending on your role.
+
+As a prescriber you can:
+
+send prescriptions to EPS
+cancel prescriptions
+
+As a dispenser you can:
+
+receive prescriptions from EPS
+confirm a prescription is dispensed
+claim for a dispensed prescription
+Prescribing system scope
+The EPS prescribing system specification describes reduced functionality for a minimal EPS prescribing system. It's designed to allow urgent and emergency care systems to generate EPS prescriptions, but could apply to other care settings which are in scope:
+- Acute (one-off) prescriptions
+- Advanced electronic signatures
+- One-off nomination
+- Update of local patient demographic record with information from Spine Demographics
+- Dictionary of Medicines and Devices (dm+d)
+- Prescription cancellation
+- Prescription token printing
+- Reporting and information requirements
+Who can use this API
+
+This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development.
+
+You must do this before you can go live (see ‘Onboarding’ below).
+
+Related APIs
+
+The following APIs also give access to the Electronic Prescription Service:
+
+Electronic Prescription Service - FHIR API  - access the Electronic Prescription Service (EPS) - currently you can only use this new API to prescribe, not dispense or tracking
+
+The following APIs are also related to this API:
+
+Prescription Tracker API - use this if you want a read-only interface to obtain information about a patient’s prescriptions
+Electronic Prescription Service (EPS) Directory of Services (DoS) API - use this to get information about dispensing services, including search for dispensers who can provide dispensing services for a patient with a given location and urgency
+API status
+
+This API is stable.
+
+Service level
+
+This API is a platinum service, meaning it is operational and supported 24 x 7 x 365.
+
+For more details, see service levels.
+
+Technology
+
+This API is an HL7 V3 API and uses:
+
+synchronous interactions, using HL7 V3 SOAP web services
+asynchronous interactions, using HL7 V3 ebXML messaging
+
+The asynchronous pattern is used for interactions which either do not require an immediate response or might take longer, for example:
+
+prescribing system is informed of the final outcome of the cancellation request
+this is currently delivered by Spine to an MHS Endpoint and could be minutes, hours or days from the initial cancellation request
+
+For more details, see HL7 V3.
+
+Message Handling System (MHS) adaptor
+
+To remove the complexity of building your own Message Handling System, we offer a pre-assured, client side MHS adaptor that you can integrate into your own infrastructure.
+
+It makes it easier to connect to the NHS Spine and perform business operations by exposing a RESTful API that confirms to the HL7 V3 standard. 
+
+Network access
+
+You need a Health and Social Care Network (HSCN) connection to use this API.
+
+For more details, see Network access for APIs.
+
+Security and authorisation
+Authentication
+
+This API is user-restricted, meaning that an end user must be present and authenticated to use it.
+
+The end user must be:
+
+a healthcare worker
+strongly authenticated, using either an NHS smartcard or a modern alternative
+
+We support the following security patterns:
+
+user-restricted HL7 V3 API, using NHS Care Identity Service 2 (NHS CIS2)
+user-restricted HL7 V3 API, using CIS
+
+For more details see user-restricted APIs.
+
+Authorisation
+
+For some activities, the end user must be authorised to perform that activity.
+
+The API itself does not perform any authorisation checks. Rather, the calling system is expected to perform them. The authorisation rules are specified in our national Role Based Access Control (RBAC) database.
+
+For more details see our national Role Based Access Control (RBAC) database on the registration authorities and smartcards page.
+
+Testing
+
+You can test this API using our Path to Live environments.
+
+Onboarding
+
+You must get your software onboarded before it can go live.
+
+As part of onboarding, this API uses the Common Assurance Process (CAP), which is tailored for each NHS service. For more details, contact us.
+
+Interactions
+
+For a full list of interactions for this API, see the Medication Management v2.3.1 section in the Spine Message Implementation Manual (MIM) version 4.2.00.
+
+Note that only the following interaction IDs are supported - the others were not implemented.
+
+Section number	Description	Interaction ID
+6.1	Parent Prescription	PORX_IN020101UK31
+6.2	Parent Prescription (Non-Urgent) 	PORX_IN020102UK31
+6.3	Patient Prescription Release Request	PORX_IN132004UK30
+6.4	Patient Prescription Release Response	PORX_IN070103UK31
+6.5	Nominated Prescription Release Request	PORX_IN060102UK30
+6.6	Nominated Prescription Release Response	PORX_IN070101UK31
+6.7	Prescription Release Rejection	PORX_IN110101UK30
+6.8	Dispense Proposal Return	PORX_IN100101UK31
+6.9	Cancel Request 	PORX_IN030101UK32
+6.10	Cancel Response	PORX_IN050101UK31
+6.11	Subsequent Cancel Response 	PORX_IN050102UK32
+6.12	Dispense Notification	PORX_IN080101UK31
+6.13	Dispense Claim Information	PORX_IN090101UK31
+6.15	Dispense Reimbursement Claim	PORX_IN370101UK31
+6.18	Dispense No Claim Notification	PORX_IN460101UK31
+6.19	Dispenser Withdraw	PORX_IN510101UK31
+6.21	Rebuild Dispense History	PORX_IN540101UK31
+
+For details on the general structure of the interactions, see HL7 V3.
+
+Before you begin any development work using this API, contact us to discuss your best options.
+
+Additional guidance
+
+Systems may need to meet non-functional requirements listed in any NHS Digital agreements.
+
+You may find it useful to read these documents as they provide useful details of the EPS process and the Spine interface.
+
+Simple guide to EPS and what benefits it provides
+
+EPS integration walk through 
+
+Spine external interface specification
+
+There are also several other documents which you may find useful. Some relate only to prescribing systems, some only to dispensing systems, others are common to both.
+
+Prescribing
+
+Prescribing documents and guidance include:
+
+the Electronic prescriptions for prescribers guide lists the benefits EPS gives to prescribers
+
+the dm+d Dictionary of Medicines and Devices guide (for primary care)  lists the medicines that can be prescribed via the EPS
+
+the EPS prescribing systems compliance specification details the compliance requirements and business processes, which need to be done by pharmacy, primary medical care contractors and system suppliers when operating EPS Release 2
+
+the EPS prescription token specification identifies overprinting requirements for FP10-based stationery used with the EPS
+
+a guide to a reduced scope for prescribing suitable for some intended care settings. The main requirements are to support acute medications and one off nominations for prescriptions, rather than using or amending the patient's own nominated dispenser in PDS. 
+
+Dispensing
+
+Dispensing documents and guidance include:
+
+the Electronics prescriptions for dispensers guide lists the benefits EPS gives to dispensers and for people who are prescribed medication
+
+the EPS Dispensing systems compliance specification specifies what you need to support EPS dispensing systems - including EPS objectives, Spine Core and EPS compliance as well as business continuity
+
+the printing specification for paper prescriptions
+
+Prescribing and dispensing
+
+Prescribing and dispensing documents include:
+
+the Electronic Prescription Service identifiers guide explains and lists the various identification codes used within the prescription service
+
+the EPS Requirements guide lists the documents which deal with integrating prescribing and dispensing systems with the Electronic Prescription Service
+
+the Finding an electronic prescription guide explains how dispensing pharmacies can find and track prescriptions on their systems
+
+the Electronic Prescription Service (EPS) page explains how the NHS Business Services Authority works with others to increase the use of EPS and repeat dispensing
+
+the Electronic Prescription Service release 2 clinical assurance document (EPS R2) explains how an EPS system delivers, deploys and operates safely for patients
+
+Other useful information
+
+Other useful information includes:
+
+the EPS schedule 2 & 3 controlled drugs requirements document contains extra requirements for the EPS to permit the prescribing and dispensing of schedule 2 & 3 controlled drugs using EPS - you need to read this alongside with the EPS Prescribing or EPS Dispensing Systems Compliance specifications
+
+The NHS dictionary of medicines and devices (dm+d) compliance requirement document sets out the compliance requirements for people who use and apply dm+d within their systems
+
+the RBAC implementation guidance for EPS R2 provides guidance to EPS system suppliers on how to map local access control functions with the national activity codes defined within the National RBAC Database (NRD)
+
+the IG National RBAC Database (NRD) contains the national Role Based Access Control (RBAC) attribute definitions for job roles, areas of work and activities along with the national baseline policy
+
+the Guidance for endorsement page shows how your endorsement of NHS prescriptions helps make sure we have the correct information for reimbursement and remuneration and that you can sort, submit and endorse prescriptions
+
+the Nomination requirements for system suppliers document covers the electronic transmission of prescriptions - including explaining how to use web service functions and what technical details are needed so people can integrate their systems
+
+the EPS R2 training and guidance strategy document outlines the national strategy for training and guidance to support everyone who is involved with EPS R2 in England
+
+the Digital signature toolkit contains a set of signed messages along with the steps that system suppliers, GPs, pharmacies and PPD (Prescription Pricing Division) systems need to create and validate signatures
+
+the ETP web services client source code links to the digital signature toolkit guidance
+
+the EPS infrastructure specification defines the requirements for EPS system suppliers who are seeking EPS compliance
+
+the ETP message signing requirements document describes how to  implement advanced electronic signatures within EPS R2 for prescribing and dispensing systems
+
+the Digital signature and non-repudiation requirements document tells people about the standards, manner, and usage of Advanced Electronic Signatures (Digital Signatures) within NHS Care Records Service (NHS CRS) compliant systems
+
+the Open access for test environment page explains how you can test your healthcare applications by connecting them to Opentest on our Spine test environment
+
+Last edited: 16 February 2022 11:40 am

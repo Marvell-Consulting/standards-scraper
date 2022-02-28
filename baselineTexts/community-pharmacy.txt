@@ -1,0 +1,76 @@
+Community Pharmacy Standard V2.2
+
+Community pharmacies are offering an increased range of services to support care for people in the community. It is essential that they are able to record and share vital information about a person’s care with GP practices and other services. By doing this digitally with standards, we can ensure that care professionals and citizens have timely access to relevant information, leading to better, safer and more personalised care in the community.
+
+The Community Pharmacy Standard was originally published in 2018 to cover a range of pharmacy services including vaccine administration, emergency supply of medication, new medicine services and others. It was updated in 2021 to allow for new services that community pharmacies are either offering now or will be offering soon and to make it into a single standard for what should be recorded in the community pharmacy. It also defines the subset of information that should be sent to the GP record for each service.
+
+New supported services	V1.0 supported services
+
+Smoking cessation
+Hypertension case finding
+Cardiovascular disease
+Contraception monitoring
+Sore throat testing
+Palliative care
+Hepatitis C
+	
+Medication review
+New medicine service
+Appliance use review
+Vaccination administration
+Emergency supply
+CPCS (minor illness)
+ 
+What are the benefits?
+Timely sharing of clinically relevant data in relation to pharmacy services undertaken to other NHS providers
+Transfer of standardised coded data sets to patients’ primary care health record
+A more comprehensive patient health record with the inclusion of clinically relevant outcomes from pharmacy services, which has the potential to improve medication safety and support medicines optimisation
+Reduced risk of errors and administrative burden due to elimination of paper templates and transfer of information through non-direct routes into patients’ primary care health record
+Improved communication methods support community pharmacy to take on a greater range of clinical services to reduce burden on other parts of the health and care system, and also ensures that the clinical contribution of community pharmacists is visible to the wider NHS
+ 
+Endorsement
+
+The Community Pharmacy Standard has been endorsed by the following organisations.
+
+Royal College of General Practitioners
+Royal Pharmaceutical Society
+Pharmaceutical Services Negotiating Committee
+Faculty of Public Health
+United Kingdom Clinical Pharmacy Association
+National Pharmacy Association
+Company Chemist Association
+Association of Independent Multiples Pharmacies
+
+ 
+Contributors
+
+The standard was produced in collaboration with NHS England, NHS Digital and NHSX with patient leadership and clinical leadership through the Royal Pharmaceutical Society and the Royal College of General Practitioners, and developed through consultation with other professionals and citizens who regularly use community pharmacy services or information flows and system suppliers.
+
+The community pharmacy standard version 2.2
+Subsets of the standard
+(for sending to the GP)
+Appliance use review
+Cardiovascular disease
+Contraception
+CPCS emergency supply
+CPCS Minor illness
+Hepatitis C
+Hypertension case finding
+Medication review
+New medicine service
+Palliative care
+Smoking cessation
+Sore throat testing
+Vaccination administration
+Supporting documentation
+Community pharmacy standard information model V2.2 (xlsx)
+Release notes V2.2
+Implementation guidance
+Final Report (Stage 2)
+Safety Case Report
+Hazard log
+IHRIM record correction guidance
+
+Despite vigilance when filing information in records, mistakes can occur. The Institute of Health Records and Information Management has guidance to support professionals in making corrections following errors.
+
+VIEW THE GUIDANCE

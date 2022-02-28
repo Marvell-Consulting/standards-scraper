@@ -1,0 +1,148 @@
+National Event Management Service - FHIR API
+
+Publish and subscribe to patient-centric healthcare event messages with the National Events Management Service (NEMS) FHIR API.  This national service is implemented on the NHS Spine. 
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status
+Service level
+Technology
+Network access
+Security and authorisation
+Environments and testing
+Onboarding
+Interactions
+Overview
+
+Use this API to publish and subscribe to patient-centric healthcare event messages with the National Events Management Service (NEMS).  This national service is implemented on the NHS Spine.
+
+As a sending system, you can:
+
+publish an event message
+
+As a subscribing system, you can:
+
+create a subscription
+read a subscription 
+delete a subscription
+
+NEMS supports a specific range of healthcare event messages.
+
+NEMS authorises a specific list of system suppliers and health and social care organisations to publish information as events.
+
+For more details, see the Introduction to the National Events Management Service.
+
+Who can use this API
+
+This API can only be used where there is a legal basis to do so.
+
+Make sure you have a valid use case before you go too far with your development. To do this, contact us. 
+
+For details of the legal basis for sharing NEMS healthcare events, see the NEMS controller catalogue.
+
+You must do this before you can go live (see 'Onboarding' below).
+
+Related APIs
+
+The following APIs are related to this one:
+
+Message Exchange for Social Care and Health (MESH) API - use this to collect event messages that you subscribed to
+National Record Locator - FHIR API - use this to find and retrieve published information, which might have been sent via a NEMS event message prior to your subscription
+
+A number of other APIs use NEMS as a publish-subscribe event mechanism. For a full list, see our API catalogue, filtered on NEMS APIs.
+
+API status
+
+This API is stable.
+
+Service level
+
+This API is a bronze service, meaning it is operational and supported only during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+
+For more details, see service levels.
+
+Technology
+
+This API is a publish-subscribe event API.
+
+All endpoints use FHIR, specifically FHIR STU3, and:
+
+the subscription endpoints use RESTful FHIR 
+the publish endpoint uses FHIR messaging
+
+To collect events that you have subscribed to, use our MESH API.
+
+The message payload is also FHIR - the same format as used by the sending system.
+
+Network access
+
+This API is available on the internet and on the Health and Social Care Network (HSCN).
+
+For more details see Network access for APIs.
+
+Security and authorisation
+
+This API is application-restricted, meaning the calling application is authenticated but the end user is either not authenticated or not present.
+
+In particular, this API uses TLS-MA authentication.
+
+It also implements authorisation controls which restrict the event types the connecting application can subscribe to or publish.
+
+For more details, see application-restricted APIs.
+
+Environments and testing
+
+NEMS is available in Opentest for early development and testing.
+
+NEMS is also available for testing purposes in:
+
+development (DEV)
+integration (INT)
+deployment (DEP)
+
+The base URLs are as follows:
+
+Environment	Network availability	URL
+OpenTest	OpenVPN	https://msg.opentest.hscic.gov.uk/
+Development	HSCN	https://msg.dev.spine2.ncrs.nhs.uk/
+Integration	HSCN	https://msg.int.spine2.ncrs.nhs.uk/
+Integration	Internet	https://msg.intspineservices.nhs.uk/
+Deployment	HSCN	https://msg.dep.spine2.ncrs.nhs.uk/
+Production	HSCN	To be supplied
+Production	Internet	To be supplied
+
+The  base URL for the publishing and subscribing interactions are the same, but the path is different, for example:
+
+publish in integration over HSCN:
+https://msg.int.spine2.ncrs.nhs.uk/STU3/Events/1/$process-message
+subscribe in integration over HSCN:
+https://msg.int.spine2.ncrs.nhs.uk/STU3/Subscription
+publish in integration over the internet:
+https://msg.intspineservices.nhs.uk/STU3/Events/1/$process-message
+subscribe in integration over the internet:
+https://msg.intspineservices.nhs.uk/STU3/Subscription
+
+There is a testing tool which allows you to simulate a provider publishing event messages. You can also simulate making changes on PDS to trigger PDS-published event messages so you can test event message consumption.
+
+To get advice on how to begin testing, contact us.
+
+For more details, see the NEMS onboarding guide on getting access to Opentest and the integration (INT) test environment.
+
+Onboarding
+
+You must get your software onboarded before it can go live.
+
+As part of onboarding, this API uses the Supplier Conformance Assessment List (SCAL) process.
+
+For full details, including downloading the NEMS onboarding guide, see onboarding and assurance.
+
+Interactions
+
+For a full list of interactions for this API, see Publish an Event Message and Subscriptions Overview.
+
+For details on the general structure of the interactions, see FHIR.
+
+Last edited: 21 January 2022 3:12 pm

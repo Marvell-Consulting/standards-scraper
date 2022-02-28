@@ -1,0 +1,51 @@
+Personalised care and support plan: v2.0
+Sharing care plans with people, carers and healthcare professionals
+
+More people than ever are living with long-term conditions in the UK, which includes both physical and mental health problems. As a result, there has been a national drive towards providing people with long-term, personalised care plans.
+
+Personalised care planning standards will help to enable people to manage their own care, with the support of a wide range of services including GPs, hospitals, occupational therapy and social care. This new standard will help citizens and health and care professionals get the right information when they need it, in order to personalise care, and improve the experience for the patient, their carer and their families.
+
+ISN status: Dec 2021
+
+The Personalised care and support plan (PCSP) standard has now achieved ISN status following rigorous quality assurance by the NHS Data Alliance Partnership Board. 
+
+NHS Digital has published the approved ISN on its website along with supporting documentation. The ISN sets out details of the standard, its implementation date, whether it is mandated or voluntary, the legal or contractual basis upon which data is being requested and details of key contacts.
+
+Implementation
+
+Implementation of the standard will follow a phased approach, identifying early adopters and publishing the results of trials to embed learning ahead of the planned full compliance date of 30th June 2023.
+
+Latest version: V2.0
+
+In 2021 an updated version of the standard was published to support adults who live with severe and enduring mental health conditions in the community. Co-produced with health and social care professionals, as well as people who use services, the standard is designed to help people stay well and live the best lives they can at home or in supported accommodation. 
+
+Personalised care and support plan standard
+V2.0 – View the standard (Excel)
+Supporting documents
+Detailed implementation guidance
+Clinical safety case report
+Hazard log
+Information Standards Notice (ISN)
+Digital Care and Support Plan (V1.1 2018)
+
+The original Digital care and support plan has been updated to V2.0 Personalised care and support plan (above). You may still access V1.1 documentation here:
+
+DCSP standard Version 1.1
+Implementation guidance V1.0
+
+Digital care and support plan final report V1.0
+Survey results and analysis
+Clinical safety case report V0.3
+Hazard log V0.3
+Community Mental Health final report
+Community mental health – Final report V1.0
+Appendices >
+A – Methodology
+B – Project governance
+C – Discovery report
+D – Consultation design
+E – Workshop findings
+F – Focus group findings
+G – Consultation document findings
+H – Snapshot audit
+L – Stakeholder list

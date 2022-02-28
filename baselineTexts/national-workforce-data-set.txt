@@ -1,0 +1,69 @@
+DAPB1067: National Workforce Data Set
+
+The National Workforce Data Set (NWD), which includes the NHS occupation codes, specifies the data standards to be used for NHS workforce information.
+
+Page contents
+Top of page
+About this information standard
+Current release
+Previous release
+Updates
+About this information standard
+
+The National Workforce Data Set (NWD) is a reference data standard comprising standardised definitions to facilitate the capture of nationally consistent information relating to the NHS and wider healthcare workforce. NWD data items support a variety of workforce collections and are also embedded within operational HR/workforce IT systems, including the Electronic Staff Record (ESR) and NHS Jobs.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the other listed documents provide further detail for those who have to implement the information standard.
+
+Current release
+Release date	03/02/2022
+Release number	Amd 104/2021
+Release title	Version 3.3
+Stage	Implementation
+Key documents	
+Information Standards Notice (Amd 104/2021)
+Change Specification (Amd 104/2021)
+Requirements Specification (Amd 104/2021)
+Implementation Guidance (Amd 104/2021)
+Data Set Specification (Amd 104/2021)
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request 1853 (Basic CR) (Amd 104/2021)
+NHS Data Model and Dictionary Change Request 1853 (Data Set CR) (Amd 104/2021)
+
+Further information	NHS Digital: National Workforce Data Set
+Previous release
+Release date	07/01/2021 (updated 24 February 2021)
+Release number	Amd 69/2020
+Release title	Version 3.2
+Stage	Maintenance
+Key documents	
+Information Standards Notice (Amd 69/2020)
+Corrigendum (Amd 69/2020)
+Change Specification version 1.2 (Amd 69/2020)
+Requirements Specification (Amd 69/2020)
+Implementation Guidance version 1.1 (Amd 69/2020)
+Data Set Specification Version 1.1 (Amd 69/2020)
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request 1827 (Basic CR) (Amd 69/2020)
+NHS Data Model and Dictionary Change Request 1827 (Data Set CR) (Amd 69/2020)
+
+ 
+
+Review the NWD archive page for previous releases approved by the Data Coordination Board since 2017.
+
+Documentation from earlier releases approved by the Standardisation Committee for Care Information (SCCI) and the Information Standards Board (ISB) is available on request from the Data Standards Assurance Service - email: standards.assurance@nhs.net  
+
+Updates
+
+3 February 2022: Publication of Version 3.3
+
+30 June 2021: Publication of an updated Change Specification for Amd 69/2020 Version 3.2, amending one code on page 8, section 2.1, as described below. No changes have been made to any other documents.  
+
+[05039] Nursing and Midwifery Registered | Surgical Care Practitioner has been corrected to [03022] Nursing and Midwifery Registered | Surgical Care Practitioner
+
+3 June 2021: Publication of the supporting NHS Data Model and Dictionary Change Requests, following incorporation of version 3.2 in the Dictionary at the end of May 2021.
+
+24 February 2021: Publication of Corrigendum in respect of Version 3.2, supported by changes to Change Specification, Data Set Specification and Implementation Guidance (all uplifted to document version 1.1). See Corrigendum above for full details.
+
+Last edited: 4 February 2022 11:39 am

@@ -1,0 +1,28 @@
+SCCI0052: Dictionary of medicines and devices (dm+d)
+
+This information standard is a dictionary for use in the National Health Service (NHS) of medicines licensed in the United Kingdom.
+
+Page contents
+Top of page
+About this information standard
+Current release
+About this information standard
+
+The scope of the standard in terms of content is for medicines only; medical devices are currently excluded. The primary purpose is to support interoperability. Therefore electronic systems that exchange or share information about medicines relating directly to a patient's care must adhere to the standard by using dm+d identifiers and descriptions when transferring information.
+
+Note that this information standard, formerly approved by the Information Standards Board for Health and Social Care (ISB), has been assured by SCCI as suitable for publication under section 250 of the Health and Social Care Act 2012. While no changes have been made to the technical content of the standard (released in 2013), the key documents below have been updated to include changes to enhance usability.
+
+Current release
+Release date	07/04/2017
+Release number	Amd 13/2013
+Release title	Conversion under the Health and Social Care Act 2012
+Stage	Implementation
+Key documents	
+Requirement Specification (Amd 13/2013) 
+Implementation Guidance (Amd 13/2013)
+Information Standards Notice (Amd 13/2013)
+
+Guidance documents	Further information about dm+d is available on the website of NHS Prescription Services
+Previous releases	Please see the ISB website for information on previous releases of this standard.
+
+Last edited: 5 November 2018 10:47 am

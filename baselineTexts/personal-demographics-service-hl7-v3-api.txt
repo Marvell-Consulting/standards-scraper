@@ -1,0 +1,211 @@
+Personal Demographics Service - HL7 V3 API
+
+Access patients' personal information, such as name, address, date of birth, related people, registered GP and NHS number using our HL7 V3 API.
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status
+Service level
+Technology
+Network access
+Security and authorisation
+Testing
+Onboarding
+Interactions
+Additional guidance
+
+If you are developing a new integration, consider using the Personal Demographics Service FHIR API instead.
+
+Overview
+
+Use this API to access the Personal Demographics Service (PDS), the national electronic database of NHS patient details such as name, address, date of birth, related people, registered GP and NHS number.
+
+You can:
+
+search for patients
+check that you have the correct NHS number for a patient
+get patient details
+create a new record for a birth
+receive birth notifications
+create a record for a new patient (except for GPs - see below)
+
+You should not use this API to create a new record when registering a new patient at a GP Practice. Instead, use National Health Application and Infrastructure Services (NHAIS).
+
+You can retrieve current and historical demographic information for a patient including:
+
+NHS number
+name
+gender
+birth information
+address
+contact details
+registered GP
+preferred pharmacy
+consent information
+related people, such as next of kin
+death information
+Spine Mini Service Provider (SMSP) options
+
+There are also commercially available products which give easier access to PDS, known as Spine Mini Service Providers (SMSPs).
+
+These and other conforming software products are listed in our Conformance Catalogue.
+
+If you are interested in becoming a provider of one of these products, see Personal Demographics Service - SMSP API standards.
+
+Who can use this API
+
+This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development.  To do this, make a PDS access request. 
+
+You must do this before you can go live (see ‘Onboarding’ below). 
+
+Related APIs
+
+The following APIs also give access to the Personal Demographics Service:
+
+Personal Demographics Service - FHIR API - use this new API to search for patients, retrieve patients by NHS number and update patients.
+
+Personal Demographics Service - SMSP API - this API is now deprecated.
+
+The following APIs are also related to this API:
+
+Organisation Data Service - FHIR API - use this to get full details for the organisations related to the patient, such as their registered GP or nominated pharmacy.
+
+API status
+
+This API is stable.
+
+Service level
+
+This API is a platinum service, meaning it is operational and supported 24 x 7 x 365.
+
+For more details, see service levels.
+
+Technology
+
+This API is an HL7 V3 API. It is a mixture of:
+
+synchronous interactions, using HL7 V3 SOAP web services
+asynchronous interactions, using HL7 V3 ebXML messaging
+
+The synchronous pattern is used for interactions which need an immediate response and run quickly, for example:
+
+PDS Simple Trace Query
+PDS Retrieval Query
+
+The asynchronous pattern is used for interactions which either don’t require an immediate response or might take longer, for example:
+
+PDS Advanced Trace Query
+PDS General Update
+PDS Birth Notification (outbound from PDS)
+
+For more details, see HL7 V3.
+
+Message Handling System (MHS) adaptor
+
+To remove the complexity of building your own Message Handling System, we offer a pre-assured, client side MHS adaptor that you can integrate into your own infrastructure.
+
+It makes it easier to connect to the NHS Spine and perform business operations by exposing a RESTful API that confirms to the HL7 V3 standard. 
+
+Network access
+
+You need a Health and Social Care Network (HSCN) connection to use this API.
+
+For more details, see Network access for APIs.
+
+Security and authorisation
+Authentication
+
+This API is user-restricted, meaning an end user must be present and authenticated to use it.
+
+The end user must be:
+
+a healthcare worker
+strongly authenticated, using either an NHS smartcard or a modern alternative
+
+We support the following security patterns:
+
+user-restricted HL7 V3 API, using NHS Care Identity Service 2 (NHS CIS2)
+user-restricted HL7 V3 API, using CIS
+
+For more details see user-restricted APIs.
+
+Authorisation
+
+For some activities, the end user must be authorised to perform that activity.
+
+The API itself does not perform any authorisation checks. Rather, the calling system is expected to perform them. The authorisation rules are specified in our national Role Based Access Control (RBAC) database.
+
+For more details see:
+
+the PDS Integration Requirements document in the 'additional guidance' section below
+the RBAC guidance document in the 'additional guidance' section below
+our national Role Based Access Control (RBAC) database on the registration authorities and smartcards page
+Testing
+
+You can test this API using our Path to Live environments.
+
+Onboarding
+
+You must get your software onboarded before it can go live.
+
+As part of onboarding, this API uses the Common Assurance Process (CAP), which is tailored for each NHS service. For more details see the PDS Common Assurance Process.
+
+Interactions
+
+For a full list of interactions for this API, see the PDS section in the Spine Message Implementation Manual (MIM).
+
+For details on the general structure of the interactions, see HL7 V3.
+
+Additional guidance
+PDS Integration Requirements document
+
+Provides guidance and specifies requirements for systems integrating with PDS using the HL7V3 API, including:
+
+tracing: searching for, recognising and confirming patient identity for a record held either locally or on the PDS
+
+synchronisation of locally held records with PDS counterparts
+
+flagged records: the process of detecting a record flagged as ‘invalid’ or ‘sensitive’ on Spine and how these records should be managed
+
+updates: the process of updating a patient’s demographic record on the PDS
+
+Local Back Office: the actions that are required to manage such scenarios as duplicate and confused local records
+
+allocating new PDS records for patients
+
+birth notifications: the maternity unit process for creating a new record on PDS for a birth and the Child Health Organisation actions required for receiving new births from the Spine
+
+ 
+
+This is a Microsoft Word file. To request a different format, contact us. 
+
+2018 PDS Integration Requirements
+
+DOCX 1 MB
+PDS Integration Guidance document
+
+Detailed guidance on integration with each of the interactions in the PDS HL7V3 API, including data field-level business and validation rules.
+
+ 
+
+This is a Microsoft Word file. To request a different format, contact us.
+
+2018 PDS Integration Guidance
+
+DOCX 522 KB
+RBAC Guidance document
+
+Guidance on implementing role-based access controls (RBAC) for the Personal Spine Information Service (PSIS) and the Personal Demographics Service (PDS).
+
+ 
+
+This is a Microsoft Word file. To request a different format, contact us.
+
+NPFIT-SI-SIGOV-0073.05 Guidance on Implementing RBAC for PSIS and PDS v2.1
+
+DOCX 223 KB
+
+Last edited: 15 February 2022 4:04 pm

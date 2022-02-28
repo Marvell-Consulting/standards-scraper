@@ -1,0 +1,44 @@
+DAPB4013: Medicine and Allergy/Intolerance Data Transfer
+
+An Information Standard which sets out definitions that are to be used when a health professional sends or receives patient medication and allergy/intolerance information, by computer system, between care locations.
+
+Page contents
+Top of page
+About this information standard
+Current release
+Change control
+About this information standard
+
+NHSX has commissioned NHS Digital to produce an Information Standard which puts in place definitions that are to be used when a health professional sends or receives patient medication and allergy/intolerance information, by computer system, between care locations.
+
+The purpose is to ensure that medication and allergy information is transferred between systems and locations in a machine-readable format. This will be achieved by:
+
+● transferring medication information using the newest UK version of FHIR (Fast Healthcare Interoperability Resource), using either ‘Medication Codable Concept’ or ‘Medication Resource’ as is most appropriate to the use case
+
+● usage of dose syntax to transfer the amount of medication per dose as a simple coded quantity
+
+● transferring allergy/intolerance information using SNOMED CT and dm+d codes.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the requirements specification provides further detail for those who have to implement the information standard.
+
+Current release
+Release date	30 September 2021
+Release number	Amd 5/2021
+Release title	Initial Standard
+Stage	Implementation (1 October 2021 to 31 March 2023)
+Key documents	
+Information Standards Notice (Amd 5/2021)
+Requirements Specification v 1.1 (Amd 5/2021)
+Corrigendum (Amd 5/2021)
+
+Further information	
+
+NHS Digital: Interoperable Medicines
+
+FHIR UK Core:  Published versions of the UK Core Implementation Guide
+
+Change control
+
+Update: 9 November 2021: Publication of Corrigendum in respect of the Initial Standard, supported by changes to the Requirements Specification (uplifted to document version 1.1). See Corrigendum above for full details.
+
+Last edited: 9 November 2021 2:24 pm

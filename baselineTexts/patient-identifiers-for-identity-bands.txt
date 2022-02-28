@@ -1,0 +1,29 @@
+ISB 0099: Patient Identifiers for Identity Bands
+
+A specification for the clear and unambiguous display of patient information on an NHS patient identity band.
+
+Page contents
+Top of page
+About this information standard
+Current release
+About this information standard
+
+This information standard specifies both the four identifiers that must be included on NHS patient identity bands and the format for presenting them, so that identity information is clear and unambiguous to all healthcare staff. A well-designed identity band, based on this standard, reduces the risk of mis-identification, helping to ensure a patient is not given the wrong care and treatment.
+
+Current release
+Release date	26/03/2009
+Release number	DSCN 04/2009
+Release title	Initial Standard
+Stage 	Maintenance
+Key documents	Data set change notice (DSCN 04/2009)
+
+
+Further information
+
+	
+
+This information standard is related to ISB 0149 NHS Number, ISB 0108 AIDC: Automatic Identification and Data Capture and ISB 1077 AIDC for Patient Identification.
+
+ 
+
+Last edited: 5 November 2018 2:47 pm

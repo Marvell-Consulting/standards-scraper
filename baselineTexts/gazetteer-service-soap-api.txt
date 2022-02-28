@@ -1,0 +1,118 @@
+Gazetteer Service - SOAP API
+
+Validate or retrieve UK-based postal addresses.
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status
+Service level
+Technology
+Network access
+Security and authorisation
+Environments and testing
+Onboarding
+Interactions
+Overview
+
+Use this API to validate and retrieve UK-based postal addresses, for example before updating a patient's details in the Personal Demographics Service.  Also known as the Address Finder, it can validate and transform the address to the Postcode Address File (PAF) standard, as well as search for and return an address list based on your search criteria.
+
+You can:
+
+get a single search result based on the house number or name and its postcode
+get multiple search results based on partial address inputs or wild card searches
+do fuzzy searches based on the phonetics of words entered in lines of an address
+do intelligent postcode parsing to validate the underlying structure
+get the PAF address key for each delivery point
+
+You cannot use this API to update anyone's address.
+
+Data update frequency
+
+At the moment, we only update the data in Gazetteer annually. We are working on updating it more frequently. If this is an issue for you, contact us.
+
+Licensing
+
+This API uses Royal Mail's Postcode Address File (PAF), which is a licensed product. The licence applies to the end user organisation, not to the software developer.
+
+If the end user organisation is a public sector organisation, such as a GP practice or a hospital trust, they can apply for a Public Sector Licence (PSL), which is free, even if they are using commercial software.
+
+Private end user organisations (for example, non-NHS dentists and some types of GP practice) must obtain a commercial PAF licence.
+
+Public sector end user organisations using the API for revenue-generating purposes (such as treating patients privately) must obtain a commercial PAF licence.
+
+Software developers using the API for testing do not need a licence.
+
+Who can use this API
+
+You can only use this API for direct care. If you are unsure whether you have a valid use case, contact us.
+
+Related APIs
+
+This API is commonly used to verify an address before updating a patient's details in the Personal Demographics Service, using one of the following:
+
+the Personal Demographics Service FHIR API
+the Personal Demographics Service HL7 V3 API
+API status
+
+This API is stable.
+
+Service level
+
+This API is a bronze service, meaning it is operational and supported only during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+
+For more details, see service levels.
+
+Technology
+
+This API is a SOAP API. 
+
+For more details, see Basic SOAP.
+
+Network access
+
+You need a Health and Social Care Network (HSCN) connection to use this API.
+
+For more details, see Network access for APIs.
+
+Security and authorisation
+
+This API is application-restricted, meaning:
+
+the calling application is authenticated - we do care who it is
+
+the end user is not authenticated - we do not verify who it is or whether they are present
+
+In particular, it uses TLS-MA authentication.
+
+Environments and testing
+
+To use this API in integration, if you do not already have one, get a TLS-MA certificate for the integration environment. To do this, complete a Combined endpoint and service registration request including:
+
+a Certificate Signing Request (CSR) where the common name is populated by the Fully Qualified Doman Name (FQDN)
+the environment you need access to - integration
+the other fields left blank
+
+ 
+
+Environment	Base URL
+Integration test - internet	https://msg.intspineservices.nhs.uk/GSWS/GSWS
+Integration test - HSCN	https://msg.int.spine2.ncrs.nhs.uk/GSWS/GSWS
+Production - internet	https://address-finder.spineservices.nhs.uk/GSWS/GSWS
+Production - HSCN	https://gazetteer.national.ncrs.nhs.uk/GSWS/GSWS
+
+ 
+
+Onboarding
+
+To use this API in production:
+
+Confirm your use case. To do this, contact us.
+If you do not already have one, get a TLS-MA certificate for the production environment. To do this, see Live/Production Environment.
+Interactions
+
+For a full list of interactions for this API, see the Gazetteer Service - EIS Part 4.
+
+Last edited: 21 January 2022 3:21 pm
