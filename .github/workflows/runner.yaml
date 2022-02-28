@@ -1,6 +1,9 @@
 name: change detection
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+  schedule:
+    cron: '30 1 * * *'
 
 permissions: write-all
 
