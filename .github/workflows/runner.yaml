@@ -1,4 +1,4 @@
-name: regression
+name: change detection
 
 on: workflow_dispatch
 
@@ -8,6 +8,7 @@ jobs:
     environment: ci
     env:
       GITHUB_TOKEN: ${secrets.GITHUB_TOKEN}
+      CKAN_KEY: ${secrets.CKAN_KEY}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
