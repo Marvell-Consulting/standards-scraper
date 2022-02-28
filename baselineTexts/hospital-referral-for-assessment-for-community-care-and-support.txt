@@ -1,0 +1,50 @@
+Hospital referral for assessment for community care and support
+
+Hospitals must determine when it is safe to discharge a person and implement a discharge plan. Part of that decision-making process requires hospital staff to determine whether the person needs to be referred for an assessment to establish ongoing care and support in the community after discharge.
+
+The Hospital referral for assessment for community care and support is the information required when a person is referred for ongoing community assessment after a hospital stay.
+
+Latest release v1.1
+
+This standard is now aligned with updates to the Core information standard and Urgent transfer from care home to hospital to keep consistency. Please see the detailed V1.1 Release notes, outlining the changes to this latest version.
+
+Sharing information across health and social care
+
+This information standard is part of a wider set of standards, published in November 2020. PRSB was asked by NHS Digital to help to create national standards for sharing information between health and social care, drawing on the learning from successful local projects to speed up national roll out and adoption.
+
+Endorsement
+
+This standard has been endorsed by the following organisations;
+
+British Association for Music Therapy
+British Dietetic Association
+British Geriatrics Society
+British Psychological Society
+Care Provider Alliance
+Care Software Providers Association (CASPA)
+Chartered Society of Physiotherapy
+Compassion in Dying
+Health and Social Care Alliance Scotland
+Institute of Health Records and Information Management
+Local Government Association
+Royal College of Emergency Medicine
+Royal College of General Practitioners
+Royal College of Nursing
+Royal College of Occupational Therapists
+Royal College of Physicians
+Royal Pharmaceutical Society
+Hospital referral for assessment for community care and support v1.1
+V1.1 View the standard
+V1.1 Download the standard (xlsx file)
+V1.1 Release notes
+Supporting documents
+Implementation guidance
+Digital social care final report
+Survey 2 Report
+Hazard log
+Safety case report
+IHRIM record correction guidance
+
+Despite vigilance when filing information in records, mistakes can occur. The Institute of Health Records and Information Management has guidance to support professionals in making corrections following errors.
+
+VIEW THE GUIDANCE
