@@ -18,7 +18,8 @@
     },
     "homepage": "https://github.com/Marvell-Consulting/standards-scraper#readme",
     "dependencies": {
-        "@lennym/commit": "^0.2.0",
+        "@lennym/commit": "^1.0.0",
+        "@octokit/auth-action": "^1.3.3",
         "@octokit/rest": "^18.12.0",
         "@wdio/cli": "^7.16.16",
         "@wdio/devtools-service": "^7.16.16",
