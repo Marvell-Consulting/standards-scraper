@@ -1,0 +1,36 @@
+ISB 0148: National Interim Clinical Imaging Procedure Codes
+
+The National Interim Clinical Imaging Procedure (NICIP) code set enables accurate ordering of medical procedures.
+
+Page contents
+Top of page
+About this information standard
+Current release
+About this information standard
+
+The National Interim Clinical Imaging Procedure code set (NICIP) is a list of codes and descriptions for the coded and textual representation of clinical imaging procedures in electronic systems in the NHS.  The standard provides a common, consistent and unambiguous representation of imaging procedures, for consistent recording and sharing of information.
+
+Current release
+Release date	03/12/2010
+Release number	Amd 169/2010
+Release title 	Version 8 - Withdrawal of Korner Data
+Stage 	Maintenance
+Key documents	
+Information Standards Notice (Amd 169/2010)
+Guidance (Amd 169/2010)
+
+Supporting documents 	
+October 2010 Interim NICIP Code Set covering note (Amd 169/2010)
+
+Further information	
+
+NHS Digital NICIP web pages
+
+This information standard is related to SCCI0034 SNOMED CT and DCB0084 OPCS Classification of Interventions and Procedures.
+
+
+Previous release	The initial release of this standard was published as a DSCN on the ISB website: DSCN 27/2009
+
+ 
+
+Last edited: 8 October 2019 6:53 am

@@ -1,0 +1,143 @@
+Personal Demographics Service - SMSP API
+
+Access patients' personal information, such as name, address, date of birth, related people, registered GP and NHS number using our Spine Mini Service Provider (SMSP) API.
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status
+Service level
+Technology
+Network access
+Security and authorisation
+Testing
+Onboarding
+Interactions
+
+This API is deprecated. For more details, see API status.
+
+Note: This only affects you if you use our NHS Digital PDS SMSP API, not if you use a third party PDS SMSP provider.
+
+Overview
+
+Use this API to access the Personal Demographics Service (PDS) - the national electronic database of NHS patient details such as name, address, date of birth, related people, registered GP and NHS number.
+
+You can:
+
+verify a patient's NHS number
+retrieve a patient's details
+search for patient details
+
+You cannot use this API to:
+
+update patient details
+create a new record for a birth
+receive birth notifications
+create a new record for a new patient
+register a new patient at a GP Practice - use National Health Application and Infrastructure Services (NHAIS) instead
+
+This API:
+
+does not require the end user to be strongly authenticated with a smartcard
+only returns a result from a search if there is a single, unique match - it does not return multiple matches
+Spine Mini Service Provider (SMSP) options
+
+There are also commercially available products which give easier access to PDS, known as Spine Mini Service Providers (SMSPs).
+
+These and other conforming software products are listed in our Conformance Catalogue.
+
+If you are interested in becoming a provider of one of these products, see Personal Demographics Service - SMSP API standards.
+
+Who can use this API
+
+This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development.  To do this, make a PDS access request. 
+
+You must do this before you can go live (see ‘Onboarding’ below). 
+
+Related APIs
+
+The following APIs also give access to the Personal Demographics Service:
+
+Personal Demographics Service - FHIR API - use this newer API to search for patients, retrieve patients by NHS number and update patients.
+Personal Demographics Service - HL7 V3 API - use this if you want to use functions that are not yet available on the FHIR API.
+
+The following APIs are also related to this API:
+
+Organisation Data Service - FHIR API - use this to get full details for the organisations related to the patient, such as their registered GP or nominated pharmacy.
+Organisation Data Service - ORD API - use this to access a searchable national repository of NHS Organisation Reference Data using an ORD interface.
+API status
+
+As of 14 October 2021, this API is deprecated, meaning:
+
+it is still available for use
+full service levels still apply
+we are unlikely to make any updates to it
+new integrations are not allowed - although in-flight integrations may continue
+we will retire it at some point
+
+This API will be retired on 31st January 2024, meaning it will not be available for use after that date. We have set the retirement date based on feedback from users. For more details, see our interactive product backlog.
+
+For new integrations, use the Personal Demographics Service - FHIR API.
+
+If you are already using this API, we recommend you migrate to the PDS FHIR API.
+
+Note: This only affects you if you use our NHS Digital PDS SMSP API, not if you use a third party PDS SMSP provider.
+
+Service level
+
+This API is a gold service, meaning it is operational and supported 24 x 7 x 365.
+
+For more details, see service levels.
+
+Technology
+
+This API is an HL7 V3 API. All interactions are synchronous.
+
+For more details, see HL7 V3.
+
+Network access
+
+You need a Health and Social Care Network (HSCN) connection to use this API.
+
+For more details, see Network access for APIs.
+
+Security and authorisation
+
+This API is application-restricted, meaning:
+
+the calling application is authenticated - we do care who it is
+the end user is not authenticated - we do not verify who it is or whether they are present
+
+In particular, it uses TLS-MA authentication.
+
+In addition, we require calling applications to:
+
+authenticate end users locally with a minimum of user ID and password
+use role-based access control (RBAC) locally to control end user access to the patient data
+keep an audit trail locally of all accesses to patient data by end users
+
+For more details, see Spine Mini Service Provider for Personal Demographics Service.
+
+Testing
+
+For details, see Spine Mini Service Provider for Personal Demographics Service.
+
+Onboarding
+
+You must get your software approved by us before it can go live. We call this onboarding. 
+
+This API is deprecated and is not available for new onboardings. If you have already started onboarding, you may continue, but be aware that this API will be retired at some point.
+
+For details, see Spine Mini Service Provider for Personal Demographics Service.
+
+Interactions
+
+For a full list of interactions for this API, download the PDS Mini Services Domain Message Specification in the zip file below.
+
+PDS Mini Services Domain Message Specification - V1.1 Final
+
+ZIP 1 MB
+
+Last edited: 15 February 2022 4:05 pm

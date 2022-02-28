@@ -1,0 +1,53 @@
+SCCI2075: Assessment, Discharge and Withdrawal Notices between Hospitals and Social Services
+
+This information standard defines a set of Assessment, Discharge and Withdrawal (ADW) Notices to support compliance with the Care Act 2014.
+
+Page contents
+Top of page
+About this information standard
+Current release
+Initial release
+
+This standard will not be updated and there will be no further development on this product.
+
+It should be noted that the product does not support the Discharge to Assess process.
+
+Any development to this standard will be at the supplier’s risk as it doesn’t support government policy. 
+
+For any questions, please contact enquries@nhsdigital.nhs.uk.
+
+About this information standard
+
+This information standard defines a set of Assessment, Discharge and Withdrawal (ADW) Notices to support compliance with the Care Act 2014. These Notices are to be used to support the discharge of hospital patients that are considered to have social care needs.
+
+The initial standard was published in June 2016. An updated release (Amd 70/2016, November 2016) introduces changes to, and corrections of, a number of data items and notes the removal of technical implementation options from the standard documents. Full details of the changes can be found in the Information Standards Notice (see below).
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. The Information Standards Notice provides an overview of scope and implementation timescales, and the other listed documents provide further detail for those who have to implement the information standard.
+
+Current release
+Release date	02/11/2016
+Release number	Amd 70/2016
+Release title	Version 2.0
+Stage	Implementation
+Key documents	
+Requirements Specification (Amd 70/2016)
+Implementation Guidance (Amd 70/2016)
+Information Standards Notice (Amd 70/2016)
+
+Further information	
+
+Technical guidance is available on the
+
+ NHS Health Developer Network
+
+Initial release
+Release date	22/06/2016
+Release number	Amd 29/2015
+Release title	Initial Standard
+Stage	Implementation
+Key documents	
+Requirements Specification (Amd 29/2015)
+Implementation Guidance (Amd 29/2015)
+Information Standards Notice (Amd 29/2015)
+
+Last edited: 12 January 2022 11:47 am

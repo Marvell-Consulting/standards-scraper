@@ -1,0 +1,21 @@
+Social care assessment (ADW)
+
+Currently hospitals must decide when it’s safe to discharge a patient and handover care to other services. Part of that decision-making process requires hospital staff to determine whether a care and support assessment is required before the patient leaves hospital care, so that appropriate social care can be put in place to support them. If hospital staff believe an assessment is required, they must notify the local authority’s social services team.
+
+NHS Digital has produced standards for assessment, discharge and withdrawal notices, so that this information can be shared safely and securely between systems.
+
+The PRSB has assured this guidance, and an Information Standards Notice has been issued. This informs vendors, suppliers and service providers that the standard needs to be adopted and the time frame for doing this.
+
+Endorsement
+
+The ADW information standard has been assured by The PRSB. We will be reviewing and adapting this standard as part of the social care pathfinders project and the standard will be submitted for endorsement during this process.
+
+The standard
+Requirements specification guidance
+Implementation guidance
+Information standard notice (ISN)
+IHRIM record correction guidance
+
+Despite vigilance when filing information in records, mistakes can occur. The Institute of Health Records and Information Management has guidance to support professionals in making corrections following errors.
+
+VIEW THE GUIDANCE

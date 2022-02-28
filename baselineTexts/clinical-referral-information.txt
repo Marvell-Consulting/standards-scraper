@@ -1,0 +1,52 @@
+Clinical referral information v1.1
+A standard for clinical referrals to support faster, better patient care
+Referrals to hospital are increasing as more people continue to live longer with a range of complex conditions. Currently there are differences between GP systems and GP practices in the clinical content of referrals, with multiple templates in use. The clinical referral information standard is designed to improve the exchange of referral information from GPs to hospital consultants and other health care professionals providing outpatient services. The standard was produced in collaboration with the Royal College of Physicians and input from the Royal College of General Practitioners.
+The benefits
+By using the standard professionals will have access to all relevant information in a timely manner. Allowing for safer and more consistent care for people using health and care services. The information includes data about medication, previous history, allergies and current symptoms, as well as a patient’s concerns and expectations.
+Endorsement
+The clinical referral information standard has been endorsed by the following organisations:
+Royal College of Occupational Therapists
+Royal College of General Practitioners
+Royal College of Nursing
+Royal College of Physicians
+Royal College of Obstetricians and Gynaecologists
+Royal Pharmaceutical Society
+Royal College of Paediatrics and Child Health (RCPCH)
+Institute of Health Records and Information Management
+TechUK
+Royal College of General Practitioners
+Royal College of Midwives
+Royal College of Nursing
+Royal College of Obstetricians & Gynaecologists
+Royal College of Ophthalmologists
+Royal College of Paediatrics & Child Health
+Royal College of Pathologists
+Royal College of Physicians
+Royal College of Speech and Language Therapists
+Royal College of Surgeons
+Royal Pharmaceutical Society
+The standard
+Clinical referral information standard
+
+Version 1.1 (Dec 17 2019)
+The standard has been updated in-line with new PRSB digital medications information assurance.
+
+
+
+Release Notes V1.1
+V1.1 includes an update to:
+– structured dose direction cluster
+– structured dose amount
+– structured dose timing and dose direction duration.
+
+Supporting documentation
+Implementation guidance
+Final report
+Survey results
+Clinical referral safety case report
+Clinical referrals hazards log
+IHRIM record correction guidance
+
+Despite vigilance when filing information in records, mistakes can occur. The Institute of Health Records and Information Management has guidance to support professionals in making corrections following errors.
+
+VIEW THE GUIDANCE

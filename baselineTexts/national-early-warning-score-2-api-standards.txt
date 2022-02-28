@@ -1,0 +1,28 @@
+National Early Warning Score 2 API standards
+
+API standards to enable sharing of patients' vital signs and National Early Warning Score 2 (NEWS2) scores between systems and across care boundaries, for example, between two hospitals.
+
+Page contents
+Top of page
+Overview
+API standards
+Overview
+
+Use this API standard to enable sharing of patients' vital signs and National Early Warning Score 2 (NEWS2) scores between systems and across care boundaries, for example, between two hospitals, or between GP and ambulance systems.
+
+We have developed a number of API standards for different purposes which are outlined below.
+
+Before you begin any development work using these API standards, contact us to discuss your best options.
+
+API standards
+Year 	Name	Version	Status & Notes	Links
+2018	
+
+National Early Warning Score (NEWS)2 FHIR API
+
+	1.0.0-
+alpha.1	Alpha - release to support the development of NEWS2	https://developer.nhs.uk/apis/news2-1.0.0-alpha.1/index.html
+
+ 
+
+Last edited: 28 September 2021 11:39 am

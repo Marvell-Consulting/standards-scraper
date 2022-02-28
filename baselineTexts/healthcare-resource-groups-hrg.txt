@@ -1,0 +1,26 @@
+ISB 0070: Healthcare Resource Groups (HRGs)
+
+Healthcare Resource Groups (HRGs) are standard groupings of clinically similar treatments which use comparable levels of healthcare resource. In their most basic form HRGs are groups of ICD-10 diagnoses and OPCS procedures that have similar resource implications.
+
+Page contents
+Top of page
+About this information standard
+Current release
+About this information standard
+
+The objective of using HRGs is to ensure that NHS organisations use a common standard to report activity. This is achieved by ensuring that all NHS organisations use the HRG Grouper issued by NHS Digital, or another grouper that can be shown to produce the same results.
+
+HRGs are currently used as a means of determining fair and equitable reimbursement for care services delivered by providers. These consistent 'units of currency' support standardised healthcare commissioning across the service. In addition, HRGs offer organisations the ability to understand their own activity in terms of the types of patients they care for, and the treatments they undertake. In addition they allow external comparative and benchmarking activity to take place.
+
+Current release
+Release date	23/08/2008
+Release number	DSCN 17/2008
+Release title	Version 4.0
+Stage	Maintenance
+Key documents 	Data Set Change Notice
+Supporting documents 	Full Stage Submission
+Further information 	
+
+NHS Digital National Casemix Office
+
+Last edited: 24 October 2018 9:49 am

@@ -1,0 +1,31 @@
+SCCI0021: International Statistical Classification of Diseases and Health Related Problems (ICD-10) 5th Edition
+
+ICD-10 is a comprehensive classification of causes of morbidity and mortality and is published by the World Health Organization (WHO).
+
+Page contents
+Top of page
+About this information standard
+Current Release
+About this information standard
+
+ICD-10 permits the systematic analysis, interpretation and comparison of morbidity data collected in different areas. The specified purpose of the ICD-10 is to provide a means of classifying diagnoses and is defined as a system of categories to which morbid entries are assigned according to established criteria.
+
+This information standard is published under Section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the Specification and Implementation Documents provide further detail for those who have to implement the information standard.
+
+Current Release
+Release date	18/09/2015
+Release number	Amd 10/2014
+Release title	ICD-10 5th Edition
+Stage	Implementation
+Key documents	
+Requirements Specification (Amd 10/2014)
+Change Specification (Amd 10/2014)
+Implementation Guidance (Amd 10/2014)
+Codes and Titles and Metadata File Specification (Amd 10/2014)
+Information Standards Notice (Amd 10/2014)
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request 1412 (Amd 10/2014)
+Advance Notification (Amd 10/2014)
+
+Last edited: 2 November 2018 12:24 pm

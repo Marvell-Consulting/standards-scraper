@@ -1,0 +1,30 @@
+NHS login API
+
+Access multiple digital health and social care services with a single login for patients and the public, including authentication for returning users.
+
+Page contents
+Top of page
+Overview
+Service level
+Overview
+
+Use this API to enable patients and the public to access multiple digital health and social care services with NHS login, a single re-usable login.
+
+You benefit from:
+
+using a trusted and secured identity platform
+choosing a proper level of end user verification
+displaying a brand name the public recognises
+meeting the Identity Verification and Authentication Standard (DCB3051)
+
+This API uses OpenID Connect 1.0 which is a simple identity layer on top of the OAuth 2.0 protocol.
+
+For more details, see NHS Login: guidance for partners and developers
+
+Service level
+
+This API is a silver plus service, meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays. However, we respond to severity 1 and severity 2 incidents outside of business hours.
+
+For more details, see service levels.
+
+Last edited: 20 January 2022 3:57 pm

@@ -1,0 +1,34 @@
+DCB1582: Electronic Yellow Card Reporting
+
+Collecting reports of suspected adverse drug reactions (ADRs) via the Yellow Card Scheme.
+
+Page contents
+Top of page
+About this information standard
+Current release
+About this information standard
+
+The Medicines and Healthcare products Regulatory Agency (MHRA) collects reports of suspected adverse drug reactions (ADRs) via the Yellow Card Scheme. These provide a source of information on potential drug safety issues allowing the agency to take regulatory action to protect public health. Healthcare professionals report ADRs either by completing a paper form or a form on an external website/App.
+
+This standard defines a method for submitting the information electronically; this allows IT systems to reduce the burden on the clinician by populating the majority of the Yellow Card submission from the patient's electronic record.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the other documents provide further detail for those who have to implement the information standard.
+
+Current release
+Release date	26 October 2017
+Release number	Amd 16/2017
+Release title	Version 3.0
+Stage	Maintenance
+Key documents	
+Requirements Specification (Amd 16/2017)
+Change Specification (Amd 16/2017)
+Implementation Guidance (Amd 16/2017)
+Information Standards Notice (Amd 16/2017)
+
+Supporting documents	
+Message Fields and Validations XLS (Amd 16/2017)
+Message Documents XML (Amd 16/2017)
+
+Previous releases of this information standard can be found on the ISB website (external link)
+
+Last edited: 21 March 2019 4:43 pm

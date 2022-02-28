@@ -1,0 +1,34 @@
+Dose Syntax API standards
+
+API standards to provide a structured way to record dosage instructions between primary and secondary care settings.
+
+Page contents
+Top of page
+Overview
+API standards
+Overview
+
+Use this API standard to provide a structured way to record dosage instructions between primary and secondary care settings, based on the components of the FHIR Dosage structure.
+
+Primary care prescribing - mostly by a GP - uses product-based prescriptions. Secondary care prescribing - as in hospital - uses less specific and more flexible dose-based prescriptions.
+
+A structured way to record dosage instructions is essential when medicines information is shared between care settings to reduce human error. For example, identifying current medication on hospital admission, or sharing medication changes with the patient’s GP on hospital discharge. 
+
+These standards are based on work we did with INTEROPen, HL7 UK and the FHIR community to produce an England-centric FHIR STU3 set of profiles called CareConnect which were published in November 2018. For details, see the Dose Syntax Implementation Guidance for FHIR STU3.
+
+Follow on work for interoperability across England, Scotland, Wales and Northern Ireland using FHIR R4 is underway in the FHIR UK Core standards. For details, see the Dose Syntax Implementation Guidance for FHIR R4.
+
+Before you begin any development work using these API standards, contact us to discuss your best options.
+
+API standards
+Year 	Name	Version	Status & Notes	Links
+2021	Dose Syntax 
+Implementation Guidance
+R4 / UK CORE	2.0.0-private-beta	Beta - under active development 	https://simplifier.net/guide/dosesyntaximplementationguidanceforfhirr4
+2021	Dose Syntax 
+Implementation Guidance 
+STU3 / CareConnect	1.4.0-private-beta	Beta - under active development 	https://simplifier.net/guide/dosesyntaximplementationguidanceforfhirstu3
+
+ 
+
+Last edited: 27 September 2021 3:59 pm

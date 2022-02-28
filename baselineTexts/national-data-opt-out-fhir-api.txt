@@ -1,0 +1,73 @@
+National Data Opt-out - FHIR API
+
+Capture patients' preferences and control sharing of their data by healthcare organisations for planning and research purposes with our National Data Opt-out (NDOP) FHIR API.
+
+ 
+
+Page contents
+Top of page
+Overview
+Who can use this API
+API status
+Service level
+Technology
+Network access
+Environments and testing
+Interactions
+
+This API is currently for internal NHS Digital use only.
+
+Overview
+
+Use this API to capture patients' preferences and control sharing of their data by healthcare organisations for planning and research purposes using National Data Opt-out (NDOP). 
+
+You can:
+
+create National Data Opt-out preferences for a patient
+get existing National Data Opt-out preferences for a patient
+update the National Data Opt-out preferences for a patient
+display transaction history of National Data Opt-out preferences for a patient
+Who can use this API
+
+This API is currently for internal NHS Digital use only.
+
+API status
+
+This API is in beta.
+
+Service level
+
+This API is a bronze service, meaning it is operational and supported only during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+
+For more details, see service levels.
+
+Technology
+
+This API is a FHIR API.
+
+Specifically, it is based on the HL7 FHIR STU3 3.0.1 Messaging Implementation, April 2017. 
+
+For more details, see FHIR.
+
+Network access
+
+This API is available on the internet and, indirectly, on the Health and Social Care Network (HSCN).
+
+For more details, see Network access for APIs.
+
+Environments and testing
+
+There are several independent instances of this API available for testing, each with a different base URL:
+
+Spine environment	Network availability	Base URL
+Development	HSCN	https://msg.dev.spine2.ncrs.nhs.uk/
+Integration	HSCN	https://msg.int.spine2.ncrs.nhs.uk/
+Deployment	HSCN	https://msg.dep.spine2.ncrs.nhs.uk/
+Production	Internet	https://clinicals.spineservices.nhs.uk/
+Interactions
+
+For a full list of interactions for this API, see Consent REST.
+
+For details on the general structure of the interactions, see FHIR.
+
+Last edited: 15 February 2022 3:57 pm

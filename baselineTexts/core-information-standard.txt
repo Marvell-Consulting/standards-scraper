@@ -1,0 +1,67 @@
+Core information standard v2.0
+
+The Core information standard defines a set of information that can potentially be shared between systems in different sites and settings, among professionals and people using services. Version 1.0 of the standard was produced following consultation with more than 1,500 individuals and organisations through online and face-to-face workshops and a survey. 
+
+In January 2021, PRSB was commissioned by NHSX to update the Core information standard from a conceptual information model to a logical model.
+
+What is new in V2.0?
+
+The updated Core information standard includes;
+
+A new logical model that will enable consistency of clinical content, data types, value sets and semantic messages
+A clinical relationship model that links relationships within sections and elements of the standard, this can be used by implementers to develop physical models.
+Aligns with many other published PRSB standards including Maternity, Healthy child and the Community pharmacy standard.
+Updates from the Social care programme including more detail of the services being provided to a person such as equipment and adaptions as well as vital About me content – the information a person wants to share with health and care professionals.
+Alignment with FHIR. We are working closely with the NHS Digital interoperability team to align V2.0 to the UK core R4 FHIR profiles. This is in progress and with work completed on many areas such as person demographics, allergies and adverse reactions, medications and medical devices.
+ 
+Endorsement
+
+The core information standard V1 is endorsed by the following organisations:
+
+Academy of Medical Royal Colleges
+British Dietetic Association (BDA)
+British Orthodontic Society
+British Psychological Society
+Care Providers Alliance
+Carers UK
+Chartered Society of Physiotherapists
+College of Paramedics
+Institute of Health Records and Information Management
+National Voices
+Patient Information Forum
+Queens Nursing Institute
+Royal College of Anaesthetists
+Royal College of Emergency Medicine
+Royal College of General Practitioners
+Royal College of Midwives
+Royal College of Nursing
+Royal College of Obstetricians & Gynaecologists
+Royal College of Ophthalmologists
+Royal College of Paediatrics & Child Health
+Royal College of Pathologists
+Royal College of Physicians
+Royal College of Speech and Language Therapists
+Royal College of Surgeons
+
+Renewed endorsement is in progress for v2.0 and will be published here once available.
+
+ 
+ c
+Core information standard v2.0
+Supporting documentation
+Core information standard V2.0 logical model
+Core information standard implementation guidance V2.0
+Release notes V2.0
+Clinical safety case report – publishing soon
+Core information standard V1 documentation
+Core information standard V1
+Final report V1
+Survey results V1
+Implementation guidance
+Clinical safety case report V1
+Hazard log V1
+IHRIM record correction guidance
+
+Despite vigilance when filing information in records, mistakes can occur. The Institute of Health Records and Information Management has guidance to support professionals in making corrections following errors.
+
+VIEW THE GUIDANCE

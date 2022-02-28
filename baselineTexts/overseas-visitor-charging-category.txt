@@ -1,0 +1,39 @@
+DCB3017: Overseas Visitor Charging Category (OVCC)
+
+The Overseas Visitor Charging Category (OVCC) must be used to record the chargeable status of a patient using NHS services.
+
+Page contents
+Top of page
+About this information standard
+Current release
+About this information standard
+
+This information standard sets out the values which must be used in the recording of relevant information by providers of NHS-funded services in scope of the National Health Service (Charges to Overseas Visitors) Regulations 2015, most recently amended by the National Health Service (Charges to Overseas Visitors) (Amendment) Regulations 2017. These Regulations mandate the identification, charging and recovery of costs from those patients who are not entitled to use the NHS for free. 
+
+The Regulations require NHS trusts and foundation trusts to record on a patient's NHS Record when they are an overseas visitor, whether an exemption from charge category applies to that overseas visitor and on what date that assessment of their status in this regard took place. The NHS Record refers to patient records held in patient administration systems and the Summary Care Record application.
+
+In support of this requirement, this new information standard states that the attribute, OVERSEAS VISITOR CHARGING CATEGORY, must be used to record the chargeable status of a patient using NHS services where this information is recorded.
+
+Note that this information standard will consolidate and update the two current methods of recording chargeable status:
+
+Commissioning Data Sets (CDS): the attribute used is Overseas Visitor Status Classification (OVSC)
+Emergency Care Data Set (ECDS): while the attribute used is Overseas Visitor Charging Category (OVCC), the values do not differentiate between Decision Pending and Not Known.
+
+Both CDS and ECDS will be updated on their next releases to reflect the new values.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the Specification and Implementation Guidance Documents provide further detail for those who have to implement the information standard.
+
+Current release
+Release date	12 April 2018
+Release number	Amd 72/2017
+Release title	Version 1.0
+Stage	Maintenance
+Key documents	
+Requirements specification (Amd 72/2017)
+Implementation guidance (Amd 72/2017)
+Information standards notice (Amd 72/2017)
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request 1631 (Amd 72/2017)
+
+Last edited: 21 March 2019 4:46 pm

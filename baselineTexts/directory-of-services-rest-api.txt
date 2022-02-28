@@ -1,0 +1,102 @@
+Directory of Services - Urgent and Emergency Care - REST API
+
+Access information on a wide range of health and care services across England using our Directory of Services (DoS) Urgent and Emergency Care REST API.
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status
+Service level
+Technology
+Network access
+Security and authorisation
+Environments and testing
+Onboarding
+Interactions
+Overview
+
+Use this API to access Directory of Services (DoS) information on a wide range of health and care services across England. 
+
+You can search for services based on a combination of parameters: 
+
+the patient’s age, sex, and current location
+the patient’s clinical need
+the timeframe in which the patient needs a service
+
+You can also search for services using similar parameters, such as by:
+
+service type - find matching service type ID, location and optional patient details
+clinical term - find matching symptoms, location and optional patient details
+ODS code - find active services with a matching ODS code
+service ID - find active services with a matching service identifier
+
+This service is widely used in an Urgent and Emergency Care context. For example, NHS 111 use it to find a service in real-time with the capacity to help a patient with given symptoms, within range of a given location, in a given time frame.
+
+You need a valid DoS account to use this API.
+
+Who can use this API
+
+This API can only be used where there is a legal basis to do so. Make sure you complete an access request form before you go too far with your development. See our acceptable use policy for more details.
+
+You must have made this request before you can go live (see 'Onboarding' below).
+
+Related APIs
+
+The following APIs are related to this one:
+
+Directory of Services - Urgent and Emergency Care - SOAP API - use this SOAP API to access information on a wide range of health and care services across England
+EPS Directory of Services - REST API - use this to access information about dispensing services, including searching for dispensers who can provide services for a patient with a given location and urgency
+Electronic Transmission of Prescriptions Web Services - SOAP API - use this to access EPS dispenser (and dispensing appliance contractor) information for a patient via NHS UK Web Services
+e-Referral Services - A010 Patient service search endpoint - use this endpoint to find services that meet the referral needs of a patient
+NHS UK service search - use this to search for services by organisation, or organisation type
+API status
+
+This API is stable.
+
+Service level
+
+This API is a gold service, meaning it is operational and supported 24 x 7 x 365.
+
+For more details, see service levels.
+
+Technology
+
+This API is a REST API.
+
+For more details, see Basic REST.
+
+We also have a Directory of Services - Urgent and Emergency Care - SOAP API available.
+
+Network access
+
+This API is available on the internet and, indirectly, on the Health and Social Care Network (HSCN).
+
+For more details, see Network access for APIs.
+
+Security and authorisation
+
+You need a valid DoS account to use this API.
+
+This API uses HTTP basic authentication. We use authentication to track API usage and to control which information is returned to a search.
+
+HTTP basic authentication is built in to all HTTP clients and requires the Authorization request header with the DoS username and password colon delimited and base64 encoded.
+
+Environments and testing
+
+For details of testing and production (live) environments, see Environments Overview.
+
+Onboarding
+
+You must get your software onboarded before it can go live.
+
+As part of onboarding, you must submit an access request and email it to the DoS live service team, see Request for access to NHS Digital urgent and emergency Care DoS.
+
+Requests are subject to an application process including review by the DoS Steering Group.
+
+Interactions
+
+For a full list of interactions for this API, see the DoS REST API.
+
+Last edited: 19 January 2022 4:32 pm

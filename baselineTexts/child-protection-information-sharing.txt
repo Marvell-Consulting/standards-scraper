@@ -1,0 +1,59 @@
+DCB1609: Child Protection - Information Sharing - Information Standards Notice
+
+This is the Information Standards Notice for Child Protection - Information Sharing (CP-IS), a national programme delivering a solution to share a specified data set between children's social care and health unscheduled care settings.
+
+Page contents
+Top of page
+About this information standard
+Update 2 July 2020
+Current release
+Previous release
+About this information standard
+
+The Child Protection - Information Sharing (CP-IS) programme is delivering a solution to share a specified data set between children's social care and health unscheduled care settings.
+
+This will help health and social care staff to share information securely to better protect society's most vulnerable children and support decision making when a vulnerable child presents for care.  CP-IS is a national solution for England that will also deal with the issues of migration of children across local boundaries as information will be shared between social care and health nationally leading to better outcomes for vulnerable children who may have otherwise have gone undetected.
+
+In order for child protection to be fully effective, all Local Authorities and all NHS unscheduled care settings need to adopt, use and where possible integrate this standard into current processes and solutions.
+
+It is endorsed by the Care Quality Commission (CQC) and is included in the key lines of enquiry during CQC inspections. It is also included in the standard contract for providers of NHS unscheduled care.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the Specification and Implementation Documents provide further detail for those who have to implement the information standard.
+
+Update 2 July 2020
+
+The original Information Standards Notice (published on 31 May 2019) set a full conformance date of 30 November 2019. After discussion with providers and system suppliers, NHS Digital requested an extension to this conformance date. This has been agreed by the Data Coordination Board on the basis that no changes have been made to the standard; full conformance is now set at 31 October 2020.
+
+An updated Information Standards Notice (Version 2.0 - see below) announces the change to the original conformance date. No other changes are introduced, and the original documentation remains current.
+
+Current release
+Release date	31/05/2019
+Release number	Amd 113/2018
+Release title	Version 2.0
+Stage	Implementation
+Key documents	
+Requirements Specification (Amd 113/2018)
+Implementation Guidance (Amd 113/2018)
+Change Specification (Amd 113/2018)
+Information Standards Notice (Amd 113/2018) (Version 2.0)
+Information Standards Notice (Amd 113/2018( (Superseded)
+
+Further information	Child protection - information sharing pages
+
+ 
+
+Previous release
+Release date	06/07/2015
+Release number	Amd 27/2013
+Release title	Initial Standard
+Stage	Superseded by Amd 113/2018
+Key documents	
+Standard Specification (Amd 27/2013)
+Implementation Guidance (Amd 27/2013)
+Information Standards Notice (Amd 27/2013)
+
+Information Standards Notice (Amd 27/2013) (Version 2)
+
+ 
+
+Last edited: 11 February 2022 9:51 am

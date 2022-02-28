@@ -1,0 +1,79 @@
+GP Connect Appointment Management - FHIR API
+
+Manage GP practice appointments between different systems.
+
+Page contents
+Top of page
+Overview
+API status
+Service level
+Technology
+Network access
+Interactions
+Overview
+
+Use this API to enable administrative and clinical end users to book and manage patient appointments held in any of the principal GP practice systems.
+
+You can:
+
+retrieve a patient’s appointments
+search for free slots
+read an appointment
+book an appointment
+amend an appointment
+cancel an appointment
+
+For example:
+
+staff at a GP practice can book, view, amend or cancel appointments on behalf of a patient at another practice
+staff at an urgent care NHS 111 call centre can book, view, amend or cancel appointments on behalf of a patient - at the patient’s registered GP, or federated GP practices
+
+Note: You need to use this API in conjunction with the GP Connect Foundations FHIR API. With this API you can:
+
+get patient details - “Read Patient”
+
+search for patient - “Patient Search”
+
+get practitioner details - “Read Practitioner”
+
+search for practitioner - “Practitioner Search”
+
+get organisation details - “Read Organisation”
+
+search for organisation - “Organisation Search”
+
+get location details - “Read Location”
+
+register patient - “Register Patient”
+
+For more details, see the GP Connect specifications for developers.
+
+API status
+
+This API (v1.2.7) is in beta.
+
+Service level
+
+This API is a silver service, meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+
+For more details, see service levels.
+
+Technology
+
+This API is a FHIR API.
+
+For more details, see FHIR.
+
+Network access
+
+You need a Health and Social Care Network (HSCN) connection to use this API.
+
+For more details, see Network access for APIs.
+
+Interactions
+
+For a full list of interactions for this API, see Appointment Management which includes Foundations.
+
+For details on the general structure of the interactions, see FHIR.
+
+Last edited: 20 January 2022 4:37 pm

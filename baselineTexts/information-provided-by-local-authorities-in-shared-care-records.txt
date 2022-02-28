@@ -1,0 +1,47 @@
+Information provided by local authorities in shared care records
+
+Improving information sharing between health and social care is critical to professionals who care for people and the health and wellbeing of people themselves. The Information provided by local authorities in shared care records are the important details that the local authority holds about people that would be useful for health and care professionals in providing care and support in hospital, at home or in a care home.
+
+Latest release v1.1
+
+This information standard is now aligned with updates to the Core information standard and Urgent transfer from care home to hospital to keep consistency. 
+
+Sharing information across health and social care
+
+This information standard is part of a wider set of standards, published in November 2020. PRSB was asked by NHS Digital to help to create national standards for sharing information between health and social care, drawing on the learning from successful local projects to speed up national roll out and adoption.
+
+Endorsement
+
+This standard has been endorsed by the following organisations;
+
+British Association for Music Therapy
+British Dietetic Association
+British Geriatrics Society
+British Psychological Society
+Care Provider Alliance
+Care Software Providers Association (CASPA)
+Chartered Society of Physiotherapy
+Compassion in Dying
+Health and Social Care Alliance Scotland
+Institute of Health Records and Information Management
+Local Government Association
+Royal College of Emergency Medicine
+Royal College of General Practitioners
+Royal College of Nursing
+Royal College of Occupational Therapists
+Royal College of Physicians
+Royal Pharmaceutical Society
+Information provided by local authorities in shared care records v1.1
+V1.1 View the standard
+V1.1 Download the standard (xlsx file)
+Supporting documents
+Implementation guidance
+Digital social care final report
+Survey 1 Report
+Hazard log
+Safety case report
+IHRIM record correction guidance
+
+Despite vigilance when filing information in records, mistakes can occur. The Institute of Health Records and Information Management has guidance to support professionals in making corrections following errors.
+
+VIEW THE GUIDANCE

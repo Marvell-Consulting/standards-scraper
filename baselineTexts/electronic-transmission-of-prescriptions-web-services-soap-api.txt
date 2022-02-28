@@ -1,0 +1,120 @@
+Electronic Transmission of Prescriptions Web Services - SOAP API
+
+Get prescription dispenser information for a patient, using NHS UK Web Services.
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status and roadmap
+Service level
+Technology
+Network access
+Security and authorisation
+Environments and testing
+Onboarding
+Interactions
+Overview
+
+Use this API to get Electronic Prescription Service (EPS) dispenser (and dispensing appliance contractor) information for a patient via NHS UK Web Services.
+
+You can search for dispenser information using:
+
+a valid ODS code (previously known as NACS code)
+their name and service type (community pharmacy or appliance contractor), and whether they are EPS-enabled or not
+their name and location and the service type, and whether they are EPS-enabled or not
+their postcode and service type, and whether they are EPS-enabled or not
+
+Use this API if you are building GP software - it provides additional information about dispensing appliance contractors that is not available through Electronic Prescription Service Directory of Services API.
+
+As one of the Directory of Services APIs, this also provides data to the Electronic Prescription Service Directory of Services API.
+
+Before you begin any development work using this API, contact us to discuss your best options.
+
+Who can use this API
+
+This API can only be used to support the delivery of health and social care.
+
+Related APIs
+
+The following APIs are related to this one:
+
+Electronic Prescription Service - FHIR API  - access the Electronic Prescription Service (EPS) - currently you can only use this new API to prescribe, not dispense
+
+Electronic Prescription Service - HL7 V3 API - access the Electronic Prescription Service (EPS) to send prescriptions from prescribers such as GPs to dispensers such as pharmacies using our HL7 V3 API
+
+Electronic Prescription Tracker - REST API - use this if you want a read-only interface to obtain information about a patient’s prescriptions
+
+NHS BSA Prescription Services Open Data Portal - download public datasets including Secondary care medicines data (SCMD),  prescriptions issued in England, and Prescription Cost Analysis (PCA) in England
+
+Directory of Services - REST API - retrieve information about a wide range of health and care services in England with our Directory of Services - REST API
+
+Directory of Services - SOAP API - retrieve information about a wide range of health and care services in England with our Directory of Services - SOAP API
+
+Electronic Prescription Service Directory of Services API - use this API to access limited information about dispensing services
+API status and roadmap
+
+This API is stable.
+
+To see our roadmap, or to suggest, comment or vote on features for this API, see our interactive product backlog.
+
+If you have any other queries, please contact us.
+
+Service level
+
+This API is a bronze service, meaning it is operational and supported only during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+
+For more details, see service levels.
+
+Technology
+
+This API is a SOAP API. 
+
+For more details, see Basic SOAP.
+
+Network access
+
+This API is available on the internet and, indirectly, on the Health and Social Care Network (HSCN). 
+
+For more details see Network access for APIs.
+
+Security and authorisation
+
+This API is open-access, which means:
+
+we do not authenticate or authorise the calling application
+
+we do not authenticate or authorise the end user - they might not even be present
+
+Environments and testing
+Environment	Base URL
+Integration test	http://etp.nhswebsite-integration.nhs.uk/ETPWebservices/service.asmx/
+
+
+User Acceptance Testing (UAT)
+
+	
+
+https://nhsuk-etp-staging.nhsuk-appservice-uks.p.azurewebsites.net/ETPWebservices/service.asmx/
+
+
+Production	
+
+https://nhsuk-etp-production.nhsuk-appservice-uks.p.azurewebsites.net/ETPWebservices/service.asmx/
+
+Integration testing
+
+Our integration test environment is for formal integration testing
+
+For more details see integration testing with our RESTful APIs.
+
+Onboarding
+
+This API is open-access, and there is no onboarding process or assurance required.
+
+Interactions
+
+For a full list of interactions for this API, see Electronic Transmission of Prescriptions Web Services.
+
+Last edited: 10 February 2022 3:14 pm

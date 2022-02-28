@@ -1,0 +1,38 @@
+ISB 0108: AIDC: Automatic Identification and Data Capture
+
+The AIDC: Automatic Identification and Data Capture (AIDC) standard provides the specification and guidance for achieving accurate AIDC across the NHS.
+
+Page contents
+Top of page
+About this information standard
+Current release
+About this information standard
+
+This standard applies to any NHS setting in England where automatic identification and data capture (AIDC) technologies are used as enablers to improve patient safety, ensure greater clinical effectiveness and drive operational efficiencies. It should be used by all NHS organisations when procuring, implementing and using such technologies.
+
+Current release
+Release date	20/09/2011
+Release number	Amd 145/2010
+Release title	Initial Standard
+Stage 	Maintenance
+Key documents	
+Information Standards Notice (Amd 145/2010)
+Specification (Amd 145/2010)
+
+Supporting documents	
+Coding for Success: Simple technology for safer patient care (Department of Health and Social Care, 2007)
+Review of Coding for Success implementation (Department of Health and Social Care, 2010) 
+
+
+
+Further information
+
+	
+
+Healthcare guides on the GS1 UK website
+
+This information standard is related to ISB 1077 AIDC for Patient Identification and ISB 0099 Patient Identifiers for Identity Bands.
+
+ 
+
+Last edited: 6 January 2022 10:01 am

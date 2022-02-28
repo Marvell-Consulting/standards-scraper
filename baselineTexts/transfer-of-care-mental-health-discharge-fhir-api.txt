@@ -1,0 +1,46 @@
+Transfer of Care Mental Health Discharge - FHIR API
+
+Create and transmit documents containing Transfer of Care information supporting a mental health discharge.
+
+Page contents
+Top of page
+Overview
+API status
+Service level
+Technology
+Interactions
+Overview
+
+Use this API to create and transmit documents containing Transfer of Care information supporting a mental health discharge.
+
+An Inpatient and Day Case Discharge Summary (Mental Health) Document (also known as an ITK3 Mental Health Discharge) is an ITK3 FHIR document containing Transfer of Care information supporting a mental health adult discharge summary to a GP practice.
+
+For example, following an apparent overdose, a patient is admitted to a psychiatric ward for evaluation and treatment which is successful. He is discharged and the consultant sends a copy of the Mental Health Discharge to his GP.
+
+For more details see the Transfer of Care FHIR API.
+
+Before you begin any development work using this API, contact us to discuss your best options.
+
+API status
+
+This API is stable.
+
+Service level
+
+This API uses MESH which is a silver service,  meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+
+For more details, see service levels.
+
+Technology
+
+This API is a FHIR API.
+
+For more details, see FHIR.
+
+Interactions
+
+For a full list of interactions for this API, see Introduction to ITK3 Mental Health eDischarge.
+
+For details on the general structure of the interactions, see FHIR.
+
+Last edited: 24 January 2022 12:46 pm

@@ -1,0 +1,103 @@
+General Practice Extraction Service - MESH API
+
+Send anonymised or patient-identifiable data from GP clinical systems to the General Practice Extraction Service (GPES) for planning and research.
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status
+Service level
+Technology
+Network access
+Security and authorisation
+Environments and testing
+Onboarding
+Interactions
+Overview
+
+Use this API to send patient data from General Practice (GP) clinical systems to General Practice Extraction Service (GPES). This data can then be used for planning and research. 
+
+You can:
+
+receive requests for data
+send requested data
+
+For example, the GPES data for pandemic planning and research is used to support the response to the coronavirus (COVID-19) outbreak. This data is used to analyse healthcare information about patients, for the duration of the coronavirus emergency period.
+
+The API is asynchronous. To send and receive messages, you need to use MESH.
+
+Who can use this API
+
+This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development.
+
+You must do this before you can go live (see ‘Onboarding’ below).
+
+Related APIs
+
+The following API is also related to this API:
+
+Message Exchange for Social Care and Health (MESH) API - use this API to transfer messages and large files securely across health and social care organisations
+
+API status
+
+This API is stable.
+
+Service level
+
+This API uses MESH which is a silver service, meaning it is operation 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+
+For more details, see service levels.
+
+Technology
+
+Messages are sent and received via MESH.
+
+Message payloads are XML, apart from 'report' messages which are CSV.
+
+Network access
+
+You can access this API via:
+
+the Health and Social Care Network (HSCN)
+
+the internet
+
+For more details, see Network access for APIs.
+
+Security and authorisation
+
+This API uses MESH which is an application-restricted API.
+
+The API does not perform any end user authentication or authorisation checks. Rather, the calling system is expected to perform them. The authorisation rules are specified in our national Role Based Access Control (RBAC) database.
+
+For more details see our national Role Based Access Control (RBAC) database on the registration authorities and smartcards page
+
+Environments and testing
+
+This API uses MESH.
+
+As a developer, you are most likely to want to connect to MESH using either the MESH client or the MESH API.
+
+For more details about using the MESH client, see MESH client.
+
+For the MESH API, there are several independent, externally accessible instances of MESH you can use for testing. For more details, see MESH API - Environments and testing.
+
+Onboarding
+
+You need to get your software approved by us before it can go live with this API. We call this onboarding. The onboarding process can sometimes be quite long, so it’s worth planning well ahead.
+
+To onboard for this API, contact us.
+
+Interactions
+
+For a list of interactions, see the GPES Interoperability Standard v6.0.1.
+
+This is a Microsoft Word file.  To request a different format please contact us.
+
+GPES Interoperability Standard v6.0.1
+
+DOCX 3 MB
+
+Last edited: 16 February 2022 3:43 pm

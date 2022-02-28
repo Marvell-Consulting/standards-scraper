@@ -1,0 +1,39 @@
+ISB 0149 NHS Number
+
+This information standard sets out the scope and use of the NHS Number, which is the unique identifier for a patient within the NHS in England and Wales. There is an overarching standard, supplemented by two use cases for how the standard should be used in general practice and secondary care.
+
+Page contents
+Top of page
+About this information standard
+Current releases
+About this information standard
+
+This standard provides the specification for use of the NHS Number by NHS bodies and by other organisations providing health and care services in England in partnership with the NHS. It defines how the NHS Number must be used in identifying people receiving health and care services, and in locating and communicating their health and care records and other information pertaining to the planning and provision of their care. The standard sets out how information systems must accept, store, process, display and transmit the NHS Number, and what organisations must do to ensure that they use the NHS Number correctly.
+
+Current releases
+NHS Number
+Release date	07/06/2012
+Release number	Amd 136/2010
+Key documents	
+Information standards notice (Amd 136/2010)
+Standard Specification (Amd 136/2010)
+NHS Number for General Practice
+Release date 	19/03/2009
+Release number	DSCN 31/2008
+Key documents 	
+Data Set Change Notice (DSCN 31/2008)
+
+Supporting information	Update: March 2011: The NHS Number Programme has issued guidance to help GP Practices follow current good practice for NHS Number usage. NHS Number Guidance for GP Practices is available on the NHS Digital website
+
+ 
+
+NHS Number for Secondary Care
+Release date	09/05/2012
+Release number	Amd 13/2011
+Key documents	
+Information Standards Notice (Amd 13/2011)
+Change request (Amd 13/2011)
+Specification (Amd 13/2011)
+Guidance (Amd 13/2011)
+
+Last edited: 7 September 2021 8:45 am

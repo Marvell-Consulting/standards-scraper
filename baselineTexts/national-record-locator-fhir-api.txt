@@ -1,0 +1,195 @@
+National Record Locator - FHIR API
+
+Locate and access patient information shared by other healthcare organisations using the National Record Locator (NRL) FHIR API. 
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status
+Service level
+Technology
+Network access
+Security and authorisation
+Environments and testing
+Onboarding
+Interactions
+Overview
+
+Use this API to locate and access patient information shared by other healthcare organisations, to support the direct care of those patients, using the National Record Locator (NRL).
+
+ 
+
+As a "provider" who holds information about patients, you can:
+
+create a pointer in the NRL to your information
+replace your NRL pointer with a newer pointer, superseding the old one
+update your NRL pointer status to "entered in error"
+delete your NRL pointer to this information
+
+As a "consumer" who needs access to the patient information being shared by providers, you can:
+
+search for information by parameters including information ID, patient, information provider, information type,  or number of matching results
+retrieve an NRL pointer and access the information
+
+There is a growing list of health and social care organisations authorised to share records using NRL.
+
+For more details, see the National Record Locator for developers and the Introduction to the National Record Locator.
+
+Who can use this API
+
+This API can only be used where there is a legal basis to do so.
+
+Make sure you have a valid use case before you go too far with your development. To do this, contact us. 
+
+For details of the purpose and lawful basis for sharing NRL information, see the NRL controller catalogue spreadsheet.
+
+You must do this before you can go live (see 'Onboarding' below).
+
+Related APIs
+
+The following APIs are related to this one:
+
+National Event Management Service - FHIR API - use this to publish and subscribe to patient-centric healthcare event messages 
+API status
+
+This API is in beta.
+
+Service level
+
+This API is a bronze service, meaning it is operational and supported only during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+
+For more details, see service levels.
+
+Technology
+
+This API is a FHIR API.
+
+Specifically, it is based on the HL7 FHIR STU3 Messaging Implementation.
+
+For more details, see FHIR.
+
+Network access
+
+This API is available differently for information providers and consumers:
+
+providers can use the internet or the Health and Social Care Network (HSCN)
+consumers must use HSCN
+
+Information providers can connect to NRL over the internet or HSCN to:
+
+manage their pointers
+accept Spine Security Proxy (SSP) connections from information consumers wanting to retrieve information
+
+Information consumers can also interact with NRL and SSP over the internet or HSCN, but need an HSCN connection to use the Spine Directory Service (SDS) to look up the provider's ASID as part of the retrieval process. SDS is only available via HSCN.
+
+For more details, see Network access for APIs.
+
+Security and authorisation
+
+NRL implements application-level authentication and authorization, for both provider and consumers. The access control model works at an organisation level, restricting the pointer types a consuming organisation can retrieve to only those approved as part of its onboarding process.
+
+For more details on NRL interaction security, including the TLS protocols, ciphers and client certificates supported, see Security.
+
+The information returned in NRL pointers enables the consumer to identify which providers are sharing information about a person. However, the actual retrieval of the information is done by the consumer from the provider, facilitated by the Spine Secure Proxy (SSP) which decouples the provider and consumer. SSP authenticates and authorizes the consumer application requesting the information and passes on the request to the provider who then only needs to authenticate and authorize the SSP, rather each individual consuming application. This decoupling helps simplify onboarding of new consumers and providers.
+
+The API does not perform any end user authentication or authorisation checks. Rather the consuming application must perform them when giving end users access to information received via Spine services. For example, healthcare workers should be authenticated with an NHS smartcard or modern equivalent and CIS2 (formerly NHS Identity). For more details, see access controls.
+
+Environments and testing
+
+We have developed an NRL demonstrator application to quickly explain basic NRL functionality. 
+
+You should carry out initial development and local testing against our TKW testbench.
+
+NRL is available in Opentest for early development and testing.
+
+NRL is also available for testing purposes in:
+
+development (DEV)
+integration (INT)
+
+The NRL base URLs are as follows:
+
+Environment	Network availability	URL
+Opentest	OpenVPN	To be confirmed
+Development	HSCN	To be confirmed
+Integration	HSCN	https://msg.int.spine2.ncrs.nhs.uk/
+Integration	Internet	https://msg.intspineservices.nhs.uk/
+Production	HSCN	Contact us
+Production	Internet	Contact us
+
+The base URL for the provider and consumer interactions are the same, but the interaction is based on the path and HTTP verb used, for example:
+
+provide a pointer in integration over HSCN:
+POST https://msg.int.spine2.ncrs.nhs.uk/STU3/DocumentReference
+consume pointers in integration over HSCN:
+GET https://msg.int.spine2.ncrs.nhs.uk/STU3/DocumentReference
+provide a pointer in integration over the internet:
+POST https://msg.intspineservices.nhs.uk/STU3/DocumentReference
+consume a pointer in integration over the internet:
+GET https://msg.intspineservices.nhs.uk/STU3/DocumentReference/da2b6e8a-3c8f-11e8-baae-6c3be5a609f5-584d385036514c383142
+
+The SDS base URLs are as follows:
+
+Environment	Network availability	URL
+Opentest	OpenVPN	To be confirmed
+Development	HSCN	To be confirmed
+Integration	HSCN	https://ldap.nis1.national.ncrs.nhs.uk
+Production	HSCN	Contact us
+
+The SSP base URLs are as follows:
+
+Environment	Network availability	URL
+Opentest	OpenVPN	To be confirmed
+Development	HSCN	To be confirmed
+Integration	HSCN	https://proxy.int.spine2.ncrs.nhs.uk/
+Integration	Internet	https://proxy.intspineservices.nhs.uk/
+Production	HSCN	Contact us
+Production	Internet	Contact us
+
+In addition, our reference implementation allows you to send requests and view responses with test data through a clone of the NRL API, without needing to worry about access to testing environments.
+
+For more details, see National Record Locator for developers.
+
+Onboarding
+
+You must get your software onboarded before it can go live.
+
+As part of onboarding, this API uses the Supplier Conformance Assessment List (SCAL) process.
+
+This involves you completing an assessment, looking at a range of criteria including:
+
+technical conformance
+data protection
+security
+clinical safety
+benefits measurement
+business process review and updates
+service operations
+
+The assessment is based on whether you are an information consumer, provider or a software development organisation. 
+
+Specifically, to use NRL:
+
+your system must be accredited through our assurance and onboarding process
+you must have an endpoint certificate and associated ASID for the environment (DEV, INT, LIVE) you wish to connect to
+your endpoint must be configured with the required interaction ids and service permissions
+you must trace and verify any NHS numbers before you use them in an NRL interaction, with the Personal Demographics Service
+you must use a JSON Web Token (JWT) for all interactions with NRL and Spine Security Proxy (SSP)
+
+For more details, see Development Overview.
+
+Information providers and consumers are required to keep an audit trail of requests to and responses from the NRL API.
+
+For details of the testing and technical assurance process, see the Assurance Overview.
+
+For full details of onboarding, see the NRL onboarding guide.
+
+Interactions
+
+For a full list of interactions for this API, see the Development Overview.
+
+For details on the general structure of the interactions, see FHIR.
+
+Last edited: 2 February 2022 11:33 am

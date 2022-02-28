@@ -1,0 +1,36 @@
+ISB 1555: Birth Notifications
+
+The purpose of this operational information standard is to notify births, allocate NHS Numbers for newborns and send birth details to all relevant departments, thereby fulfilling statutory and screening requirements to notify others outside the maternity department of the birth.
+
+Page contents
+Top of page
+About this information standard
+Current release
+About this information standard
+
+The NHS Number for Babies (NN4B) service has been decommissioned and functionality replaced by an equivalent service provided by the NHS Digital Personal Demographics Service (PDS).
+
+The PDS Birth Notification Data Sets enables all NN4B-compliant systems to send or receive birth notification communications directly to and from the Personal Demographics Service. The standard sets out the systems compliance required by maternity and child health systems for this purpose.
+
+Current release
+Release date	11/07/2014
+Release number	Amd 3/2014
+Release title	Replacement of the NHS Number for Babies (NN4B) service
+Stage	Maintenance
+Key documents 	
+Information Standards Notice
+Specification
+Change request
+
+Supporting documents 	
+
+NHS Data Model and Dictionary Change Request 1383
+
+
+Further information 	
+
+NHS Digital Birth Notification Service
+
+ 
+
+Last edited: 24 October 2018 10:58 am

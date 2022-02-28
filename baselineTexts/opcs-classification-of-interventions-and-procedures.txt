@@ -1,0 +1,59 @@
+DCB0084: OPCS Classification of Interventions and Procedures
+
+OPCS-4 is a statistical classification for clinical coding of hospital interventions and procedures undertaken by the NHS.
+
+Page contents
+Top of page
+About this information standard
+Current release
+Previous releases
+About this information standard
+
+OPCS-4 is a statistical classification for clinical coding of hospital interventions and procedures undertaken by the NHS. The classification is mandatory for use by health care providers to support various forms of data collections for secondary uses.
+
+The Terminology and Classifications Delivery Service within NHS Digital has responsibility for the support, maintenance, development and licensing of OPCS-4 which is governed by Crown Copyright.
+
+Details are given below of Version 4.9, which is due for implementation on 1 April 2020.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the other listed documents provide further detail for those who have to implement the information standard.
+
+Update 5 December 2019: The latest release (DCB0084 Amd 18/2019) was published on 8 October 2019. Since then, the need for a small change to a supporting document has been identified and a Corrigendum has been issued. Note that there is no impact on either the published Requirements Specification or the Implementation Guidance; however an updated Summary of Changes has been published. If you have any questions about this Corrigendum, or other OPCS issues, you can contact the developers by emailing: information.standards@nhs.net.
+
+ 
+
+Current release
+Release date	08/10/2019
+Release number	Amd 18/2019
+Release title	Version 4.9
+Stage	Implementation
+Key documents	
+Requirements Specification (Amd 18/2019)  
+Change Specification (Amd 18/2019)
+Implementation Guidance (Amd 18/2019)
+Information Standards Notice (Amd 18/2019)
+Corrigendum (Amd 18/2019) (December 2019)
+
+Supporting documents	
+Final Summary of Changes (Amd 18/2019) (December 2019)
+NHS Data Model and Dictionary Change Request 1723 (Amd 18/2019)
+
+Further information	NHS Digital: Terminology and Classifications Delivery Service
+Previous releases
+Release date	19/10/2016
+Release number	Amd 105/2015
+Release title	Version 4.8
+Stage	Maintenance
+Key documents	
+Requirements Specification (Amd 105/2015) 
+Change Paper (Amd 105/2015)
+Implementation Guidance (Amd 105/2015)
+Information Standards Notice (Amd 105/2015)
+
+Supporting documents	
+Final Summary of Changes (Amd 105/2015)
+NHS Data Model and Dictionary Change Request 1577 (Amd 105/2015) 
+Advance Notification (issued April 2016) (Amd 105/2015)
+
+Documentation for earlier, superseded versions of OPCS can be found on the on the archived Information Standards Board website.
+
+Last edited: 4 December 2019 9:13 am

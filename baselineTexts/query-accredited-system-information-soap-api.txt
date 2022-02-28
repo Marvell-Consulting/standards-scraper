@@ -1,0 +1,95 @@
+Query Accredited System Information - SOAP API
+
+Access details of accredited systems in the Spine Directory Service (SDS) using this SOAP API.
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status
+Service level
+Technology
+Network access
+Security and authorisation
+Testing
+Onboarding
+Interactions
+
+If you are developing a new integration, consider using the Spine Directory Service - FHIR API instead.
+
+Overview
+
+Use this API to search for details about accredited systems and the processes they support, known as interactions, which are held in the Spine Directory Service (SDS) repository. 
+
+This API provides reference information on these accredited systems, along with details of how to interact with these systems. For example, use this API to retrieve the details of the API endpoint to which a PDS update message can be sent.
+
+Use this API to:
+
+search for and obtain information on accredited systems such as their accredited system identifier (ASID) and associated messaging endpoint information.
+verify whether a specific accredited system is able to handle a specified interaction.
+
+For more details, see the Spine External Interface Specification (EIS) Part 5 - Spine Directory Services (SDS).
+
+Who can use this API
+
+This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development.
+
+You must do this before you can go live (see ‘Onboarding’ below). 
+
+Related APIs
+
+The following APIs are related to this one:
+
+Spine Directory Service - LDAP API - access details of organisations, people and systems registered in the Spine Directory Service (SDS)
+Spine Directory Service - FHIR API - an internet-facing, FHIR-conformant API which might be a better way to access SDS for some use cases
+API status
+
+This API is stable.
+
+We are considering deprecating and eventually retiring it, now that the Spine Directory Service - FHIR API provides equivalent functionality. For details, see our interactive product backlog.
+
+Service level
+
+This API is a platinum service, meaning it is operational and supported 24 x 7 x 365.
+
+For more details, see service levels.
+
+Technology
+
+This API is accessed via a SOAP web service. 
+
+For more details, see Basic SOAP.
+
+Network access
+
+You need a Health and Social Care Network (HSCN) connection to use this API.
+
+For more details, see Network access for APIs.
+
+Security and authorisation
+
+For details, see part 5 of the Spine External Interface Specification.
+
+Testing
+
+You can test this API using our Path to Live environments.
+
+Onboarding
+
+You must get your software onboarded before it can go live.
+
+As part of onboarding, this API uses the Common Assurance Process (CAP), which is tailored for each NHS service. For more details, contact us.
+
+Interactions
+
+For details of interactions for this API, see part 5 of the Spine External Interface Specification but with the following caveats.
+
+EIS Part 5, sections 5.3, 5.19 and 5.20 describe the capability of the QASI API to provide compatible matches in addition to exact matches to searches for accredited systems. We achieved this through advanced server components which implemented business logic to
+
+traverse hierarchical organisation data looking for matches in parent organisations
+use internal lookup tables to provide compatible interactions where a message transformation could be carried out by the server.
+
+The current implementation of the QASI API removes all these capabilities and now only provides exact matches.
+
+Last edited: 15 February 2022 4:08 pm

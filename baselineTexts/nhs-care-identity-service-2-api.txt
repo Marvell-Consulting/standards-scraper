@@ -1,0 +1,23 @@
+NHS Care Identity Service 2 API
+
+Verify the identity of healthcare workers in England, such as NHS staff, when they access national clinical information systems. 
+
+Page contents
+Top of page
+Overview
+Service level
+Overview
+
+Use this API to access NHS Care Identity Service 2 (NHS CIS2) - the national service for verifying the identity of healthcare workers in England, such as NHS staff, when they access national clinical information systems. You can also get basic profile information about these end users.
+
+This API uses OpenID Connect 1.0 which is a simple identity layer on top of the OAuth 2.0 protocol. 
+
+For more details, see NHS CIS2: guidance for developers.
+
+Service level
+
+This API is a platinum service, meaning it is operational and supported 24 x 7 x 365.
+
+For more details, see service levels.
+
+Last edited: 19 January 2022 5:16 pm

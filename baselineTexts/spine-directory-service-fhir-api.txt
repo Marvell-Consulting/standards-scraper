@@ -1,0 +1,577 @@
+Spine Directory Service - FHIR API
+
+Access accredited system information and messaging endpoint details in the Spine Directory Service (SDS) using our FHIR-conformant API.
+
+Page content
+Top of page
+Overview
+Who can use this API
+API status and roadmap
+Service level
+Technology
+Network access
+Security and Authorisation
+Environments and testing
+Integration testing
+Related APIs
+Onboarding
+Endpoints
+Get accredited system details
+Get routing and reliability details
+Overview
+
+Use this API to access details of systems registered in the Spine Directory Service (SDS).
+
+You can:
+
+get accredited system details
+
+You cannot currently use this API to:
+
+search for organisations
+search for people
+Accredited system records
+
+Every system that connects to the Spine has one or more “Accredited System” (AS) records in SDS, identified by an Accredited System Identifier (ASID). This ASID is unique to a system deployed in a specific organisation, so the same application deployed into three NHS organisations would typically be represented as three unique ASIDs.
+
+MHS records and endpoints
+
+Every GP Connect system also has one or more “MHS” records (or message handling server record), identified by Party Key and Interaction ID. MHS records of GP Connect provider systems contain the endpoint of the target practice, as defined by the FHIR service root URL. Please see System topologies for more details on the allocation of ASIDs and Party Keys.
+
+For all intermediary messaging endpoint lookups, this API returns the NHS Digital Spine MHS endpoint address.
+Who can use this API
+
+This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development.
+
+You must do this before you can go live (see ‘Onboarding’ below).
+
+API status and roadmap
+
+This API is in private beta, meaning:
+
+the API is available in our sandbox and integration test environments
+the API is available for production use (to use this API please contact niasupport@nhs.net)
+we might make breaking changes, but only if we cannot avoid it, and we'll give advance notice
+
+To see our roadmap, or to suggest, comment or vote on features for this API, see our interactive product backlog.
+
+If you have any other queries, please contact us.
+
+Service level
+
+This API is a bronze service during private beta, meaning it is operational and supported only during business hours (8am to 6pm), Monday to Friday excluding bank holidays. (The planned production service level will be platinum.)
+
+For more details, see service levels.
+
+Technology
+
+This API is RESTful.
+
+It also conforms to the FHIR global standard for health care data exchange.Specifically, it is aligned with FHIR UK Core, which is built on FHIR Release 4. You don’t need to know much about FHIR to use this API - FHIR APIs are just RESTful APIs that follow specific rules. In particular:
+
+resource names are capitalised and singular, for example /Endpoint not /endpoints
+
+Errors handling in this API follows NHS guidelines and produces an OperationOutcome FHIR resource response with appropriate HTTP code
+
+Network access
+
+This API is available on the internet and, indirectly, on the Health and Social Care Network (HSCN).
+
+For more details see Network access for APIs.
+
+Security and Authorisation
+
+This API uses the Application-restricted pattern.
+
+In this pattern, you authenticate your application by including an API key with each API request. The API key is unique to your application.
+
+For more details, including detailed technical integration instructions, see Security and Authorisation - Application-restricted RESTful APIs - API key authentication page within the NHS Digital Portal.
+
+Environments and testing
+Environment	Base URL
+Sandbox	https://sandbox.api.service.nhs.uk/spine-directory/FHIR/R4
+Integration test	https://int.api.service.nhs.uk/spine-directory/FHIR/R4
+Production	https://api.service.nhs.uk/spine-directory/FHIR/R4
+Sandbox testing
+
+Our sandbox environment:
+
+is for early developer testing
+only covers a limited set of scenarios
+is open-access, so does not allow you to test authorisation
+
+For more details on sandbox testing, or to try out the sandbox using our "Try this API" feature, see the documentation for each endpoint.
+
+Integration testing
+
+Our integration test environment:
+
+is for formal integration testing.
+includes application authentication
+
+This API does not have a standard test data pack as it will be dependant on the service you are trying to access, for more details see Spine Services and Interaction IDs and integration testing with our RESTful APIs.
+
+Related APIs
+
+The following APIs are related to this one:
+
+Spine Directory Service - LDAP API - Access details of organisations, people and systems registered in the Spine Directory Service (SDS) using our LDAP API.
+Onboarding
+
+You need to get your software approved by us before it can go live with this API. We call this onboarding. The onboarding process can sometimes be quite long, so it’s worth planning well ahead.
+
+There is no separate onboarding process for the SDS FHIR API. Onboarding will be dictated by the current processes of the API that consumes the SDS FHIR API, for example GP Connect. Once approval has been granted to use the API that utilises the SDS FHIR API then production access can be granted. To request production access please contact api.management@nhs.net.
+
+Endpoints
+Get accredited system details
+GET /Device
+Try this API
+Overview
+
+Use this endpoint to get accredited systems information in SDS.
+
+This endpoint should return all matching accredited system objects which provides the following information:
+
+Accredited System Identifier
+Manufacturing Organisation Code
+Client Code
+Party Key
+Service-Interactions
+
+To get the information, you must supply:
+
+organisation code
+service identifier
+
+and may supply:
+
+manufacturing organization identifier
+party key
+Request
+Query parameters
+Name	Description
+organization	
+
+String
+
+The organisation code for the NHS Spine instance that your Message Handling System is communicating with. Must be preceded with FHIR identifier.
+
+Example: https://fhir.nhs.uk/Id/ods-organization-code|YES
+
+Required
+
+identifier	
+
+array[String]
+
+The service that is being contacted and the action that is required. Additionally optional MHS party key as a second occurrence of this parameter. Both must be preceded with FHIR identifier. See the Data section in this API Specification document for more information.
+
+Examples
+
+Service identifier consisting of https://fhir.nhs.uk/Id/nhsServiceInteractionId only
+
+[ "https://fhir.nhs.uk/Id/nhsServiceInteractionId|urn:nhs:names:services:psis:REPC_IN150016UK05" ]
+
+Service identifier consisting of both https://fhir.nhs.uk/Id/nhsServiceInteractionId and https://fhir.nhs.uk/Id/nhsMhsPartyKey
+
+[ "https://fhir.nhs.uk/Id/nhsServiceInteractionId|urn:nhs:names:services:psis:REPC_IN150016UK05", "https://fhir.nhs.uk/Id/nhsMhsPartyKey|YES-0000806" ]
+
+Required
+
+manufacturing-organization	
+
+String
+
+Manufacturing organisation ODS code. Must be preceded with FHIR identifier.
+
+Example: https://fhir.nhs.uk/Id/ods-organization-code|YES
+
+Headers
+Name	Description
+X-Correlation-Id	
+
+UUID (uuid)
+
+UUID for request tracking
+
+Example: 6d3d3674-7ce5-11ec-90d6-0242ac120003
+
+
+apikey	
+
+String
+
+API key to authenticate with. Use any value for Sandbox environment.
+
+Required
+Response
+HTTP status: 200
+
+Valid request that returns all accredited systems found that match the search criteria (which may be 0).
+
+Body
+
+Content type: application/fhir+json
+
+Example
+
+Copy
+{
+  "resourceType" : "Bundle",
+  "id" : "9A05D8C6-587D-4CD7-B360-C5560961C01F",
+  "type" : "searchset",
+  "total" : 1,
+  "link" : [ {
+    "relation" : "self",
+    "url" : "https://int.api.service.nhs.uk/spine-directory/FHIR/R4/Device?organization=https://fhir.nhs.uk/Id/ods-organization-code|A20047&identifier=https://fhir.nhs.uk/Id/nhsServiceInteractionId|urn:nhs:names:services:gpconnect:fhir:rest:search:patient&identifier=https://fhir.nhs.uk/Id/nhsMhsPartyKey|A20047-821870&manufacturing-organization=https://fhir.nhs.uk/Id/ods-organization-code|X26"
+  } ],
+  "entry" : [ {
+    "fullUrl" : "https://int.api.service.nhs.uk/spine-directory/FHIR/R4/Device/0E512499-E65C-4AE9-BEEC-224917FCDE94",
+    "resource" : {
+      "resourceType" : "Device",
+      "id" : "0E512499-E65C-4AE9-BEEC-224917FCDE94",
+      "identifier" : [ {
+        "system" : "https://fhir.nhs.uk/Id/nhsSpineASID",
+        "value" : "200000000985"
+      }, {
+        "system" : "https://fhir.nhs.uk/Id/nhsMhsPartyKey",
+        "value" : "A20047-821870"
+      } ],
+      "extension" : [ {
+        "url" : "https://fhir.nhs.uk/StructureDefinition/Extension-SDS-ManufacturingOrganisation",
+        "valueReference" : {
+          "identifier" : {
+            "system" : "https://fhir.nhs.uk/Id/ods-organization-code",
+            "value" : "A20047"
+          }
+        }
+      }, {
+        "url" : "https://fhir.nhs.uk/StructureDefinition/Extension-SDS-NhsServiceInteractionId",
+        "valueReference" : {
+          "identifier" : {
+            "system" : "https://fhir.nhs.uk/Id/nhsServiceInteractionId",
+            "value" : "urn:nhs:names:services:gpconnect:fhir:operation:gpc.getcarerecord"
+          }
+        }
+      }, {
+        "url" : "https://fhir.nhs.uk/StructureDefinition/Extension-SDS-NhsServiceInteractionId",
+        "valueReference" : {
+          "identifier" : {
+            "system" : "https://fhir.nhs.uk/Id/nhsServiceInteractionId",
+            "value" : "urn:nhs:names:services:gpconnect:fhir:rest:read:location"
+          }
+        }
+      } ],
+      "owner" : {
+        "identifier" : {
+          "system" : "https://fhir.nhs.uk/Id/ods-organization-code",
+          "value" : "A20047"
+        }
+      }
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+resourceType
+string
+	
+Default: Bundle
+
+
+id
+string uuid
+	
+
+Unique identifier for this search request.
+
+
+
+type
+string
+	
+Default: searchset
+
+
+total
+integer
+	
+
+link
+array
+	
+
+entry
+array
+	
+HTTP status: 400
+
+Missing or invalid query parameter(s).
+
+HTTP status: 404
+
+Invalid endpoint path
+
+HTTP status: 405
+
+Unsupported HTTP method. For this endpoint only GET is available
+
+HTTP status: 406
+
+Unsupported media type
+
+HTTP status: 500
+
+Unhandled internal server error
+
+HTTP status: 502
+
+Upstream LDAP returned an unsupported responses
+
+HTTP status: 504
+
+Upstream LDAP server request has timed out
+
+Get routing and reliability details
+GET /Endpoint
+Try this API
+Overview
+
+Use this endpoint to get accredited systems routing and reliability information in SDS.
+
+This endpoint should return all matching routing and reliability objects which provides the following information:
+
+Endpoint Service ID
+Message Handling System Party Key
+Accredited System ID
+Endpoint URL
+Fully Qualified Domain Name of the Message Handling System
+
+Following combinations of query parameters are supported:
+
+organisation code, service identifier, party key
+organisation code, party key
+organisation code, service Identifier
+service identifier, party key
+Request
+Query parameters
+Name	Description
+organization	
+
+String
+
+The organisation code for the NHS Spine instance that your Message Handling System is communicating with. Must be preceded with FHIR identifier.
+
+Example: https://fhir.nhs.uk/Id/ods-organization-code|YES
+
+
+identifier	
+
+array[String]
+
+The service that is being contacted and the action that is required, or the MHS Party Key (or both, as separate occurrences of this parameter). See the Data section in this API Specification document for more information.
+
+Examples
+
+Service identifier consisting of https://fhir.nhs.uk/Id/nhsServiceInteractionId only
+
+[ "https://fhir.nhs.uk/Id/nhsServiceInteractionId|urn:nhs:names:services:psis:REPC_IN150016UK05" ]
+
+Service identifier consisting of both https://fhir.nhs.uk/Id/nhsServiceInteractionId and https://fhir.nhs.uk/Id/nhsMhsPartyKey
+
+[ "https://fhir.nhs.uk/Id/nhsServiceInteractionId|urn:nhs:names:services:psis:REPC_IN150016UK05", "https://fhir.nhs.uk/Id/nhsMhsPartyKey|YES-0000806" ]
+
+Required
+Headers
+Name	Description
+X-Correlation-Id	
+
+UUID (uuid)
+
+UUID for request tracking
+
+Example: 6d3d3674-7ce5-11ec-90d6-0242ac120003
+
+
+apikey	
+
+String
+
+API key to authenticate with. Use any value for Sandbox environment.
+
+Required
+Response
+HTTP status: 200
+
+Valid request that returns all accredited systems found that match the search criteria (which may be 0).
+
+Body
+
+Content type: application/fhir+json
+
+Example
+
+Copy
+{
+  "resourceType" : "Bundle",
+  "id" : "BAD2C148-6353-40A6-A215-33222EED2E11",
+  "type" : "searchset",
+  "total" : 1,
+  "link" : [ {
+    "relation" : "self",
+    "url" : "https://int.api.service.nhs.uk/spine-directory/FHIR/R4/Endpoint?organization=https://fhir.nhs.uk/Id/ods-organization-code|YES&identifier=https://fhir.nhs.uk/Id/nhsServiceInteractionId|urn:nhs:names:services:psis:REPC_IN150016UK05&identifier=https://fhir.nhs.uk/Id/nhsMhsPartyKeey|A20047-821870"
+  } ],
+  "entry" : [ {
+    "fullUrl" : "https://int.api.service.nhs.uk/spine-directory/FHIR/R4/Endpoint/08CE3BFB-5055-422B-9AE5-80DF6F4E1C61",
+    "resource" : {
+      "resourceType" : "Endpoint",
+      "id" : "08CE3BFB-5055-422B-9AE5-80DF6F4E1C61",
+      "status" : "active",
+      "connectionType" : {
+        "system" : "http://terminology.hl7.org/CodeSystem/endpoint-connection-type",
+        "code" : "hl7-fhir-msg",
+        "display" : "HL7 FHIR Messaging"
+      },
+      "payloadType" : [ {
+        "coding" : [ {
+          "system" : "http://terminology.hl7.org/CodeSystem/endpoint-payload-type",
+          "code" : "any",
+          "display" : "Any"
+        } ]
+      } ],
+      "address" : "https://msg.int.spine2.ncrs.nhs.uk/reliablemessaging/reliablerequest",
+      "managingOrganization" : {
+        "identifier" : {
+          "system" : "https://fhir.nhs.uk/Id/ods-organization-code",
+          "value" : true
+        }
+      },
+      "identifier" : [ {
+        "system" : "https://fhir.nhs.uk/Id/nhsMhsFQDN",
+        "value" : "msg.int.spine2.ncrs.nhs.uk"
+      }, {
+        "system" : "https://fhir.nhs.uk/Id/nhsMhsPartyKey",
+        "value" : "YES-0000806"
+      }, {
+        "system" : "https://fhir.nhs.uk/Id/nhsMhsCPAId",
+        "value" : "S20001A000182"
+      }, {
+        "system" : "https://fhir.nhs.uk/Id/nhsMHSId",
+        "value" : "S20001A000182"
+      } ],
+      "extension" : [ {
+        "url" : "https://fhir.nhs.uk/StructureDefinition/Extension-SDS-ReliabilityConfiguration",
+        "extension" : [ {
+          "url" : "nhsMHSSyncReplyMode",
+          "valueString" : "MSHSignalsOnly"
+        }, {
+          "url" : "nhsMHSRetryInterval",
+          "valueString" : "PT1M"
+        }, {
+          "url" : "nhsMHSRetries",
+          "valueInteger" : 2
+        }, {
+          "url" : "nhsMHSPersistDuration",
+          "valueString" : "PT5M"
+        }, {
+          "url" : "nhsMHSDuplicateElimination",
+          "valueString" : "always"
+        }, {
+          "url" : "nhsMHSAckRequested",
+          "valueString" : "always"
+        }, {
+          "url" : "nhsMHSActor",
+          "valueString" : "urn:oasis:names:tc:ebxml-msg:actor:toPartyMSH"
+        } ]
+      }, {
+        "url" : "https://fhir.nhs.uk/StructureDefinition/Extension-SDS-NhsServiceInteractionId",
+        "valueReference" : {
+          "identifier" : {
+            "system" : "https://fhir.nhs.uk/Id/nhsServiceInteractionId",
+            "value" : "urn:nhs:names:services:psis:REPC_IN150016UK05"
+          }
+        }
+      } ]
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+A FHIR Bundle with Endpoint resources
+
+
+
+resourceType
+string
+	
+Default: Bundle
+
+
+id
+string uuid
+	
+
+Unique identifier for this search request.
+
+
+
+type
+string
+	
+Default: searchset
+
+
+total
+integer
+	
+
+link
+array
+	
+
+entry
+array
+	
+HTTP status: 400
+
+Missing or invalid query parameter(s).
+
+HTTP status: 404
+
+Invalid endpoint path
+
+HTTP status: 405
+
+Unsupported HTTP method. For this endpoint only GET is available
+
+HTTP status: 406
+
+Unsupported media type
+
+HTTP status: 500
+
+Unhandled internal server error
+
+HTTP status: 502
+
+Upstream LDAP returned an unsupported responses
+
+HTTP status: 504
+
+Upstream LDAP server request has timed out

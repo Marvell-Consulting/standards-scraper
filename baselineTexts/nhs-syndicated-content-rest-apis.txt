@@ -1,0 +1,60 @@
+NHS Syndicated Content - REST APIs
+
+Pull content from the NHS.UK website about health conditions, health news, medications and more, using our free NHS Syndicated Content APIs and widgets.
+
+Page contents
+Top of page
+Overview
+Service level
+Technology
+Overview
+
+Use these APIs and widgets to pull a range of content from the NHS.UK website as part of our free syndication programme. 
+
+You can choose from a range of APIs including:
+
+Common health questions
+Coronavirus (COVID-19)
+Health A to Z -  content also available as smaller specific modules
+Live Well
+Medicines 
+Ratings and Reviews
+Service Search by organisation types
+Service Search by organisations
+Videos
+
+You can choose from a range of widgets which give you code you can embed in your web page, including:
+
+Find services
+Health A to Z -  content also available as smaller specific modules
+Live Well
+Depression self-assessment
+Mood self-assessment
+Heavy periods self-assessment
+Mole self-assessment
+Contact - armed forces self-assessment
+Heart age
+Your blood pressure
+Body Mass Index (BMI) calculator
+Eatwell plate
+Weight loss guide
+Your Mind Plan
+Personal Quit Plan
+
+You need to register for an account to use these APIs and widgets.
+
+For more details, see NHS Syndicated content.
+
+Service level
+
+This API is a bronze service, meaning it is operational and supported only during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+
+For more details, see service levels.
+
+Technology
+
+The APIs are RESTful. For more details, see Basic REST.
+
+The widgets work by giving you code you can embed in your web page. For more details, see Widgets and tools.
+
+Last edited: 1 February 2022 2:42 pm

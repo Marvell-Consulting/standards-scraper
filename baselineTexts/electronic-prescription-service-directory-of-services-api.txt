@@ -1,0 +1,116 @@
+Electronic Prescription Service Directory of Services API
+
+Access information about dispensing services, including searching for dispensers who can provide services for a patient with a given location and urgency, using our Electronic Prescription Service (EPS) Directory of Services (DoS) API.
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status
+Service level
+Technology
+Network access
+Security and authorisation
+Testing
+Onboarding
+Interactions
+Overview
+
+Use this API to access information about dispensing services, including searching for dispensers who can provide services for a patient with a given location and urgency.
+
+You can:
+
+search for a dispenser by its location and opening hours
+search for a specific dispenser that the patient might have named
+
+The API combines data from both the Directory of Services (DoS) and Electronic Transmission of Prescriptions (ETP) web services (formerly known as NHS Choices).
+
+It uses DoS for user authentication.
+
+Do not use this API if you are building GP software - instead use Electronic Transmission of Prescriptions (ETP) web services directly, as it provides access to information you'll need, for example, information such as dispensing appliance contractors.
+
+ 
+
+Who can use this API
+
+This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development.
+
+You must do this before you can go live (see ‘Onboarding’ below).
+
+Related APIs
+
+The following APIs are related to this API:
+
+Electronic Prescription Service - FHIR API  - access the Electronic Prescription Service (EPS) - currently you can only use this new API to prescribe, not dispense.
+
+Electronic Prescription Service - HL7 V3 API - access the Electronic Prescription Service (EPS) to send prescriptions from prescribers such as GPs to dispensers such as pharmacies using our HL7 V3 API.
+
+Prescription Tracker API - use this if you want a read-only interface to obtain information about a patient’s prescriptions.
+NHS BSA Prescription Services Open Data Portal - download public datasets including Secondary care medicines data (SCMD),  prescriptions issued in England, and Prescription Cost Analysis (PCA) in England.
+Directory of Services API - retrieve information about a wide range of health and care services in England with the Directory of Service (DoS) API.
+Electronic Transmission of Prescriptions (ETP) web services - access dispenser information for a patient via NHS UK Web Services.
+API status
+
+This API is stable.
+
+Service level
+
+This API is a bronze service, meaning it is operational and supported only during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+
+For more details, see service levels.
+
+Technology
+
+This API is a simple RESTful API, returning JSON dispenser resources. 
+
+For more details, see basic REST.
+
+Network access
+
+You can access this API via:
+
+the Health and Social Care Network (HSCN)
+the internet
+
+For more details, see Network access for APIs.
+
+Security and authorisation
+Authentication
+
+This API is user-restricted, meaning that an end user must be present and authenticated to use it.
+
+The end user must be:
+
+the dedicated EPS DoS system user
+authenticated, using the EPS DoS system username and password
+
+Authentication for this API uses HTTP basic authentication based on username and password. 
+
+There is a sole dedicated user in DoS for the EPS DoS API.  If you write a client to use this API, you need to obtain the credentials for this dedicated user. You then pass these credentials through to the EPS DoS API using basic HTTP authentication. 
+
+To obtain the credentials for the dedicated DoS system user, contact us. 
+
+Smartcards are not required.
+
+For more details see Authentication.
+
+Authorisation
+
+The API itself does not perform any authorisation checks. Rather, the dedicated EPS DoS system user has a predefined role.
+
+Testing
+
+You can test this API using our Path to Live environments.
+
+Onboarding
+
+You must get your software onboarded before it can go live.
+
+As part of onboarding, this API uses the Common Assurance Process (CAP), which is tailored for each NHS service. For more details, contact us.
+
+Interactions
+
+For a full list of interactions for this API, see the Develop section in the EPS DoS API specification, particularly the REST Endpoints Reference.
+
+Last edited: 21 January 2022 3:07 pm

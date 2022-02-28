@@ -1,0 +1,108 @@
+Female Genital Mutilation - Information Sharing - FHIR API
+
+Share female genital mutilation (FGM) information for children under 18 with relevant NHS professionals across England using our Female Genital Mutilation - Information Sharing (FGM-IS) FHIR API.
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status
+Service level
+Technology
+Network access
+Security and authorisation
+Environments and testing
+Onboarding
+Interactions
+Overview
+
+Use this API to share female genital mutilation (FGM) information for children under 18 with relevant NHS professionals across England.
+
+You can:
+
+create an FGM indicator for a patient
+delete an FGM indicator for a patient
+query a patient's FGM status
+
+This API is only for use when the end user is a healthcare worker, not a patient. 
+
+For more details, see Introduction to the FGM Information Sharing Service.
+
+Spine Mini Service Provider (SMSP) options
+
+There are also commercially available products which give easier access to FGM-IS, known as Spine Mini Service Providers (SMSPs).
+
+These and other conforming software products are listed in our Conformance Catalogue.
+
+If you are interested in becoming a provider of one of these products, see Female Genital Mutilation - Information Sharing - SMSP API standards.
+
+Who can use this API
+
+This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. 
+
+You must have made this request before you can go live (see 'Onboarding' below).
+
+Related APIs
+
+The following APIs are related to this one:
+
+Personal Demographics Service - FHIR API - use this to access patients' personal information, such as name, address, date of birth, related people, registered GP and NHS number 
+Female Genital Mutilation - Information Sharing - SMSP API standards - use these to become a Spine Mini Service Provider giving access to FGM information for children under 18 to relevant NHS professionals
+API status
+
+This API is in beta.
+
+Service level
+
+This API is a platinum service, meaning it is operational and supported 24 x 7 x 365.
+
+For more details, see service levels.
+
+Technology
+
+This API is a FHIR API.
+
+Specifically, it is based on the HL7 FHIR DSTU2 1.0.2 specification.
+
+For more details, see FHIR.
+
+Network access
+
+You need a Health and Social Care Network (HSCN) connection to use this API.
+
+For more details, see Network access for APIs.
+
+Security and authorisation
+
+This API is application-restricted, meaning the calling application is authenticated but the end user is either not authenticated or not present.
+
+In particular, this API uses TLS-MA authentication.
+
+For more details, see application-restricted APIs.
+
+The API does not perform any end user authentication or authorisation checks. Rather, the calling system is expected to perform them.
+
+The authorisation rules are specified in our national Role Based Access Control (RBAC) database. For more details, see our national Role Based Access Control (RBAC) database on the registration authorities and smartcards page.
+
+Environments and testing
+
+You can test this API using our Path to Live environments.
+
+Onboarding
+
+You must get your software onboarded before it can go live.
+
+As part of onboarding, this API uses the Common Assurance Process (CAP).
+
+To outline your use case and start the onboarding process, contact us.
+
+Interactions
+
+For a full list of interactions for this API, see v2.1.1-beta Service Development Assets.
+
+There was also a read-only v1.0 of this API which is now deprecated, see FGM Risk Indication System v1.0.
+
+For details on the general structure of the interactions, see FHIR.
+
+Last edited: 19 January 2022 5:14 pm

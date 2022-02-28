@@ -1,0 +1,43 @@
+Technology Reference Data Update Distribution API
+
+Automate the download of TRUD release files.
+
+Page contents
+Top of page
+Overview
+API status
+Service level
+Technology
+Interactions
+Overview
+
+Use this API to automate the download of Technology Reference data Update Distribution (TRUD) release files.
+
+You can:
+
+request release information for an item
+request a release file once you have its release information
+
+You must have a TRUD account before you can use this API.
+
+API status
+
+This API is stable.
+
+Service level
+
+This API is a silver service, meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+
+For more details, see service levels.
+
+Technology
+
+This API is a REST API.
+
+For more details, see Basic REST.
+
+Interactions
+
+For a full list of interactions for this API, see the endpoint details.
+
+Last edited: 1 February 2022 11:33 am

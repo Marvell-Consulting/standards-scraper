@@ -1,0 +1,42 @@
+Mental health inpatient discharge
+People with mental health problems need good, joined up physical and mental health care, both in hospital and the community.
+
+Successful joined up care depends on GPs, community and acute mental health care teams and social care professionals all having access to timely information about a persons care and treatment. The PRSB has developed the mental health discharge summary standard to ensure that relevant information is shared, so professionals can provide continuity of care when an adult is discharged from mental health services. It includes information on patient history and social context, medications, the details of their hospital admission, as well as current and previous diagnoses.
+
+The mental health discharge summary will improve professional communication between the patient’s secondary care providers to their GP. It is very important to recognise the different nature of mental illness to physical illness and disease including the different methods of treatments and imperative follow-up care after discharge. The language used in the headings and in the clinical descriptions has been modified, where necessary, to be more inclusive and sympathetic to the nature of mental illness and processes of care. This project supports the NHS Digital and NHS England interoperability work.
+
+Endorsement
+Royal College of Psychiatrists
+Association of Directors of Adult Social Services
+Royal College of General Practitioners
+Royal College of Occupational Therapists
+Royal Pharmaceutical Society
+British Psychological Society
+Royal College of Anaesthetists 
+Institute of Health Records and Information Management
+TechUK
+The standard
+
+Mental health inpatient discharge standard
+
+Release Notes V2.1
+The Mental health inpatient discharge has been updated to version 2.1 (Dec 17 2019). V2.1 includes an update to:
+– structured dose direction cluster
+– structured dose amount
+– structured dose timing and dose direction duration.
+
+Previous revisions
+– Release Notes V2.0
+– Release Notes V1.1
+
+Supporting documentation
+Implementation guidance report – Mental health inpatient discharge
+Mental Health Discharge Summary Report
+Safety case report
+Hazard log
+Transfer of care FHIR specifications
+IHRIM record correction guidance
+
+Despite vigilance when filing information in records, mistakes can occur. The Institute of Health Records and Information Management has guidance to support professionals in making corrections following errors.
+
+VIEW THE GUIDANCE

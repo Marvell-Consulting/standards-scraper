@@ -1,0 +1,28 @@
+End of Life API standards
+
+API standards to enable sharing and updating of digital end of life care (EoLC) records.
+
+Page contents
+Top of page
+Overview
+API standards
+Overview
+
+Use these API standards to enable sharing and updating of digital end of life care (EoLC) records.
+
+We have developed a number of API standards for different purposes which are outlined below.
+
+Before you begin any development work using these API standards, contact us to discuss your best options.
+
+API standards
+Year 	Name	Version	Status & Notes	Links
+2016	
+
+End of Life CDA on FHIR API
+
+	Version 1.0 : DRAFT B	Draft - not in an implementable state. Intended for deprecation	https://data.developer.nhs.uk/fhir/cda-on-fhir-eol-v1-draft-b/Chapter.1.About/index.html
+2019	End of Life FHIR API	1.2.1-alpha	Alpha - pilot implementation of the EoLC interoperability API	https://developer.nhs.uk/apis/eol-alpha/index.html
+
+ 
+
+Last edited: 27 September 2021 4:02 pm

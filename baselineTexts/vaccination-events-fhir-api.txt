@@ -1,0 +1,148 @@
+Vaccination Events - FHIR API
+
+Publish or receive messages about changes to a patient's vaccination details.
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status
+Service level
+Technology
+Network access
+Security and authorisation
+Environments and testing
+Onboarding
+Interactions
+Overview
+
+Use this API to publish or receive messages about changes to a patient's vaccination details, including:
+
+new vaccinations
+updated vaccination details
+deleted vaccination details
+
+This service only covers childhood vaccinations up to age 19, and for direct care purposes only, in the context of Digital Child Health.
+
+Using a publish-subscribe model, we share information about these events with healthcare workers in other organisations such as GPs, Emergency Departments and Local Authorities.
+
+To send messages, use this API. To receive these messages you need to subscribe to them via National Events Management Service (NEMS) and collect them via MESH.
+
+For example, when a GP system records a vaccination, it sends an event message containing the vaccination details to NEMS. NEMS then sends the message to all healthcare workers who have subscribed to receive vaccination event messages.
+
+Who can use this API
+
+This API can only be used where there is a legal basis to do so.
+
+Make sure you have a valid use case before you go too far with your development. To do this, contact us. 
+
+For details of the legal basis for sharing NEMS events, see the NEMS controller catalogue.
+
+You must do this before you can go live (see 'Onboarding' below).
+
+Related APIs
+
+The following APIs are also related to this API:
+
+National Events Management Service (NEMS) API - use this API to publish and subscribe to patient-centric event messages
+Message Exchange for Social Care and Health (MESH) API - use this API to collect events that you subscribed to
+
+Digital Child Health - FHIR API - use this API to share information about a child's health between healthcare workers.
+
+API status
+
+This API is stable.
+
+Service level
+
+This API is a bronze service, meaning it is operational and supported only during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+
+For more details, see service levels.
+
+Technology
+
+This API is a FHIR API.
+
+It uses a publish-subscribe model.
+
+Use our National Events Management Service (NEMS) API to subscribe to events.
+
+Use our MESH API to collect event messages that you subscribed to.
+
+The message payload is based on the HL7 FHIR STU3 Messaging Implementation.
+
+Network access
+
+This API is available on the internet and on the Health and Social Care Network (HSCN).
+
+For more details see Network access for APIs.
+
+Security and authorisation
+
+This API uses NEMS and MESH APIs which are application-restricted, meaning we authenticate the calling application but not the end user.
+
+You can use this pattern as follows:
+
+unattended (end user not present), for example as part of a back end process to check NHS numbers for data flowing from one system to another
+attended (end user present) - in which case, you must ensure the end user is authenticated and suitably authorised locally by the calling application
+
+In particular, this API uses TLS-MA authentication.
+
+It also implements authorisation controls which restrict the event types that the connecting application can subscribe to or publish.
+
+Environments and testing
+
+This API uses NEMS, which is available in Opentest for early development and testing.
+
+NEMS is also available for testing purposes in:
+
+development (DEV)
+integration (INT)
+deployment (DEP)
+
+The base URLs are as follows:
+
+Environment	Network availability	URL
+OpenTest	OpenVPN	https://msg.opentest.hscic.gov.uk/
+Development	HSCN	https://msg.dev.spine2.ncrs.nhs.uk/
+Integration	HSCN	https://msg.int.spine2.ncrs.nhs.uk/
+Integration	Internet	https://msg.intspineservices.nhs.uk/
+Deployment	HSCN	https://msg.dep.spine2.ncrs.nhs.uk/
+Production	HSCN	Contact us
+Production	Internet	Contact us
+
+The  base URL for the publishing and subscribing interactions are the same, but the path is different, for example:
+
+publish in integration over HSCN:
+https://msg.int.spine2.ncrs.nhs.uk/STU3/Events/1/$process-message
+subscribe in integration over HSCN:
+https://msg.int.spine2.ncrs.nhs.uk/STU3/Subscription
+publish in integration over the internet:
+https://msg.intspineservices.nhs.uk/STU3/Events/1/$process-message
+subscribe in integration over the internet:
+https://msg.intspineservices.nhs.uk/STU3/Subscription
+
+There is a testing tool which allows you to simulate a provider publishing event messages. You can also simulate making changes on PDS to trigger PDS-published event messages so you can test event message consumption.
+
+To get advice on how to begin testing, contact us.
+
+For more details, see the NEMS onboarding guide on getting access to Opentest and the integration (INT) test environment.
+
+Onboarding
+
+You need to get your software approved by us before it can go live with this API. We call this onboarding. The onboarding process can sometimes be quite long, so it’s worth planning well ahead.
+
+To outline your use case and start the onboarding process for this API, contact us.
+
+Interactions
+
+For a full list of interactions for this API, see Publish an Event Message and Subscriptions Overview.
+
+This API supports the following event types:
+
+Vaccinations
+
+For details on the general structure of the interactions, see FHIR.
+
+Last edited: 20 January 2022 4:18 pm

@@ -1,0 +1,41 @@
+Healthy child standard
+An innovative standard for child health that helps everyone involved in caring for children share information using standardised paperless digital records.
+The PRSB has produced standards for child health records to support the Healthy Child Programme and its prevention agenda. The standard spells out what information on screening tests, immunisations and developmental milestones should be accessible to make sure that children receive appropriate care. The goal is that everyone involved in a child’s care, including parents, will in the future have secure access to a standardised set of paperless, digital child health records.
+Endorsement
+Royal College of Physicians
+Royal College of Nursing
+Royal College of General Practitioners
+Royal College of Obstetricians and Gynaecologists
+The Royal College of Occupational Therapists
+The Royal College of Paediatrics & Child Health
+The Royal College of Midwives
+The Royal College of Speech and Language Therapists
+The Chartered Society of Physiotherapy
+Community Practitioners and Health Visitors Association
+Association of British Paediatric Nurses
+British Association of Community Child Health
+British Academy of Childhood Disability
+British Association of Perinatal Medicine
+Association of UK Dieticians
+British & Irish Orthoptic Society
+Institute of Health Records Information Management (IHRIM)
+TechUK
+Supported by: Clinical leadership was provided by the Royal College of Paediatrics and Child Health (RCPCH) and the Royal College of General Practitioners (RCGP). Work was conducted in partnership with the Royal College of Physicians (RCP) Health Informatics Unit (HIU).
+The standard
+Healthy child standard specification
+Current release – 08/10/2020
+Release number – Amd 11/2020
+Information standards notice (ISN)
+The ISN informs service providers that the Healthy child record must be adopted and gives the time frame for doing this, along with the relevant guidance materials and previous releases.
+Supporting documentation
+Implementation Guidance
+Section specific implementation guidance
+Healthy child record final report
+Information standards notice
+Clinical safety case report
+Technical Specifications – Should local areas wish to share data in their region then this should be done as an electronic message. These are available on NHS Developer Network and will be updated as the development cycle continues (https://developer.nhs.uk/apis/dch-beta/).
+IHRIM record correction guidance
+
+Despite vigilance when filing information in records, mistakes can occur. The Institute of Health Records and Information Management has guidance to support professionals in making corrections following errors.
+
+VIEW THE GUIDANCE

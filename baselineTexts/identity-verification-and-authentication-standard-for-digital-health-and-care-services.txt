@@ -1,0 +1,117 @@
+DCB3051 Identity Verification and Authentication Standard for Digital Health and Care Services
+
+DCB3051 provides for a consistent approach to identity management across digital health and care services, covering: verification, authentication and clinical authorisation.
+
+Page contents
+Top of page
+About this information standard
+About this information standard
+
+NHS Digital, in collaboration with NHS England and other partners, has developed a number of digital services that will put patients/service users in charge of their own health and care. This will enable them to manage aspects of their own care, to contribute to the care process and reduce pressure on frontline NHS and social care services.
+
+These digital services contain personal information and as such it is essential that only the correct person has access. At present, most health and care services repeatedly require a means of verifying and authenticating an individual’s identity.
+
+NHS login, a national citizen identity platform from NHS Digital, enables people to prove their identity once, in a manner which is convenient to them and they can then use their NHS login in digital services. In doing this, NHS Digital can build public confidence in, and encourage greater use of, local and national digital health and care services.
+
+A fundamental requirement of NHS login is a nationally agreed approach to identity management for health and care, conformant with identify assurance principles endorsed by the government. This information standard sets out this agreed approach.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the other documents provide further detail for those who have to implement the information standard.
+
+Current release
+
+Release date
+
+	
+
+13 March 2020
+
+
+
+
+Release number
+
+	
+
+Amd 7/2020
+
+
+
+
+Release title
+
+	
+
+Version 2.0
+
+
+
+
+Stage
+
+	
+
+Implementation
+
+
+
+
+Key documents
+
+	
+Change Specification (Amd 7/2020)
+Specification and Implementation Guidance (Amd 7/2020)
+Information Standards Notice (Amd 7/2020)
+
+
+
+Further information
+
+	
+
+NHS Digital - NHS Login
+
+Previous release
+
+Release date
+
+	
+
+29 June 2018
+
+
+
+
+Release number
+
+	
+
+Amd 64/2018
+
+
+
+
+Release title
+
+	
+
+Initial Standard
+
+
+
+
+Stage
+
+	
+
+Maintenance
+
+
+
+
+Key documents
+
+	
+Specification and Implementation Guidance (Amd 64/2018)
+Information Standards Notice (Amd 64/2018)
+
+Last edited: 22 February 2022 10:56 am

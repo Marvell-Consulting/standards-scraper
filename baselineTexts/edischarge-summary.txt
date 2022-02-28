@@ -1,0 +1,33 @@
+eDischarge summary v2.1
+Risks to patient safety can occur on discharge from hospital, when vital information is not transferred quickly to GPs and community-based services. Best practice is also to share the discharge summary with the patient. Up until now there have been no common standards for the way that information is recorded in discharge summaries, which means that it often needs to be re-entered on GP computer systems, which risks errors occurring. There was an urgent need to improve patient safety and continuity of care by developing standardised e-discharge summaries. The eDischarge Summary Standard enables hospitals to safely transfer standardised clinical information using PRSB headings and coded data (SNOMED CT and dm+d) which can be extracted directly into GP IT systems, when a patient is discharged from hospital care. The eDischarge Summary Standard will ensure all relevant information on diagnoses, medications, procedures and allergies about a patients is shared with GPs in order to improve the quality and consistency of care.
+Endorsement
+Royal College General Practitioners
+Royal College of Physicians
+Royal Pharmaceutical Society
+Royal College of Nursing
+Royal College of Midwives
+Royal College of Obstetricians and Gynaecologists
+Royal College of Paediatrics and Child Health
+Royal College of Anaesthetists
+Institute of Health Records and Information Management
+TechUK
+Royal College of Surgeons*
+* This standard has been endorsed by our members and sets the direction which all organisations, professionals and clinicians should be working towards. Members agree that clinical information standards are essential but are not enough to deliver the ‘Clinical Vision 2020’ and unless and until these standards are underpinned with corresponding technical and system improvements and the funding required to achieve adoption, a fully digitised health and care system is not achievable in prescribed timescales. The PRSB and its members will work to ensure key stakeholders are sighted on these current limiting factors and act on them and we will influence suppliers to deliver appropriate systems that enable use of clinical information standards, without increasing burden.
+The Standard
+eDischarge summary standard
+Release Notes V2.1 V2.1 (Dec 2019) includes an update to: – structured dose direction cluster – structured dose amount – structured dose timing and dose direction duration.
+Release notes V1.1
+Release notes V2
+Supporting documentation
+Implementation guidance report- eDischarge summary V2.1
+eDischarge summary final report
+Safety case report
+Hazard log – excel file
+Transfer of care FHIR specifications
+Case study description
+Example discharge summary (based on the case study)The example demonstrates how the headings developed can be structured in a discharge summary for a patient in a given scenario. The example provides varied content to illustrate mapping to the PRSB standard. The example and scenario description were quality assured by the PRSB assurance committee.
+IHRIM record correction guidance
+
+Despite vigilance when filing information in records, mistakes can occur. The Institute of Health Records and Information Management has guidance to support professionals in making corrections following errors.
+
+VIEW THE GUIDANCE

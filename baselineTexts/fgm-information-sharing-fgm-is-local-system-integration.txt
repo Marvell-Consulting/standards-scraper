@@ -1,0 +1,45 @@
+DCB2112: FGM-Information Sharing (FGM-IS) - Local System Integration
+
+This information standard specifies the requirements for fully integrated local query and response access to national FGM-IS data.  
+
+Page contents
+Top of page
+About this information standard
+Current release
+Previous release
+About this information standard
+
+The FGM-IS is a national IT system that supports the ongoing safeguarding of patients, under the age of 18, who have a family history of Female Genital Mutilation (FGM).
+
+This information standard makes provision for the data held within the FGM-IS to be made available to all relevant healthcare staff by allowing integration of a view only capability of the family history indicator within all applicable IT systems across all health care services. 
+
+This standard was formerly known as 'FGM Risk Indication System (FGM RIS) Local System Integration'; the release published on 6 March 2020 (Amd 28/2019) introduced a new name for the standard to reflect a change in clinical practice. 
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales and the other listed documents provide further detail for those who have to implement the information standard.
+
+Current release
+Release date	06/03/2020
+Release number	Amd 28/2019
+Release title	Version 2.0
+Stage	Implementation
+Key documents	
+Requirements Specification (Amd 28/2019)
+Change Specification (Amd 28/2019)
+Implementation Guide (Amd 28/2019)
+Information Standards Notice (Amd 28/2019)
+
+Further information	NHS Digital FGM-IS
+Previous release
+Release date	19/10/2016
+Release number	Amd 32/2015
+Release title	Initial Standard
+Stage	Maintenance
+Key documents	
+Requirements Specification (Amd 32/2015)
+Implementation Guide (Amd 32/2015)
+Information Standards Notice - Version 2 (Amd 32/2015)
+Information Standards Notice (Superseded) (Amd 32/2015)
+
+Further information	NHS Digital FGM-RIS
+
+Last edited: 6 March 2020 10:12 am

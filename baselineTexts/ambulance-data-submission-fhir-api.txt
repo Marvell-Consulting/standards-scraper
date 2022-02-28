@@ -1,0 +1,164 @@
+Ambulance Data Submission - FHIR API
+
+Submit ambulance data to our Data Processing Service (DPS) for analysis and review by NHS England and ambulance trusts, using our Ambulance Data Submission - FHIR API (formerly Ambulance Analytics).
+
+Page content
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status and roadmap
+Service level
+Technology
+Network access
+Security and authorisation
+Environments and testing
+Onboarding
+Endpoints
+Submit Ambulance Data
+Overview
+
+Use this API to submit ambulance data to our Data Processing Service (DPS) so that it can be made available for analysis and review by NHS England and ambulance trusts.
+
+Ambulance data is information relating to emergency calls (999, 111 and others), received at an Emergency Operations Centre (EOC) and processed into a Computer Aided Despatch (CAD) system, including:
+
+call details
+response details - including response times and episode outcome times patient
+contact details - including patient demographics, patient response details, patient information, injury information, patient assessment, medication, observations, diagnoses, conveying outcome, safeguarding and public health information
+
+You can:
+
+post ambulance data individually or in batches
+
+You cannot:
+
+read any of the records stored in DPS
+
+The API is asynchronous - to receive error notifications, you need to use MESH. The following diagram illustrates the end-to-end process:
+
+The following describes the end-to-end process:
+
+The ambulance trust system sends the ambulance data to the Ambulance Data Submission API.
+The Ambulance Data Submission (ADS) API forwards the ambulance data to our Data Processing System (DPS).
+If there is an error, DPS sends an error notification to MESH.
+The ambulance trust system retrieves the error notification from MESH.
+An ADS User views the ambulance data in our NHS Digital ADS Dashboards.
+The NHS Digital ADS Dashboards get the ambulance data from DPS.
+Who can use this API
+
+This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. You must do this before you can go live (see ‘Onboarding’ below).
+
+Related APIs
+
+Use Messaging Exchange for Social care and Health (MESH) to receive error notifications from DPS for this API.
+
+API status and roadmap
+
+This API is in Beta, meaning:
+
+it is available for production use, but only to a small group of ambulance trusts in England
+we might make breaking changes, but only if we can not avoid it, and we will give an advance notice
+
+To see our roadmap, or to suggest, comment or vote on features for this API, see our interactive product backlog.
+
+If you have any other queries, please contact us.
+
+Service level
+
+This API is a bronze service, meaning it is operational and supported only during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+
+For more details, see service levels.
+
+Technology
+
+This API uses HTTP POST to submit data.
+
+The data payload conforms to the FHIR global standard for health care data exchange. Specifically, it is aligned with FHIR UK Core, which is built on FHIR Release 4. To see the FHIR message payload, see the Ambulance Data Set FHIR Implementation Guide.
+
+Network access
+
+This API is available on the internet and, indirectly, on the Health and Social Care Network (HSCN).
+
+For more details, see Network access for APIs.
+
+Security and authorisation
+Application-restricted access
+
+This access mode is application-restricted, meaning we authenticate the calling application but not the end user.
+
+You can use this access mode as follows:
+
+unattended (end user not present), for example periodically submit ambulance data from ambulance trust systems to DPS
+
+To use this access mode, use the following security pattern:
+
+Application-restricted RESTful API - signed JWT authentication
+Environments and testing
+Sandbox testing
+
+Our sandbox environment:
+
+is for early developer testing
+only covers a limited set of scenarios
+is stateless, so it does not actually persist any updates
+is open access, so does not allow you to test authorisation
+
+For more details on sandbox testing, or to try out the sandbox using our "Try this API" feature, see the documentation for each endpoint.
+
+Integration testing
+
+Our integration test environment:
+
+is for formal integration testing
+is for receiving data quality reports of test data
+Onboarding
+
+You need to get your software approved by us before it can go live with this API. We call this onboarding. The onboarding process can sometimes be quite long, so it’s worth planning well ahead.
+
+To onboard for this API, follow the Supplier Conformance Assessment List (SCAL) process.
+
+When following the SCAL process, note that:
+
+In step 8: you need to review and complete the ADS API risk log to show that you have understood and mitigated the various risks. You might be asked to provide some evidence to prove that controls have been put in place. You’ll find the risk log embedded within the ADS API tab in the SCAL.
+In step 10: when you complete the Service Desk Registration Form, send it to api.management@nhs.net.
+In step 11: submit your completed SCAL to api.management@nhs.net.
+In step 14: to request production access, contact us at api.management@nhs.net.
+Endpoints
+Submit Ambulance Data
+POST /$process-message
+Try this API
+Overview
+
+Use this endpoint to submit ambulance data to DPS.
+
+Request
+
+This endpoint does not validate the submitted payload, it only acknowledges receipt of the payload. See the FHIR implementation guide for how to structure the payload data.
+
+Response
+HTTP status: 200
+
+Data received and sent to DPS.
+
+Body
+
+Content type: application/json
+
+Example
+
+Copy
+{
+  "message" : "6eeec54e-3d39-4bc4-a1d9-57615d258fpq"
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+message
+string
+	
+
+The submission ID for the message you sent.

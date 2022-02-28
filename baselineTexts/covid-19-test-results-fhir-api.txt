@@ -1,0 +1,524 @@
+COVID-19 Test Results - FHIR API
+
+Access a patient’s coronavirus (COVID-19) test results history.
+
+Page content
+Top of page
+Overview
+Who can use this API
+API status and roadmap
+Service level
+Technology
+Network access
+Security and authorisation
+Environments and testing
+Onboarding
+Endpoints
+Get COVID-19 test history
+
+This API is in private beta. If you want to be involved, contact us.
+
+Overview
+
+Use this API to access a patient’s coronavirus (COVID-19) test results history.
+
+You can:
+
+get a patient's COVID-19 test history, based on their NHS number with an optional specific date range
+
+You cannot currently use this API to:
+
+get details of other types of test
+
+You get the following data:
+
+COVID-19 test event details
+Data availability, timing and quality
+
+All test records are verified to ensure the NHS number is correct before making them available via the API.
+
+In most cases this is automatic, and the record is available within 48 hours of the test event, sometimes sooner.
+
+In a very small number of cases, we are unable to verify the NHS number, and we do not make the test record available at all.
+
+Who can use this API
+
+This API:
+
+is only for use by patient-facing applications
+is only for non-clinical use
+can only be used where there is a legal basis to do so
+
+Make sure you have a valid use case before you go too far with your development. To do this, contact us.
+
+You must do this before you can go live (see ‘Onboarding’ below).
+
+API status and roadmap
+Status
+
+This API is in private beta, meaning:
+
+it is available for testing use
+it is available for production use after approval and adding to private beta
+we might make breaking changes
+
+If you would like to be involved in our beta programme, contact us.
+
+Service level
+
+This API is a platinum service, meaning it is operational and supported 24 x 7 x 365.
+
+For more details, see service levels.
+
+Technology
+
+This API is RESTful.
+
+It also conforms to the FHIR global standard for health care data exchange. Specifically, it is aligned with FHIR UK Core, which is built on FHIR Release 4.
+
+You don’t need to know much about FHIR to use this API - FHIR APIs are just RESTful APIs that follow specific rules. In particular:
+
+resource names are capitalised and singular, and use US spellings, for example /Observation not /observation
+array names are singular, for example entry not entries for address lines
+data items that are country-specific and thus not included in the FHIR global base resources are usually wrapped in an extension object
+
+There are libraries and SDKs available to help with FHIR API integration.
+
+Network access
+
+This API is available on the internet and, indirectly, on the Health and Social Care Network (HSCN).
+
+For more details see Network access for APIs.
+
+Security and authorisation
+
+This API is application-restricted, meaning we authenticate the calling application but not the end user.
+
+Specifically, it uses the following security pattern:
+
+Application-restricted RESTful API - signed JWT authentication
+
+Note that:
+
+the end user must be a patient
+the calling application must strongly authenticate the end user using NHS login
+specifically, the end user must have their identity verified to 'high' (P9) level
+the calling application must pass the user's NHS login identity token in the NHSD-User-Identity header when calling the API
+the NHS number in the identity token must match the NHS number for which data is being requested
+Environments and testing
+Environment	Base URL	Associated NHS login environment
+Sandbox	https://sandbox.api.service.nhs.uk/covid-19-test-result/FHIR/R4	None
+Development	https://dev.api.service.nhs.uk/covid-19-test-result/FHIR/R4	NHS login - Sandpit
+Integration	https://int.api.service.nhs.uk/covid-19-test-result/FHIR/R4	NHS login - Integration (aos)
+Production	https://api.service.nhs.uk/covid-19-test-result/FHIR/R4	NHS login - Live (production)
+Sandbox testing
+
+Our sandbox environment:
+
+is for early developer testing
+only covers a limited set of scenarios
+is open access, so does not allow you to test authorisation
+
+For details of sandbox test scenarios, or to try out the sandbox using our 'Try this API' feature, see the documentation for each endpoint.
+
+Alternatively, you can try out the sandbox using our Postman collection:
+
+Development testing
+
+Our development environment:
+
+is for early development testing
+includes authorisation using the NHS Sandpit
+
+Available test NHS patients:
+
+NHS number
+9686368973
+9686368906
+9658218873
+9658218881
+Integration testing
+
+Our integration test environment:
+
+is for formal integration testing
+includes authorisation
+
+Available test NHS patients:
+
+NHS number	Data profile
+9658477860	profile 2
+9437573999	profile 5
+9453634980	profile 6
+
+For more details see integration testing with our RESTful APIs.
+
+Onboarding
+
+You need to get your software approved by us before it can go live with this API. We call this onboarding. The onboarding process can sometimes be quite long, so it’s worth planning well ahead.
+
+For further information on onboarding contact api.management@nhs.net.
+
+Endpoints
+Get COVID-19 test history
+GET /Observation
+Try this API
+
+Given an NHS number, get the patient's COVID-19 test history.
+
+Sandbox testing
+
+You can test the following scenarios in our sandbox environment:
+
+Scenario	Request	Response
+COVID-19 test history found	patient.identifier=https://fhir.nhs.uk/Id/nhs-number|9000000009	HTTP Status 200 with test results data in response body
+No test results found	patient.identifier=https://fhir.nhs.uk/Id/nhs-number|9000000033	HTTP Status 200 with empty bundle in response body
+Bad Request	patient.identifier= anything else	HTTP Status 400 Bad Request
+
+You can try out the sandbox using the 'Try this API' feature on this page.
+
+Request
+Query parameters
+Name	Description
+patient.identifier	
+
+String
+
+The patient's NHS number. Expressed as <type>|<value> where <type> must be https://fhir.nhs.uk/Id/nhs-number and <value> must be a valid NHS number.
+
+Example: https://fhir.nhs.uk/Id/nhs-number|9000000009
+
+Required
+
+date	
+
+String
+
+The effective date range when the observation was recorded and can be used multiple times as a search parameter.
+
+Example: ge2010-01-01&date=le2011-12-31
+
+
+code	
+
+String
+
+The SNOMED code related to the observation type. It support a single value or comma seperated values (e.g. 871555000,871553007) List of available codes
+
+Example: 871553007
+
+
+_include	
+
+String
+
+Adds Patient resource to the search response.
+
+Example: Observation:patient
+
+Headers
+Name	Description
+Authorization	
+
+String (^Bearer\ [[:ascii:]]+$)
+
+An OAuth 2.0 bearer token, obtained using our signed JWT authentication pattern.
+
+Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
+
+Required
+
+NHSD-User-Identity	
+
+String
+
+Open ID Connect ID token for the end user patient, as obtained from NHS login. Must be a signed JWT in the format xxxxx.yyyyy.zzzzz. Must be valid i.e. not expired. Must be for a user who has had their identity verified to 'high' (P9) level.
+
+Example: xxxxx.yyyyy.zzzzz
+
+Required
+
+X-Correlation-ID	
+
+String
+
+An optional ID which you can use to track transactions across multiple systems. It can take any value, but we recommend avoiding . characters.
+
+Mirrored back in a response header.
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+Response
+HTTP status: 200
+
+Valid request that returns all accredited systems found that match the search criteria (which may be 0).
+
+Headers
+Name	Description
+X-Correlation-Id	
+
+String
+
+The X-Correlation-ID from the request header, if supplied, mirrored back.
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+Body
+
+Content type: application/fhir+json
+
+Example
+
+Copy
+{
+  "resourceType" : "Bundle",
+  "type" : "searchset",
+  "total" : 2,
+  "entry" : [ {
+    "fullUrl" : "https://test-results-api.nhs.uk/FHIR/R4/Observation/ASD32145123",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "ASD32145123",
+      "status" : "final",
+      "identifier" : [ {
+        "system" : "https://fhir.nhs.uk/Id/SpecimenId",
+        "value" : "ASD32145123"
+      } ],
+      "subject" : {
+        "reference" : "Patient/9000000009",
+        "identifier" : {
+          "system" : "https://fhir.nhs.uk/Id/nhs-number",
+          "value" : "9000000009"
+        }
+      },
+      "code" : {
+        "coding" : [ {
+          "system" : "http://snomed.info/sct",
+          "code" : "871562009",
+          "display" : "Detection of Severe acute respiratory syndrome coronavirus 2 (observable entity)"
+        } ]
+      },
+      "effectiveDateTime" : "2021-04-20T00:00:00+00:00",
+      "valueCodeableConcept" : {
+        "coding" : [ {
+          "system" : "http://snomed.info/sct",
+          "code" : "1322791000000100",
+          "display" : "SARS-CoV-2 (severe acute respiratory syndrome coronavirus 2) antigen detection result negative"
+        } ]
+      },
+      "device" : {
+        "identifier" : {
+          "system" : "https://fhir.nhs.uk/Id/Covid19-TestKit",
+          "value" : "LFT"
+        },
+        "display" : "Lateral Flow Test"
+      },
+      "performer" : [ {
+        "type" : "Organization",
+        "identifier" : {
+          "type" : {
+            "coding" : [ {
+              "system" : "https://fhir.nhs.uk/CodeSystem/organisation-role",
+              "code" : "173",
+              "display" : "PATHOLOGY LAB"
+            } ]
+          },
+          "value" : "LFDSelfTest"
+        }
+      }, {
+        "type" : "Organization",
+        "identifier" : {
+          "type" : {
+            "text" : "Testing Centre"
+          },
+          "value" : "BBC"
+        }
+      } ],
+      "extension" : [ {
+        "url" : "https://fhir.nhs.uk/StructureDefinition/Extension-COVID19-TestResult",
+        "extension" : [ {
+          "url" : "reportOrigin",
+          "valueCodeableConcept" : {
+            "text" : "LEADER"
+          }
+        }, {
+          "url" : "administrationMethod",
+          "valueCodeableConcept" : {
+            "text" : "health_care_professional"
+          }
+        } ]
+      } ]
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  }, {
+    "fullUrl" : "https://test-results-api.nhs.uk/FHIR/R4/Observation/ASD3214444",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "ASD3214444",
+      "status" : "final",
+      "identifier" : [ {
+        "system" : "https://fhir.nhs.uk/Id/SpecimenId",
+        "value" : "ASD32145127"
+      } ],
+      "subject" : {
+        "reference" : "Patient/9000000009",
+        "identifier" : {
+          "system" : "https://fhir.nhs.uk/Id/nhs-number",
+          "value" : "9000000009"
+        }
+      },
+      "category" : {
+        "coding" : [ {
+          "system" : "https://fhir.nhs.uk/CodeSystem/covid-test-pillar",
+          "code" : "pillar-1",
+          "display" : "pillar 1"
+        } ]
+      },
+      "code" : {
+        "coding" : [ {
+          "system" : "http://snomed.info/sct",
+          "code" : "871562009",
+          "display" : "Detection of Severe acute respiratory syndrome coronavirus 2 (observable entity)"
+        } ]
+      },
+      "effectiveDateTime" : "2021-04-20T00:00:00+00:00",
+      "valueCodeableConcept" : {
+        "coding" : [ {
+          "system" : "http://snomed.info/sct",
+          "code" : "1240581000000104",
+          "display" : "SARS-CoV-2 (severe acute respiratory syndrome coronavirus 2) detection result positive"
+        } ]
+      },
+      "device" : {
+        "identifier" : {
+          "system" : "https://fhir.nhs.uk/Id/Covid19-TestKit",
+          "value" : "LFT"
+        },
+        "display" : "Lateral Flow Test"
+      },
+      "performer" : [ {
+        "type" : "Organization",
+        "identifier" : {
+          "type" : {
+            "coding" : [ {
+              "system" : "https://fhir.nhs.uk/CodeSystem/organisation-role",
+              "code" : "173",
+              "display" : "PATHOLOGY LAB"
+            } ]
+          },
+          "value" : "LFDSelfTest"
+        }
+      }, {
+        "type" : "Organization",
+        "identifier" : {
+          "type" : {
+            "text" : "Testing Centre"
+          },
+          "value" : "BBC"
+        }
+      } ],
+      "extension" : [ {
+        "url" : "https://fhir.nhs.uk/StructureDefinition/Extension-COVID19-TestResult",
+        "extension" : [ {
+          "url" : "reportOrigin",
+          "valueCodeableConcept" : {
+            "text" : "LEADER"
+          }
+        }, {
+          "url" : "administrationMethod",
+          "valueCodeableConcept" : {
+            "text" : "health_care_professional"
+          }
+        } ]
+      } ]
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  }, {
+    "fullUrl" : "https://dev.api.service.nhs.uk/covid-19-test-result/FHIR/R4/Patient/9686368973",
+    "resource" : {
+      "resourceType" : "Patient",
+      "id" : "9686368973",
+      "identifier" : [ {
+        "extension" : [ {
+          "url" : "https://fhir.hl7.org.uk/StructureDefinition/Extension-UKCore-NHSNumberVerificationStatus",
+          "valueCodeableConcept" : {
+            "coding" : [ {
+              "system" : "https://fhir.hl7.org.uk/CodeSystem/UKCore-NHSNumberVerificationStatus",
+              "code" : "01",
+              "display" : "Number present and verified"
+            } ]
+          }
+        } ],
+        "system" : "https://fhir.nhs.uk/Id/nhs-number",
+        "value" : "9686368973"
+      } ],
+      "birthDate" : "1997-12-28"
+    },
+    "search" : {
+      "mode" : "include"
+    }
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+FHIR Bundle containing the query results - a list of matching COVID-19 test results and optionally associated patients.
+
+
+
+resourceType
+string
+required
+	
+
+FHIR resource type. Always Bundle.
+
+Example: Bundle
+
+
+type
+string
+required
+	
+
+Indicates how the bundle is intended to be used. Always searchset.
+
+Example: searchset
+
+
+total
+integer
+required
+	
+
+Number of matching COVID-19 test results found.
+
+Example: 2
+
+
+entry
+array
+required
+	
+
+List of matching COVID-19 test results and associated patients. If there were no matching tests, this is an empty list.
+
+HTTP status: 400
+
+Missing or invalid query parameter(s).
+
+HTTP status: 401
+
+Missing or invalid ID/OAuth toke or NHS number in request doesn't match NHS number in ID token.
+
+HTTP status: 404
+
+Invalid endpoint path.

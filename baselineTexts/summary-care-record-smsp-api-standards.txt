@@ -1,0 +1,173 @@
+Summary Care Record - SMSP API standards
+
+Become a Spine Mini Service Provider giving access to a patient's Summary Care Record using our SMSP API standards.
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status
+Technology
+Network access
+Security and authorisation
+Testing
+Onboarding
+Interactions
+Downloads
+Overview
+
+Become a Spine Mini Service Provider giving access to a patient's Summary Care Record using our SMSP API standards.
+
+Your commercially available Spine Mini Service Providers (SMSP) product will give access to SCR for your SMSP clients. We will list your SMSP provider service along with other conforming software products in our Conformance Catalogue.
+
+Your SCR SMSP clients can access a patient's Summary Care Record (SCR) - a national electronic record of patient information, created from GP summaries of medical records. SCRs can be seen and used by authorised staff in other areas of the health and care system involved in the patient's direct care.
+
+Summary Care Record was previously known as Personal Spine Information Service (PSIS).
+
+Also use these API standards to connect to the Access Control Service (ACS) - which manages consent to share information for SCR. GP systems must check consent to share before sharing a patient's Summary Care Record.
+
+Your SCR SMSP clients can:
+
+retrieve a patient's Summary Care Record
+set and check consent to share information - via the Access Control Service (ACS)
+
+Your SCR SMSP clients cannot:
+
+create or add to a patient's Summary Care Record - as a GP system capable of uploading GP summaries - because this SMSP API standard is read-only
+update GP medical records.
+
+Before you begin any development work using these API standards, contact us to discuss your best options.
+
+Who can use this API
+
+These API standards can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. 
+
+You must do this before you can go live (see ‘Onboarding’ below).
+
+Note that in addition to SMSP provider software assurance, for clinical safety reasons, we also need to assure your SMSP clients.
+
+Related APIs
+
+The following APIs are related to these API standards:
+
+Summary Care Record - FHIR API - use this API to access a patient's SCR using our FHIR API.
+Summary Care Record - HL7 V3 API - use this to access a patient's SCR using our HL7 V3 API.
+Legitimate Relationship Service - HL7 V3 API - use this API to access a patient's Legitimate Relationships, using our HL7 V3 API.
+API status
+
+These API standards are stable.
+
+Technology
+
+These API standards are based on our SCR HL7 V3 API but with a simplified read-only model and only synchronous interactions, using HL7 V3 SOAP web services.
+
+The synchronous pattern is used for interactions which need an immediate response and run quickly, for example:
+
+PSIS Document List Data Request
+PSIS Document Data Request
+
+For more details, see HL7 V3.
+
+ 
+
+Network access
+
+You need a Health and Social Care Network (HSCN) connection to use these API standards.
+
+For more details, see Network access for APIs.
+
+Security and authorisation
+Authentication
+
+These API standards are application-restricted, meaning:
+
+the calling SMSP client application is authenticated - we do care who it is
+
+the end user is not authenticated - we do not verify who it is or whether they are present
+
+In particular, these API standards use TLS-MA authentication.
+
+For more details on authentication, see application-restricted APIs.
+
+Even though these API standards do not technically require the end user to be authenticated, a condition of onboarding is that the calling application must:
+
+authenticate the end user locally
+use local role-based access controls to authorise the end user
+
+The calling application must ensure that:
+
+the patient’s identity is verified against the Personal Demographics Service
+
+the healthcare worker is authenticated via smartcard or modern alternative
+
+the healthcare worker has the appropriate RBAC permissions to access the patient’s SCR
+
+a legitimate relationship or the equivalent must exist between the healthcare worker and the patient
+
+For more details, see Information governance for Summary Care Records.
+
+Authorisation
+
+For some activities, the end user must be authorised to perform that activity.
+
+These API standards do not perform any authorisation checks. Rather, the calling system is expected to perform them. The authorisation rules are specified in our national Role Based Access Control (RBAC) database.
+
+For more details see our national Role Based Access Control (RBAC) database on the registration authorities and smartcards page.
+
+Testing
+
+You can test these API standards using our Path to Live environments.
+
+Onboarding
+
+You must get your software onboarded before it can go live.
+
+As part of onboarding, these API standards use the Target Operating Model (TOM) process, which is simpler than the traditional Common Assurance Process (CAP).
+
+Note that in addition to SMSP provider software assurance, for clinical safety reasons, we also need to assure your SMSP clients.
+
+For more details, and to get a copy of the latest TOM forms to complete, contact the interoperability conformance team on itkconformance@nhs.net.
+
+Interactions
+
+For details of SMSP provider interactions, see the following downloads:
+
+SMSP Common Provider Requirements V1.1 - 23/09/2014 PDF
+SCR SMSP Provider Requirements V1.3 - 18/09/2014 Word
+
+For details of SMSP client interactions, to share with your clients, see the following downloads:
+
+SMSP Common Client Requirements - 23/09/2014 PDF
+
+SCR SMSP Client Requirements V0.4.0 - 10/08/2015 Word
+
+Both SMSP providers and SMSP clients need the same response codes:
+
+SMSP Response Codes - 24/07/2014 XLS
+
+Downloads
+
+These are PDF, Microsoft Word and Excel files. To request a different format, contact us.
+
+SMSP Common Provider Requirements V1.1 - 23/09/2014 PDF
+
+PDF 718 KB
+
+SCR SMSP Provider Requirements V1.3 - 18/09/2014 Word
+
+DOCX 367 KB
+
+SMSP Common Client Requirements - 23/09/2014 PDF
+
+PDF 663 KB
+
+SCR SMSP Client Requirements V0.4.0 - 10/08/2015 Word
+
+DOCX 1 MB
+
+SMSP Response Codes - 24/07/2014 XLS
+
+XLSX 17 KB
+
+Last edited: 18 November 2021 4:56 pm

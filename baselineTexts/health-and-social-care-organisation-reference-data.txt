@@ -1,0 +1,55 @@
+DCB0090: Health and Social Care Organisation Reference Data
+
+The information standard provides reference data about the Organisations that comprise the health and social care services, including non-direct-care Organisations, primarily in England but also in the other UK-constituent countries.
+
+Page contents
+Top of page
+About this information standard
+Current Release
+Previous release
+About this information standard
+
+This information standard provides reference data about the Organisations that comprise the health and social care services, including non-direct-care Organisations, primarily in England but also in the other UK-constituent countries.
+
+The current release, published on 8 March 2018, introduces a new delivery mechanism for weekly/daily updates of the reference data. Instead of data having to be obtained via NHS Digital's Technology Reference data Update Distribution (TRUD) service, an Application Programming Interface (API) has been developed to allow customers direct access to updates. This will go live by the end of April 2018.
+
+This information standard is published under Section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the Specification and Implementation Documents provide further detail for those who have to implement the information standard.
+
+Update: October 2020:  Following a pause, the new ANANA code format has now formally come into use for all new code requests. New code requests will be given an ANANA code with a structure of 5 alternating alphabetic and numeric characters e.g. G7H8J. This means it will no longer be possible to identify the type of organisation from the way it is structured. Detailed guidance on this change is available on the ODS website.
+
+Update - January 2021: The NHS Business Services Authority (NHS BSA) has recently introduced a 7 character code for all new dental practices. As this reference data is published by the ODS, a decision has been taken to adopt the same 7 character code format for all new dental practices from February 2021. The majority of practices that are already coded as 6 characters will remain the same;  however a small number of practices will need to migrate over to the new 7 character code. A test file containing the new dental practice codes is now available from the data downloads page.  
+
+Current Release
+Release date	08/03/2018
+Release number	Amd 81/2017
+Release title	Version 1.1
+Stage	Maintenance
+Key documents	
+Change Specification, 8 March 2018 (Amd 81/2017)
+Requirement Specification, 8 March 2018 (Amd 81/2017)
+Implementation Plan and Guidance (Amd 81/2017)
+Information Standards Notice (Amd 81/2017)
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request 1638 (Amd 81/2017)
+Full Business Justification (Amd 81/2017)
+Management Summary (Amd 81/2017)
+
+Further Information	Organisation Data Service
+Previous release
+Release date	17/08/2016
+Release number	Amd 24/2015
+Release title	Fundamental Standard: Initial Release
+Stage	Maintenance
+Key documents	
+Requirement Specification (Amd 24/2015)
+Implementation Plan and Guidance 11 (Amd 24/2015)
+Change Specification (Amd 24/2015)
+Information Standards Notice, (Amd 24/2015)
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request 1532 (Amd 24/2015)
+Full Business Justification (Amd 24/2015)
+Management Summary (Amd 24/2015)
+
+Last edited: 12 July 2021 10:46 am

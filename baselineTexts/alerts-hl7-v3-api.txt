@@ -1,0 +1,107 @@
+Alerts - HL7 V3 API
+
+Send an alert for the attention of a Privacy Officer so they can audit whether access to a patient’s data was appropriate, using our HL7 V3 API.
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status
+Service level
+Technology
+Network access
+Security and authorisation
+Testing
+Onboarding
+Interactions
+Overview
+
+Use this API to send an alert for the attention of a Privacy Officer - also known as Summary Care Record Governance Person (SGP) in community pharmacies - so they can audit proactively whether access to a patient’s data was appropriate. 
+
+This provides a general alerting mechanism covering, for example, when a user looks up a patient on the Summary Care Record application (SCRa).
+
+Who can use this API
+
+This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development.
+
+You must do this before you can go live (see ‘Onboarding’ below). 
+
+Related APIs
+
+The following APIs are related to this one:
+
+Summary Care Record - HL7 V3 API - use this API to access a patient's Summary Care Record (SCR) - an electronic record of important patient information, created from GP medical records.
+Legitimate Relationship Service - HL7 V3 API - use this API to access a patient's Legitimate Relationships.
+API status
+
+This API is stable.
+
+Service level
+
+This API is a platinum service, meaning it is operational and supported 24 x 7 x 365.
+
+For more details, see service levels.
+
+Technology
+
+This API is an HL7 V3 API. 
+
+It uses asynchronous HL7 V3.
+
+For more details, see HL7 V3.
+
+Message Handling System (MHS) adaptor
+
+To remove the complexity of building your own Message Handling System, we offer a pre-assured, client side MHS adaptor that you can integrate into your own infrastructure.
+
+It makes it easier to connect to the NHS Spine and perform business operations by exposing a RESTful API that confirms to the HL7 V3 standard. 
+
+Network access
+
+You need a Health and Social Care Network (HSCN) connection to use this API.
+
+For more details, see Network access for APIs.
+
+Security and authorisation
+Authentication
+
+This API is user-restricted, meaning an end user must be present and authenticated to use it.
+
+The end user must be:
+
+a healthcare worker
+strongly authenticated, using either an NHS smartcard or a modern alternative
+
+We support the following security patterns:
+
+user-restricted HL7 V3 API, using NHS Care Identity Service 2 (NHS CIS2)
+user-restricted HL7 V3 API, using CIS
+
+For more details see user-restricted APIs.
+
+Authorisation
+
+For some activities, the end user must be authorised to perform that activity.
+
+The API itself does not perform any authorisation checks. Rather, the calling system is expected to perform them. The authorisation rules are specified in our national Role Based Access Control (RBAC) database.
+
+For more details see our national Role Based Access Control (RBAC) database on the registration authorities and smartcards page.
+
+Testing
+
+You can test this API using our Path to Live environments.
+
+Onboarding
+
+You must get your software onboarded before it can go live.
+
+As part of onboarding, this API uses the Common Assurance Process (CAP), which is tailored for each NHS service. For more details, contact us.
+
+Interactions
+
+For a full list of interactions for this API, see the 'Alerts' domain in the Spine Message Implementation Manual (MIM).
+
+For details on the general structure of the interactions, see HL7 V3.
+
+Last edited: 19 January 2022 5:06 pm

@@ -1,0 +1,118 @@
+Bowel Cancer Screening - EDIFACT API
+
+Receive bowel cancer screening test results in GP practices from the screening system.
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status
+Service level
+Technology
+Network access
+Security and authorisation
+Environments and testing
+Onboarding
+Interactions
+Additional guidance
+Overview
+
+Use this API to receive bowel cancer screening test results in GP practices from the screening system, specifically faecal occult blood test (FOBT) results.
+
+It's designed for the transmission of structured bowel cancer screening results to primary care GP systems from the screening system, using UN/EDIFACT based messages sent over MESH.
+
+Also known as NHS004 messages, these are a simpler version of the NHS003 messages specified in the Pathology EDIFACT v1.003 Standard but with the changes specified in 'Electronic GP Communication Requirements for GPSoC Software Suppliers Draft', under 'Additional guidance' below.
+
+Bowel cancer screening NHS004 messages are almost the same as pathology NHS003 messages except they are much simpler in structure, with a single SNOMED code and 5 result values.
+
+If you are building a system to receive bowel cancer screening test results, you can use our Lab Results adaptor to receive these EDIFACT results via an easy-to-use FHIR-compliant format. 
+
+Before you begin any development work using this API, contact us to discuss your best options.
+
+Who can use this API
+
+This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development.
+
+You must do this before you can go live (see ‘Onboarding’ below).
+
+Related APIs
+
+The following screening APIs are related to this one:
+
+Pathology Messaging - EDIFACT API - use this to receive pathology test results in GP practices from laboratories using EDIFACT messages sent over MESH
+API status
+
+This API is stable.
+
+Service level
+
+This API uses MESH which is a silver service, meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+
+For more details, see service levels.
+
+Technology
+
+This is an asynchronous messaging API. Messages are:
+
+formatted as EDIFACT
+sent and received via MESH
+
+For more details, see EDIFACT and MESH.
+
+Lab Results adaptor
+
+If you are building a system to receive bowel cancer screening test results, you can use our Lab Results adaptor to receive these EDIFACT results via an easy-to-use FHIR-compliant format. 
+
+Network access
+
+You can access this API via:
+
+the Health and Social Care Network (HSCN)
+the internet
+
+For more details see Network access for APIs.
+
+Security and authorisation
+
+This API uses MESH which is an application-restricted API.
+
+The API does not perform any end user authentication or authorisation checks. Rather, the calling system is expected to perform them. The authorisation rules are specified in our national Role Based Access Control (RBAC) database.
+
+For more details see our national Role Based Access Control (RBAC) database on the registration authorities and smartcards page.
+
+Environments and testing
+
+This API uses MESH. As a developer, you are most likely to want to connect to MESH using either the MESH client or the MESH API.
+
+For more details about using the MESH client, see MESH client.
+
+For the MESH API, there are several independent, externally accessible instances of MESH you can use for testing. For full details, see MESH API - Environments and testing.
+
+Onboarding
+
+You must get your software onboarded before it can go live. The onboarding process can sometimes be quite long, so it's worth planning well ahead.
+
+This API has a specific onboarding process for new market entrant GP IT developers. This applies whether you are integrating with it directly or using our Lab results adaptor. Contact your GP IT delivery lead for more details.
+
+For other use cases, contact us.
+
+Interactions
+
+For a full list of interactions for this API, see ISB 1557 EDIFACT Pathology Messaging but with the changes specified in 'Electronic GP Communication Requirements for GPSoC Software Suppliers Draft', under 'Additional guidance' below.
+
+You can also use our Lab Results adaptor to receive these EDIFACT results via an easy-to-use FHIR-compliant format. 
+
+ 
+
+Additional guidance
+
+This document specifies how to send NHS004 messages to GP systems.
+
+This is a Microsoft Word file.  To request a different format, contact us.
+
+Electronic GP Communication Requirements for GPSoC Software Suppliers Draft
+
+DOC 214 KB
+
+Last edited: 20 January 2022 11:35 pm
