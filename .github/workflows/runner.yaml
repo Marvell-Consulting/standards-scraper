@@ -4,6 +4,7 @@ on: workflow_dispatch
 
 jobs:
   test:
+    runs-on: ubuntu-latest
     environment: ci
     env:
       GITHUB_TOKEN: ${secrets.GITHUB_TOKEN}
