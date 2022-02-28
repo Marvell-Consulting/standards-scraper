@@ -1,0 +1,57 @@
+DCB3066 Digital Maternity Record Standard
+
+An information standard for maternity services, to ensure that maternity record information is consistently captured and as a result can be shared more easily across health care systems.
+
+ 
+
+Page contents
+Top of page
+About this information standard
+8 January 2021: Update
+Current release
+About this information standard
+
+NHS Digital has been collaborating with midwives, obstetricians, nurses and other clinicians to create the maternity record standard, which relates to direct patient care, describing the optimal data structure and format of a maternity record.
+
+This new information standard provides for local implementation of this maternity record within maternity services and supplier systems, to enable the future exchange of information between maternity providers. This will ensure that both health and care professionals and maternity service users have the necessary information in the right place at the right time, to improve the quality and safety of maternity care.  The standard will also support maternity service users by enabling more personalised care, as well as helping midwives and clinicians to provide holistic care. 
+
+The standard will be fully implemented in two releases:
+
+Release 1 (the subject of the documents below) ensures that each provider and related clinical system/Personal Health Record (PHR) that have been commissioned to support NHS services are storing the same data in a standardised format.
+Release 2 will pertain to sharing the standardised data via national interoperability functionality currently under development by NHS Digital.
+
+Note that the timescales for DCB3066 Release 2, in terms of fully detailing the mechanism of interoperability, ISN publication, and provider implementation, are yet to be defined.
+
+ This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the other listed documents provide further detail for those who have to implement the information standard.
+
+8 January 2021: Update
+
+Following a previous announcement in April 2020 that the compliance date had been extended to 28 February 2021, it has now been decided that, given the continued pressures on maternity services, the compliance date with this information standard is on hold until further notice.
+
+Suppliers are required to attend technical workshops to collaborate on the development of updates to the ISN before republication. Please email england.digitalmaternitynhsx@nhs.net for further information.
+
+Current release
+Release date	18 November 2019
+Release number	Amd 112/2018
+Release title 	Release 1, Record Standard
+Stage	Implementation 
+Key documents 	
+Information Standards Notice (Amd 112/2018)
+Requirements Specification (Amd 112/2018)
+Implementation Guidance (Amd 112/2018)
+
+Supporting documents 	
+Data Model Specification (Amd 112/2018)
+Record Specification (Amd 112/2018)
+SNOMED CT Companion (Amd 112/2018)
+Additional Supporting Guidance (Amd 112/2018)
+Release 1 Compliance Letter (Amd 112/2018)
+
+ 
+
+
+Further information 	NHS Digital digital maternity
+
+ 
+
+Last edited: 13 January 2021 1:03 pm
