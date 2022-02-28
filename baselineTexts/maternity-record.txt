@@ -1,0 +1,31 @@
+Maternity standard
+
+The PRSB has produced a standard for maternity care records, which will mean that information from a record can be understood by all IT systems in use across the country, enabling the seamless exchange of information regardless of local maternity system boundary.
+
+Standardised records will save time for health and care professionals and pregnant women by ensuring they have the necessary information in the right place at the right time, to make decisions for safer care. It will also support mothers in managing their own maternity information, giving them more personalised and focussed appointments with healthcare professionals and helping midwives and clinicians to provide holistic care.
+
+Endorsement
+Royal College of Midwives
+Royal College of Obstetricians and Gynaecologists
+Royal College of General Practitioners
+The Royal College of Physicians
+Royal College of Paediatrics and Child Health
+Royal College of Nursing
+Royal College of Occupational Therapists
+Royal Pharmaceutical Society
+Institute of Health Visiting
+TechUK
+The standard
+Maternity-standard
+Information Standards Notice (ISN) (18.11.2019
+The ISN informs service providers that the maternity standard must be adopted and gives the time frame for doing this, along with the relevant guidance materials. In the process of gaining an ISN the maternity record standard has been updated. The updates ensure that the maternity standard aligns with the healthy child standard. The value sets have been improved with new SNOMED reference sets and there are revisions to the SNOMED and NHS data dictionary terms.
+Supporting documentation
+The data model, implementation guidance and clinical safety case (NHS Digital): https://digital.nhs.uk/isce/publication/dcb3066
+Final report
+Survey analysis – Survey 1
+Survey analysis – Survey 2
+IHRIM record correction guidance
+
+Despite vigilance when filing information in records, mistakes can occur. The Institute of Health Records and Information Management has guidance to support professionals in making corrections following errors.
+
+VIEW THE GUIDANCE
