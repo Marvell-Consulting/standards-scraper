@@ -22,7 +22,7 @@ describe('standards-scraper', () => {
   before(async () => {
     const req = await fetch(`${config.ckan}/api/3/action/package_search?include_private=true&rows=1000`, { headers: { Authorization: config.ckanKey } });
     const result = await req.json();
-    this.standards = result.result.results;
+    this.standards = result.result.results.slice(0, 10);
   });
 
   it('runner', async () => {
@@ -62,6 +62,7 @@ describe('standards-scraper', () => {
         const text = await content.getText();
 
         if (imgComparison !== 0 || text !== baselineText) {
+          console.log({ name, imgComparison, textDiff: text !== baselineText })
           hasChanged++;
           msg += `\n* ${name}`;
           await writeFile(`./actualTexts/${name}.txt`, text);
