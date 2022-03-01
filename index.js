@@ -22,7 +22,7 @@ describe('standards-scraper', () => {
   before(async () => {
     const req = await fetch(`${config.ckan}/api/3/action/package_search?include_private=true&rows=1000`, { headers: { Authorization: config.ckanKey } });
     const result = await req.json();
-    this.standards = result.result.results.slice(0, 10);
+    this.standards = result.result.results.slice(0, 1);
   });
 
   it('runner', async () => {
