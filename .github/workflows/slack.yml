@@ -1,4 +1,7 @@
-on: pull_request
+on:
+  pull_request:
+    types:
+      - opened
 name: Notify Slack
 jobs:
   slackNotification:
@@ -12,3 +15,8 @@ jobs:
         SLACK_USERNAME: github-bot
         SLACK_CHANNEL: nhsx
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_TITLE: ${{ github.event.pull_request.title }}
+        SLACK_MESSAGE: |
+          ${{ github.event.pull_request.body }}
+          ${{ github.event.pull_request.html_url }}
+        MSG_MINIMAL: "true"
