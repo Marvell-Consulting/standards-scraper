@@ -10,12 +10,15 @@ const saveResults = require('./lib/save-results');
 const hiddenElementSelector = [
   '#CybotCookiebotDialog',
   '#CybotCookiebotDialogBodyContentTitle',
-  '#hs-eu-cookie-confirmation'
+  '#hs-eu-cookie-confirmation',
+  '#tna-cookie-prompt-banner'
 ].join();
 
 const contentSelectors = {
-  'nhs-digital': 'article',
-  'professional-record-standards-body': '.page-content'
+  'digital.nhs.uk': 'article',
+  'theprsb.org': '.page-content',
+  'webarchive.nationalarchives.gov.uk': '',
+  'www.dicomstandard.org': ''
 };
 
 describe('standards-scraper', () => {
@@ -33,10 +36,13 @@ describe('standards-scraper', () => {
     for await (const standard of this.standards) {
       let baselineText = '';
       const name = standard.name;
-      const org = standard.organization.name;
 
-      if (!contentSelectors[org]) {
-        console.log(`Unknown organisation: ${org}`);
+      const url = new URL(standard.documentation_link);
+      const host = url.hostname;
+
+      if (!contentSelectors[host]) {
+        console.log(`Unsupported host: ${host}`);
+        console.log(standard.documentation_link);
         continue;
       }
 
@@ -59,20 +65,17 @@ describe('standards-scraper', () => {
             ...hidden
           ]
         });
-        const content = await browser.$(contentSelectors[org]);
+        const content = await browser.$(contentSelectors[host]);
         const text = await content.getText();
 
         if (imgComparison !== 0 || text !== baselineText) {
-          if(text !== baselineText) {
-            console.log(text);
-            console.log(baselineText);
-          }
           hasChanged++;
           msg += `\n* ${name}`;
           await writeFile(`./actualTexts/${name}.txt`, text);
         }
       } catch (e) {
         console.error(`Failed to check standard: ${name}`);
+        console.error(standard.documentation_link);
         console.error(e);
       }
     }
