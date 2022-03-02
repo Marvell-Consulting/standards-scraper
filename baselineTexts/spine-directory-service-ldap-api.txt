@@ -27,7 +27,7 @@ organisations - NHS organisations, their sites and departments
 people - Spine users including their organisation and role
 systems registered with Spine
 
-For technical resources, see SDS software developer guide.
+For technical resources, see SDS guidance for developers.
 
 For more details, see the Spine External Interface Specification (EIS) Part 5 - Spine Directory Services (SDS).
 
@@ -89,6 +89,6 @@ For details of interactions for this API, see part 5 of the Spine External Inter
 
 Additional guidance
 
-For further technical resources, see SDS software developer guide.
+For further technical resources, see SDS guidance for developers.
 
-Last edited: 28 February 2022 4:54 pm
+Last edited: 1 March 2022 11:46 am
