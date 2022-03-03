@@ -151,7 +151,7 @@ Onboarding
 
 You must get your software onboarded before it can go live.
 
-As part of onboarding, this API uses the Common Assurance Process (CAP), which is tailored for each NHS service. For more details see the PDS Common Assurance Process.
+As part of onboarding, this API uses the Common Assurance Process (CAP), which is tailored for each NHS service. For more details, see the PDS Common Assurance Process.
 
 Interactions
 
@@ -208,4 +208,4 @@ NPFIT-SI-SIGOV-0073.05 Guidance on Implementing RBAC for PSIS and PDS v2.1
 
 DOCX 223 KB
 
-Last edited: 15 February 2022 4:04 pm
+Last edited: 2 March 2022 5:18 pm

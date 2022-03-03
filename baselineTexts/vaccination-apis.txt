@@ -106,6 +106,10 @@ Latest addenda
 
 These are Microsoft Word files. To request a different format, contact us.
 
+POC system updates to support subsequent boosters v1.0
+
+DOCX 93 KB
+
 POC system updates to accommodate COVID-19 vaccinations for ‘at-risk’ 5 to 11 children V1.2
 
 DOCX 117 KB
@@ -182,4 +186,4 @@ Functional specification for immunisation status V1.0 - flu and COVID-19
 
 DOCX 970 KB
 
-Last edited: 1 February 2022 11:29 am
+Last edited: 2 March 2022 1:36 pm

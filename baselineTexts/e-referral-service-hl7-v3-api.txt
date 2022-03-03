@@ -99,7 +99,7 @@ Onboarding
 
 You must get your software onboarded before it can go live.
 
-As part of onboarding, this API uses the Common Assurance Process (CAP), which is tailored for each NHS service. For more details, contact us.
+As part of onboarding, this API uses the Common Assurance Process (CAP), which is tailored for each NHS service. For more details, see the e-RS Common Assurance Process (CAP).
 
 Interactions
 
@@ -107,4 +107,4 @@ For a full list of interactions for this API, see the 'Choose and Book' domain i
 
 For details on the general structure of the interactions, see HL7 V3.
 
-Last edited: 15 February 2022 3:55 pm
+Last edited: 2 March 2022 5:17 pm
