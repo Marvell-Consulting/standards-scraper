@@ -7,7 +7,7 @@ Top of page
 Overview
 Who can use this API
 Related APIs
-API Status
+API status
 Service level
 Technology
 Network access
@@ -24,13 +24,8 @@ Overview
 Use this API to access details from the Spine Directory Service (SDS) relating to:
 
 organisations - NHS organisations, their sites and departments
-people - Spine users including their organisation and role
+people - healthcare workers who are Spine users, including their organisation and role
 systems registered with Spine
-
-For technical resources, see SDS guidance for developers.
-
-For more details, see the Spine External Interface Specification (EIS) Part 5 - Spine Directory Services (SDS).
-
 Who can use this API
 
 This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development.
@@ -45,7 +40,7 @@ Spine Directory Service - FHIR API - an internet-facing, FHIR-conformant API whi
 Organisation Data Service - FHIR API - simple access to a reduced dataset of the full ODS record
 Organisation Data Service - ORD API - access to the full record dataset from ODS
 Query Accredited System Information - SOAP API - a SOAP API for accessing accredited system information in SDS
-API Status
+API status
 
 This API is stable.
 
@@ -85,10 +80,12 @@ As part of onboarding, this API uses the Common Assurance Process (CAP), which i
 
 Interactions
 
-For details of interactions for this API, see part 5 of the Spine External Interface Specification.
+For a summary of how to interact with this API, see Spine Directory Service (SDS) guidance for developers.
+
+For a full formal specification, see part 5 of the Spine External Interface Specification.
 
 Additional guidance
 
-For further technical resources, see SDS guidance for developers.
+For further technical resources, see Spine Directory Service (SDS) guidance for developers.
 
-Last edited: 1 March 2022 11:46 am
+Last edited: 3 March 2022 11:07 am
