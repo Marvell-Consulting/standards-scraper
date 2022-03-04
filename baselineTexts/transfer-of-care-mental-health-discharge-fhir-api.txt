@@ -39,8 +39,8 @@ For more details, see FHIR.
 
 Interactions
 
-For a full list of interactions for this API, see Introduction to ITK3 Mental Health eDischarge.
+For the latest interactions for this API, see the live implementable specification versions of the Transfer of Care FHIR API.
 
 For details on the general structure of the interactions, see FHIR.
 
-Last edited: 24 January 2022 12:46 pm
+Last edited: 3 March 2022 3:38 pm
