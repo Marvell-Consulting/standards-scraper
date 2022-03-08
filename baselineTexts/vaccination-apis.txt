@@ -113,26 +113,6 @@ DOCX 93 KB
 POC system updates to accommodate COVID-19 vaccinations for ‘at-risk’ 5 to 11 children V1.2
 
 DOCX 117 KB
-
-POC system updates to support the UK vaccine response to the Omicron variant V1.0
-
-DOCX 104 KB
-
-Responsible clinician and consent addendum V1.0
-
-DOCX 95 KB
-
-Spikevax® (Moderna) and Comirnaty® (PfizerBioNtech) vaccine name changes
-
-DOCX 103 KB
-
-Moderna half dose / booster warnings addendum V1.0 – COVID-19
-
-DOCX 107 KB
-
-Child immunisation addendum V1.1 - COVID-19
-
-DOCX 92 KB
 Interactions
 
 These are Microsoft Word files. To request a different format, contact us.
@@ -186,4 +166,4 @@ Functional specification for immunisation status V1.0 - flu and COVID-19
 
 DOCX 970 KB
 
-Last edited: 2 March 2022 1:36 pm
+Last edited: 7 March 2022 4:25 pm

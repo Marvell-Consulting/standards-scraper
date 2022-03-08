@@ -1,33 +1,42 @@
-Document naming
-Electronic health and care records can include hundreds of digital and scanned paper documents. We need a standardised way of naming them so they can easily be found when needed, particularly in an emergency, and exchanged efficiently between different systems.
+Document Naming Standard
+Electronic health and care records can include a significant number of documents, these may have originated from digital systems or scanned paper documents. 
+We require a standardised way of attributing information to those documents so they can easily be found when needed, particularly in an emergency. We also need to ensure they can be exchanged efficiently between different systems.
 
-At the moment, information about a person’s previous care may be held on a number of IT systems; a variety of options being available to provide a single view to a patient’s digital record. Such information may have been captured in a number of ways, for example:
+ 
 
-As a pdf which has been exported from an IT system
-A scanned document: In their efforts to create a full set of digital notes, many trusts are scanning historical paper records
+In terms of this standard, a document is ‘a single set of coherent, identifiable, self-contained information that is a statement of Health and Care and can only be updated by total replacement’.
+
+
+Overview
+
+Often, information about a person’s previous care may be held on a number of different IT systems; a variety of options being available to provide a single view to a patient’s digital record. Documents form one part of such information and may have been captured in a number of ways, for example:
+
+as a pdf which has been exported from an IT system
+a scanned document: In their efforts to create a full set of digital notes, many trusts are/have scanned historical paper records
 As a word-processed unstructured document
-As a pointer to a file in a document management system
+As a pointer to file in a document management system.
 
 
 As a result, without appropriate additional data (referred to as metadata), these are often hard to find or even know they exist, and can be difficult to retrieve, thus increasing the risk of error.
 
-The document naming standard will ensure that records are properly named and indexed, so they can be retrieved in order to provide ongoing care. It will enable end users to compare and contrast previous test results, scans and other information, and patients won’t have to repeat complicated medical histories.
+The document naming standard aims to ensure that records are properly named and indexed so they can be retrieved in order to provide ongoing care. Efficient retrieval can enable end users to compare and contrast previous test results, scans and other information, and patients won’t have to repeat complicated medical histories.
 
 The current form of the document naming standard is:
 
-Guidance and recommendations for information tags (metadata) to hold alongside the document
-A standard for the metadata item: Document Type/subtype (referred to as the Clinical Document Indexing Standard)
-National data files can be obtained for the text for Clinical Specialty from Public Health Scotland, or the value set provided within the NHS Data Dictionary from NHS Digital (Care Professional Main Specialty Code)
+Guidance with recommendations for information tags (metadata) to hold alongside the document
+A specification for metadata to support a document management repository
+A standard for the metadata item known as: Document Type/subtype (referred to as the Clinical Document Indexing Standard)
+National data files for the text for the data item Clinical Specialty which can be obtained from Public Health Scotland, or the value set provided within the NHS Data Dictionary from NHS Digital (Care Professional Main Specialty Code).
+
+
+The clinical document indexing standard was developed by the Scottish Health Boards in partnership with Public Health Scotland and has been used for a number of years. NHS Wales have also adopted the clinical document indexing standard utilising the SNOMED CT codes provided as part of their specification in relation to document management.
+
  
 
-The clinical document indexing standard was developed by the Scottish Health Boards in partnership with Public Health Scotland and has been used for a number of years. NHS Wales have also adopted the clinical document indexing standard utilising the SNOMED CT codes provided.
 
- 
 Next Steps
 
-Recommendations for the next steps was developed in partnership with the Royal College of Physicians (RCP) Health Informatics Unit (HIU) and can be found in the PRSB Final Report.
-
-Currently PRSB are working to develop a UK standard for the metadata tags and to provide a downloadable national value set for clinical specialty. Further guidance will also be provided in relation to data items which are frequently captured as structured data items in an EPR, such as allergies and alerts.
+PRSB have undertaken a recent review in this area with recommendations for two standards; one for document exchange and one as a specification for document management systems. However, in light of the work that has recently started on the International Patient Summary (IPS), and with guidance from the UK Strategy Board, the PRSB has agreed to defer any further development until the outcomes of the IPS work are published.
 
  
 Endorsement
@@ -49,18 +58,26 @@ Royal College of Pathologists
 British Psychological Society
  
 
-* The RCGP support the standard and direction of travel in what is a very important area, recognising that further work to build on this standard and create a metadata standard is required to make it suitable and implementable for primary care and the system as a whole. a
+* The RCGP support the standard and direction of travel in what is a very important area, recognising that further work to build on this standard and create a metadata standard is required to make it suitable and implementable for primary care and the system as a whole.d
+
+
 
 The standard
 
-The document naming standard consists of:
+Standards relating to document naming exist in Scotland and Wales; given developments on the International Patient Summary, PRSB are currently signposting to those existing standards rather than looking to develop an updated UK standard. The following are available on the respective websites:
 
-A standard for the Document Type data item
-A national reference file for the Clinical Specialty data item
+A standard for the Document Type data item (managed by Public Health Scotland)
+A national reference file for the Clinical Specialty data item* (managed by Public Health Scotland)
+A standard for the metadata in the document management system (managed by NHS Wales)
+* Note that each UK country may publish their own Value lists for the Clinical specialty data item.
 Supporting documents
+
 Fact sheet
-Clinical document indexing standard – guidance notes
+
+Clinical Document Indexing Standard – notes of guidance: published by Public Health Scotland
+
 PRSB final report
+
 IHRIM record correction guidance
 
 Despite vigilance when filing information in records, mistakes can occur. The Institute of Health Records and Information Management has guidance to support professionals in making corrections following errors.
