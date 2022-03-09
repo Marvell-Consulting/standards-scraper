@@ -15,6 +15,7 @@ Security and authorisation
 Environments and testing
 Onboarding
 Interactions
+Additional guidance
 
 This specification is under review following changes to discharge process guidance during 2020 to reflect Discharge to Assess (D2A). Contact enquires@nhsdigital.nhs.uk if you have any questions.
 
@@ -102,6 +103,10 @@ Interactions
 
 For a full list of interactions for this API, see Social Care Assessment, Discharge and Withdrawal.
 
-For details on the general structure of the interactions, see FHIR.
+This FHIR messaging specification is based on and is intended to be used alongside the FHIR DSTU2 specification, published in September 2015.
 
-Last edited: 15 February 2022 3:52 pm
+Additional guidance
+
+For additional guidance on interactions for this API, see the Social care DMS - additional messaging guidance.
+
+Last edited: 8 March 2022 4:45 pm
