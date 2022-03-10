@@ -1,0 +1,4136 @@
+Reasonable Adjustment Flag - FHIR API
+
+Access the Reasonable Adjustment Flag - a national record which indicates that a patient requires reasonable adjustments and includes relevant details.
+
+Page content
+Top of page
+Overview
+Who can use this API
+Related APIs
+API Status and Roadmap
+Technology
+Network Access
+Security and authorisation
+Environments and testing
+Onboarding
+Using this API
+Endpoints
+Create Flag and add consent details
+Add reasonable adjustments
+Add impairments
+Get consent details
+Get reasonable adjustments
+Get impairments
+Remove Reasonable Adjustment Flag record
+Update consent details
+Update reasonable adjustments
+Update impairments
+Overview
+
+Use this API to access and update the Reasonable Adjustment Flag - a national record which indicates that a patient requires reasonable adjustments and optionally includes details of impairments and adjustments to be considered.
+
+You can:
+
+check if a Reasonable Adjustment Flag exists
+read a Reasonable Adjustment Flag
+create a Reasonable Adjustment Flag
+update a Reasonable Adjustment Flag
+remove a Reasonable Adjustment Flag
+
+The Flag consists of three parts:
+
+Details of consent to share the Flag and how this was obtained. Consent may have been given by the patient or via a 'best interest decision' under the Mental Capacity Act (2005). In some cases consent can also be obtained from a lasting power of attorney for health and welfare or a court appointed deputy.
+Details of impairments, which enable clinicians to understand the range of adjustments the patient may require. Note that the patient may decline to say what their impairments are.
+Details of reasonable adjustments to services which are needed by the patient when providing their care.
+
+This API can only be used by relevant health and care staff providing direct care, authenticated with an NHS smartcard or equivalent.
+
+The existance of a Flag is intended to be visible to all staff who have access to the patient record. The contents of the Flag may only be visible to clinical staff - as determined by role-based access controls (RBAC). For more details see Registration authorities and smartcards.
+
+To find out more about how the Flag works, categories and types of adjustments and the recording of impairments see How the Reasonable Adjustment Flag works.
+
+To watch a video of a Reasonable Adjustment Flag being created in SCRa see Creating a Reasonable Adjustment Flag on the NHS Spine.
+
+Who can use this API
+
+This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. You must do this before you can go live (see ‘Onboarding’ below).
+
+Related APIs
+
+To use this API, you will need the patient's NHS number, which can be retrieved by using the following API:
+
+Personal Demographics Service (FHIR) API - use this API to search for patients and retrieve their details. This API can also be used to update their details in some cases.
+
+When using this API, we also recommend that you consider using these related APIs:
+
+Female Genital Mutilation Information Sharing System (FGM-IS) - use this API to store and share FGM information of children under 18 with relevant NHS healthcare professionals across departments, organisations and geographical boundaries within England.
+
+Child Protection Information Sharing (CP-IS) - HL7 V3 API - use this API to provide access to CP-IS, a sharing system which provides healthcare workers with access to recent unscheduled care attendance information for children under a local authority social care plan.
+
+National Record Locator (NRL) (FHIR) API - use this API to locate and share patient records held within local health and social care systems.
+
+API Status and Roadmap
+
+This API is in alpha - expect further breaking changes.
+
+The API is currently available for sandbox testing, but not integration testing or for production use.
+
+To see our roadmap, or to suggest, comment or vote on features for this API, see our interactive product backlog.
+
+If you have any other queries, please contact us.
+
+Technology
+
+This API is RESTful.
+
+It also conforms to the FHIR (STU3) global standard for health care data exchange. Specifically it conforms to FHIR Release 3.
+
+You don’t need to know much about FHIR to use this API - FHIR APIs are just RESTful APIs that follow specific rules. In particular:
+
+array names are singular, for example line not lines for address lines
+data items that are country-specific and thus not included in the FHIR global base resources are usually wrapped in an extension object
+Resources
+
+For information on the resources used within the Reasonable Adjustment Flag API see Reasonable Adjustment Flag FHIR specification.
+
+Network Access
+
+This API is available on the internet and, indirectly, on the Health and Social Care Network (HSCN). To use this API with NHS smartcards (see below) you do need an HSCN connection, although internet-facing alternatives are available.
+
+For more details see Network access for APIs.
+
+Security and authorisation
+
+This API is user-restricted, meaning an end user must be present and authenticated to use it.
+
+The end user must be:
+
+a healthcare professional
+strongly authenticated, using either an NHS smartcard or a modern alternative available via NHS Care Identity Service 2 (NHS CIS2)
+
+The API uses OAuth 2.0 to authorise the calling system. It supports the following security patterns:
+
+user-restricted RESTful API - using NHS CIS2 - combined authentication and authorisation
+user-restricted RESTful API - using NHS CIS2 - separate authentication and authorisation
+
+For more details, see user-restricted APIs.
+
+You must implement role-based access controls (RBAC) within your application to determine whether the end user is allowed to see (and update) the details of the record or only to know of its existence.
+
+For more details see Registration authorities and smartcards.
+
+Environments and testing
+Purpose	Base URL
+Sandbox	https://sandbox.service.nhs.uk/reasonable-adjustment-flag/FHIR/STU3
+Integration test (available Jan 2021)	https://int.service.nhs.uk/reasonable-adjustment-flag/FHIR/STU3
+Production (available Mar 2021)	https://api.service.nhs.uk/reasonable-adjustment-flag/FHIR/STU3
+Sandbox testing
+
+Our sandbox environment:
+
+is for early developer testing
+only covers a limited set of scenarios
+is stateless, so it does not actually persist any updates
+is open access, so does not allow you to test authorisation
+
+For more details on sandbox testing, or to try out the sandbox using our "Try this API" feature, see the documentation for each endpoint.
+
+Integration testing
+
+Our integration test environment:
+
+is for formal integration testing
+is stateful, so persists updates
+includes authorisation, with options for user-restricted access (with or without smartcards)
+
+To test updating patient details, you must set up your own test data.
+
+For more details see integration testing with our RESTful APIs.
+
+Onboarding
+
+You need to get your software approved by us before it can go live with this API. We call this onboarding. The onboarding process can sometimes be quite long, so it’s worth planning well ahead.
+
+We will provide further details about how to onboard onto the API in January 2021.
+
+Using this API
+
+To check if a Reasonable Adjustment Flag exists:
+
+get consent details - if they exist, the overall record exists
+
+To get a Reasonable Adjustment Flag:
+
+get consent details
+get reasonable adjustment details - which might not exist
+get impairments - which might not exist
+
+To create a Reasonable Adjustment Flag:
+
+add consent details - doing this also creates the overall record
+optionally, add reasonable adjustments
+optionally, add impairments
+
+To update a Reasonable Adjustment Flag:
+
+get the relevant part(s) of the record first - you’ll need the version number for the update
+update consent details, reasonable adjustments or impairments as appropriate
+
+To remove a Reasonable Adjustment Flag:
+
+remove Reasonable Adjustment Flag record - this single operation will remove the record in its entirety
+Endpoints
+Create Flag and add consent details
+POST /Consent
+Try this API
+Overview
+
+Use this endpoint to create a Reasonable Adjustment Flag for a patient and add details regarding the patient's consent to share it, as well as how this was obtained.
+
+For full details of the request payload for this endpoint, see RARecord-Consent-1.
+
+Request
+Headers
+Name	Description
+Authorization	
+
+String (^Bearer\ [[:ascii:]]+$)
+
+An OAuth 2.0 bearer token.
+
+Note: This parameter is required unless interacting with the Sandbox.
+
+Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
+
+
+NHSD-Session-URID	
+
+String
+
+The user role ID (URID) for the current session. Also known as a user role profile ID (URPID).
+
+If you are using User-restricted RESTful APIs - NHS login combined authentication and authorisation, See determin the user's role guidance. If you are using User-restricted RESTful APIs - NHS login separate authentication and authorisation, See determin the user's role guidance.
+
+This field is optional.
+
+Pattern: /^[0-9]+$/
+
+Example: 555021935107
+
+
+X-Correlation-ID	
+
+String
+
+A globally unique identifier (GUID) for the request, which we use to trace the request if you contact our helpdesk. Mirrored back in a response header. Avoid . characters.
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+
+X-Request-ID	
+
+String
+
+A globally unique identifier (GUID) for the request, which we use to de-duplicate repeated requests. Must be a universally unique identifier (UUID) (ideally version 4). If you re-send a failed request, use the same value in this header. Mirrored back in a response header.
+
+Required in all environments except sandbox.
+
+Pattern: /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/
+
+Example: 60E0B220-8136-4CA5-AE46-1D97EF59D068
+
+Body
+Required
+
+Content type: application/fhir+json
+
+Example
+
+Copy
+{
+  "resourceType" : "Consent",
+  "meta" : {
+    "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1" ]
+  },
+  "extension" : [ {
+    "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-ProxyRole-1",
+    "valueCodeableConcept" : {
+      "coding" : [ {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-ProxyRole-1",
+        "code" : "003",
+        "display" : "Lasting power of attorney for personal welfare or court-appointed deputy or equivalent (Mental Capacity Act 2005)"
+      } ]
+    }
+  } ],
+  "status" : "active",
+  "category" : [ {
+    "coding" : [ {
+      "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1",
+      "code" : "NRAF",
+      "display" : "Reasonable Adjustments Flag"
+    } ]
+  } ],
+  "patient" : {
+    "reference" : "https://demographics.spineservices.nhs.uk/STU3/Patient/9693892283"
+  },
+  "policy" : [ {
+    "authority" : "https://www.gov.uk/",
+    "uri" : "https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/535024/data-security-review.pdf"
+  } ],
+  "purpose" : [ {
+    "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-ConsentPurpose-1",
+    "code" : "RACONSENT",
+    "display" : "Reasonable Adjustments - Consent to record Reasonable Adjustments"
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+resourceType
+string
+	
+Example: Consent
+
+
+meta
+object
+	
+
+extension
+array
+	
+
+status
+string
+	
+Example: active
+
+
+category
+array
+	
+
+patient
+object
+	
+
+policy
+array
+	
+
+purpose
+array
+	
+Response
+HTTP status: 201
+
+Reasonable Adjustment Flag created and consent details added.
+
+Headers
+Name	Description
+ETag	
+
+String
+
+Record version identifier enclosed in quotes and preceded by 'W/'. For example, W/"2".
+
+Corresponds to meta.versionId attribute in the patient resource body.
+
+When you retrieve a patient resource, you get a version number for the resource (in the ETag response header and in the versionId field in the response). You must then pass the resource's version number in any update request (in the If-Match response header) made for the patient.
+
+Pattern: /^W\/"[0-9]+"$/
+
+Example: W/"2"
+
+
+Date	
+
+Date (date-time)
+
+The current date.
+
+
+Last-Modified	
+
+Date (date-time)
+
+The date the resource was last modified.
+
+Example: 2018-07-23T11:00:00Z
+
+
+Location	
+
+String
+
+The location of the resource.
+
+Example: https://clinicals.spineservices.nhs.uk/STU3/[type]/[id]/_history/[vid]
+
+
+Content-Type	
+
+String
+
+The content type of the response.
+
+Example: application/fhir+json
+
+Body
+
+Content type: application/json
+
+Example
+
+The response from a successful request.
+
+Copy
+{
+  "category" : [ {
+    "coding" : [ {
+      "code" : "NRAF",
+      "display" : "National Reasonable Adjustments Flag",
+      "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1"
+    } ]
+  } ],
+  "contained" : [ {
+    "agent" : [ {
+      "onBehalfOfReference" : {
+        "display" : "WEST POTTERGATE HLTH CTR (D82106)",
+        "reference" : "https://directory.spineservices.nhs.uk/STU3/Organization/D82106"
+      },
+      "role" : [ {
+        "coding" : [ {
+          "code" : "R0050",
+          "display" : "Consultant",
+          "system" : "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"
+        } ]
+      } ],
+      "whoReference" : {
+        "display" : "Healthchecks,Morning",
+        "reference" : "https://sds.spineservices.nhs.uk/STU3/Practitioner/093895563513"
+      }
+    } ],
+    "id" : "fb23002b-86d0-43b1-8742-2f1026179ff2",
+    "meta" : {
+      "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1" ]
+    },
+    "recorded" : "2021-03-17T15:52:14+00:00",
+    "resourceType" : "Provenance",
+    "target" : [ {
+      "reference" : "Consent/9693892283.11eccc9b-4a6f-4467-a76b-1b8a82bafd65"
+    } ]
+  } ],
+  "extension" : [ {
+    "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-ProxyRole-1",
+    "valueCodeableConcept" : {
+      "coding" : [ {
+        "code" : "001",
+        "display" : "Patient consent",
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-ProxyRole-1"
+      } ]
+    }
+  }, {
+    "extension" : [ {
+      "url" : "Created",
+      "valueReference" : {
+        "reference" : "#fb23002b-86d0-43b1-8742-2f1026179ff2"
+      }
+    } ],
+    "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1"
+  } ],
+  "id" : "9693892283.11eccc9b-4a6f-4467-a76b-1b8a82bafd65",
+  "meta" : {
+    "lastUpdated" : "2021-03-17T15:52:14+00:00",
+    "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1" ],
+    "versionId" : "1"
+  },
+  "patient" : {
+    "reference" : "https://demographics.spineservices.nhs.uk/STU3/Patient/9693892283"
+  },
+  "policy" : [ {
+    "authority" : "https://www.gov.uk/",
+    "uri" : "https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/535024/data-security-review.pdf"
+  } ],
+  "purpose" : [ {
+    "code" : "RACONSENT",
+    "display" : "Reasonable Adjustments - Consent to record Reasonable Adjustments",
+    "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-ConsentPurpose-1"
+  } ],
+  "resourceType" : "Consent",
+  "status" : "active"
+}
+HTTP status: 400
+
+Invalid parameters.
+
+Body
+
+Content type: application/fhir+json
+
+Example
+
+Invalid NHS number for patient supplied.
+
+Copy
+{
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "value",
+    "details" : {
+      "coding" : [ {
+        "system" : "https://fhir.nhs.uk/STU3/ValueSet/Spine-ErrorOrWarningCode-1",
+        "code" : "INVALID_NHS_NUMBER",
+        "display" : "Invalid NHS number"
+      } ]
+    }
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+Outcome of an operation that does not result in a resource or bundle being returned (e.g. error, async/batch submission). There are a number of possible error codes that can be returned along with a more detailed description in the display field.
+
+
+
+resourceType
+string
+	
+
+FHIR Resource Type.
+
+Default: OperationOutcome
+
+
+issue
+array
+	
+
+List of issues that have occurred.
+
+Min items: 1
+HTTP status: 4XX
+
+Outcome of an operation that does not result in a resource or bundle being returned (e.g. error, async/batch submission). There are a number of possible error codes that can be returned along with a more detailed description in the display field. There are general outcomes:
+
+Code	Response Code	Description
+ACCESS_DENIED	401	Used when the user does not have permission for a particular request. e.g. when their ASID does not have the correct interactions attached to it.
+UNABLE_TO_CALL_SERVICE	408	For a synchronous request, the downstream domain processing has not completed within the configured timeout period.
+UNSUPPORTED_SERVICE	400	The service the user requested is an endpoint that does not exist - so is unsupported. e.g. /Patient/9999999999/Pets
+RESOURCE_NOT_FOUND	404	The resource was not found.
+INVALID_RESOURCE_ID	400	The resource ID was not valid. For example a NHS number is presented which is not a valid NHS number.
+INVALIDATED_RESOURCE	404	The resource has been invalidated so could not be returned.
+
+Update outcomes:
+
+Code	Response Code	Description
+PRECONDITION_FAILED	412	Request missing basic requirements such as If-Match header (or invalid headers).
+RESOURCE_VERSION_MISMATCH	409	The resource version has changed since your last read, so the update has been rejected.
+FORBIDDEN_UPDATE	403	The user is not permitted to update certain resources or elements - a detailed description will be added to the display. For example - updating a sensitive patient or adding a formal death notification is only permitted from certain systems.
+VALIDATION_ERROR	400	This it the "default" error thrown when no others are applicable.
+INVALID_UPDATE	400	The update was invalid - a detailed description will be added to the display.
+MISSING_VALUE	400	There was a missing value in the request. For example - a name update that is missing the surname. The missing value will be presented in the display.
+INVALID_VALUE	400	There was an invalid value in the request. For example - a name update where the surname is too long. The invalid value and field will be presented in the display.
+UNSUPPORTED_VALUE	400	There was an unsupported value in the request. The value may be valid in the schema - however it could be a legacy value that we do not allow to be set anymore. For example - setting the death notification status to 'removed'. The invalid value and field will be presented in the display.
+TOO_FEW_VALUES_SUBMITTED	400	The field in question has a minimum number of items and the user sent too few.
+TOO_MANY_VALUES_SUBMITTED	400	The field in question has a maximum number of items and the user sent too many.
+ADDITIONAL_PROPERTIES	400	The user sent additional properties within the dictionary. For example sending a patient patch and attempting to add 'pets', which is not an allowed field within the patient resource.
+
+Polling outcomes:
+
+Code	Response Code	Description
+POLLING_ID_NOT_FOUND	404	When polling the ID was not found - or it was not applicable such as a non polling ID.
+POLLING_MESSAGE_FAILURE	422	When polling an ID, a message was found to be in a failed state, so there is nothing else to be done and should be considered a failure.
+Add reasonable adjustments
+POST /Flag
+Try this API
+Overview
+
+Use this endpoint to create a Reasonable Adjustment Flag against the patient record on the NHS Spine. This will describe the adjustment that the patient needs and will either be a coded national adjustment as defined by SNOMED CT, or an adjustment which has been manually keyed by a clinician. To find out more about the different types of adjustments see How the Reasonable Adjustment Flag works.
+
+For full details of this API resource see RARecord-Flag-1.
+
+Request
+Headers
+Name	Description
+Authorization	
+
+String (^Bearer\ [[:ascii:]]+$)
+
+An OAuth 2.0 bearer token.
+
+Note: This parameter is required unless interacting with the Sandbox.
+
+Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
+
+
+NHSD-Session-URID	
+
+String
+
+The user role ID (URID) for the current session. Also known as a user role profile ID (URPID).
+
+If you are using User-restricted RESTful APIs - NHS login combined authentication and authorisation, See determin the user's role guidance. If you are using User-restricted RESTful APIs - NHS login separate authentication and authorisation, See determin the user's role guidance.
+
+This field is optional.
+
+Pattern: /^[0-9]+$/
+
+Example: 555021935107
+
+
+X-Correlation-ID	
+
+String
+
+A globally unique identifier (GUID) for the request, which we use to trace the request if you contact our helpdesk. Mirrored back in a response header. Avoid . characters.
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+
+X-Request-ID	
+
+String
+
+A globally unique identifier (GUID) for the request, which we use to de-duplicate repeated requests. Must be a universally unique identifier (UUID) (ideally version 4). If you re-send a failed request, use the same value in this header. Mirrored back in a response header.
+
+Required in all environments except sandbox.
+
+Pattern: /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/
+
+Example: 60E0B220-8136-4CA5-AE46-1D97EF59D068
+
+Body
+Required
+
+Content type: application/fhir+json
+
+Example
+
+Copy
+{
+  "resourceType" : "Flag",
+  "meta" : {
+    "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1" ]
+  },
+  "extension" : [ {
+    "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-AdjustmentCategory-1",
+    "valueCodeableConcept" : {
+      "coding" : [ {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-AdjustmentCategory-1",
+        "code" : "003",
+        "display" : "Accessible Information - requires specific contact method"
+      } ]
+    }
+  } ],
+  "status" : "active",
+  "category" : {
+    "coding" : [ {
+      "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1",
+      "code" : "NRAF",
+      "display" : "Reasonable Adjustments Flag"
+    } ]
+  },
+  "code" : {
+    "coding" : [ {
+      "system" : "https://snomed.info/sct",
+      "code" : "945951000000108",
+      "display" : "Requires information in Easyread"
+    } ]
+  },
+  "subject" : {
+    "reference" : "demographics.spineservices.nhs.uk/STU3/Patient/9693892283"
+  }
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+resourceType
+string
+	
+Example: Flag
+
+
+meta
+object
+	
+
+extension
+array
+	
+
+status
+string
+	
+Example: active
+
+
+category
+object
+	
+
+code
+object
+	
+
+subject
+object
+	
+Response
+HTTP status: 201
+
+Successful response.
+
+Headers
+Name	Description
+ETag	
+
+String
+
+Record version identifier enclosed in quotes and preceded by 'W/'. For example, W/"2".
+
+Corresponds to meta.versionId attribute in the patient resource body.
+
+When you retrieve a patient resource, you get a version number for the resource (in the ETag response header and in the versionId field in the response). You must then pass the resource's version number in any update request (in the If-Match response header) made for the patient.
+
+Pattern: /^W\/"[0-9]+"$/
+
+Example: W/"2"
+
+
+Date	
+
+Date (date-time)
+
+The current date.
+
+
+Last-Modified	
+
+Date (date-time)
+
+The date the resource was last modified.
+
+Example: 2018-07-23T11:00:00Z
+
+
+Location	
+
+String
+
+The location of the resource.
+
+Example: https://clinicals.spineservices.nhs.uk/STU3/[type]/[id]/_history/[vid]
+
+
+Content-Type	
+
+String
+
+The content type of the response.
+
+Example: application/fhir+json
+
+Body
+
+Content type: application/json
+
+Example
+
+The response from a successful request.
+
+Copy
+{
+  "category" : {
+    "coding" : [ {
+      "code" : "NRAF",
+      "display" : "National Reasonable Adjustments Flag",
+      "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1"
+    } ]
+  },
+  "code" : {
+    "coding" : [ {
+      "code" : "945951000000108",
+      "display" : "Requires visual alert",
+      "system" : "https://snomed.info/sct"
+    } ]
+  },
+  "contained" : [ {
+    "agent" : [ {
+      "onBehalfOfReference" : {
+        "display" : "WEST POTTERGATE HLTH CTR (D82106)",
+        "reference" : "https://directory.spineservices.nhs.uk/STU3/Organization/D82106"
+      },
+      "role" : [ {
+        "coding" : [ {
+          "code" : "R0050",
+          "display" : "Consultant",
+          "system" : "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"
+        } ]
+      } ],
+      "whoReference" : {
+        "display" : "Healthchecks,Morning",
+        "reference" : "https://sds.spineservices.nhs.uk/STU3/Practitioner/093895563513"
+      }
+    } ],
+    "id" : "fb23002b-86d0-43b1-8742-2f1026179ff2",
+    "meta" : {
+      "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1" ]
+    },
+    "recorded" : "2021-03-18T14:45:02+00:00",
+    "resourceType" : "Provenance",
+    "target" : [ {
+      "reference" : "Flag/9693892283.b1fe6cc0-7bf5-453c-a396-1ae97cfad72a"
+    } ]
+  }, {
+    "agent" : [ {
+      "onBehalfOfReference" : {
+        "display" : "WEST POTTERGATE HLTH CTR (D82106)",
+        "reference" : "https://directory.spineservices.nhs.uk/STU3/Organization/D82106"
+      },
+      "role" : [ {
+        "coding" : [ {
+          "code" : "R0050",
+          "display" : "Consultant",
+          "system" : "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"
+        } ]
+      } ],
+      "whoReference" : {
+        "display" : "Healthchecks,Morning",
+        "reference" : "https://sds.spineservices.nhs.uk/STU3/Practitioner/093895563513"
+      }
+    } ],
+    "id" : "fb23002b-86d0-43b1-8742-2f1026179ff2",
+    "meta" : {
+      "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1" ]
+    },
+    "recorded" : "2021-03-18T14:45:02+00:00",
+    "resourceType" : "Provenance",
+    "target" : [ {
+      "reference" : "Flag/9693892283.b1fe6cc0-7bf5-453c-a396-1ae97cfad72a"
+    } ]
+  } ],
+  "extension" : [ {
+    "extension" : [ {
+      "url" : "Created",
+      "valueReference" : {
+        "reference" : "#fb23002b-86d0-43b1-8742-2f1026179ff2"
+      }
+    } ],
+    "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1"
+  }, {
+    "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-AdjustmentCategory-1",
+    "valueCodeableConcept" : {
+      "coding" : [ {
+        "code" : "003",
+        "display" : "Accessible Information - requires specific contact method",
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-AdjustmentCategory-1"
+      } ]
+    }
+  }, {
+    "extension" : [ {
+      "url" : "Created",
+      "valueReference" : {
+        "reference" : "#fb23002b-86d0-43b1-8742-2f1026179ff2"
+      }
+    } ],
+    "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1"
+  } ],
+  "id" : "9693892283.b1fe6cc0-7bf5-453c-a396-1ae97cfad72a",
+  "meta" : {
+    "lastUpdated" : "2021-03-18T14:45:02+00:00",
+    "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1" ],
+    "versionId" : "1"
+  },
+  "resourceType" : "Flag",
+  "status" : "active",
+  "subject" : {
+    "reference" : "https://demographics.spineservices.nhs.uk/STU3/Patient/9693892283"
+  }
+}
+HTTP status: 400
+
+Invalid parameters.
+
+Body
+
+Content type: application/fhir+json
+
+Example
+
+Invalid NHS number for patient supplied.
+
+Copy
+{
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "value",
+    "details" : {
+      "coding" : [ {
+        "system" : "https://fhir.nhs.uk/STU3/ValueSet/Spine-ErrorOrWarningCode-1",
+        "code" : "INVALID_NHS_NUMBER",
+        "display" : "Invalid NHS number"
+      } ]
+    }
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+Outcome of an operation that does not result in a resource or bundle being returned (e.g. error, async/batch submission). There are a number of possible error codes that can be returned along with a more detailed description in the display field.
+
+
+
+resourceType
+string
+	
+
+FHIR Resource Type.
+
+Default: OperationOutcome
+
+
+issue
+array
+	
+
+List of issues that have occurred.
+
+Min items: 1
+HTTP status: 4XX
+
+Outcome of an operation that does not result in a resource or bundle being returned (e.g. error, async/batch submission). There are a number of possible error codes that can be returned along with a more detailed description in the display field. There are general outcomes:
+
+Code	Response Code	Description
+ACCESS_DENIED	401	Used when the user does not have permission for a particular request. e.g. when their ASID does not have the correct interactions attached to it.
+UNABLE_TO_CALL_SERVICE	408	For a synchronous request, the downstream domain processing has not completed within the configured timeout period.
+UNSUPPORTED_SERVICE	400	The service the user requested is an endpoint that does not exist - so is unsupported. e.g. /Patient/9999999999/Pets
+RESOURCE_NOT_FOUND	404	The resource was not found.
+INVALID_RESOURCE_ID	400	The resource ID was not valid. For example a NHS number is presented which is not a valid NHS number.
+INVALIDATED_RESOURCE	404	The resource has been invalidated so could not be returned.
+
+Update outcomes:
+
+Code	Response Code	Description
+PRECONDITION_FAILED	412	Request missing basic requirements such as If-Match header (or invalid headers).
+RESOURCE_VERSION_MISMATCH	409	The resource version has changed since your last read, so the update has been rejected.
+FORBIDDEN_UPDATE	403	The user is not permitted to update certain resources or elements - a detailed description will be added to the display. For example - updating a sensitive patient or adding a formal death notification is only permitted from certain systems.
+VALIDATION_ERROR	400	This it the "default" error thrown when no others are applicable.
+INVALID_UPDATE	400	The update was invalid - a detailed description will be added to the display.
+MISSING_VALUE	400	There was a missing value in the request. For example - a name update that is missing the surname. The missing value will be presented in the display.
+INVALID_VALUE	400	There was an invalid value in the request. For example - a name update where the surname is too long. The invalid value and field will be presented in the display.
+UNSUPPORTED_VALUE	400	There was an unsupported value in the request. The value may be valid in the schema - however it could be a legacy value that we do not allow to be set anymore. For example - setting the death notification status to 'removed'. The invalid value and field will be presented in the display.
+TOO_FEW_VALUES_SUBMITTED	400	The field in question has a minimum number of items and the user sent too few.
+TOO_MANY_VALUES_SUBMITTED	400	The field in question has a maximum number of items and the user sent too many.
+ADDITIONAL_PROPERTIES	400	The user sent additional properties within the dictionary. For example sending a patient patch and attempting to add 'pets', which is not an allowed field within the patient resource.
+
+Polling outcomes:
+
+Code	Response Code	Description
+POLLING_ID_NOT_FOUND	404	When polling the ID was not found - or it was not applicable such as a non polling ID.
+POLLING_MESSAGE_FAILURE	422	When polling an ID, a message was found to be in a failed state, so there is nothing else to be done and should be considered a failure.
+Add impairments
+POST /List
+Try this API
+Overview
+
+Use this endpoint to create a list of impairments held within the Reasonable Adjustment Flag stored on the NHS Spine. These impairments will likely have been captured during the discussion between the clinician and the patient or their carer. Patients may however decline to provide details of their impairments if they do not want to share them. To capture an impairment the member of staff selects an impairment type and then provides additional information using a free text field. For more details regards impairments see How the Reasonable Adjustment Flag works.
+
+For full details of this API resource see CareConnect-RARecord-List-1
+
+Request
+Headers
+Name	Description
+Authorization	
+
+String (^Bearer\ [[:ascii:]]+$)
+
+An OAuth 2.0 bearer token.
+
+Note: This parameter is required unless interacting with the Sandbox.
+
+Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
+
+
+NHSD-Session-URID	
+
+String
+
+The user role ID (URID) for the current session. Also known as a user role profile ID (URPID).
+
+If you are using User-restricted RESTful APIs - NHS login combined authentication and authorisation, See determin the user's role guidance. If you are using User-restricted RESTful APIs - NHS login separate authentication and authorisation, See determin the user's role guidance.
+
+This field is optional.
+
+Pattern: /^[0-9]+$/
+
+Example: 555021935107
+
+
+X-Correlation-ID	
+
+String
+
+A globally unique identifier (GUID) for the request, which we use to trace the request if you contact our helpdesk. Mirrored back in a response header. Avoid . characters.
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+
+X-Request-ID	
+
+String
+
+A globally unique identifier (GUID) for the request, which we use to de-duplicate repeated requests. Must be a universally unique identifier (UUID) (ideally version 4). If you re-send a failed request, use the same value in this header. Mirrored back in a response header.
+
+Required in all environments except sandbox.
+
+Pattern: /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/
+
+Example: 60E0B220-8136-4CA5-AE46-1D97EF59D068
+
+Response
+HTTP status: 201
+
+Successful response.
+
+Headers
+Name	Description
+Etag	
+
+String
+
+Record version identifier enclosed in quotes and preceded by 'W/'. For example, W/"2".
+
+Corresponds to meta.versionId attribute in the patient resource body.
+
+When you retrieve a patient resource, you get a version number for the resource (in the ETag response header and in the versionId field in the response). You must then pass the resource's version number in any update request (in the If-Match response header) made for the patient.
+
+Pattern: /^W\/"[0-9]+"$/
+
+Example: W/"2"
+
+
+Date	
+
+Date (date-time)
+
+The current date.
+
+
+Last-Modified	
+
+Date (date-time)
+
+The date the resource was last modified.
+
+Example: 2018-07-23T11:00:00Z
+
+
+Location	
+
+String
+
+The location of the resource.
+
+Example: https://clinicals.spineservices.nhs.uk/STU3/[type]/[id]/_history/[vid]
+
+
+Content-Type	
+
+String
+
+The content type of the response.
+
+Example: application/fhir+json
+
+Body
+
+Content type: application/json
+
+Example
+
+The response from a successful request.
+
+Copy
+{
+  "code" : {
+    "coding" : [ {
+      "code" : "1094391000000102",
+      "display" : "Reasonable adjustments for health and care access",
+      "system" : "http://snomed.info/sct"
+    } ]
+  },
+  "contained" : [ {
+    "category" : [ {
+      "coding" : [ {
+        "code" : "issue",
+        "display" : "Issue",
+        "system" : "https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1"
+      } ]
+    } ],
+    "clinicalStatus" : "active",
+    "code" : {
+      "coding" : [ {
+        "code" : "01",
+        "display" : "Impairment related to autism (Equality Act 2010)",
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-ConditionCode-1"
+      } ]
+    },
+    "extension" : [ {
+      "extension" : [ {
+        "url" : "created",
+        "valueReference" : {
+          "reference" : "Provenance/8ce7de6b-1307-432d-8e96-ae6a613ca3e4"
+        }
+      } ],
+      "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1"
+    } ],
+    "id" : "57f04652-6dd0-4135-a560-f9091b1b26fa",
+    "meta" : {
+      "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-Condition-1" ]
+    },
+    "note" : [ {
+      "text" : "Some notes"
+    } ],
+    "resourceType" : "Condition",
+    "subject" : {
+      "reference" : "https://demographics.spineservices.nhs.uk/STU3/Patient/9693892283"
+    }
+  }, {
+    "agent" : [ {
+      "onBehalfOfReference" : {
+        "display" : "WEST POTTERGATE HLTH CTR (D82106)",
+        "reference" : "https://directory.spineservices.nhs.uk/STU3/Organization/D82106"
+      },
+      "role" : [ {
+        "coding" : [ {
+          "code" : "R0050",
+          "display" : "Consultant",
+          "system" : "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"
+        } ]
+      } ],
+      "whoReference" : {
+        "display" : "Healthchecks,Morning",
+        "reference" : "https://sds.spineservices.nhs.uk/STU3/Practitioner/093895563513"
+      }
+    } ],
+    "id" : "8ce7de6b-1307-432d-8e96-ae6a613ca3e4",
+    "meta" : {
+      "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1" ]
+    },
+    "recorded" : "2021-03-17T16:07:48+00:00",
+    "resourceType" : "Provenance",
+    "target" : [ {
+      "reference" : "Condition/57f04652-6dd0-4135-a560-f9091b1b26fa"
+    } ]
+  } ],
+  "date" : "2018-07-23T11:00:00+00:00",
+  "entry" : [ {
+    "date" : "2021-03-17T16:07:48+00:00",
+    "deleted" : false,
+    "item" : {
+      "reference" : "#57f04652-6dd0-4135-a560-f9091b1b26fa"
+    }
+  }, {
+    "date" : "2021-03-17T16:07:48+00:00",
+    "deleted" : false,
+    "item" : {
+      "reference" : "#8ce7de6b-1307-432d-8e96-ae6a613ca3e4"
+    }
+  } ],
+  "id" : "9693892283.3d368fbe-e621-4c0b-be74-9a59b4f0e467",
+  "meta" : {
+    "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-List-1" ],
+    "versionId" : "d5cd36dc-26c4-4bfb-8938-fdd368f67839"
+  },
+  "mode" : "changes",
+  "resourceType" : "List",
+  "status" : "current",
+  "subject" : {
+    "reference" : "https://demographics.spineservices.nhs.uk/STU3/Patient/9693892283"
+  },
+  "title" : "Reasonable Adjustment List"
+}
+HTTP status: 400
+
+Invalid parameters.
+
+Body
+
+Content type: application/fhir+json
+
+Example
+
+Invalid NHS number for patient supplied.
+
+Copy
+{
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "value",
+    "details" : {
+      "coding" : [ {
+        "system" : "https://fhir.nhs.uk/STU3/ValueSet/Spine-ErrorOrWarningCode-1",
+        "code" : "INVALID_NHS_NUMBER",
+        "display" : "Invalid NHS number"
+      } ]
+    }
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+Outcome of an operation that does not result in a resource or bundle being returned (e.g. error, async/batch submission). There are a number of possible error codes that can be returned along with a more detailed description in the display field.
+
+
+
+resourceType
+string
+	
+
+FHIR Resource Type.
+
+Default: OperationOutcome
+
+
+issue
+array
+	
+
+List of issues that have occurred.
+
+Min items: 1
+HTTP status: 4XX
+
+Outcome of an operation that does not result in a resource or bundle being returned (e.g. error, async/batch submission). There are a number of possible error codes that can be returned along with a more detailed description in the display field. There are general outcomes:
+
+Code	Response Code	Description
+ACCESS_DENIED	401	Used when the user does not have permission for a particular request. e.g. when their ASID does not have the correct interactions attached to it.
+UNABLE_TO_CALL_SERVICE	408	For a synchronous request, the downstream domain processing has not completed within the configured timeout period.
+UNSUPPORTED_SERVICE	400	The service the user requested is an endpoint that does not exist - so is unsupported. e.g. /Patient/9999999999/Pets
+RESOURCE_NOT_FOUND	404	The resource was not found.
+INVALID_RESOURCE_ID	400	The resource ID was not valid. For example a NHS number is presented which is not a valid NHS number.
+INVALIDATED_RESOURCE	404	The resource has been invalidated so could not be returned.
+
+Update outcomes:
+
+Code	Response Code	Description
+PRECONDITION_FAILED	412	Request missing basic requirements such as If-Match header (or invalid headers).
+RESOURCE_VERSION_MISMATCH	409	The resource version has changed since your last read, so the update has been rejected.
+FORBIDDEN_UPDATE	403	The user is not permitted to update certain resources or elements - a detailed description will be added to the display. For example - updating a sensitive patient or adding a formal death notification is only permitted from certain systems.
+VALIDATION_ERROR	400	This it the "default" error thrown when no others are applicable.
+INVALID_UPDATE	400	The update was invalid - a detailed description will be added to the display.
+MISSING_VALUE	400	There was a missing value in the request. For example - a name update that is missing the surname. The missing value will be presented in the display.
+INVALID_VALUE	400	There was an invalid value in the request. For example - a name update where the surname is too long. The invalid value and field will be presented in the display.
+UNSUPPORTED_VALUE	400	There was an unsupported value in the request. The value may be valid in the schema - however it could be a legacy value that we do not allow to be set anymore. For example - setting the death notification status to 'removed'. The invalid value and field will be presented in the display.
+TOO_FEW_VALUES_SUBMITTED	400	The field in question has a minimum number of items and the user sent too few.
+TOO_MANY_VALUES_SUBMITTED	400	The field in question has a maximum number of items and the user sent too many.
+ADDITIONAL_PROPERTIES	400	The user sent additional properties within the dictionary. For example sending a patient patch and attempting to add 'pets', which is not an allowed field within the patient resource.
+
+Polling outcomes:
+
+Code	Response Code	Description
+POLLING_ID_NOT_FOUND	404	When polling the ID was not found - or it was not applicable such as a non polling ID.
+POLLING_MESSAGE_FAILURE	422	When polling an ID, a message was found to be in a failed state, so there is nothing else to be done and should be considered a failure.
+Get consent details
+GET /Consent
+Try this API
+Overview
+
+Use this endpoint to read details regarding the patient's consent to share a Reasonable Adjustment Flag record, as well as how this was obtained. Consent may have been given by the patient or via a 'best interest decision' under the Mental Capacity Act (2005). In some cases consent can also be obtained from a lasting power of attorney for health and welfare, or a court appointed deputy. Consent is usually obtained by a suitable member of staff discussing the Reasonable Adjustment Flag with the patient, their carer or the appropriate patient representative. The member of staff will then record the type of consent captured, along with some free text details providing more information about who provided the consent.
+
+For full details of this API resource see RARecord-Consent-1
+
+Request
+Query parameters
+Name	Description
+patient	
+
+String
+
+The patient's NHS number. The primary identifier of a patient, unique within NHS England and Wales. Always 10 digits and must be a valid NHS number.
+
+Example: 9693892283
+
+Required
+
+status	
+
+String
+
+The status of the patient resource. Active or Inactive.
+
+Example: active
+
+Required
+
+category	
+
+String
+
+The category of the resource being interacted with.
+
+Example: https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1|reasonable%20adjustments%20flag
+
+Required
+Headers
+Name	Description
+Authorization	
+
+String (^Bearer\ [[:ascii:]]+$)
+
+An OAuth 2.0 bearer token.
+
+Note: This parameter is required unless interacting with the Sandbox.
+
+Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
+
+
+NHSD-Session-URID	
+
+String
+
+The user role ID (URID) for the current session. Also known as a user role profile ID (URPID).
+
+If you are using User-restricted RESTful APIs - NHS login combined authentication and authorisation, See determin the user's role guidance. If you are using User-restricted RESTful APIs - NHS login separate authentication and authorisation, See determin the user's role guidance.
+
+This field is optional.
+
+Pattern: /^[0-9]+$/
+
+Example: 555021935107
+
+
+X-Correlation-ID	
+
+String
+
+A globally unique identifier (GUID) for the request, which we use to trace the request if you contact our helpdesk. Mirrored back in a response header. Avoid . characters.
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+
+X-Request-ID	
+
+String
+
+A globally unique identifier (GUID) for the request, which we use to de-duplicate repeated requests. Must be a universally unique identifier (UUID) (ideally version 4). If you re-send a failed request, use the same value in this header. Mirrored back in a response header.
+
+Required in all environments except sandbox.
+
+Pattern: /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/
+
+Example: 60E0B220-8136-4CA5-AE46-1D97EF59D068
+
+Response
+HTTP status: 200
+
+Successful response.
+
+Headers
+Name	Description
+Date	
+
+Date (date-time)
+
+The current date.
+
+
+Content-Type	
+
+String
+
+The content type of the response.
+
+Example: application/fhir+json
+
+Body
+
+Content type: application/json
+
+Example
+
+The response from a successful request.
+
+Copy
+{
+  "resourceType" : "Bundle",
+  "meta" : {
+    "profile" : [ "http://hl7.org/fhir/bundle" ]
+  },
+  "link" : [ {
+    "url" : "https://internet_mps/STU3/Consent?category=https%3A%2F%2Ffhir.nhs.uk%2FSTU3%2FCodeSystem%2FRARecord-FlagCategory-1%7CNRAF&status=active&patient=9693892283",
+    "relation" : "self"
+  } ],
+  "entry" : [ {
+    "resource" : {
+      "category" : [ {
+        "coding" : [ {
+          "code" : "NRAF",
+          "display" : "National Reasonable Adjustments Flag",
+          "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1"
+        } ]
+      } ],
+      "status" : "active",
+      "patient" : {
+        "reference" : "https://demographics.spineservices.nhs.uk/STU3/Patient/9693892283"
+      },
+      "extension" : [ {
+        "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-ProxyRole-1",
+        "valueCodeableConcept" : {
+          "coding" : [ {
+            "code" : "001",
+            "display" : "Patient consent",
+            "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-ProxyRole-1"
+          } ]
+        }
+      }, {
+        "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1",
+        "extension" : [ {
+          "url" : "Created",
+          "valueReference" : {
+            "reference" : "#0719ef10-346e-4378-8bf3-d878e0defbd8"
+          }
+        } ]
+      } ],
+      "resourceType" : "Consent",
+      "contained" : [ {
+        "target" : [ {
+          "reference" : "Consent/9693892283.11eccc9b-4a6f-4467-a76b-1b8a82bafd65"
+        } ],
+        "resourceType" : "Provenance",
+        "recorded" : "2021-03-17T15:52:14+00:00",
+        "agent" : [ {
+          "onBehalfOfReference" : {
+            "display" : "WEST POTTERGATE HLTH CTR (D82106)",
+            "reference" : "https://directory.spineservices.nhs.uk/STU3/Organization/D82106"
+          },
+          "whoReference" : {
+            "display" : "Healthchecks,Morning",
+            "reference" : "https://sds.spineservices.nhs.uk/STU3/Practitioner/093895563513"
+          },
+          "role" : [ {
+            "coding" : [ {
+              "code" : "R0050",
+              "display" : "Consultant",
+              "system" : "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"
+            } ]
+          } ]
+        } ],
+        "meta" : {
+          "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1" ]
+        },
+        "id" : "0719ef10-346e-4378-8bf3-d878e0defbd8"
+      } ],
+      "meta" : {
+        "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1" ],
+        "versionId" : "1",
+        "lastUpdated" : "2021-03-17T15:52:14+00:00"
+      },
+      "purpose" : [ {
+        "code" : "RACONSENT",
+        "display" : "Reasonable Adjustments - Consent to record Reasonable Adjustments",
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-ConsentPurpose-1"
+      } ],
+      "policy" : [ {
+        "uri" : "https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/535024/data-security-review.pdf",
+        "authority" : "https://www.gov.uk/"
+      } ],
+      "id" : "9693892283.11eccc9b-4a6f-4467-a76b-1b8a82bafd65"
+    },
+    "fullUrl" : "https://clinicals.spineservices.nhs.uk/STU3/Consent/9693892283.11eccc9b-4a6f-4467-a76b-1b8a82bafd65"
+  } ],
+  "total" : 1,
+  "type" : "searchset",
+  "id" : "4e7f3f62-548b-450e-9630-da271dc9d084"
+}
+HTTP status: 400
+
+Invalid parameters.
+
+Body
+
+Content type: application/fhir+json
+
+Example
+
+Invalid NHS number for patient supplied.
+
+Copy
+{
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "value",
+    "details" : {
+      "coding" : [ {
+        "system" : "https://fhir.nhs.uk/STU3/ValueSet/Spine-ErrorOrWarningCode-1",
+        "code" : "INVALID_NHS_NUMBER",
+        "display" : "Invalid NHS number"
+      } ]
+    }
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+Outcome of an operation that does not result in a resource or bundle being returned (e.g. error, async/batch submission). There are a number of possible error codes that can be returned along with a more detailed description in the display field.
+
+
+
+resourceType
+string
+	
+
+FHIR Resource Type.
+
+Default: OperationOutcome
+
+
+issue
+array
+	
+
+List of issues that have occurred.
+
+Min items: 1
+HTTP status: 4XX
+
+Outcome of an operation that does not result in a resource or bundle being returned (e.g. error, async/batch submission). There are a number of possible error codes that can be returned along with a more detailed description in the display field. There are general outcomes:
+
+Code	Response Code	Description
+ACCESS_DENIED	401	Used when the user does not have permission for a particular request. e.g. when their ASID does not have the correct interactions attached to it.
+UNABLE_TO_CALL_SERVICE	408	For a synchronous request, the downstream domain processing has not completed within the configured timeout period.
+UNSUPPORTED_SERVICE	400	The service the user requested is an endpoint that does not exist - so is unsupported. e.g. /Patient/9999999999/Pets
+RESOURCE_NOT_FOUND	404	The resource was not found.
+INVALID_RESOURCE_ID	400	The resource ID was not valid. For example a NHS number is presented which is not a valid NHS number.
+INVALIDATED_RESOURCE	404	The resource has been invalidated so could not be returned.
+
+Update outcomes:
+
+Code	Response Code	Description
+PRECONDITION_FAILED	412	Request missing basic requirements such as If-Match header (or invalid headers).
+RESOURCE_VERSION_MISMATCH	409	The resource version has changed since your last read, so the update has been rejected.
+FORBIDDEN_UPDATE	403	The user is not permitted to update certain resources or elements - a detailed description will be added to the display. For example - updating a sensitive patient or adding a formal death notification is only permitted from certain systems.
+VALIDATION_ERROR	400	This it the "default" error thrown when no others are applicable.
+INVALID_UPDATE	400	The update was invalid - a detailed description will be added to the display.
+MISSING_VALUE	400	There was a missing value in the request. For example - a name update that is missing the surname. The missing value will be presented in the display.
+INVALID_VALUE	400	There was an invalid value in the request. For example - a name update where the surname is too long. The invalid value and field will be presented in the display.
+UNSUPPORTED_VALUE	400	There was an unsupported value in the request. The value may be valid in the schema - however it could be a legacy value that we do not allow to be set anymore. For example - setting the death notification status to 'removed'. The invalid value and field will be presented in the display.
+TOO_FEW_VALUES_SUBMITTED	400	The field in question has a minimum number of items and the user sent too few.
+TOO_MANY_VALUES_SUBMITTED	400	The field in question has a maximum number of items and the user sent too many.
+ADDITIONAL_PROPERTIES	400	The user sent additional properties within the dictionary. For example sending a patient patch and attempting to add 'pets', which is not an allowed field within the patient resource.
+
+Polling outcomes:
+
+Code	Response Code	Description
+POLLING_ID_NOT_FOUND	404	When polling the ID was not found - or it was not applicable such as a non polling ID.
+POLLING_MESSAGE_FAILURE	422	When polling an ID, a message was found to be in a failed state, so there is nothing else to be done and should be considered a failure.
+Get reasonable adjustments
+GET /Flag
+Try this API
+Overview
+
+Use this endpoint to view a Reasonable Adjustment Flag against the patient record on the NHS Spine. This will describe the adjustment that the patient needs and will either be a coded national adjustment as defined by SNOMED CT, or an adjustment which has been manually keyed by a clinician. To find out more about the different types of adjustments see How the Reasonable Adjustment Flag works.
+
+For full details of this API resource see RARecord-Flag-1.
+
+Request
+Query parameters
+Name	Description
+patient	
+
+String
+
+The patient's NHS number. The primary identifier of a patient, unique within NHS England and Wales. Always 10 digits and must be a valid NHS number.
+
+Example: 9693892283
+
+Required
+
+status	
+
+String
+
+The status of the patient resource. Active or Inactive.
+
+Example: active
+
+Required
+
+category	
+
+String
+
+The category of the resource being interacted with.
+
+Example: https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1|reasonable%20adjustments%20flag
+
+Required
+Headers
+Name	Description
+Authorization	
+
+String (^Bearer\ [[:ascii:]]+$)
+
+An OAuth 2.0 bearer token.
+
+Note: This parameter is required unless interacting with the Sandbox.
+
+Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
+
+
+NHSD-Session-URID	
+
+String
+
+The user role ID (URID) for the current session. Also known as a user role profile ID (URPID).
+
+If you are using User-restricted RESTful APIs - NHS login combined authentication and authorisation, See determin the user's role guidance. If you are using User-restricted RESTful APIs - NHS login separate authentication and authorisation, See determin the user's role guidance.
+
+This field is optional.
+
+Pattern: /^[0-9]+$/
+
+Example: 555021935107
+
+
+X-Correlation-ID	
+
+String
+
+A globally unique identifier (GUID) for the request, which we use to trace the request if you contact our helpdesk. Mirrored back in a response header. Avoid . characters.
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+
+X-Request-ID	
+
+String
+
+A globally unique identifier (GUID) for the request, which we use to de-duplicate repeated requests. Must be a universally unique identifier (UUID) (ideally version 4). If you re-send a failed request, use the same value in this header. Mirrored back in a response header.
+
+Required in all environments except sandbox.
+
+Pattern: /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/
+
+Example: 60E0B220-8136-4CA5-AE46-1D97EF59D068
+
+Response
+HTTP status: 200
+
+Successful response.
+
+Headers
+Name	Description
+Date	
+
+Date (date-time)
+
+The current date.
+
+
+Content-Type	
+
+String
+
+The content type of the response.
+
+Example: application/fhir+json
+
+Body
+
+Content type: application/json
+
+Examples
+
+The response from a successful request (0 flags).
+
+Copy
+{
+  "resourceType" : "Bundle",
+  "id" : "30e9a5d5-c037-42ed-9ee4-476add4d6b43",
+  "meta" : {
+    "profile" : [ "http://hl7.org/fhir/bundle" ]
+  },
+  "type" : "searchset",
+  "total" : 0,
+  "link" : [ {
+    "relation" : "self",
+    "url" : "https://clinicals.spineservices.nhs.uk/STU3/Flag?patient=999999998&status=active&category=https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1|reasonable%20adjustments%20flag"
+  } ]
+}
+
+The response from a successful request (1 flag).
+
+Copy
+{
+  "resourceType" : "Bundle",
+  "meta" : {
+    "profile" : [ "http://hl7.org/fhir/bundle" ]
+  },
+  "link" : [ {
+    "url" : "https://internet_mps/STU3/Flag?patient=9693892283&category=https%3A%2F%2Ffhir.nhs.uk%2FSTU3%2FCodeSystem%2FRARecord-FlagCategory-1%7CNRAF&status=active",
+    "relation" : "self"
+  } ],
+  "entry" : [ {
+    "resource" : {
+      "category" : {
+        "coding" : [ {
+          "code" : "NRAF",
+          "display" : "National Reasonable Adjustments Flag",
+          "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1"
+        } ]
+      },
+      "status" : "active",
+      "code" : {
+        "coding" : [ {
+          "code" : "945951000000108",
+          "display" : "Requires visual alert",
+          "system" : "https://snomed.info/sct"
+        } ]
+      },
+      "extension" : [ {
+        "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1",
+        "extension" : [ {
+          "url" : "Created",
+          "valueReference" : {
+            "reference" : "#0719ef10-346e-4378-8bf3-d878e0defbd8"
+          }
+        } ]
+      }, {
+        "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-AdjustmentCategory-1",
+        "valueCodeableConcept" : {
+          "coding" : [ {
+            "code" : "003",
+            "display" : "Accessible Information - requires specific contact method",
+            "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-AdjustmentCategory-1"
+          } ]
+        }
+      }, {
+        "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1",
+        "extension" : [ {
+          "url" : "Created",
+          "valueReference" : {
+            "reference" : "#0719ef10-346e-4378-8bf3-d878e0defbd8"
+          }
+        } ]
+      } ],
+      "resourceType" : "Flag",
+      "contained" : [ {
+        "target" : [ {
+          "reference" : "Flag/9693892283.b1fe6cc0-7bf5-453c-a396-1ae97cfad72a"
+        } ],
+        "resourceType" : "Provenance",
+        "recorded" : "2021-03-18T14:45:02+00:00",
+        "agent" : [ {
+          "onBehalfOfReference" : {
+            "display" : "WEST POTTERGATE HLTH CTR (D82106)",
+            "reference" : "https://directory.spineservices.nhs.uk/STU3/Organization/D82106"
+          },
+          "whoReference" : {
+            "display" : "Healthchecks,Morning",
+            "reference" : "https://sds.spineservices.nhs.uk/STU3/Practitioner/093895563513"
+          },
+          "role" : [ {
+            "coding" : [ {
+              "code" : "R0050",
+              "display" : "Consultant",
+              "system" : "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"
+            } ]
+          } ]
+        } ],
+        "meta" : {
+          "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1" ]
+        },
+        "id" : "0719ef10-346e-4378-8bf3-d878e0defbd8"
+      }, {
+        "target" : [ {
+          "reference" : "Flag/9693892283.b1fe6cc0-7bf5-453c-a396-1ae97cfad72a"
+        } ],
+        "resourceType" : "Provenance",
+        "recorded" : "2021-03-18T14:45:02+00:00",
+        "agent" : [ {
+          "onBehalfOfReference" : {
+            "display" : "WEST POTTERGATE HLTH CTR (D82106)",
+            "reference" : "https://directory.spineservices.nhs.uk/STU3/Organization/D82106"
+          },
+          "whoReference" : {
+            "display" : "Healthchecks,Morning",
+            "reference" : "https://sds.spineservices.nhs.uk/STU3/Practitioner/093895563513"
+          },
+          "role" : [ {
+            "coding" : [ {
+              "code" : "R0050",
+              "display" : "Consultant",
+              "system" : "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"
+            } ]
+          } ]
+        } ],
+        "meta" : {
+          "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1" ]
+        },
+        "id" : "0719ef10-346e-4378-8bf3-d878e0defbd8"
+      } ],
+      "meta" : {
+        "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1" ],
+        "versionId" : "1",
+        "lastUpdated" : "2021-03-18T14:45:02+00:00"
+      },
+      "id" : "9693892283.b1fe6cc0-7bf5-453c-a396-1ae97cfad72a",
+      "subject" : {
+        "reference" : "https://demographics.spineservices.nhs.uk/STU3/Patient/9693892283"
+      }
+    },
+    "fullUrl" : "https://clinicals.spineservices.nhs.uk/STU3/Flag/9693892283.b1fe6cc0-7bf5-453c-a396-1ae97cfad72a"
+  } ],
+  "total" : 1,
+  "type" : "searchset",
+  "id" : "6671bd5f-5f4e-4def-992f-71f8df34b063"
+}
+
+The response from a successful request (2 flags).
+
+Copy
+{
+  "resourceType" : "Bundle",
+  "meta" : {
+    "profile" : [ "http://hl7.org/fhir/bundle" ]
+  },
+  "link" : [ {
+    "url" : "https://internet_mps/STU3/Flag?patient=9693892283&category=https%3A%2F%2Ffhir.nhs.uk%2FSTU3%2FCodeSystem%2FRARecord-FlagCategory-1%7CNRAF&status=active",
+    "relation" : "self"
+  } ],
+  "entry" : [ {
+    "resource" : {
+      "category" : {
+        "coding" : [ {
+          "code" : "NRAF",
+          "display" : "National Reasonable Adjustments Flag",
+          "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1"
+        } ]
+      },
+      "status" : "active",
+      "code" : {
+        "coding" : [ {
+          "code" : "367741000000102",
+          "display" : "Requires information verbally",
+          "system" : "https://snomed.info/sct"
+        } ]
+      },
+      "extension" : [ {
+        "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1",
+        "extension" : [ {
+          "url" : "Created",
+          "valueReference" : {
+            "reference" : "#0719ef10-346e-4378-8bf3-d878e0defbd8"
+          }
+        } ]
+      }, {
+        "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-AdjustmentCategory-1",
+        "valueCodeableConcept" : {
+          "coding" : [ {
+            "code" : "004",
+            "display" : "Accessible Information - requires specific information format",
+            "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-AdjustmentCategory-1"
+          } ]
+        }
+      }, {
+        "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1",
+        "extension" : [ {
+          "url" : "Created",
+          "valueReference" : {
+            "reference" : "#0719ef10-346e-4378-8bf3-d878e0defbd8"
+          }
+        } ]
+      } ],
+      "resourceType" : "Flag",
+      "contained" : [ {
+        "target" : [ {
+          "reference" : "Flag/9693892283.3d4b1d85-bcdb-4a1b-b423-4b3b0569ce73"
+        } ],
+        "resourceType" : "Provenance",
+        "recorded" : "2021-03-18T14:53:28+00:00",
+        "agent" : [ {
+          "onBehalfOfReference" : {
+            "display" : "WEST POTTERGATE HLTH CTR (D82106)",
+            "reference" : "https://directory.spineservices.nhs.uk/STU3/Organization/D82106"
+          },
+          "whoReference" : {
+            "display" : "Healthchecks,Morning",
+            "reference" : "https://sds.spineservices.nhs.uk/STU3/Practitioner/093895563513"
+          },
+          "role" : [ {
+            "coding" : [ {
+              "code" : "R0050",
+              "display" : "Consultant",
+              "system" : "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"
+            } ]
+          } ]
+        } ],
+        "meta" : {
+          "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1" ]
+        },
+        "id" : "0719ef10-346e-4378-8bf3-d878e0defbd8"
+      }, {
+        "target" : [ {
+          "reference" : "Flag/9693892283.3d4b1d85-bcdb-4a1b-b423-4b3b0569ce73"
+        } ],
+        "resourceType" : "Provenance",
+        "recorded" : "2021-03-18T14:53:28+00:00",
+        "agent" : [ {
+          "onBehalfOfReference" : {
+            "display" : "WEST POTTERGATE HLTH CTR (D82106)",
+            "reference" : "https://directory.spineservices.nhs.uk/STU3/Organization/D82106"
+          },
+          "whoReference" : {
+            "display" : "Healthchecks,Morning",
+            "reference" : "https://sds.spineservices.nhs.uk/STU3/Practitioner/093895563513"
+          },
+          "role" : [ {
+            "coding" : [ {
+              "code" : "R0050",
+              "display" : "Consultant",
+              "system" : "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"
+            } ]
+          } ]
+        } ],
+        "meta" : {
+          "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1" ]
+        },
+        "id" : "0719ef10-346e-4378-8bf3-d878e0defbd8"
+      } ],
+      "meta" : {
+        "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1" ],
+        "versionId" : "1",
+        "lastUpdated" : "2021-03-18T14:53:28+00:00"
+      },
+      "id" : "9693892283.3d4b1d85-bcdb-4a1b-b423-4b3b0569ce73",
+      "subject" : {
+        "reference" : "https://demographics.spineservices.nhs.uk/STU3/Patient/9693892283"
+      }
+    },
+    "fullUrl" : "https://clinicals.spineservices.nhs.uk/STU3/Flag/9693892283.3d4b1d85-bcdb-4a1b-b423-4b3b0569ce73"
+  }, {
+    "resource" : {
+      "category" : {
+        "coding" : [ {
+          "code" : "NRAF",
+          "display" : "National Reasonable Adjustments Flag",
+          "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1"
+        } ]
+      },
+      "status" : "active",
+      "code" : {
+        "coding" : [ {
+          "code" : "945951000000108",
+          "display" : "Requires visual alert",
+          "system" : "https://snomed.info/sct"
+        } ]
+      },
+      "extension" : [ {
+        "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1",
+        "extension" : [ {
+          "url" : "Created",
+          "valueReference" : {
+            "reference" : "#0719ef10-346e-4378-8bf3-d878e0defbd8"
+          }
+        } ]
+      }, {
+        "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-AdjustmentCategory-1",
+        "valueCodeableConcept" : {
+          "coding" : [ {
+            "code" : "003",
+            "display" : "Accessible Information - requires specific contact method",
+            "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-AdjustmentCategory-1"
+          } ]
+        }
+      }, {
+        "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1",
+        "extension" : [ {
+          "url" : "Created",
+          "valueReference" : {
+            "reference" : "#0719ef10-346e-4378-8bf3-d878e0defbd8"
+          }
+        } ]
+      } ],
+      "resourceType" : "Flag",
+      "contained" : [ {
+        "target" : [ {
+          "reference" : "Flag/9693892283.2df78589-8278-46a5-a7b0-40f3c769c71f"
+        } ],
+        "resourceType" : "Provenance",
+        "recorded" : "2021-03-18T14:53:37+00:00",
+        "agent" : [ {
+          "onBehalfOfReference" : {
+            "display" : "WEST POTTERGATE HLTH CTR (D82106)",
+            "reference" : "https://directory.spineservices.nhs.uk/STU3/Organization/D82106"
+          },
+          "whoReference" : {
+            "display" : "Healthchecks,Morning",
+            "reference" : "https://sds.spineservices.nhs.uk/STU3/Practitioner/093895563513"
+          },
+          "role" : [ {
+            "coding" : [ {
+              "code" : "R0050",
+              "display" : "Consultant",
+              "system" : "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"
+            } ]
+          } ]
+        } ],
+        "meta" : {
+          "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1" ]
+        },
+        "id" : "0719ef10-346e-4378-8bf3-d878e0defbd8"
+      }, {
+        "target" : [ {
+          "reference" : "Flag/9693892283.2df78589-8278-46a5-a7b0-40f3c769c71f"
+        } ],
+        "resourceType" : "Provenance",
+        "recorded" : "2021-03-18T14:53:37+00:00",
+        "agent" : [ {
+          "onBehalfOfReference" : {
+            "display" : "WEST POTTERGATE HLTH CTR (D82106)",
+            "reference" : "https://directory.spineservices.nhs.uk/STU3/Organization/D82106"
+          },
+          "whoReference" : {
+            "display" : "Healthchecks,Morning",
+            "reference" : "https://sds.spineservices.nhs.uk/STU3/Practitioner/093895563513"
+          },
+          "role" : [ {
+            "coding" : [ {
+              "code" : "R0050",
+              "display" : "Consultant",
+              "system" : "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"
+            } ]
+          } ]
+        } ],
+        "meta" : {
+          "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1" ]
+        },
+        "id" : "0719ef10-346e-4378-8bf3-d878e0defbd8"
+      } ],
+      "meta" : {
+        "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1" ],
+        "versionId" : "1",
+        "lastUpdated" : "2021-03-18T14:53:37+00:00"
+      },
+      "id" : "9693892283.2df78589-8278-46a5-a7b0-40f3c769c71f",
+      "subject" : {
+        "reference" : "https://demographics.spineservices.nhs.uk/STU3/Patient/9693892283"
+      }
+    },
+    "fullUrl" : "https://clinicals.spineservices.nhs.uk/STU3/Flag/9693892283.2df78589-8278-46a5-a7b0-40f3c769c71f"
+  } ],
+  "total" : 2,
+  "type" : "searchset",
+  "id" : "09be8716-5bef-4a68-bcba-a692669b31c6"
+}
+HTTP status: 400
+
+Invalid parameters.
+
+Body
+
+Content type: application/fhir+json
+
+Example
+
+Invalid NHS number for patient supplied.
+
+Copy
+{
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "value",
+    "details" : {
+      "coding" : [ {
+        "system" : "https://fhir.nhs.uk/STU3/ValueSet/Spine-ErrorOrWarningCode-1",
+        "code" : "INVALID_NHS_NUMBER",
+        "display" : "Invalid NHS number"
+      } ]
+    }
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+Outcome of an operation that does not result in a resource or bundle being returned (e.g. error, async/batch submission). There are a number of possible error codes that can be returned along with a more detailed description in the display field.
+
+
+
+resourceType
+string
+	
+
+FHIR Resource Type.
+
+Default: OperationOutcome
+
+
+issue
+array
+	
+
+List of issues that have occurred.
+
+Min items: 1
+HTTP status: 4XX
+
+Outcome of an operation that does not result in a resource or bundle being returned (e.g. error, async/batch submission). There are a number of possible error codes that can be returned along with a more detailed description in the display field. There are general outcomes:
+
+Code	Response Code	Description
+ACCESS_DENIED	401	Used when the user does not have permission for a particular request. e.g. when their ASID does not have the correct interactions attached to it.
+UNABLE_TO_CALL_SERVICE	408	For a synchronous request, the downstream domain processing has not completed within the configured timeout period.
+UNSUPPORTED_SERVICE	400	The service the user requested is an endpoint that does not exist - so is unsupported. e.g. /Patient/9999999999/Pets
+RESOURCE_NOT_FOUND	404	The resource was not found.
+INVALID_RESOURCE_ID	400	The resource ID was not valid. For example a NHS number is presented which is not a valid NHS number.
+INVALIDATED_RESOURCE	404	The resource has been invalidated so could not be returned.
+
+Update outcomes:
+
+Code	Response Code	Description
+PRECONDITION_FAILED	412	Request missing basic requirements such as If-Match header (or invalid headers).
+RESOURCE_VERSION_MISMATCH	409	The resource version has changed since your last read, so the update has been rejected.
+FORBIDDEN_UPDATE	403	The user is not permitted to update certain resources or elements - a detailed description will be added to the display. For example - updating a sensitive patient or adding a formal death notification is only permitted from certain systems.
+VALIDATION_ERROR	400	This it the "default" error thrown when no others are applicable.
+INVALID_UPDATE	400	The update was invalid - a detailed description will be added to the display.
+MISSING_VALUE	400	There was a missing value in the request. For example - a name update that is missing the surname. The missing value will be presented in the display.
+INVALID_VALUE	400	There was an invalid value in the request. For example - a name update where the surname is too long. The invalid value and field will be presented in the display.
+UNSUPPORTED_VALUE	400	There was an unsupported value in the request. The value may be valid in the schema - however it could be a legacy value that we do not allow to be set anymore. For example - setting the death notification status to 'removed'. The invalid value and field will be presented in the display.
+TOO_FEW_VALUES_SUBMITTED	400	The field in question has a minimum number of items and the user sent too few.
+TOO_MANY_VALUES_SUBMITTED	400	The field in question has a maximum number of items and the user sent too many.
+ADDITIONAL_PROPERTIES	400	The user sent additional properties within the dictionary. For example sending a patient patch and attempting to add 'pets', which is not an allowed field within the patient resource.
+
+Polling outcomes:
+
+Code	Response Code	Description
+POLLING_ID_NOT_FOUND	404	When polling the ID was not found - or it was not applicable such as a non polling ID.
+POLLING_MESSAGE_FAILURE	422	When polling an ID, a message was found to be in a failed state, so there is nothing else to be done and should be considered a failure.
+Get impairments
+GET /List
+Try this API
+Overview
+
+Use this endpoint to read a list of impairments held within the Reasonable Adjustment Flag information stored on the NHS Spine. These impairments will likely have been captured during the discussion between the clinician and the patient or their carer. Patients may however decline to provide details of their impairments if they do not want to share them. To capture an impairment the member of staff selects an impairment type and then provides additional information using a free text field. For more details regards impairments see How the Reasonable Adjustment Flag works.
+
+For full details of this API resource see CareConnect-RARecord-List-1
+
+Request
+Query parameters
+Name	Description
+patient	
+
+String
+
+The patient's NHS number. The primary identifier of a patient, unique within NHS England and Wales. Always 10 digits and must be a valid NHS number.
+
+Example: 9693892283
+
+Required
+
+status	
+
+String
+
+The status of the patient resource. Active or Inactive.
+
+Example: active
+
+Required
+
+code	
+
+String
+
+code
+
+Example: http://snomed.info/sct|1094391000000102&_format=json
+
+Required
+Headers
+Name	Description
+Authorization	
+
+String (^Bearer\ [[:ascii:]]+$)
+
+An OAuth 2.0 bearer token.
+
+Note: This parameter is required unless interacting with the Sandbox.
+
+Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
+
+
+NHSD-Session-URID	
+
+String
+
+The user role ID (URID) for the current session. Also known as a user role profile ID (URPID).
+
+If you are using User-restricted RESTful APIs - NHS login combined authentication and authorisation, See determin the user's role guidance. If you are using User-restricted RESTful APIs - NHS login separate authentication and authorisation, See determin the user's role guidance.
+
+This field is optional.
+
+Pattern: /^[0-9]+$/
+
+Example: 555021935107
+
+
+X-Correlation-ID	
+
+String
+
+A globally unique identifier (GUID) for the request, which we use to trace the request if you contact our helpdesk. Mirrored back in a response header. Avoid . characters.
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+
+X-Request-ID	
+
+String
+
+A globally unique identifier (GUID) for the request, which we use to de-duplicate repeated requests. Must be a universally unique identifier (UUID) (ideally version 4). If you re-send a failed request, use the same value in this header. Mirrored back in a response header.
+
+Required in all environments except sandbox.
+
+Pattern: /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/
+
+Example: 60E0B220-8136-4CA5-AE46-1D97EF59D068
+
+Response
+HTTP status: 200
+
+Successful response.
+
+Headers
+Name	Description
+Date	
+
+Date (date-time)
+
+The current date.
+
+
+Content-Type	
+
+String
+
+The content type of the response.
+
+Example: application/fhir+json
+
+Body
+
+Content type: application/json
+
+Example
+
+The response from a successful request.
+
+Copy
+{
+  "resourceType" : "Bundle",
+  "meta" : {
+    "profile" : [ "http://hl7.org/fhir/bundle" ]
+  },
+  "link" : [ {
+    "url" : "https://internet_mps/STU3/List?patient=9693892283&status=active&code=http%3A%2F%2Fsnomed.info%2Fsct%7C1094391000000102",
+    "relation" : "self"
+  } ],
+  "entry" : [ {
+    "resource" : {
+      "status" : "current",
+      "code" : {
+        "coding" : [ {
+          "code" : "1094391000000102",
+          "display" : "Reasonable adjustments for health and care access",
+          "system" : "http://snomed.info/sct"
+        } ]
+      },
+      "title" : "Reasonable Adjustment List",
+      "resourceType" : "List",
+      "contained" : [ {
+        "category" : [ {
+          "coding" : [ {
+            "code" : "issue",
+            "display" : "Issue",
+            "system" : "https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1"
+          } ]
+        } ],
+        "code" : {
+          "coding" : [ {
+            "code" : "01",
+            "display" : "Impairment related to autism (Equality Act 2010)",
+            "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-ConditionCode-1"
+          } ]
+        },
+        "extension" : [ {
+          "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1",
+          "extension" : [ {
+            "url" : "created",
+            "valueReference" : {
+              "reference" : "Provenance/8ce7de6b-1307-432d-8e96-ae6a613ca3e4"
+            }
+          } ]
+        } ],
+        "resourceType" : "Condition",
+        "clinicalStatus" : "active",
+        "note" : [ {
+          "text" : "Some notes"
+        } ],
+        "meta" : {
+          "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-Condition-1" ]
+        },
+        "id" : "57f04652-6dd0-4135-a560-f9091b1b26fa",
+        "subject" : {
+          "reference" : "https://demographics.spineservices.nhs.uk/STU3/Patient/9693892283"
+        }
+      }, {
+        "target" : [ {
+          "reference" : "Condition/57f04652-6dd0-4135-a560-f9091b1b26fa"
+        } ],
+        "resourceType" : "Provenance",
+        "recorded" : "2021-03-17T16:07:48+00:00",
+        "agent" : [ {
+          "onBehalfOfReference" : {
+            "display" : "WEST POTTERGATE HLTH CTR (D82106)",
+            "reference" : "https://directory.spineservices.nhs.uk/STU3/Organization/D82106"
+          },
+          "whoReference" : {
+            "display" : "Healthchecks,Morning",
+            "reference" : "https://sds.spineservices.nhs.uk/STU3/Practitioner/093895563513"
+          },
+          "role" : [ {
+            "coding" : [ {
+              "code" : "R0050",
+              "display" : "Consultant",
+              "system" : "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"
+            } ]
+          } ]
+        } ],
+        "meta" : {
+          "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1" ]
+        },
+        "id" : "8ce7de6b-1307-432d-8e96-ae6a613ca3e4"
+      } ],
+      "meta" : {
+        "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-List-1" ],
+        "versionId" : "d5cd36dc-26c4-4bfb-8938-fdd368f67839"
+      },
+      "mode" : "changes",
+      "date" : "2018-07-23T11:00:00+00:00",
+      "entry" : [ {
+        "date" : "2021-03-17T16:07:48+00:00",
+        "deleted" : false,
+        "item" : {
+          "reference" : "#57f04652-6dd0-4135-a560-f9091b1b26fa"
+        }
+      }, {
+        "date" : "2021-03-17T16:07:48+00:00",
+        "deleted" : false,
+        "item" : {
+          "reference" : "#8ce7de6b-1307-432d-8e96-ae6a613ca3e4"
+        }
+      } ],
+      "id" : "9693892283.3d368fbe-e621-4c0b-be74-9a59b4f0e467",
+      "subject" : {
+        "reference" : "https://demographics.spineservices.nhs.uk/STU3/Patient/9693892283"
+      }
+    },
+    "fullUrl" : "https://clinicals.spineservices.nhs.uk/STU3/List/9693892283.3d368fbe-e621-4c0b-be74-9a59b4f0e467"
+  } ],
+  "total" : 1,
+  "type" : "searchset",
+  "id" : "7af059cb-c2a6-440d-9292-bed84ecc12bd"
+}
+HTTP status: 400
+
+Invalid parameters.
+
+Body
+
+Content type: application/fhir+json
+
+Example
+
+Invalid NHS number for patient supplied.
+
+Copy
+{
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "value",
+    "details" : {
+      "coding" : [ {
+        "system" : "https://fhir.nhs.uk/STU3/ValueSet/Spine-ErrorOrWarningCode-1",
+        "code" : "INVALID_NHS_NUMBER",
+        "display" : "Invalid NHS number"
+      } ]
+    }
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+Outcome of an operation that does not result in a resource or bundle being returned (e.g. error, async/batch submission). There are a number of possible error codes that can be returned along with a more detailed description in the display field.
+
+
+
+resourceType
+string
+	
+
+FHIR Resource Type.
+
+Default: OperationOutcome
+
+
+issue
+array
+	
+
+List of issues that have occurred.
+
+Min items: 1
+HTTP status: 4XX
+
+Outcome of an operation that does not result in a resource or bundle being returned (e.g. error, async/batch submission). There are a number of possible error codes that can be returned along with a more detailed description in the display field. There are general outcomes:
+
+Code	Response Code	Description
+ACCESS_DENIED	401	Used when the user does not have permission for a particular request. e.g. when their ASID does not have the correct interactions attached to it.
+UNABLE_TO_CALL_SERVICE	408	For a synchronous request, the downstream domain processing has not completed within the configured timeout period.
+UNSUPPORTED_SERVICE	400	The service the user requested is an endpoint that does not exist - so is unsupported. e.g. /Patient/9999999999/Pets
+RESOURCE_NOT_FOUND	404	The resource was not found.
+INVALID_RESOURCE_ID	400	The resource ID was not valid. For example a NHS number is presented which is not a valid NHS number.
+INVALIDATED_RESOURCE	404	The resource has been invalidated so could not be returned.
+
+Update outcomes:
+
+Code	Response Code	Description
+PRECONDITION_FAILED	412	Request missing basic requirements such as If-Match header (or invalid headers).
+RESOURCE_VERSION_MISMATCH	409	The resource version has changed since your last read, so the update has been rejected.
+FORBIDDEN_UPDATE	403	The user is not permitted to update certain resources or elements - a detailed description will be added to the display. For example - updating a sensitive patient or adding a formal death notification is only permitted from certain systems.
+VALIDATION_ERROR	400	This it the "default" error thrown when no others are applicable.
+INVALID_UPDATE	400	The update was invalid - a detailed description will be added to the display.
+MISSING_VALUE	400	There was a missing value in the request. For example - a name update that is missing the surname. The missing value will be presented in the display.
+INVALID_VALUE	400	There was an invalid value in the request. For example - a name update where the surname is too long. The invalid value and field will be presented in the display.
+UNSUPPORTED_VALUE	400	There was an unsupported value in the request. The value may be valid in the schema - however it could be a legacy value that we do not allow to be set anymore. For example - setting the death notification status to 'removed'. The invalid value and field will be presented in the display.
+TOO_FEW_VALUES_SUBMITTED	400	The field in question has a minimum number of items and the user sent too few.
+TOO_MANY_VALUES_SUBMITTED	400	The field in question has a maximum number of items and the user sent too many.
+ADDITIONAL_PROPERTIES	400	The user sent additional properties within the dictionary. For example sending a patient patch and attempting to add 'pets', which is not an allowed field within the patient resource.
+
+Polling outcomes:
+
+Code	Response Code	Description
+POLLING_ID_NOT_FOUND	404	When polling the ID was not found - or it was not applicable such as a non polling ID.
+POLLING_MESSAGE_FAILURE	422	When polling an ID, a message was found to be in a failed state, so there is nothing else to be done and should be considered a failure.
+Remove Reasonable Adjustment Flag record
+POST /$removerarecord
+Try this API
+Overview
+
+Use this endpoint to remove a Reasonable Adjustment Flag from the NHS Spine. To remove a flag you must provide a reason for it being removed, for example the flag may have been created in error, or the flag may no longer apply to the patient.
+
+For a patient it is represented as CodeSystem-RARecord-RemovalReason-1. This triggers the system to inactivate all Reasonable Adjustment Flag resources contained within the patient record.
+
+Request
+Headers
+Name	Description
+Authorization	
+
+String (^Bearer\ [[:ascii:]]+$)
+
+An OAuth 2.0 bearer token.
+
+Note: This parameter is required unless interacting with the Sandbox.
+
+Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
+
+
+NHSD-Session-URID	
+
+String
+
+The user role ID (URID) for the current session. Also known as a user role profile ID (URPID).
+
+If you are using User-restricted RESTful APIs - NHS login combined authentication and authorisation, See determin the user's role guidance. If you are using User-restricted RESTful APIs - NHS login separate authentication and authorisation, See determin the user's role guidance.
+
+This field is optional.
+
+Pattern: /^[0-9]+$/
+
+Example: 555021935107
+
+
+X-Correlation-ID	
+
+String
+
+A globally unique identifier (GUID) for the request, which we use to trace the request if you contact our helpdesk. Mirrored back in a response header. Avoid . characters.
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+
+X-Request-ID	
+
+String
+
+A globally unique identifier (GUID) for the request, which we use to de-duplicate repeated requests. Must be a universally unique identifier (UUID) (ideally version 4). If you re-send a failed request, use the same value in this header. Mirrored back in a response header.
+
+Required in all environments except sandbox.
+
+Pattern: /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/
+
+Example: 60E0B220-8136-4CA5-AE46-1D97EF59D068
+
+
+If-Match	
+
+String
+
+Latest known version identifier enclosed in quotes preceded by W/. Send the value of the patient's ETag response header on patient retrieval when updating a patient. This is to ensure that any updates are applied against an up-to-date version of the patient resource.
+
+Pattern: /^W\/"[0-9]+"$/
+
+Example: W/"2"
+
+Required
+Body
+Required
+
+Content type: application/fhir+json
+
+Example
+
+Copy
+{
+  "resourceType" : "Parameters",
+  "parameter" : [ {
+    "name" : "removeRARecord",
+    "part" : [ {
+      "name" : "nhsNumber",
+      "valueString" : "9693892283"
+    }, {
+      "name" : "removalReason",
+      "valueCodeableConcept" : {
+        "coding" : [ {
+          "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-RemovalReason-1",
+          "code" : "DoesntApply",
+          "display" : "The Reasonable Adjustment Flag no longer applies to the patient"
+        } ]
+      }
+    }, {
+      "name" : "supportingComment",
+      "valueString" : "No longer applies"
+    } ]
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+A container for a remove RA record request.
+
+
+
+resourceType
+string
+required
+	
+
+FHIR Resource type.
+
+Allowed values: Parameters
+
+
+parameter
+array
+required
+	
+
+A parameter in a bundle resource - will either contain a resource or information about a resource (transactions and history only).
+
+Response
+HTTP status: 200
+
+Successful response.
+
+Headers
+Name	Description
+Date	
+
+Date (date-time)
+
+The current date.
+
+
+Content-Type	
+
+String
+
+The content type of the response.
+
+Example: application/fhir+json
+
+Body
+
+Content type: application/json
+
+Example
+
+The response from a successful request.
+
+Copy
+{
+  "resourceType" : "OperationOutcome",
+  "id" : "89842084-66c6-4b3c-9eb2-63d43e5ab074",
+  "meta" : {
+    "profile" : "https://fhir.nhs.uk/STU3/StructureDefinition/Spine-OperationOutcome-1"
+  },
+  "issue" : [ {
+    "severity" : "information",
+    "code" : "informational",
+    "details" : {
+      "text" : "OK"
+    }
+  } ]
+}
+HTTP status: 400
+
+Invalid parameters.
+
+Body
+
+Content type: application/fhir+json
+
+Example
+
+Invalid NHS number for patient supplied.
+
+Copy
+{
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "value",
+    "details" : {
+      "coding" : [ {
+        "system" : "https://fhir.nhs.uk/STU3/ValueSet/Spine-ErrorOrWarningCode-1",
+        "code" : "INVALID_NHS_NUMBER",
+        "display" : "Invalid NHS number"
+      } ]
+    }
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+Outcome of an operation that does not result in a resource or bundle being returned (e.g. error, async/batch submission). There are a number of possible error codes that can be returned along with a more detailed description in the display field.
+
+
+
+resourceType
+string
+	
+
+FHIR Resource Type.
+
+Default: OperationOutcome
+
+
+issue
+array
+	
+
+List of issues that have occurred.
+
+Min items: 1
+HTTP status: 4XX
+
+Outcome of an operation that does not result in a resource or bundle being returned (e.g. error, async/batch submission). There are a number of possible error codes that can be returned along with a more detailed description in the display field. There are general outcomes:
+
+Code	Response Code	Description
+ACCESS_DENIED	401	Used when the user does not have permission for a particular request. e.g. when their ASID does not have the correct interactions attached to it.
+UNABLE_TO_CALL_SERVICE	408	For a synchronous request, the downstream domain processing has not completed within the configured timeout period.
+UNSUPPORTED_SERVICE	400	The service the user requested is an endpoint that does not exist - so is unsupported. e.g. /Patient/9999999999/Pets
+RESOURCE_NOT_FOUND	404	The resource was not found.
+INVALID_RESOURCE_ID	400	The resource ID was not valid. For example a NHS number is presented which is not a valid NHS number.
+INVALIDATED_RESOURCE	404	The resource has been invalidated so could not be returned.
+
+Update outcomes:
+
+Code	Response Code	Description
+PRECONDITION_FAILED	412	Request missing basic requirements such as If-Match header (or invalid headers).
+RESOURCE_VERSION_MISMATCH	409	The resource version has changed since your last read, so the update has been rejected.
+FORBIDDEN_UPDATE	403	The user is not permitted to update certain resources or elements - a detailed description will be added to the display. For example - updating a sensitive patient or adding a formal death notification is only permitted from certain systems.
+VALIDATION_ERROR	400	This it the "default" error thrown when no others are applicable.
+INVALID_UPDATE	400	The update was invalid - a detailed description will be added to the display.
+MISSING_VALUE	400	There was a missing value in the request. For example - a name update that is missing the surname. The missing value will be presented in the display.
+INVALID_VALUE	400	There was an invalid value in the request. For example - a name update where the surname is too long. The invalid value and field will be presented in the display.
+UNSUPPORTED_VALUE	400	There was an unsupported value in the request. The value may be valid in the schema - however it could be a legacy value that we do not allow to be set anymore. For example - setting the death notification status to 'removed'. The invalid value and field will be presented in the display.
+TOO_FEW_VALUES_SUBMITTED	400	The field in question has a minimum number of items and the user sent too few.
+TOO_MANY_VALUES_SUBMITTED	400	The field in question has a maximum number of items and the user sent too many.
+ADDITIONAL_PROPERTIES	400	The user sent additional properties within the dictionary. For example sending a patient patch and attempting to add 'pets', which is not an allowed field within the patient resource.
+
+Polling outcomes:
+
+Code	Response Code	Description
+POLLING_ID_NOT_FOUND	404	When polling the ID was not found - or it was not applicable such as a non polling ID.
+POLLING_MESSAGE_FAILURE	422	When polling an ID, a message was found to be in a failed state, so there is nothing else to be done and should be considered a failure.
+Update consent details
+PUT /Consent/{consentID}
+Try this API
+Overview
+
+Use this endpoint to update details regarding the patient's consent to share a Reasonable Adjustment Flag record, as well as how this was obtained. Consent may have been given by the patient or via a 'best interest decision' under the Mental Capacity Act (2005). In some cases consent can also be obtained from a lasting power of attorney for health and welfare, or a court appointed deputy. Consent is usually obtained by a suitable member of staff discussing the Reasonable Adjustment Flag with the patient, their carer or the appropriate patient representative. The member of staff will then record the type of consent captured, along with some free text details providing more information about who provided the consent.
+
+For full details of this API resource see RARecord-Consent-1
+
+Request
+Path parameters
+Name	Description
+consentID	
+
+String
+
+The id of the record. To retrieve the consentID, you need to do a GET /Consent first. The successful response from GET /Consent endpoint contains the consentID. See the example of successful response in Get consent details section. See the example below to know the consentID from that response.
+
+Example: 9693892283.11eccc9b-4a6f-4467-a76b-1b8a82bafd65
+
+Required
+Headers
+Name	Description
+Authorization	
+
+String (^Bearer\ [[:ascii:]]+$)
+
+An OAuth 2.0 bearer token.
+
+Note: This parameter is required unless interacting with the Sandbox.
+
+Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
+
+
+NHSD-Session-URID	
+
+String
+
+The user role ID (URID) for the current session. Also known as a user role profile ID (URPID).
+
+If you are using User-restricted RESTful APIs - NHS login combined authentication and authorisation, See determin the user's role guidance. If you are using User-restricted RESTful APIs - NHS login separate authentication and authorisation, See determin the user's role guidance.
+
+This field is optional.
+
+Pattern: /^[0-9]+$/
+
+Example: 555021935107
+
+
+X-Correlation-ID	
+
+String
+
+A globally unique identifier (GUID) for the request, which we use to trace the request if you contact our helpdesk. Mirrored back in a response header. Avoid . characters.
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+
+X-Request-ID	
+
+String
+
+A globally unique identifier (GUID) for the request, which we use to de-duplicate repeated requests. Must be a universally unique identifier (UUID) (ideally version 4). If you re-send a failed request, use the same value in this header. Mirrored back in a response header.
+
+Required in all environments except sandbox.
+
+Pattern: /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/
+
+Example: 60E0B220-8136-4CA5-AE46-1D97EF59D068
+
+
+If-Match	
+
+String
+
+Latest known version identifier enclosed in quotes preceded by W/. Send the value of the patient's ETag response header on patient retrieval when updating a patient. This is to ensure that any updates are applied against an up-to-date version of the patient resource.
+
+Pattern: /^W\/"[0-9]+"$/
+
+Example: W/"2"
+
+Required
+Body
+Required
+
+Content type: application/fhir+json
+
+Example
+
+Copy
+{
+  "resourceType" : "Consent",
+  "id" : "2acb0536-0a8f-48c9-8a2f-6ee82860f186",
+  "meta" : {
+    "versionId" : "aa755bd6-2be9-4971-972a-6724879c5cb1",
+    "lastUpdated" : "2018-07-24T10:01:00+00:00",
+    "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1" ]
+  },
+  "contained" : [ {
+    "resourceType" : "Provenance",
+    "id" : "43124f67-b09d-453d-b889-a5e2e8780b9e",
+    "meta" : {
+      "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1" ]
+    },
+    "target" : [ {
+      "reference" : "Consent/2acb0536-0a8f-48c9-8a2f-6ee82860f186"
+    } ],
+    "recorded" : "2018-07-24T10:05:33+00:00",
+    "agent" : [ {
+      "role" : [ {
+        "coding" : [ {
+          "system" : "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1",
+          "code" : "R1974",
+          "display" : "Community Learning Disabilities Nurse"
+        } ]
+      } ],
+      "whoReference" : {
+        "reference" : "https://sds.spineservices.nhs.uk/STU3/Practitioner/4tr6ee6a9",
+        "display" : "Nurse N"
+      },
+      "onBehalfOfReference" : {
+        "reference" : "https://directory.spineservices.nhs.uk/STU3/Organization/a3e5i7",
+        "display" : "Some Hospital Learning Disability Support Department"
+      }
+    } ]
+  } ],
+  "extension" : [ {
+    "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1",
+    "extension" : [ {
+      "url" : "created",
+      "valueReference" : {
+        "reference" : "#43124f67-b09d-453d-b889-a5e2e8780b9e"
+      }
+    } ]
+  }, {
+    "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-RemovalReason-1",
+    "extension" : [ {
+      "url" : "removalReason",
+      "valueCodeableConcept" : {
+        "coding" : [ {
+          "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-RemovalReason-1",
+          "code" : "Error",
+          "display" : "The Reasonable Adjustment Consent was created in error"
+        } ]
+      }
+    }, {
+      "url" : "supportingComment",
+      "valueString" : "Requires Large Print rather than Easy Read"
+    } ]
+  }, {
+    "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-AdjustmentCategory-1",
+    "valueCodeableConcept" : {
+      "coding" : [ {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-AdjustmentCategories-1",
+        "code" : "comms",
+        "display" : "Communication"
+      } ]
+    }
+  } ],
+  "status" : "inactive",
+  "category" : [ {
+    "coding" : [ {
+      "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1",
+      "code" : "NRAF",
+      "display" : "Reasonable Adjustments Flag"
+    } ]
+  } ],
+  "patient" : {
+    "reference" : "demographics.spineservices.nhs.uk/STU3/Patient/9693892283"
+  },
+  "policy" : [ {
+    "authority" : "https://www.gov.uk/",
+    "uri" : "https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/535024/data-security-review.pdf"
+  } ],
+  "purpose" : [ {
+    "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-ConsentPurpose-1",
+    "code" : "RACONSENT",
+    "display" : "Reasonable Adjustments - Consent to record Reasonable Adjustments"
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+resourceType
+string
+	
+Example: Consent
+
+
+id
+string
+	
+Example: 2acb0536-0a8f-48c9-8a2f-6ee82860f186
+
+
+meta
+object
+	
+
+contained
+array
+	
+
+extension
+array
+	
+
+status
+string
+	
+Example: inactive
+
+
+category
+object
+	
+
+code
+object
+	
+
+subject
+object
+	
+Response
+HTTP status: 200
+
+Successful response.
+
+Headers
+Name	Description
+ETag	
+
+String
+
+Record version identifier enclosed in quotes and preceded by 'W/'. For example, W/"2".
+
+Corresponds to meta.versionId attribute in the patient resource body.
+
+When you retrieve a patient resource, you get a version number for the resource (in the ETag response header and in the versionId field in the response). You must then pass the resource's version number in any update request (in the If-Match response header) made for the patient.
+
+Pattern: /^W\/"[0-9]+"$/
+
+Example: W/"2"
+
+
+Date	
+
+Date (date-time)
+
+The current date.
+
+
+Last-Modified	
+
+Date (date-time)
+
+The date the resource was last modified.
+
+Example: 2018-07-23T11:00:00Z
+
+
+Content-Type	
+
+String
+
+The content type of the response.
+
+Example: application/fhir+json
+
+Body
+
+Content type: application/json
+
+Example
+
+The response from a successful request.
+
+Copy
+{
+  "category" : [ {
+    "coding" : [ {
+      "code" : "NRAF",
+      "display" : "National Reasonable Adjustments Flag",
+      "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1"
+    } ]
+  } ],
+  "contained" : [ {
+    "agent" : [ {
+      "onBehalfOfReference" : {
+        "display" : "WEST POTTERGATE HLTH CTR (D82106)",
+        "reference" : "https://directory.spineservices.nhs.uk/STU3/Organization/D82106"
+      },
+      "role" : [ {
+        "coding" : [ {
+          "code" : "R0050",
+          "display" : "Consultant",
+          "system" : "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"
+        } ]
+      } ],
+      "whoReference" : {
+        "display" : "Healthchecks,Morning",
+        "reference" : "https://sds.spineservices.nhs.uk/STU3/Practitioner/093895563513"
+      }
+    } ],
+    "id" : "fb23002b-86d0-43b1-8742-2f1026179ff2",
+    "meta" : {
+      "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1" ]
+    },
+    "recorded" : "2021-03-17T15:52:14+00:00",
+    "resourceType" : "Provenance",
+    "target" : [ {
+      "reference" : "Consent/9693892283.11eccc9b-4a6f-4467-a76b-1b8a82bafd65"
+    } ]
+  }, {
+    "agent" : [ {
+      "onBehalfOfReference" : {
+        "display" : "WEST POTTERGATE HLTH CTR (D82106)",
+        "reference" : "https://directory.spineservices.nhs.uk/STU3/Organization/D82106"
+      },
+      "role" : [ {
+        "coding" : [ {
+          "code" : "R0050",
+          "display" : "Consultant",
+          "system" : "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"
+        } ]
+      } ],
+      "whoReference" : {
+        "display" : "Healthchecks,Morning",
+        "reference" : "https://sds.spineservices.nhs.uk/STU3/Practitioner/093895563513"
+      }
+    } ],
+    "id" : "fb23002b-86d0-43b1-8742-2f1026179ff2",
+    "meta" : {
+      "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1" ]
+    },
+    "recorded" : "2021-03-17T15:52:14+00:00",
+    "resourceType" : "Provenance",
+    "target" : [ {
+      "reference" : "Consent/9693892283.11eccc9b-4a6f-4467-a76b-1b8a82bafd65"
+    } ]
+  } ],
+  "extension" : [ {
+    "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-ProxyRole-1",
+    "valueCodeableConcept" : {
+      "coding" : [ {
+        "code" : "001",
+        "display" : "Patient consent",
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-ProxyRole-1"
+      } ]
+    }
+  }, {
+    "extension" : [ {
+      "url" : "removalReason",
+      "valueCodeableConcept" : {
+        "coding" : [ {
+          "code" : "Error",
+          "display" : "The Reasonable Adjustment Flag was created in error",
+          "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-RemovalReason-1"
+        } ]
+      }
+    }, {
+      "url" : "supportingComment",
+      "valueString" : "Requires Large Print rather than Easy Read"
+    } ],
+    "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-RemovalReason-1"
+  }, {
+    "extension" : [ {
+      "url" : "Created",
+      "valueReference" : {
+        "reference" : "#fb23002b-86d0-43b1-8742-2f1026179ff2"
+      }
+    }, {
+      "url" : "Updated",
+      "valueReference" : {
+        "reference" : "fb23002b-86d0-43b1-8742-2f1026179ff2"
+      }
+    } ],
+    "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1"
+  } ],
+  "id" : "9693892283.11eccc9b-4a6f-4467-a76b-1b8a82bafd65",
+  "meta" : {
+    "lastUpdated" : "2021-03-17T15:52:14+00:00",
+    "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1" ],
+    "versionId" : "2"
+  },
+  "patient" : {
+    "reference" : "https://demographics.spineservices.nhs.uk/STU3/Patient/9693892283"
+  },
+  "policy" : [ {
+    "authority" : "https://www.gov.uk/",
+    "uri" : "https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/535024/data-security-review.pdf"
+  } ],
+  "purpose" : [ {
+    "code" : "RACONSENT",
+    "display" : "Reasonable Adjustments - Consent to record Reasonable Adjustments",
+    "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-ConsentPurpose-1"
+  } ],
+  "resourceType" : "Consent",
+  "status" : "inactive"
+}
+HTTP status: 400
+
+Invalid parameters.
+
+Body
+
+Content type: application/fhir+json
+
+Example
+
+Invalid NHS number for patient supplied.
+
+Copy
+{
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "value",
+    "details" : {
+      "coding" : [ {
+        "system" : "https://fhir.nhs.uk/STU3/ValueSet/Spine-ErrorOrWarningCode-1",
+        "code" : "INVALID_NHS_NUMBER",
+        "display" : "Invalid NHS number"
+      } ]
+    }
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+Outcome of an operation that does not result in a resource or bundle being returned (e.g. error, async/batch submission). There are a number of possible error codes that can be returned along with a more detailed description in the display field.
+
+
+
+resourceType
+string
+	
+
+FHIR Resource Type.
+
+Default: OperationOutcome
+
+
+issue
+array
+	
+
+List of issues that have occurred.
+
+Min items: 1
+HTTP status: 4XX
+
+Outcome of an operation that does not result in a resource or bundle being returned (e.g. error, async/batch submission). There are a number of possible error codes that can be returned along with a more detailed description in the display field. There are general outcomes:
+
+Code	Response Code	Description
+ACCESS_DENIED	401	Used when the user does not have permission for a particular request. e.g. when their ASID does not have the correct interactions attached to it.
+UNABLE_TO_CALL_SERVICE	408	For a synchronous request, the downstream domain processing has not completed within the configured timeout period.
+UNSUPPORTED_SERVICE	400	The service the user requested is an endpoint that does not exist - so is unsupported. e.g. /Patient/9999999999/Pets
+RESOURCE_NOT_FOUND	404	The resource was not found.
+INVALID_RESOURCE_ID	400	The resource ID was not valid. For example a NHS number is presented which is not a valid NHS number.
+INVALIDATED_RESOURCE	404	The resource has been invalidated so could not be returned.
+
+Update outcomes:
+
+Code	Response Code	Description
+PRECONDITION_FAILED	412	Request missing basic requirements such as If-Match header (or invalid headers).
+RESOURCE_VERSION_MISMATCH	409	The resource version has changed since your last read, so the update has been rejected.
+FORBIDDEN_UPDATE	403	The user is not permitted to update certain resources or elements - a detailed description will be added to the display. For example - updating a sensitive patient or adding a formal death notification is only permitted from certain systems.
+VALIDATION_ERROR	400	This it the "default" error thrown when no others are applicable.
+INVALID_UPDATE	400	The update was invalid - a detailed description will be added to the display.
+MISSING_VALUE	400	There was a missing value in the request. For example - a name update that is missing the surname. The missing value will be presented in the display.
+INVALID_VALUE	400	There was an invalid value in the request. For example - a name update where the surname is too long. The invalid value and field will be presented in the display.
+UNSUPPORTED_VALUE	400	There was an unsupported value in the request. The value may be valid in the schema - however it could be a legacy value that we do not allow to be set anymore. For example - setting the death notification status to 'removed'. The invalid value and field will be presented in the display.
+TOO_FEW_VALUES_SUBMITTED	400	The field in question has a minimum number of items and the user sent too few.
+TOO_MANY_VALUES_SUBMITTED	400	The field in question has a maximum number of items and the user sent too many.
+ADDITIONAL_PROPERTIES	400	The user sent additional properties within the dictionary. For example sending a patient patch and attempting to add 'pets', which is not an allowed field within the patient resource.
+
+Polling outcomes:
+
+Code	Response Code	Description
+POLLING_ID_NOT_FOUND	404	When polling the ID was not found - or it was not applicable such as a non polling ID.
+POLLING_MESSAGE_FAILURE	422	When polling an ID, a message was found to be in a failed state, so there is nothing else to be done and should be considered a failure.
+Update reasonable adjustments
+PUT /Flag/{flagID}
+Try this API
+Overview
+
+Use this endpoint to update a Reasonable Adjustment Flag against the patient record on the NHS Spine. This will describe the adjustment that the patient needs and will either be a coded national adjustment as defined by SNOMED CT, or an adjustment which has been manually keyed by a clinician. You can also use this endpoint to delete an existing adjustment. To find out more about the different types of adjustments see How the Reasonable Adjustment Flag works.
+
+For full details of this API resource see RARecord-Flag-1.
+
+Request
+Path parameters
+Name	Description
+flagID	
+
+String
+
+The id of the flag. To retrieve the flagID, you need to do a GET /Flag first. The successful response from GET /Flag endpoint contains the flagID. See the example of successful response in Get reasonable adjustments section. See the example below to know the flagID from that response.
+
+Example: 9693892283.b1fe6cc0-7bf5-453c-a396-1ae97cfad72a
+
+Required
+Headers
+Name	Description
+Authorization	
+
+String (^Bearer\ [[:ascii:]]+$)
+
+An OAuth 2.0 bearer token.
+
+Note: This parameter is required unless interacting with the Sandbox.
+
+Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
+
+
+NHSD-Session-URID	
+
+String
+
+The user role ID (URID) for the current session. Also known as a user role profile ID (URPID).
+
+If you are using User-restricted RESTful APIs - NHS login combined authentication and authorisation, See determin the user's role guidance. If you are using User-restricted RESTful APIs - NHS login separate authentication and authorisation, See determin the user's role guidance.
+
+This field is optional.
+
+Pattern: /^[0-9]+$/
+
+Example: 555021935107
+
+
+X-Correlation-ID	
+
+String
+
+A globally unique identifier (GUID) for the request, which we use to trace the request if you contact our helpdesk. Mirrored back in a response header. Avoid . characters.
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+
+X-Request-ID	
+
+String
+
+A globally unique identifier (GUID) for the request, which we use to de-duplicate repeated requests. Must be a universally unique identifier (UUID) (ideally version 4). If you re-send a failed request, use the same value in this header. Mirrored back in a response header.
+
+Required in all environments except sandbox.
+
+Pattern: /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/
+
+Example: 60E0B220-8136-4CA5-AE46-1D97EF59D068
+
+
+If-Match	
+
+String
+
+Latest known version identifier enclosed in quotes preceded by W/. Send the value of the patient's ETag response header on patient retrieval when updating a patient. This is to ensure that any updates are applied against an up-to-date version of the patient resource.
+
+Pattern: /^W\/"[0-9]+"$/
+
+Example: W/"2"
+
+Required
+Body
+Required
+
+Content type: application/fhir+json
+
+Example
+
+Copy
+{
+  "resourceType" : "Flag",
+  "id" : "2acb0536-0a8f-48c9-8a2f-6ee82860f186",
+  "meta" : {
+    "versionId" : "aa755bd6-2be9-4971-972a-6724879c5cb1",
+    "lastUpdated" : "2018-07-24T10:01:00+00:00",
+    "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1" ]
+  },
+  "contained" : [ {
+    "resourceType" : "Provenance",
+    "id" : "43124f67-b09d-453d-b889-a5e2e8780b9e",
+    "meta" : {
+      "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1" ]
+    },
+    "target" : [ {
+      "reference" : "Flag/2acb0536-0a8f-48c9-8a2f-6ee82860f186"
+    } ],
+    "recorded" : "2018-07-24T10:05:33+00:00",
+    "agent" : [ {
+      "role" : [ {
+        "coding" : [ {
+          "system" : "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1",
+          "code" : "R1974",
+          "display" : "Community Learning Disabilities Nurse"
+        } ]
+      } ],
+      "whoReference" : {
+        "reference" : "https://sds.spineservices.nhs.uk/STU3/Practitioner/4tr6ee6a9",
+        "display" : "Nurse N"
+      },
+      "onBehalfOfReference" : {
+        "reference" : "https://directory.spineservices.nhs.uk/STU3/Organization/a3e5i7",
+        "display" : "Some Hospital Learning Disability Support Department"
+      }
+    } ]
+  } ],
+  "extension" : [ {
+    "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1",
+    "extension" : [ {
+      "url" : "created",
+      "valueReference" : {
+        "reference" : "#43124f67-b09d-453d-b889-a5e2e8780b9e"
+      }
+    } ]
+  }, {
+    "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-RemovalReason-1",
+    "extension" : [ {
+      "url" : "removalReason",
+      "valueCodeableConcept" : {
+        "coding" : [ {
+          "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-RemovalReason-1",
+          "code" : "Error",
+          "display" : "The Reasonable Adjustment Flag was created in error"
+        } ]
+      }
+    }, {
+      "url" : "supportingComment",
+      "valueString" : "Requires Large Print rather than Easy Read"
+    } ]
+  }, {
+    "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-AdjustmentCategory-1",
+    "valueCodeableConcept" : {
+      "coding" : [ {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-AdjustmentCategory-1",
+        "code" : "003",
+        "display" : "Accessible Information - requires specific contact method"
+      } ]
+    }
+  } ],
+  "status" : "inactive",
+  "category" : {
+    "coding" : [ {
+      "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1",
+      "code" : "NRAF",
+      "display" : "Reasonable Adjustments Flag"
+    } ]
+  },
+  "code" : {
+    "coding" : [ {
+      "system" : "https://snomed.info/sct",
+      "code" : "945951000000108",
+      "display" : "Requires information in Easyread"
+    } ]
+  },
+  "subject" : {
+    "reference" : "demographics.spineservices.nhs.uk/STU3/Patient/9693892283"
+  }
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+resourceType
+string
+	
+Example: Flag
+
+
+id
+string
+	
+Example: 2acb0536-0a8f-48c9-8a2f-6ee82860f186
+
+
+meta
+object
+	
+
+contained
+array
+	
+
+extension
+array
+	
+
+status
+string
+	
+Example: inactive
+
+
+category
+object
+	
+
+code
+object
+	
+
+subject
+object
+	
+Response
+HTTP status: 200
+
+Successful response.
+
+Headers
+Name	Description
+ETag	
+
+String
+
+Record version identifier enclosed in quotes and preceded by 'W/'. For example, W/"2".
+
+Corresponds to meta.versionId attribute in the patient resource body.
+
+When you retrieve a patient resource, you get a version number for the resource (in the ETag response header and in the versionId field in the response). You must then pass the resource's version number in any update request (in the If-Match response header) made for the patient.
+
+Pattern: /^W\/"[0-9]+"$/
+
+Example: W/"2"
+
+
+Date	
+
+Date (date-time)
+
+The current date.
+
+
+Last-Modified	
+
+Date (date-time)
+
+The date the resource was last modified.
+
+Example: 2018-07-23T11:00:00Z
+
+
+Content-Type	
+
+String
+
+The content type of the response.
+
+Example: application/fhir+json
+
+Body
+
+Content type: application/json
+
+Example
+
+The response from a successful request.
+
+Copy
+{
+  "category" : {
+    "coding" : [ {
+      "code" : "NRAF",
+      "display" : "National Reasonable Adjustments Flag",
+      "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1"
+    } ]
+  },
+  "code" : {
+    "coding" : [ {
+      "code" : "945951000000108",
+      "display" : "Requires visual alert",
+      "system" : "https://snomed.info/sct"
+    } ]
+  },
+  "contained" : [ {
+    "agent" : [ {
+      "onBehalfOfReference" : {
+        "display" : "WEST POTTERGATE HLTH CTR (D82106)",
+        "reference" : "https://directory.spineservices.nhs.uk/STU3/Organization/D82106"
+      },
+      "role" : [ {
+        "coding" : [ {
+          "code" : "R0050",
+          "display" : "Consultant",
+          "system" : "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"
+        } ]
+      } ],
+      "whoReference" : {
+        "display" : "Healthchecks,Morning",
+        "reference" : "https://sds.spineservices.nhs.uk/STU3/Practitioner/093895563513"
+      }
+    } ],
+    "id" : "fb23002b-86d0-43b1-8742-2f1026179ff2",
+    "meta" : {
+      "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1" ]
+    },
+    "recorded" : "2021-03-18T14:45:02+00:00",
+    "resourceType" : "Provenance",
+    "target" : [ {
+      "reference" : "Flag/9693892283.b1fe6cc0-7bf5-453c-a396-1ae97cfad72a"
+    } ]
+  }, {
+    "agent" : [ {
+      "onBehalfOfReference" : {
+        "display" : "WEST POTTERGATE HLTH CTR (D82106)",
+        "reference" : "https://directory.spineservices.nhs.uk/STU3/Organization/D82106"
+      },
+      "role" : [ {
+        "coding" : [ {
+          "code" : "R0050",
+          "display" : "Consultant",
+          "system" : "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"
+        } ]
+      } ],
+      "whoReference" : {
+        "display" : "Healthchecks,Morning",
+        "reference" : "https://sds.spineservices.nhs.uk/STU3/Practitioner/093895563513"
+      }
+    } ],
+    "id" : "fb23002b-86d0-43b1-8742-2f1026179ff2",
+    "meta" : {
+      "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1" ]
+    },
+    "recorded" : "2021-03-18T14:45:02+00:00",
+    "resourceType" : "Provenance",
+    "target" : [ {
+      "reference" : "Flag/9693892283.b1fe6cc0-7bf5-453c-a396-1ae97cfad72a"
+    } ]
+  }, {
+    "agent" : [ {
+      "onBehalfOfReference" : {
+        "display" : "WEST POTTERGATE HLTH CTR (D82106)",
+        "reference" : "https://directory.spineservices.nhs.uk/STU3/Organization/D82106"
+      },
+      "role" : [ {
+        "coding" : [ {
+          "code" : "R0050",
+          "display" : "Consultant",
+          "system" : "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"
+        } ]
+      } ],
+      "whoReference" : {
+        "display" : "Healthchecks,Morning",
+        "reference" : "https://sds.spineservices.nhs.uk/STU3/Practitioner/093895563513"
+      }
+    } ],
+    "id" : "fb23002b-86d0-43b1-8742-2f1026179ff2",
+    "meta" : {
+      "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1" ]
+    },
+    "recorded" : "2021-03-18T14:45:02+00:00",
+    "resourceType" : "Provenance",
+    "target" : [ {
+      "reference" : "Flag/9693892283.b1fe6cc0-7bf5-453c-a396-1ae97cfad72a"
+    } ]
+  }, {
+    "agent" : [ {
+      "onBehalfOfReference" : {
+        "display" : "WEST POTTERGATE HLTH CTR (D82106)",
+        "reference" : "https://directory.spineservices.nhs.uk/STU3/Organization/D82106"
+      },
+      "role" : [ {
+        "coding" : [ {
+          "code" : "R0050",
+          "display" : "Consultant",
+          "system" : "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"
+        } ]
+      } ],
+      "whoReference" : {
+        "display" : "Healthchecks,Morning",
+        "reference" : "https://sds.spineservices.nhs.uk/STU3/Practitioner/093895563513"
+      }
+    } ],
+    "id" : "fb23002b-86d0-43b1-8742-2f1026179ff2",
+    "meta" : {
+      "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1" ]
+    },
+    "recorded" : "2021-03-18T14:45:02+00:00",
+    "resourceType" : "Provenance",
+    "target" : [ {
+      "reference" : "Flag/9693892283.b1fe6cc0-7bf5-453c-a396-1ae97cfad72a"
+    } ]
+  } ],
+  "extension" : [ {
+    "extension" : [ {
+      "url" : "Created",
+      "valueReference" : {
+        "reference" : "#fb23002b-86d0-43b1-8742-2f1026179ff2"
+      }
+    }, {
+      "url" : "Updated",
+      "valueReference" : {
+        "reference" : "fb23002b-86d0-43b1-8742-2f1026179ff2"
+      }
+    } ],
+    "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1"
+  }, {
+    "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-AdjustmentCategory-1",
+    "valueCodeableConcept" : {
+      "coding" : [ {
+        "code" : "003",
+        "display" : "Accessible Information - requires specific contact method",
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-AdjustmentCategory-1"
+      } ]
+    }
+  }, {
+    "extension" : [ {
+      "url" : "removalReason",
+      "valueCodeableConcept" : {
+        "coding" : [ {
+          "code" : "Error",
+          "display" : "The Reasonable Adjustment Flag was created in error",
+          "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-RemovalReason-1"
+        } ]
+      }
+    }, {
+      "url" : "supportingComment",
+      "valueString" : "Requires Large Print rather than Easy Read"
+    } ],
+    "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-RemovalReason-1"
+  }, {
+    "extension" : [ {
+      "url" : "Created",
+      "valueReference" : {
+        "reference" : "#fb23002b-86d0-43b1-8742-2f1026179ff2"
+      }
+    }, {
+      "url" : "Updated",
+      "valueReference" : {
+        "reference" : "fb23002b-86d0-43b1-8742-2f1026179ff2"
+      }
+    } ],
+    "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1"
+  } ],
+  "id" : "9693892283.b1fe6cc0-7bf5-453c-a396-1ae97cfad72a",
+  "meta" : {
+    "lastUpdated" : "2021-03-18T14:45:02+00:00",
+    "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1" ],
+    "versionId" : "2"
+  },
+  "resourceType" : "Flag",
+  "status" : "inactive",
+  "subject" : {
+    "reference" : "https://demographics.spineservices.nhs.uk/STU3/Patient/9693892283"
+  }
+}
+HTTP status: 400
+
+Invalid parameters.
+
+Body
+
+Content type: application/fhir+json
+
+Example
+
+Invalid NHS number for patient supplied.
+
+Copy
+{
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "value",
+    "details" : {
+      "coding" : [ {
+        "system" : "https://fhir.nhs.uk/STU3/ValueSet/Spine-ErrorOrWarningCode-1",
+        "code" : "INVALID_NHS_NUMBER",
+        "display" : "Invalid NHS number"
+      } ]
+    }
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+Outcome of an operation that does not result in a resource or bundle being returned (e.g. error, async/batch submission). There are a number of possible error codes that can be returned along with a more detailed description in the display field.
+
+
+
+resourceType
+string
+	
+
+FHIR Resource Type.
+
+Default: OperationOutcome
+
+
+issue
+array
+	
+
+List of issues that have occurred.
+
+Min items: 1
+HTTP status: 409
+
+CONFLICT
+
+Body
+
+Content type: application/json
+
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+Date
+string date-time
+	
+
+Content-Type
+string
+	
+Example: application/fhir+json
+HTTP status: 4XX
+
+Outcome of an operation that does not result in a resource or bundle being returned (e.g. error, async/batch submission). There are a number of possible error codes that can be returned along with a more detailed description in the display field. There are general outcomes:
+
+Code	Response Code	Description
+ACCESS_DENIED	401	Used when the user does not have permission for a particular request. e.g. when their ASID does not have the correct interactions attached to it.
+UNABLE_TO_CALL_SERVICE	408	For a synchronous request, the downstream domain processing has not completed within the configured timeout period.
+UNSUPPORTED_SERVICE	400	The service the user requested is an endpoint that does not exist - so is unsupported. e.g. /Patient/9999999999/Pets
+RESOURCE_NOT_FOUND	404	The resource was not found.
+INVALID_RESOURCE_ID	400	The resource ID was not valid. For example a NHS number is presented which is not a valid NHS number.
+INVALIDATED_RESOURCE	404	The resource has been invalidated so could not be returned.
+
+Update outcomes:
+
+Code	Response Code	Description
+PRECONDITION_FAILED	412	Request missing basic requirements such as If-Match header (or invalid headers).
+RESOURCE_VERSION_MISMATCH	409	The resource version has changed since your last read, so the update has been rejected.
+FORBIDDEN_UPDATE	403	The user is not permitted to update certain resources or elements - a detailed description will be added to the display. For example - updating a sensitive patient or adding a formal death notification is only permitted from certain systems.
+VALIDATION_ERROR	400	This it the "default" error thrown when no others are applicable.
+INVALID_UPDATE	400	The update was invalid - a detailed description will be added to the display.
+MISSING_VALUE	400	There was a missing value in the request. For example - a name update that is missing the surname. The missing value will be presented in the display.
+INVALID_VALUE	400	There was an invalid value in the request. For example - a name update where the surname is too long. The invalid value and field will be presented in the display.
+UNSUPPORTED_VALUE	400	There was an unsupported value in the request. The value may be valid in the schema - however it could be a legacy value that we do not allow to be set anymore. For example - setting the death notification status to 'removed'. The invalid value and field will be presented in the display.
+TOO_FEW_VALUES_SUBMITTED	400	The field in question has a minimum number of items and the user sent too few.
+TOO_MANY_VALUES_SUBMITTED	400	The field in question has a maximum number of items and the user sent too many.
+ADDITIONAL_PROPERTIES	400	The user sent additional properties within the dictionary. For example sending a patient patch and attempting to add 'pets', which is not an allowed field within the patient resource.
+
+Polling outcomes:
+
+Code	Response Code	Description
+POLLING_ID_NOT_FOUND	404	When polling the ID was not found - or it was not applicable such as a non polling ID.
+POLLING_MESSAGE_FAILURE	422	When polling an ID, a message was found to be in a failed state, so there is nothing else to be done and should be considered a failure.
+Update impairments
+PUT /List/{listID}
+Try this API
+Overview
+
+Use this endpoint to update a list of impairments held within the Reasonable Adjustment Flag information held on the NHS Spine. These impairments will likely have been captured during the discussion between the clinician and the patient or their carer. Patients may however decline to provide details of their impairments if they do not want to share them. To capture an impairment the member of staff selects an impairment type and then provides additional information using a free text field. For more details regards impairments see How the Reasonable Adjustment Flag works.
+
+For full details of this API resource see CareConnect-RARecord-List-1
+
+Request
+Path parameters
+Name	Description
+listID	
+
+String
+
+The id of the list. To retrieve the listID, you need to do a GET /List first. The successful response from GET /List endpoint contains the listID. See the example of successful response in Get impairments section. See the example below to know the listID from that response.
+
+Example: 9693892283.3d368fbe-e621-4c0b-be74-9a59b4f0e467
+
+Required
+Headers
+Name	Description
+Authorization	
+
+String (^Bearer\ [[:ascii:]]+$)
+
+An OAuth 2.0 bearer token.
+
+Note: This parameter is required unless interacting with the Sandbox.
+
+Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
+
+
+NHSD-Session-URID	
+
+String
+
+The user role ID (URID) for the current session. Also known as a user role profile ID (URPID).
+
+If you are using User-restricted RESTful APIs - NHS login combined authentication and authorisation, See determin the user's role guidance. If you are using User-restricted RESTful APIs - NHS login separate authentication and authorisation, See determin the user's role guidance.
+
+This field is optional.
+
+Pattern: /^[0-9]+$/
+
+Example: 555021935107
+
+
+X-Correlation-ID	
+
+String
+
+A globally unique identifier (GUID) for the request, which we use to trace the request if you contact our helpdesk. Mirrored back in a response header. Avoid . characters.
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+
+X-Request-ID	
+
+String
+
+A globally unique identifier (GUID) for the request, which we use to de-duplicate repeated requests. Must be a universally unique identifier (UUID) (ideally version 4). If you re-send a failed request, use the same value in this header. Mirrored back in a response header.
+
+Required in all environments except sandbox.
+
+Pattern: /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/
+
+Example: 60E0B220-8136-4CA5-AE46-1D97EF59D068
+
+
+If-Match	
+
+String
+
+Latest known version identifier enclosed in quotes preceded by W/. Send the value of the patient's ETag response header on patient retrieval when updating a patient. This is to ensure that any updates are applied against an up-to-date version of the patient resource.
+
+Pattern: /^W\/"[0-9]+"$/
+
+Example: W/"2"
+
+Required
+Response
+HTTP status: 200
+
+Successful response.
+
+Headers
+Name	Description
+ETag	
+
+String
+
+Record version identifier enclosed in quotes and preceded by 'W/'. For example, W/"2".
+
+Corresponds to meta.versionId attribute in the patient resource body.
+
+When you retrieve a patient resource, you get a version number for the resource (in the ETag response header and in the versionId field in the response). You must then pass the resource's version number in any update request (in the If-Match response header) made for the patient.
+
+Pattern: /^W\/"[0-9]+"$/
+
+Example: W/"2"
+
+
+Date	
+
+Date (date-time)
+
+The current date.
+
+
+Last-Modified	
+
+Date (date-time)
+
+The date the resource was last modified.
+
+Example: 2018-07-23T11:00:00Z
+
+
+Content-Type	
+
+String
+
+The content type of the response.
+
+Example: application/fhir+json
+
+Body
+
+Content type: application/json
+
+Example
+
+The response from a successful request.
+
+Copy
+{
+  "code" : {
+    "coding" : [ {
+      "code" : "1094391000000102",
+      "display" : "Reasonable adjustments for health and care access",
+      "system" : "http://snomed.info/sct"
+    } ]
+  },
+  "contained" : [ {
+    "category" : [ {
+      "coding" : [ {
+        "code" : "issue",
+        "display" : "Issue",
+        "system" : "https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1"
+      } ]
+    } ],
+    "clinicalStatus" : "active",
+    "code" : {
+      "coding" : [ {
+        "code" : "03",
+        "display" : "Impairment related to dementia (Equality Act 2010)",
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-ConditionCode-1"
+      } ]
+    },
+    "extension" : [ {
+      "extension" : [ {
+        "url" : "created",
+        "valueReference" : {
+          "reference" : "Provenance/8ce7de6b-1307-432d-8e96-ae6a613ca3e4"
+        }
+      } ],
+      "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1"
+    } ],
+    "id" : "dbdfb9a6-6f75-42e4-9bd8-63c6f83cfceb",
+    "meta" : {
+      "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-Condition-1" ]
+    },
+    "note" : [ {
+      "text" : "Some notes"
+    } ],
+    "resourceType" : "Condition",
+    "subject" : {
+      "reference" : "https://demographics.spineservices.nhs.uk/STU3/Patient/9693892283"
+    }
+  }, {
+    "agent" : [ {
+      "onBehalfOfReference" : {
+        "display" : "WEST POTTERGATE HLTH CTR (D82106)",
+        "reference" : "https://directory.spineservices.nhs.uk/STU3/Organization/D82106"
+      },
+      "role" : [ {
+        "coding" : [ {
+          "code" : "R0050",
+          "display" : "Consultant",
+          "system" : "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"
+        } ]
+      } ],
+      "whoReference" : {
+        "display" : "Healthchecks,Morning",
+        "reference" : "https://sds.spineservices.nhs.uk/STU3/Practitioner/093895563513"
+      }
+    } ],
+    "id" : "8ce7de6b-1307-432d-8e96-ae6a613ca3e4",
+    "meta" : {
+      "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1" ]
+    },
+    "recorded" : "2021-03-17T16:11:38+00:00",
+    "resourceType" : "Provenance",
+    "target" : [ {
+      "reference" : "Condition/dbdfb9a6-6f75-42e4-9bd8-63c6f83cfceb"
+    } ]
+  } ],
+  "date" : "2018-07-23T11:00:00+00:00",
+  "entry" : [ {
+    "date" : "2021-03-17T16:11:38+00:00",
+    "deleted" : false,
+    "item" : {
+      "reference" : "#dbdfb9a6-6f75-42e4-9bd8-63c6f83cfceb"
+    }
+  }, {
+    "date" : "2021-03-17T16:11:38+00:00",
+    "deleted" : false,
+    "item" : {
+      "reference" : "#8ce7de6b-1307-432d-8e96-ae6a613ca3e4"
+    }
+  } ],
+  "id" : "9693892283.3d368fbe-e621-4c0b-be74-9a59b4f0e467",
+  "meta" : {
+    "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-List-1" ],
+    "versionId" : "cb528c60-9d64-43a2-a34c-88d53877d867"
+  },
+  "mode" : "changes",
+  "resourceType" : "List",
+  "status" : "current",
+  "subject" : {
+    "reference" : "https://demographics.spineservices.nhs.uk/STU3/Patient/9693892283"
+  },
+  "title" : "Reasonable Adjustment List"
+}
+HTTP status: 400
+
+Invalid parameters.
+
+Body
+
+Content type: application/fhir+json
+
+Example
+
+Invalid NHS number for patient supplied.
+
+Copy
+{
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "value",
+    "details" : {
+      "coding" : [ {
+        "system" : "https://fhir.nhs.uk/STU3/ValueSet/Spine-ErrorOrWarningCode-1",
+        "code" : "INVALID_NHS_NUMBER",
+        "display" : "Invalid NHS number"
+      } ]
+    }
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+Outcome of an operation that does not result in a resource or bundle being returned (e.g. error, async/batch submission). There are a number of possible error codes that can be returned along with a more detailed description in the display field.
+
+
+
+resourceType
+string
+	
+
+FHIR Resource Type.
+
+Default: OperationOutcome
+
+
+issue
+array
+	
+
+List of issues that have occurred.
+
+Min items: 1
+HTTP status: 409
+
+CONFLICT
+
+Body
+
+Content type: application/json
+
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+Date
+string date-time
+	
+
+Content-Type
+string
+	
+Example: application/fhir+json
+HTTP status: 4XX
+
+Outcome of an operation that does not result in a resource or bundle being returned (e.g. error, async/batch submission). There are a number of possible error codes that can be returned along with a more detailed description in the display field. There are general outcomes:
+
+Code	Response Code	Description
+ACCESS_DENIED	401	Used when the user does not have permission for a particular request. e.g. when their ASID does not have the correct interactions attached to it.
+UNABLE_TO_CALL_SERVICE	408	For a synchronous request, the downstream domain processing has not completed within the configured timeout period.
+UNSUPPORTED_SERVICE	400	The service the user requested is an endpoint that does not exist - so is unsupported. e.g. /Patient/9999999999/Pets
+RESOURCE_NOT_FOUND	404	The resource was not found.
+INVALID_RESOURCE_ID	400	The resource ID was not valid. For example a NHS number is presented which is not a valid NHS number.
+INVALIDATED_RESOURCE	404	The resource has been invalidated so could not be returned.
+
+Update outcomes:
+
+Code	Response Code	Description
+PRECONDITION_FAILED	412	Request missing basic requirements such as If-Match header (or invalid headers).
+RESOURCE_VERSION_MISMATCH	409	The resource version has changed since your last read, so the update has been rejected.
+FORBIDDEN_UPDATE	403	The user is not permitted to update certain resources or elements - a detailed description will be added to the display. For example - updating a sensitive patient or adding a formal death notification is only permitted from certain systems.
+VALIDATION_ERROR	400	This it the "default" error thrown when no others are applicable.
+INVALID_UPDATE	400	The update was invalid - a detailed description will be added to the display.
+MISSING_VALUE	400	There was a missing value in the request. For example - a name update that is missing the surname. The missing value will be presented in the display.
+INVALID_VALUE	400	There was an invalid value in the request. For example - a name update where the surname is too long. The invalid value and field will be presented in the display.
+UNSUPPORTED_VALUE	400	There was an unsupported value in the request. The value may be valid in the schema - however it could be a legacy value that we do not allow to be set anymore. For example - setting the death notification status to 'removed'. The invalid value and field will be presented in the display.
+TOO_FEW_VALUES_SUBMITTED	400	The field in question has a minimum number of items and the user sent too few.
+TOO_MANY_VALUES_SUBMITTED	400	The field in question has a maximum number of items and the user sent too many.
+ADDITIONAL_PROPERTIES	400	The user sent additional properties within the dictionary. For example sending a patient patch and attempting to add 'pets', which is not an allowed field within the patient resource.
+
+Polling outcomes:
+
+Code	Response Code	Description
+POLLING_ID_NOT_FOUND	404	When polling the ID was not found - or it was not applicable such as a non polling ID.
+POLLING_MESSAGE_FAILURE	422	When polling an ID, a message was found to be in a failed state, so there is nothing else to be done and should be considered a failure.
