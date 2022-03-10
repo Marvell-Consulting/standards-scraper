@@ -59,7 +59,8 @@ describe('standards-scraper', () => {
         await browser.url(standard.documentation_link);
         await browser.pause(2000);
         const hidden = await browser.$$(hiddenElementSelector);
-        const imgComparison = await browser.checkElement(browser.$(contentSelectors[host]), standard.name, {
+        const contentElement = await browser.$(contentSelectors[host]);
+        const imgComparison = await browser.checkElement(contentElement, standard.name, {
           hideScrollBars: true,
           hideElements: [
             ...hidden
