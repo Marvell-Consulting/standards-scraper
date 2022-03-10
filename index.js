@@ -55,19 +55,27 @@ describe('standards-scraper', () => {
         }
       }
       try {
+        let imgComparison = 0;
         await browser.reloadSession();
         await browser.url(standard.documentation_link);
         await browser.pause(2000);
         const hidden = await browser.$$(hiddenElementSelector);
         const contentElement = await browser.$(contentSelectors[host]);
-        const imgComparison = await browser.checkElement(contentElement, standard.name, {
-          hideScrollBars: true,
-          hideElements: [
-            ...hidden
-          ]
-        });
-        const content = await browser.$(contentSelectors[host]);
-        const text = await content.getText();
+        try {
+          imgComparison = await browser.checkElement(contentElement, standard.name, {
+            hideScrollBars: true,
+            hideElements: [
+              ...hidden
+            ]
+          });
+        } catch (e) {
+          console.error(`Could not perform image comparison on standard: ${name}`);
+          console.error('Performaing text-only comparison');
+          console.error(standard.documentation_link);
+          console.error(e.message);
+        }
+
+        const text = await contentElement.getText();
 
         if (imgComparison !== 0 || text !== baselineText) {
           hasChanged++;
