@@ -256,4 +256,4 @@ Hazard log
 
 The GP Connect Access Record: Structured generic hazard log shows you the clinical risks of using GP Connect functionality through a consumer system. Use it to identify the clinical risks of consuming clinical data and presenting it in your system, and record these in your own system-specific hazard log. If necessary, take mitigating action to ensure clinical safety.
 
-Last edited: 7 February 2022 11:25 am
+Last edited: 11 March 2022 10:12 am
