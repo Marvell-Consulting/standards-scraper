@@ -5,15 +5,21 @@ Submit 111 or 999 call triage data for quality monitoring purposes, following an
 Page contents
 Top of page
 Overview
+Who can use this API
+Related APIs
 API status
 Service level
 Technology
+Network access
+Security and authorisation
+Environments and testing
+Onboarding
 Interactions
 Overview
 
 Use this API to submit 111 or 999 call triage data to us for quality monitoring purposes, following an NHS Pathways patient phone assessment.
 
-As a 111 and 999 telephony provider's host system developer, you must submit triage data to us in real time following an NHS Pathways patient phone assessment. This is to comply with the Continuous Quality Improvement (CQI) requirement of the Pathways licence agreement.
+As a 111 or 999 telephony provider's host system developer, you must submit triage data to us in real time following an NHS Pathways patient phone assessment. This is to comply with the Continuous Quality Improvement (CQI) requirement of the Pathways licence agreement.
 
 Providers and their regional commissioning groups can also log in to view this data using the Intelligent Data Tool (IDT) dashboard.
 
@@ -21,6 +27,16 @@ Because of the dashboard name, this API is sometimes referred to as the Intelli
 
 You need a valid account to use this API to submit data.
 
+Who can use this API
+
+This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. You must do this before you can go live (see ‘Onboarding’ below).
+
+Related APIs
+
+The following standards are related to this API:
+
+Clinical Decision Support API standards - use these API standards to support the triage and onward referral of patients who are interacting with Urgent and Emergency Care services, such as NHS 111 or 999
+NHS 111 API standard - use this API standard for point-to-point messaging to share information between NHS 111 or 999 and other organisations, such as GPs and ambulance services, when a patient interacts with NHS 111 or 999
 API status
 
 This API is stable.
@@ -37,10 +53,51 @@ This API is a REST API.
 
 For more details, see Basic REST.
 
+Network access
+
+This API is available on the internet  and, indirectly, on the Health and Social Care Network (HSCN).
+
+For more details see Network access for APIs.
+
+Security and authorisation
+
+This API is application-restricted, meaning:
+
+the calling application is authenticated - we do care who it is
+
+the end user is not authenticated - we do not verify who it is or whether they are present
+
+In particular, it uses TLS Mutual Authentication (TLS-MA).
+
+This API is only for use when the end user is a healthcare worker, not a patient.
+
+In addition, we require calling applications to:
+
+authenticate end users locally with a minimum of user ID and password
+
+use national role-based access control (RBAC) locally to control end user access to the patient data
+
+keep an audit trail locally of all accesses to patient data by end users
+
+Environments and testing
+Environment	Base URL
+User Acceptance Testing	
+
+https://cqiuat.pathwaysdos.nhs.uk/api/v1/cqiCase
+
+
+Production	https://cqilive.pathwaysdos.nhs.uk/api/v1/cqiCase
+
+ 
+
+Onboarding
+
+You need to get your software approved by us before it can go live with this API. We call this onboarding. The onboarding process can sometimes be quite long, so it’s worth planning well ahead. To onboard for this API, contact us.
+
 Interactions
 
 For a full list of interactions for this API, and to obtain a user account, contact a member of the NHS Pathways technical team at pathwaysidtreports@nhs.net.
 
 For more context, see the Intelligent Data Tool (IDT) web service.
 
-Last edited: 1 February 2022 11:41 am
+Last edited: 22 March 2022 9:00 am

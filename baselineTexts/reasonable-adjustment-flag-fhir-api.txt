@@ -7,7 +7,7 @@ Top of page
 Overview
 Who can use this API
 Related APIs
-API Status and Roadmap
+API Status and roadmap
 Technology
 Network Access
 Security and authorisation
@@ -69,7 +69,7 @@ Child Protection Information Sharing (CP-IS) - HL7 V3 API - use this API to prov
 
 National Record Locator (NRL) (FHIR) API - use this API to locate and share patient records held within local health and social care systems.
 
-API Status and Roadmap
+API Status and roadmap
 
 This API is in alpha - expect further breaking changes.
 

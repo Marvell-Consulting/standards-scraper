@@ -239,7 +239,7 @@ You need to get your software approved by us before it can go live with this API
 
 New applications - after 9 December 2021
 
-This API uses our online digital onboarding process.
+This API uses our online digital onboarding process. As part of this process, you need to demonstrate your technical conformance to the requirements for this API. For more details, see PDS FHIR API technical conformance.
 
 To get started, send us an email at api.management@nhs.net.
 

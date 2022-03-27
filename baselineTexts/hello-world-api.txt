@@ -112,6 +112,16 @@ Overview
 
 Use this endpoint alongside our application-restricted REST API tutorial to learn how to connect to our APIs.
 
+Request
+Headers
+Name	Description
+apikey	
+
+String
+
+API key to authenticate with. Use a valid value for the Sandbox environment.
+
+Required
 Response
 HTTP status: 200
 
@@ -159,6 +169,18 @@ Overview
 
 Use this endpoint alongside our user-restricted REST API tutorial to learn how to connect to our APIs.
 
+Request
+Headers
+Name	Description
+Authorization	
+
+String (^Bearer\ [[:ascii:]]+$)
+
+An OAuth 2.0 bearer token.
+
+Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
+
+Required
 Response
 HTTP status: 200
 

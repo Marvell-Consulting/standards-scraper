@@ -10,7 +10,6 @@ Prerequisites
 Related APIs
 API status and roadmap
 Service level
-Service level
 Technology
 Network access
 Environments and testing
@@ -83,12 +82,6 @@ To see our roadmap, or to suggest, comment or vote on features for this API, see
 Service level
 
 This API is a silver service, meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding Bank Holidays.
-
-For more details, see service levels.
-
-Service level
-
-This API is a silver service, meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
 
 For more details, see service levels.
 

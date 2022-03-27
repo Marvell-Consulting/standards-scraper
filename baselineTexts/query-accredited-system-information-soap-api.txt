@@ -7,7 +7,7 @@ Top of page
 Overview
 Who can use this API
 Related APIs
-API status
+API status and roadmap
 Service level
 Technology
 Network access
@@ -43,7 +43,7 @@ The following APIs are related to this one:
 
 Spine Directory Service - LDAP API - access details of organisations, people and systems registered in the Spine Directory Service (SDS)
 Spine Directory Service - FHIR API - an internet-facing, FHIR-conformant API which might be a better way to access SDS for some use cases
-API status
+API status and roadmap
 
 This API is stable.
 
@@ -92,4 +92,4 @@ use internal lookup tables to provide compatible interactions where a message tr
 
 The current implementation of the QASI API removes all these capabilities and now only provides exact matches.
 
-Last edited: 15 February 2022 4:08 pm
+Last edited: 25 March 2022 12:03 pm

@@ -111,8 +111,8 @@ Development	HSCN	https://msg.dev.spine2.ncrs.nhs.uk/
 Integration	HSCN	https://msg.int.spine2.ncrs.nhs.uk/
 Integration	Internet	https://msg.intspineservices.nhs.uk/
 Deployment	HSCN	https://msg.dep.spine2.ncrs.nhs.uk/
-Production	HSCN	To be supplied
-Production	Internet	To be supplied
+Production	HSCN	Contact us
+Production	Internet	Contact us
 
 The  base URL for the publishing and subscribing interactions are the same, but the path is different, for example:
 
@@ -145,4 +145,4 @@ For a full list of interactions for this API, see Publish an Event Message and 
 
 For details on the general structure of the interactions, see FHIR.
 
-Last edited: 21 January 2022 3:12 pm
+Last edited: 15 March 2022 11:24 am
