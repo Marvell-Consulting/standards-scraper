@@ -19,16 +19,7 @@ The FHIR Messaging components were developed by NHS Digital and use CareConnect�
 For further information, contact the ITK conformance team.
 
 API standards
-Year 
-	
-Name
-	
-Version
-	
-Status & Notes
-	
-Links
-
+Year 	Name	Version	Status & Notes	Links
 
 
 2022
@@ -79,4 +70,4 @@ public beta and earlier
 
  
 
-Last edited: 27 January 2022 12:26 pm
+Last edited: 16 March 2022 6:01 pm

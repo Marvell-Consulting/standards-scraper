@@ -7,7 +7,7 @@ Top of page
 Overview
 Who can use this API
 Related APIs
-API status
+API status and roadmap
 Service level
 Technology
 Network access
@@ -67,7 +67,7 @@ The following APIs are also related to this API:
 
 Organisation Data Service - FHIR API - use this to get full details for the organisations related to the patient, such as their registered GP or nominated pharmacy.
 Organisation Data Service - ORD API - use this to access a searchable national repository of NHS Organisation Reference Data using an ORD interface.
-API status
+API status and roadmap
 
 As of 14 October 2021, this API is deprecated, meaning:
 
@@ -140,4 +140,4 @@ PDS Mini Services Domain Message Specification - V1.1 Final
 
 ZIP 1 MB
 
-Last edited: 15 February 2022 4:05 pm
+Last edited: 25 March 2022 12:00 pm

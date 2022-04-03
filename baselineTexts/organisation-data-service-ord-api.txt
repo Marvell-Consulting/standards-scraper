@@ -16,6 +16,10 @@ Environments and testing
 Onboarding
 Interactions
 
+Possible API outage - 4 April 2022
+
+Expected outage to be 1 to 2 minutes between 1pm and 4pm.
+
 Rate limits
 
 This API is not designed for high volume usage - to ensure a good level of service you should aim to keep usage below 5 requests per second.
@@ -159,4 +163,4 @@ Record classes	https://directory.spineservices.nhs.uk/ORD/2-0-0/recordclasses/<R
 
 For details on the general structure of the interactions, see Organisation Data Service: Guidance for developers.
 
-Last edited: 15 February 2022 4:00 pm
+Last edited: 25 March 2022 4:10 pm

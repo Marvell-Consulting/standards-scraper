@@ -5,30 +5,59 @@ Retrieve terminologies and classifications from the NHS Digital Terminology Serv
 Page contents
 Top of page
 Overview
+Who can use this API
+Related APIs
 API status
 Service level
 Technology
+Network access
+Security and authorisation
+Environments and testing
+Onboarding
 Interactions
 Overview
 
-Use this API to retrieve content from the NHS Digital Terminology Server. The content is in the form of a syndicated feed of terminology and classifications in a machine readable, FHIR-compliant terminology module format.
+Use this API to retrieve content from the NHS Digital Terminology Server. The content is in the form of a syndicated feed of terminology and classifications in a machine-readable, FHIR-compliant terminology module format.
 
-The feed includes:
+The feed includes:
 
 international terminologies and classifications - such as SNOMED-CT and ICD-10
+
 national terminologies - such as NHS Data Model and Dictionary codes
 
-This content can be syndicated across a group of terminology servers. You can also share your own terminologies with others.
+This content can be syndicated across a group of terminology servers. You can also share your own terminologies with others.
 
 As well as an API, there are a number of terminology browsing tools available.
 
-Some content in the NHS Digital Terminology Server is freely available for read access, such as Data Dictionary. Other content is subject to access controls appropriate to the license, such as SNOMED CT.
+Some content in the NHS Digital Terminology Server is freely available for read access, such as Data Dictionary. Other content is subject to access controls appropriate to the license, such as SNOMED CT.
 
 To see what terminologies and classifications you can retrieve, see Content in the NHS Digital Terminology Server.
 
 For more information, see Terminology servers.
 
-If you're looking for less functionality from quicker, simpler tabular data sources then take a look at our Data Registers Service - REST API.
+If you're looking for less functionality from quicker, simpler tabular data sources then take a look at our Data Registers Service - REST API.
+
+Who can use this API
+
+The Terminology Server is for:
+
+providers of health and care services
+
+commissioners of health and care services
+
+population health managers
+
+suppliers in the health and care market
+
+researchers and analysts
+
+Examples of use cases can be found here.
+
+Related APIs
+
+The following APIs are related to this one:
+
+Data Registers Service - REST API
 
 API status
 
@@ -40,14 +69,40 @@ This API is a platinum service, meaning it is operational and supported 24 x 7 x
 
 For more details, see service levels.
 
+Planned releases, issues, and support arrangements can be found here.  The Service Navigation and Status can be found here.  
+
 Technology
 
 This API is a FHIR API.
 
 For more details, see FHIR.
 
+Network access
+
+This API is available on the internet and, indirectly, on the Health and Social Care Network (HSCN).
+
+For more details, see Network access for APIs.
+
+Security and authorisation
+
+Individual users can access content on the NHS Digital Terminology Server with a registered account (authenticated) or without a registered account (non-authenticated).
+
+You can find guidance on registering an account as an individual in our account management guide.
+
+To access the Terminology Server from a software application or to syndicate content to your own terminology server, rather than access via a browser, you need a system-to-system account.
+
+Environments and testing
+
+There are various environments that make up the Terminology Server, and further details can be found here.
+
+A library of example API queries based on the content contained in the Terminology Server can be found in our GitHub repository.
+
+Onboarding
+
+The Terminology Server website supports self-service onboarding, including example uses, account management, training and information hub, quick start guide and Github repository.
+
 Interactions
 
 For a full list of interactions for this API, see API endpoints.
 
-Last edited: 3 February 2022 11:30 am
+Last edited: 29 March 2022 12:31 pm

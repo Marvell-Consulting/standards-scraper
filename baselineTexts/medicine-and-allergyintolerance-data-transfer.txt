@@ -6,7 +6,7 @@ Page contents
 Top of page
 About this information standard
 Current release
-Change control
+Updates
 About this information standard
 
 NHSX has commissioned NHS Digital to produce an Information Standard which puts in place definitions that are to be used when a health professional sends or receives patient medication and allergy/intolerance information, by computer system, between care locations.
@@ -37,8 +37,10 @@ NHS Digital: Interoperable Medicines
 
 FHIR UK Core:  Published versions of the UK Core Implementation Guide
 
-Change control
+Updates
 
-Update: 9 November 2021: Publication of Corrigendum in respect of the Initial Standard, supported by changes to the Requirements Specification (uplifted to document version 1.1). See Corrigendum above for full details.
+21 March 2022: A minor editorial change has been made to the Corrigendum and Requirements Specification. This update relates to a correction to the hyperlink for the 'Self-assurance guidance' in each document. No other changes to the documents have been made. 
 
-Last edited: 9 November 2021 2:24 pm
+9 November 2021: Publication of Corrigendum in respect of the Initial Standard, supported by changes to the Requirements Specification (uplifted to document version 1.1). See Corrigendum above for full details.
+
+Last edited: 21 March 2022 3:24 pm

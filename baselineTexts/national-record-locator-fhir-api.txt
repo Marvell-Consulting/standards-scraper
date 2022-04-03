@@ -7,7 +7,7 @@ Top of page
 Overview
 Who can use this API
 Related APIs
-API status
+API status and roadmap
 Service level
 Technology
 Network access
@@ -18,6 +18,8 @@ Interactions
 Overview
 
 Use this API to locate and access patient information shared by other healthcare organisations, to support the direct care of those patients, using the National Record Locator (NRL).
+
+For example, an ambulance service treating a patient could access their "mental health crisis plan" (if they have one) as a PDF document directly from their mental health service provider. This would help a patient get more appropriate care from the emergency services.
 
  
 
@@ -51,10 +53,17 @@ Related APIs
 
 The following APIs are related to this one:
 
-National Event Management Service - FHIR API - use this to publish and subscribe to patient-centric healthcare event messages 
-API status
+National Event Management Service - FHIR API - use this to publish and subscribe to patient-centric healthcare event messages as an alternative to NRL if NEMS supports your use case
+Spine Directory Service - LDAP API - use this to look up ASIDs of provider systems before retrieving information via SSP
+API status and roadmap
 
 This API is in beta.
+
+Roadmap
+
+To see our roadmap, or to suggest, comment or vote on features for this API, see our interactive product backlog. If you have any other queries, please contact us.
+
+ 
 
 Service level
 
@@ -112,8 +121,8 @@ integration (INT)
 The NRL base URLs are as follows:
 
 Environment	Network availability	URL
-Opentest	OpenVPN	To be confirmed
-Development	HSCN	To be confirmed
+Opentest	OpenVPN	Contact us
+Development	HSCN	Contact us
 Integration	HSCN	https://msg.int.spine2.ncrs.nhs.uk/
 Integration	Internet	https://msg.intspineservices.nhs.uk/
 Production	HSCN	Contact us
@@ -133,16 +142,16 @@ GET https://msg.intspineservices.nhs.uk/STU3/DocumentReference/da2b6e8a-3c8f-11
 The SDS base URLs are as follows:
 
 Environment	Network availability	URL
-Opentest	OpenVPN	To be confirmed
-Development	HSCN	To be confirmed
+Opentest	OpenVPN	Contact us
+Development	HSCN	Contact us
 Integration	HSCN	https://ldap.nis1.national.ncrs.nhs.uk
 Production	HSCN	Contact us
 
 The SSP base URLs are as follows:
 
 Environment	Network availability	URL
-Opentest	OpenVPN	To be confirmed
-Development	HSCN	To be confirmed
+Opentest	OpenVPN	Contact us
+Development	HSCN	Contact us
 Integration	HSCN	https://proxy.int.spine2.ncrs.nhs.uk/
 Integration	Internet	https://proxy.intspineservices.nhs.uk/
 Production	HSCN	Contact us
@@ -192,4 +201,4 @@ For a full list of interactions for this API, see the Development Overview.
 
 For details on the general structure of the interactions, see FHIR.
 
-Last edited: 2 February 2022 11:33 am
+Last edited: 24 March 2022 3:24 pm

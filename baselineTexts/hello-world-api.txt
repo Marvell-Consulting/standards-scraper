@@ -26,7 +26,9 @@ For further details, see the 'Security and authorisation' section below.
 
 API status and roadmap
 
-This API is for learning purposes only and is available in the sandbox environment. To see our roadmap, or to suggest, comment or vote on features for this API, see our interactive product backlog. If you have any other queries, please contact us.
+This API is for learning purposes only and is available in the sandbox environment. To see our roadmap, or to suggest, comment or vote on features for this API, see our interactive product backlog.
+
+If you have any other queries, please contact us.
 
 Technology
 
@@ -112,6 +114,16 @@ Overview
 
 Use this endpoint alongside our application-restricted REST API tutorial to learn how to connect to our APIs.
 
+Request
+Headers
+Name	Description
+apikey	
+
+String
+
+API key to authenticate with. Use a valid value for the Sandbox environment.
+
+Required
 Response
 HTTP status: 200
 
@@ -159,6 +171,18 @@ Overview
 
 Use this endpoint alongside our user-restricted REST API tutorial to learn how to connect to our APIs.
 
+Request
+Headers
+Name	Description
+Authorization	
+
+String (^Bearer\ [[:ascii:]]+$)
+
+An OAuth 2.0 bearer token.
+
+Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
+
+Required
 Response
 HTTP status: 200
 

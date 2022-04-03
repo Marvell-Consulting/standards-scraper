@@ -7,7 +7,7 @@ Top of page
 Overview
 Who can use this API
 Related APIs
-API status and roadmap
+API status
 Service level
 Technology
 Network access
@@ -65,11 +65,9 @@ Message Exchange for Social Care and Health (MESH) API - use this API to collect
 
 Child Protection - Information Sharing - HL7 V3 API - use this API to access child protection information from Child Protection - Information Sharing (CP-IS) as a local authority or an unscheduled care provider using our HL7 V3 API
 
-API status and roadmap
+API status
 
 This API is in beta.
-
-To see our roadmap, or to suggest, comment or vote on features for this API, see our interactive product backlog.
 
 Service level
 
@@ -171,4 +169,4 @@ Vaccinations
 
 For details on the general structure of the interactions, see FHIR.
 
-Last edited: 21 January 2022 2:56 pm
+Last edited: 24 March 2022 1:20 pm

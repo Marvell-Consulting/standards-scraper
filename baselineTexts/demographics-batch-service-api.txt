@@ -10,8 +10,6 @@ Service level
 Technology
 Network access
 Interactions
-Additional guidance
-DBS user guide
 Overview
 
 Use this API to submit a file of patient information to the Spine for tracing against the Personal Demographics Service (PDS) for direct care purposes.
@@ -55,9 +53,8 @@ For more details, see Network access for APIs.
 
 Interactions
 
-For a full list of interactions for this API, see the DBS User Guide under Additional guidance.
+For a full list of interactions for this API, see the DBS User Guide.
 
-Additional guidance
 DBS user guide
 
 These are a Portable Document Format file and an Excel spreadsheet. To request a different format, contact us. 
@@ -70,4 +67,4 @@ DBS End Point Registration form
 
 XLS 29 KB
 
-Last edited: 19 January 2022 4:29 pm
+Last edited: 15 March 2022 12:08 pm

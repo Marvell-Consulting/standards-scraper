@@ -29,6 +29,8 @@ This API is only for use when the end user is a healthcare worker, not a patient
 
 For more details, see Introduction to the FGM Information Sharing Service.
 
+Note that older versions 1.0 and 2.0.0 are no longer supported.
+
 Spine Mini Service Provider (SMSP) options
 
 There are also commercially available products which give easier access to FGM-IS, known as Spine Mini Service Providers (SMSPs).
@@ -52,6 +54,8 @@ Female Genital Mutilation - Information Sharing - SMSP API standards - use these
 API status
 
 This API is in beta.
+
+Note that older versions 1.0 and 2.0.0 are no longer supported.
 
 Service level
 
@@ -101,8 +105,8 @@ Interactions
 
 For a full list of interactions for this API, see v2.1.1-beta Service Development Assets.
 
-There was also a read-only v1.0 of this API which is now deprecated, see FGM Risk Indication System v1.0.
+There was also a read-only version 1.0 of this API which is now deprecated, see FGM Risk Indication System v1.0, and a version 2.0.0 which is no longer supported.
 
 For details on the general structure of the interactions, see FHIR.
 
-Last edited: 19 January 2022 5:14 pm
+Last edited: 16 March 2022 2:27 pm

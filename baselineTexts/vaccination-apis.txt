@@ -106,7 +106,19 @@ Latest addenda
 
 These are Microsoft Word files. To request a different format, contact us.
 
-POC system updates to support subsequent boosters v1.0
+POC to restrict retrospective COVID-19 vaccination event record entries V1.0
+
+DOCX 86 KB
+
+Vaxzevria® (AstraZeneca) Vaccine Rebranding V1.0
+
+DOCX 101 KB
+
+POC system updates to accommodate reporting of COVID-19 vaccinations for 5 to 11 children not at risk V1.0
+
+DOCX 96 KB
+
+POC system updates to support subsequent boosters V1.0
 
 DOCX 93 KB
 
@@ -158,12 +170,8 @@ Functional specification for capture of clinical screening questions at point of
 
 DOCX 430 KB
 
-Functional specification for vaccination coadministration V1.1 - flu and COVID-19
-
-DOCX 467 KB
-
 Functional specification for immunisation status V1.0 - flu and COVID-19
 
 DOCX 970 KB
 
-Last edited: 7 March 2022 4:25 pm
+Last edited: 31 March 2022 1:01 pm

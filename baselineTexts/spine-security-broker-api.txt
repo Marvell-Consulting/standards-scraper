@@ -5,10 +5,15 @@ Provide single sign-on for healthcare workers using NHS smartcards.
 Page contents
 Top of page
 Overview
+Who can use this API
+Related APIs
 API status
 Service level
 Technology
 Network access
+Security and authorisation
+Environments and testing
+Onboarding
 Interactions
 
 If you are developing a new integration, we strongly recommend using the NHS Care Identity Service 2 API instead.
@@ -25,10 +30,23 @@ access the Client Signing Interface, which provides client-side digital signing
 
 Users can only be authenticated if they are formally registered to the Spine. This includes creating a user profile, stored in the Spine Directory Service (SDS), containing the user’s roles and other information that the Registration Authority or Service deems necessary to make appropriate data access decisions.
 
-This authentication service is also known as the Care Identity Service (CIS). It makes use of smartcards to provide strong authentication for health care workers to control access to national services. It is being replaced by NHS Care Identity Service 2 (NHS CIS2), which provides additional authentication methods for scenarios where a smartcard might not be preferred or appropriate.
+This authentication service is also known as the Care Identity Service (CIS). It makes use of smartcards to provide strong authentication for health care workers to control access to national services. It is being replaced by NHS Care Identity Service 2 (NHS CIS2), which provides additional authentication methods for scenarios where a smartcard might not be preferred or appropriate.
 
 This API is described fully in the Spine External Interface Specification (EIS). Part 6 has the overview and part 7 the formal API specifications. These are a set of Word documents that provide system developers - architects, designers and builders - with the necessary information to connect to Spine national services.
 
+Who can use this API
+
+This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. 
+
+You must have made this request before you can go live (see 'Onboarding' below).
+
+Related APIs
+
+The following APIs are related to this one:
+
+NHS Care Identity Service 2 API - use this to verify the identity of healthcare workers in England, such as NHS staff, when they access national clinical information systems. This will replace the Spine Security Broker API eventually.
+Spine Directory Service - FHIR API - use this to access accredited system information and messaging endpoint details in the Spine Directory Service (SDS) using our FHIR-conformant API.
+Spine Directory Service - LDAP API - use this to access details of organisations, people and systems registered in the Spine Directory Service (SDS) using our LDAP API.
 API status
 
 This API is stable.
@@ -53,8 +71,28 @@ For a similar API that is available on the internet, consider NHS CIS2.
 
 For more details, see Network access for APIs.
 
+Security and authorisation
+
+The security and authorisation aspects of this API are explained in detail in the Spine External Interface Specification (EIS) Part 6, specifically sections:
+
+6.5 Server-side components
+6.6 SSB authorisation and authentication limitations
+6.7 SSB authorisation and authentication storyboard and use cases
+Environments and testing
+
+You can test this API using our Path to Live environments.
+
+Onboarding
+
+You must get your software onboarded before it can go live.
+
+As part of onboarding, this API uses the Common Assurance Process (CAP), which is tailored for each NHS service. For more details, contact us.
+
 Interactions
 
-For a full list of interactions for this API, see the Spine External Interface Specification (EIS). Part 6 has the overview and part 7 the formal specifications of the Java and C APIs.
+For a full list of interactions for this API, see the Spine External Interface Specification (EIS), specifically:
 
-Last edited: 19 January 2022 5:23 pm
+Part 6 - the overview
+Part 7 - the formal specifications of the Java and C APIs
+
+Last edited: 21 March 2022 3:49 pm

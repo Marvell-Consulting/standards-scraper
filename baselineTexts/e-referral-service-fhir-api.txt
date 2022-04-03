@@ -16,8 +16,8 @@ Environments and testing
 Onboarding
 Endpoints
 A004 - Retrieve reference data
-A005 - Retrieve referral request
-A005 - Retrieve referral request (versioned)
+A005 - Retrieve Referral Request
+A005 Retrieve Referral Request (Versioned)
 A006 - Retrieve attachment
 A007 - Retrieve clinical information
 A008 - Retrieve referral worklist
@@ -41,6 +41,11 @@ A027 - Convert advice and guidance request to referral
 A028 - Record triage outcome
 A029 - Available actions for user list
 A030 - Retrieve e-RS business functions
+A031 - Change Shortlist
+A032 - Change Shortlist and Send for Triage
+A033 - Retrieve Healthcare Service
+A035 - Search for Healthcare Services
+A037 - Retrieve Healthcare Service Version
 Overview
 
 Use this API to create paperless referrals from primary to secondary care with the e-Referral Service (e-RS).
@@ -170,6 +175,22 @@ To use this access mode, use one of the following security patterns:
 
 user-restricted RESTful API - using NHS CIS2 - combined authentication and authorisation
 user-restricted RESTful API - using NHS CIS2 - separate authentication and authorisation
+Role and Organisation Validation
+
+For most e-RS endpoints requests are made in the context of a specific authorised e-RS Role at a specific Organisation for the authenticated user.
+
+The e-RS Role is supplied to the endpoint via the nhsd-ers-business-function request header.
+
+The Organisation is supplied to the endpoint via the nhsd-ers-ods-code request header.
+
+Suitable values for these request headers can be obtained from the Practitioner Role Bundle returned by A030 - Retrieve e-RS business functions.
+
+On Behalf Of User
+
+If the SERVICE_PROVIDER_CLINICIAN_ADMIN role is used then the User ID of the Service Provider Clinician that the Admin is acting on behalf of must be supplied via the NHSD-eRS-On-Behalf-Of-User-ID header.
+
+"On behalf of" is only supported for a Service Provider Clinician Admin (SPCA) acting on behalf of a Service Provider Clinician (SPC).
+
 Environments and testing
 Environment	Base URL
 Sandbox	https://sandbox.api.service.nhs.uk/referrals/FHIR
@@ -250,6 +271,7 @@ In order to use this endpoint you must be an authenticated e-RS user and use one
 REFERRING_CLINICIAN
 REFERRING_CLINICIAN_ADMIN
 SERVICE_PROVIDER_CLINICIAN
+SERVICE_PROVIDER_CLINICIAN_ADMIN
 Use case
 
 As an authenticated user or application
@@ -267,6 +289,8 @@ create a referral using A011 - Create referral or A021 - Create referral and sen
 
 You may also wish to present the user-friendly names for the reference data, for example when viewing the referral using A005 - Retrieve referral request.
 
+Documentation for other endpoints will reference this endpoint, where specific reference data is required.
+
 Sandbox test scenarios
 
 You can test the following scenarios in our sandbox environment
@@ -275,6 +299,7 @@ Scenario	Request	Response
 Retrieve speciality reference data	codeSystemType=SPECIALTY	Specialty details
 Retrieve clinic type reference data	codeSystemType=CLINIC-TYPE	Clinic type details
 Retrieve appointment cancellation reason reference data	codeSystemType=APPOINTMENT-CANCELLATION-REASON	Appointment reason type details
+Retrieve referral cancellation reason reference data	codeSystemType=REFERRAL-CANCELLATION-REASON	ReferralRequest reason type details
 Request
 Path parameters
 Name	Description
@@ -284,7 +309,7 @@ String
 
 The requested code system
 
-Allowed values: SPECIALTY, APPOINTMENT-CANCELLATION-REASON, CLINIC-TYPE
+Allowed values: SPECIALTY, APPOINTMENT-CANCELLATION-REASON, CLINIC-TYPE, REFERRAL-CANCELLATION-REASON
 
 Required
 Headers
@@ -301,13 +326,15 @@ Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
 
 Required
 
-nhsd-ers-ods-code	
+NHSD-End-User-Organisation-ODS	
 
 String
 
 The ODS code of the caller's Organisation.
 
-Not allowed for application-restricted access. Required for user-restricted access.
+Not allowed for application-restricted access.
+
+Required for user-restricted access.
 
 Example: R69
 
@@ -318,9 +345,28 @@ String
 
 The e-RS Business Function of the caller.
 
-Not allowed for application-restricted access. Required for user-restricted access.
+Not allowed for application-restricted access.
 
-Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+Required for user-restricted access.
+
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+
+
+NHSD-eRS-On-Behalf-Of-User-ID	
+
+String
+
+The (SDS) user ID of the user that the authenticating user wishes to act on behalf of (OBO).
+
+"On behalf of" is only supported for a Service Provider Clinician Admin (SPCA) acting on behalf of a Service Provider Clinician (SPC).
+
+Where an OBO User ID is supplied the authenticating user must be an SPCA and the OBO User ID must be that of an appropriate SPC.
+
+Not allowed for application-restricted access.
+
+Required for user-restricted access where the Service Provider Clinician Admin Business Function is used for authentication.
+
+Example: 021600556514
 
 
 X-Correlation-Id	
@@ -602,7 +648,7 @@ Copy
   } ]
 }
 
-Appointment Reference Data
+Appointment Cancellation Reason Reference Data
 
 This is example data only and should not be taken as the real reference data.
 
@@ -614,12 +660,15 @@ Copy
   },
   "resourceType" : "CodeSystem",
   "url" : "_baseUrl_/STU3/CodeSystem/APPOINTMENT-CANCELLATION-REASON",
+  "version" : "1",
   "name" : "e-RS Appointment Cancellation Reason",
   "status" : "active",
-  "date" : "2021-05-26T13:47:15.123000+00:00",
+  "experimental" : false,
+  "date" : "2022-01-21T13:28:30.188000+00:00",
   "publisher" : "e-Referral Service",
   "description" : "e-RS Appointment Cancellation Reason",
   "copyright" : "Copyright © 2016 HL7 UK",
+  "caseSensitive" : true,
   "content" : "complete",
   "property" : [ {
     "code" : "effectiveFrom",
@@ -641,10 +690,195 @@ Copy
     "code" : "commentIsMandatory",
     "uri" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#commentIsMandatory",
     "type" : "boolean"
+  }, {
+    "code" : "businessFunction",
+    "uri" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#businessFunction",
+    "type" : "Coding"
+  }, {
+    "code" : "usage",
+    "uri" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#usage",
+    "type" : "Coding"
   } ],
   "concept" : [ {
+    "code" : "ADDITIONAL_REQ_NOT_AVAILABLE",
+    "display" : "Additional requirement not available",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "effectiveTo",
+      "valueDateTime" : "2007-06-25T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "PROVIDER"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : false
+    } ]
+  }, {
+    "code" : "ADDITIONAL_REQ_NOT_ELIGIBLE",
+    "display" : "Not eligible for additional requirement",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "PROVIDER"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : false
+    } ]
+  }, {
+    "code" : "ADDITIONAL_REQ_NOT_PROVIDED",
+    "display" : "Additional req not provided at location",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "PROVIDER"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : false
+    } ]
+  }, {
+    "code" : "ADDITIONAL_REQ_UNAVAILABLE",
+    "display" : "Additional req unavailable for this appt",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "PROVIDER"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : false
+    } ]
+  }, {
+    "code" : "APPT_MADE_FOR_WRONG_PATIENT",
+    "display" : "Appt. made for wrong patient",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-13T00:00:00+00:00"
+    }, {
+      "code" : "effectiveTo",
+      "valueDateTime" : "2014-10-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "UNKNOWN"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : false
+    } ]
+  }, {
+    "code" : "CLINIC_CANCELLED",
+    "display" : "Clinic cancelled",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "PROVIDER"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : false
+    } ]
+  }, {
+    "code" : "CLINIC_CANCELLED_ALTERNATIVE",
+    "display" : "Clinic cancelled",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "PROVIDER"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : false
+    } ]
+  }, {
+    "code" : "CLINIC_OVERRUN",
+    "display" : "Clinic overrun",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "PROVIDER"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : false
+    } ]
+  }, {
+    "code" : "CLINIC_OVERRUN_ALTERNATIVE",
+    "display" : "Clinic overrun",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "PROVIDER"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : false
+    } ]
+  }, {
     "code" : "FURTHER_INFORMATION_REQUIRED",
-    "display" : "Further Information Required",
+    "display" : "Further information required",
     "property" : [ {
       "code" : "effectiveFrom",
       "valueDateTime" : "2004-06-01T00:00:00+00:00"
@@ -653,6 +887,43 @@ Copy
       "valueCoding" : {
         "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
         "code" : "PROVIDER_REJECT"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : false
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "SERVICE_PROVIDER_CLINICIAN_ADMIN"
+      }
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "SERVICE_PROVIDER_CLINICIAN"
+      }
+    }, {
+      "code" : "usage",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentCancellationReasonUsage-1",
+        "code" : "REJECT"
+      }
+    } ]
+  }, {
+    "code" : "NOT_SPECIFIED",
+    "display" : "Not Specified",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2000-06-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "PROVIDER"
       }
     }, {
       "code" : "willCancelWholeRequest",
@@ -679,6 +950,46 @@ Copy
     }, {
       "code" : "commentIsMandatory",
       "valueBoolean" : false
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "SERVICE_PROVIDER_CLINICIAN_ADMIN"
+      }
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "SERVICE_PROVIDER_CLINICIAN"
+      }
+    }, {
+      "code" : "usage",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentCancellationReasonUsage-1",
+        "code" : "REJECT"
+      }
+    } ]
+  }, {
+    "code" : "OTHER_MIGRATION_FROM_CAB",
+    "display" : "Other",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2014-10-01T00:00:00+00:00"
+    }, {
+      "code" : "effectiveTo",
+      "valueDateTime" : "2014-10-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "UNKNOWN"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : false
     } ]
   }, {
     "code" : "OUTPATIENT_APPT_NOT_REQUIRED",
@@ -691,6 +1002,425 @@ Copy
       "valueCoding" : {
         "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
         "code" : "PROVIDER_REJECT"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : false
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "SERVICE_PROVIDER_CLINICIAN_ADMIN"
+      }
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "SERVICE_PROVIDER_CLINICIAN"
+      }
+    }, {
+      "code" : "usage",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentCancellationReasonUsage-1",
+        "code" : "REJECT"
+      }
+    } ]
+  }, {
+    "code" : "PATIENT_APPOINTMENT_CANCELLATION_OTHER",
+    "display" : "Other reason",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "PATIENT"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : true
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "REFERRING_CLINICIAN_ADMIN"
+      }
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "REFERRING_CLINICIAN"
+      }
+    }, {
+      "code" : "usage",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentCancellationReasonUsage-1",
+        "code" : "CANCEL"
+      }
+    } ]
+  }, {
+    "code" : "PATIENT_APPOINTMENT_CLASH",
+    "display" : "Patient - Clashes with another appointment",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "effectiveTo",
+      "valueDateTime" : "2007-06-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "UNKNOWN"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : false
+    } ]
+  }, {
+    "code" : "PATIENT_HOLIDAY",
+    "display" : "Patient on holiday",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "PATIENT"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : false
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "REFERRING_CLINICIAN_ADMIN"
+      }
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "REFERRING_CLINICIAN"
+      }
+    }, {
+      "code" : "usage",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentCancellationReasonUsage-1",
+        "code" : "CANCEL"
+      }
+    } ]
+  }, {
+    "code" : "PATIENT_ILL",
+    "display" : "Patient is ill",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "PATIENT"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : false
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "REFERRING_CLINICIAN_ADMIN"
+      }
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "REFERRING_CLINICIAN"
+      }
+    }, {
+      "code" : "usage",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentCancellationReasonUsage-1",
+        "code" : "CANCEL"
+      }
+    } ]
+  }, {
+    "code" : "PATIENT_OTHER_ENGAGEMENT",
+    "display" : "Patient - Other more pressing engagement",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "PATIENT"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : true
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "REFERRING_CLINICIAN_ADMIN"
+      }
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "REFERRING_CLINICIAN"
+      }
+    }, {
+      "code" : "usage",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentCancellationReasonUsage-1",
+        "code" : "CANCEL"
+      }
+    } ]
+  }, {
+    "code" : "PRIORITY_CHANGE",
+    "display" : "Priority change for other reasons",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "PROVIDER"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : true
+    } ]
+  }, {
+    "code" : "PRIORITY_INAPPROPRIATE",
+    "display" : "Inappropriate priority",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "PROVIDER"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : true
+    } ]
+  }, {
+    "code" : "PROVIDER_CANCELLATION",
+    "display" : "Other - Provider cancellation",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "PROVIDER"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : true
+    } ]
+  }, {
+    "code" : "REDIRECTED_AGE",
+    "display" : "Redirected due to patient age",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "UNKNOWN"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : true
+    } ]
+  }, {
+    "code" : "REDIRECTED_APPROPRIATE_CLINIC",
+    "display" : "Redirected to more appropriate clinic",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "UNKNOWN"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : true
+    } ]
+  }, {
+    "code" : "REDIRECTED_APPROPRIATE_SPECIALTY",
+    "display" : "Redirected to more appropriate specialty",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "UNKNOWN"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : true
+    } ]
+  }, {
+    "code" : "REDIRECTED_CONFIDENTIALITY",
+    "display" : "Redirected due to confidentiality",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "UNKNOWN"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : true
+    } ]
+  }, {
+    "code" : "REDIRECTED_GENDER",
+    "display" : "Redirected due to patient gender",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "UNKNOWN"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : true
+    } ]
+  }, {
+    "code" : "REDIRECTED_OTHER",
+    "display" : "Redirected due to other reason",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "UNKNOWN"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : true
+    } ]
+  }, {
+    "code" : "REDIRECTED_PRIORITY",
+    "display" : "Redirected due to priority",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "UNKNOWN"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : true
+    } ]
+  }, {
+    "code" : "REDIRECTED_STAFF_VACATION",
+    "display" : "Redirected due to staff vacation",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "UNKNOWN"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : true
+    } ]
+  }, {
+    "code" : "REDIRECTED_TEMPORARILY",
+    "display" : "A Temporary Redirected Reason",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "effectiveTo",
+      "valueDateTime" : "2014-10-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "UNKNOWN"
       }
     }, {
       "code" : "willCancelWholeRequest",
@@ -717,6 +1447,24 @@ Copy
     }, {
       "code" : "commentIsMandatory",
       "valueBoolean" : false
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "SERVICE_PROVIDER_CLINICIAN_ADMIN"
+      }
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "SERVICE_PROVIDER_CLINICIAN"
+      }
+    }, {
+      "code" : "usage",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentCancellationReasonUsage-1",
+        "code" : "REJECT"
+      }
     } ]
   }, {
     "code" : "SERVICE_PREREQUISITES_NOT_COMPLETE",
@@ -736,6 +1484,476 @@ Copy
     }, {
       "code" : "commentIsMandatory",
       "valueBoolean" : false
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "SERVICE_PROVIDER_CLINICIAN_ADMIN"
+      }
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "SERVICE_PROVIDER_CLINICIAN"
+      }
+    }, {
+      "code" : "usage",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentCancellationReasonUsage-1",
+        "code" : "REJECT"
+      }
+    } ]
+  }, {
+    "code" : "SLOT_CANCELLED",
+    "display" : "Slot cancelled",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "PROVIDER"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : false
+    } ]
+  }, {
+    "code" : "SLOT_CANCELLED_ALTERNATIVE",
+    "display" : "Slot cancelled",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "PROVIDER"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : false
+    } ]
+  }, {
+    "code" : "WRONG_PROVIDER",
+    "display" : "Appt. made with wrong provider",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-02-13T00:00:00+00:00"
+    }, {
+      "code" : "effectiveTo",
+      "valueDateTime" : "2004-06-13T00:00:00+00:00"
+    }, {
+      "code" : "appointmentBookingCancellationReasonType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AppointmentBookingCancellationReasonType-1",
+        "code" : "UNKNOWN"
+      }
+    }, {
+      "code" : "willCancelWholeRequest",
+      "valueBoolean" : false
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : false
+    } ]
+  } ]
+}
+
+ReferralRequest Cancellation Reason Reference Data
+
+This is example data only and should not be taken as the real reference data.
+
+Copy
+{
+  "id" : "REFERRAL-CANCELLATION-REASON",
+  "meta" : {
+    "profile" : [ "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ]
+  },
+  "resourceType" : "CodeSystem",
+  "url" : "_baseUrl_/STU3/CodeSystem/REFERRAL-CANCELLATION-REASON",
+  "version" : "1",
+  "name" : "e-RS ReferralRequest Cancellation Reason",
+  "status" : "active",
+  "experimental" : false,
+  "date" : "2022-01-21T13:27:51.923000+00:00",
+  "publisher" : "e-Referral Service",
+  "description" : "e-RS ReferralRequest Cancellation Reason",
+  "copyright" : "Copyright © 2016 HL7 UK",
+  "caseSensitive" : true,
+  "content" : "complete",
+  "property" : [ {
+    "code" : "effectiveFrom",
+    "uri" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#effectiveFrom",
+    "type" : "dateTime"
+  }, {
+    "code" : "effectiveTo",
+    "uri" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#effectiveTo",
+    "type" : "dateTime"
+  }, {
+    "code" : "commentIsMandatory",
+    "uri" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#commentIsMandatory",
+    "type" : "boolean"
+  }, {
+    "code" : "canCancelAppointment",
+    "uri" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#canCancelAppointment",
+    "type" : "boolean"
+  }, {
+    "code" : "businessFunction",
+    "uri" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#businessFunction",
+    "type" : "Coding"
+  }, {
+    "code" : "referrerUsage",
+    "uri" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Concept-Properties-1#referrerUsage",
+    "type" : "Coding"
+  } ],
+  "concept" : [ {
+    "code" : "BOOKED_CLINICAL_NEED",
+    "display" : "Booked more urgently due to clinical need",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2019-07-23T17:09:56+00:00"
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : true
+    }, {
+      "code" : "canCancelAppointment",
+      "valueBoolean" : false
+    } ]
+  }, {
+    "code" : "BOOKED_OUTSIDE_CAB",
+    "display" : "Patient booked outside NHS e-Referral Service",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2007-09-14T00:00:00+00:00"
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : false
+    }, {
+      "code" : "canCancelAppointment",
+      "valueBoolean" : true
+    } ]
+  }, {
+    "code" : "COMMUNITY_SERVICE_NA",
+    "display" : "Sent to community service not available in this system",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2019-07-23T17:09:56+00:00"
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : true
+    }, {
+      "code" : "canCancelAppointment",
+      "valueBoolean" : false
+    } ]
+  }, {
+    "code" : "COMPLEX_PATHWAY",
+    "display" : "Complex pathway, multiple appointments needed",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2019-07-23T17:09:56+00:00"
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : true
+    }, {
+      "code" : "canCancelAppointment",
+      "valueBoolean" : false
+    } ]
+  }, {
+    "code" : "INTEND_PRIVATE",
+    "display" : "Patient intends to go private",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : false
+    }, {
+      "code" : "canCancelAppointment",
+      "valueBoolean" : true
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "REFERRING_CLINICIAN_ADMIN"
+      }
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "REFERRING_CLINICIAN"
+      }
+    }, {
+      "code" : "referrerUsage",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralRequestCancellationReasonUsage-1",
+        "code" : "CANCEL_REFERRAL"
+      }
+    } ]
+  }, {
+    "code" : "NO_LONGER_REQUIRED",
+    "display" : "Referral is no longer required",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2019-07-23T17:09:56+00:00"
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : true
+    }, {
+      "code" : "canCancelAppointment",
+      "valueBoolean" : false
+    } ]
+  }, {
+    "code" : "OTHER_OTHER",
+    "display" : "Other reason",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2019-07-23T17:09:56+00:00"
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : true
+    }, {
+      "code" : "canCancelAppointment",
+      "valueBoolean" : false
+    } ]
+  }, {
+    "code" : "OUTPATIENT_CLINICIAN_NA",
+    "display" : "Sent to outpatient service as named clinician is not available in this system",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2019-07-23T17:09:56+00:00"
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : true
+    }, {
+      "code" : "canCancelAppointment",
+      "valueBoolean" : false
+    } ]
+  }, {
+    "code" : "OUTPATIENT_SERVICE_NA",
+    "display" : "Sent to outpatient service not available in this system",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2019-07-23T17:09:56+00:00"
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : true
+    }, {
+      "code" : "canCancelAppointment",
+      "valueBoolean" : false
+    } ]
+  }, {
+    "code" : "PATIENT_DIED",
+    "display" : "Patient died",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : false
+    }, {
+      "code" : "canCancelAppointment",
+      "valueBoolean" : true
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "REFERRING_CLINICIAN_ADMIN"
+      }
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "REFERRING_CLINICIAN"
+      }
+    }, {
+      "code" : "referrerUsage",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralRequestCancellationReasonUsage-1",
+        "code" : "CANCEL_REFERRAL"
+      }
+    } ]
+  }, {
+    "code" : "PATIENT_REQUEST_CANCELLATION_OTHER",
+    "display" : "Other reason",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : true
+    }, {
+      "code" : "canCancelAppointment",
+      "valueBoolean" : true
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "REFERRING_CLINICIAN_ADMIN"
+      }
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "REFERRING_CLINICIAN"
+      }
+    }, {
+      "code" : "referrerUsage",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralRequestCancellationReasonUsage-1",
+        "code" : "CANCEL_REFERRAL"
+      }
+    } ]
+  }, {
+    "code" : "RAISED_IN_ERROR",
+    "display" : "Referral raised in error",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2007-09-14T00:00:00+00:00"
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : false
+    }, {
+      "code" : "canCancelAppointment",
+      "valueBoolean" : true
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "REFERRING_CLINICIAN_ADMIN"
+      }
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "REFERRING_CLINICIAN"
+      }
+    }, {
+      "code" : "referrerUsage",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralRequestCancellationReasonUsage-1",
+        "code" : "CANCEL_REFERRAL"
+      }
+    } ]
+  }, {
+    "code" : "REFERRER_CANCELLATION",
+    "display" : "Other - Referrer request cancellation",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2007-09-14T00:00:00+00:00"
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : false
+    }, {
+      "code" : "canCancelAppointment",
+      "valueBoolean" : true
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "REFERRING_CLINICIAN_ADMIN"
+      }
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "REFERRING_CLINICIAN"
+      }
+    }, {
+      "code" : "referrerUsage",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralRequestCancellationReasonUsage-1",
+        "code" : "CANCEL_REFERRAL"
+      }
+    } ]
+  }, {
+    "code" : "STRAIGHT_TO_TEST",
+    "display" : "Sent straight to test / procedure",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2019-07-23T17:09:56+00:00"
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : true
+    }, {
+      "code" : "canCancelAppointment",
+      "valueBoolean" : false
+    } ]
+  }, {
+    "code" : "TREATMENT_NO_LONGER_REQUIRED",
+    "display" : "Referral no longer required",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : false
+    }, {
+      "code" : "canCancelAppointment",
+      "valueBoolean" : true
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "REFERRING_CLINICIAN_ADMIN"
+      }
+    }, {
+      "code" : "businessFunction",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-BusinessFunction-1",
+        "code" : "REFERRING_CLINICIAN"
+      }
+    }, {
+      "code" : "referrerUsage",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralRequestCancellationReasonUsage-1",
+        "code" : "CANCEL_REFERRAL"
+      }
+    } ]
+  }, {
+    "code" : "TRIAGE_ENDED",
+    "display" : "Triage Ended",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2019-07-23T17:09:56+00:00"
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : false
+    }, {
+      "code" : "canCancelAppointment",
+      "valueBoolean" : false
+    } ]
+  }, {
+    "code" : "PATIENT_APPOINTMENT_CANCELLATION_OTHER",
+    "display" : "Other reason",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : false
+    }, {
+      "code" : "canCancelAppointment",
+      "valueBoolean" : true
+    } ]
+  }, {
+    "code" : "PROVIDER_CANCELLATION",
+    "display" : "Other - Provider Cancellation",
+    "property" : [ {
+      "code" : "effectiveFrom",
+      "valueDateTime" : "2004-06-01T00:00:00+00:00"
+    }, {
+      "code" : "commentIsMandatory",
+      "valueBoolean" : false
+    }, {
+      "code" : "canCancelAppointment",
+      "valueBoolean" : true
     } ]
   } ]
 }
@@ -751,7 +1969,7 @@ string
 required
 	
 Identifier of this code system
-Allowed values: SPECIALTY, APPOINTMENT-CANCELLATION-REASON, CLINIC-TYPE
+Allowed values: SPECIALTY, APPOINTMENT-CANCELLATION-REASON, CLINIC-TYPE, REFERRAL-CANCELLATION-REASON
 
 
 meta
@@ -778,7 +1996,7 @@ string
 required
 	
 Description of the code system
-Allowed values: e-RS Appointment Cancellation Reason, e-RS Specialty, e-RS Clinic Type
+Allowed values: e-RS Appointment Cancellation Reason, e-RS Specialty, e-RS Clinic Type, e-RS ReferralRequest Cancellation Reason
 
 
 status
@@ -833,7 +2051,11 @@ EffectiveTo	All Code Systems
 Specialty	CLINIC-TYPE
 AppointmentBookingCancellationReasonType	APPOINTMENT-CANCELLATION-REASON
 WillCancelWholeRequest	APPOINTMENT-CANCELLATION-REASON
-CommentIsMandatory	APPOINTMENT-CANCELLATION-REASON
+Usage	APPOINTMENT-CANCELLATION-REASON
+CommentIsMandatory	APPOINTMENT-CANCELLATION-REASON / REFERRAL-CANCELLATION-REASON
+BusinessFunction	APPOINTMENT-CANCELLATION-REASON / REFERRAL-CANCELLATION-REASON
+CanCancelAppointment	REFERRAL-CANCELLATION-REASON
+ReferrerUsage	REFERRAL-CANCELLATION-REASON
 
 
 concept
@@ -853,6 +2075,20 @@ HTTP status: 404
 
 Not Found
 
+HTTP status: 406
+
+Not Acceptable
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
 HTTP status: 429
 
 The e-Referral service APIs limit the number of transactions you can make per unit of time. This protects our service against excessive use and denial-of-service (DoS) attacks, and is also to encourage you to use our APIs efficiently.
@@ -876,7 +2112,7 @@ HTTP status: 500
 
 Internal Server Error
 
-A005 - Retrieve referral request
+A005 - Retrieve Referral Request
 GET /STU3/ReferralRequest/{ubrn}
 Try this API
 Overview
@@ -898,6 +2134,7 @@ In order to use this endpoint you must be an authenticated e-RS user or applicat
 REFERRING_CLINICIAN
 REFERRING_CLINICIAN_ADMIN
 SERVICE_PROVIDER_CLINICIAN
+SERVICE_PROVIDER_CLINICIAN_ADMIN
 
 You need to use the Unique Booking Reference Number (UBRN) of a referral request in order to retrieve details of a referral.
 
@@ -958,13 +2195,15 @@ Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
 
 Required
 
-nhsd-ers-ods-code	
+NHSD-End-User-Organisation-ODS	
 
 String
 
 The ODS code of the caller's Organisation.
 
-Not allowed for application-restricted access. Required for user-restricted access.
+Not allowed for application-restricted access.
+
+Required for user-restricted access.
 
 Example: R69
 
@@ -975,9 +2214,28 @@ String
 
 The e-RS Business Function of the caller.
 
-Not allowed for application-restricted access. Required for user-restricted access.
+Not allowed for application-restricted access.
 
-Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+Required for user-restricted access.
+
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+
+
+NHSD-eRS-On-Behalf-Of-User-ID	
+
+String
+
+The (SDS) user ID of the user that the authenticating user wishes to act on behalf of (OBO).
+
+"On behalf of" is only supported for a Service Provider Clinician Admin (SPCA) acting on behalf of a Service Provider Clinician (SPC).
+
+Where an OBO User ID is supplied the authenticating user must be an SPCA and the OBO User ID must be that of an appropriate SPC.
+
+Not allowed for application-restricted access.
+
+Required for user-restricted access where the Service Provider Clinician Admin Business Function is used for authentication.
+
+Example: 021600556514
 
 
 X-Correlation-Id	
@@ -1092,12 +2350,6 @@ Copy
       "valueCoding" : {
         "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
         "code" : "HEART_FAILURE"
-      }
-    }, {
-      "name" : "organisation",
-      "valueIdentifier" : {
-        "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-        "value" : "TEST-ORG-GP1"
       }
     }, {
       "name" : "postcode",
@@ -1243,12 +2495,6 @@ Copy
       "valueCoding" : {
         "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
         "code" : "HEART_FAILURE"
-      }
-    }, {
-      "name" : "organisation",
-      "valueIdentifier" : {
-        "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-        "value" : "TEST-ORG-GP1"
       }
     }, {
       "name" : "postcode",
@@ -1454,12 +2700,6 @@ Copy
         "code" : "HEART_FAILURE"
       }
     }, {
-      "name" : "organisation",
-      "valueIdentifier" : {
-        "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-        "value" : "TEST-ORG-GP1"
-      }
-    }, {
       "name" : "postcode",
       "valueString" : "LS1 2TW"
     }, {
@@ -1654,12 +2894,6 @@ Copy
         "code" : "HEART_FAILURE"
       }
     }, {
-      "name" : "organisation",
-      "valueIdentifier" : {
-        "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-        "value" : "TEST-ORG-GP1"
-      }
-    }, {
       "name" : "postcode",
       "valueString" : "LS1 2TW"
     }, {
@@ -1849,12 +3083,6 @@ Copy
       "valueCoding" : {
         "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
         "code" : "HEART_FAILURE"
-      }
-    }, {
-      "name" : "organisation",
-      "valueIdentifier" : {
-        "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-        "value" : "TEST-ORG-GP1"
       }
     }, {
       "name" : "postcode",
@@ -2156,12 +3384,6 @@ Copy
       "valueCoding" : {
         "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
         "code" : "HEART_FAILURE"
-      }
-    }, {
-      "name" : "organisation",
-      "valueIdentifier" : {
-        "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-        "value" : "TEST-ORG-GP1"
       }
     }, {
       "name" : "postcode",
@@ -2360,6 +3582,20 @@ HTTP status: 404
 
 Not Found
 
+HTTP status: 406
+
+Not Acceptable
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
 HTTP status: 422
 
 Where status code 422 (Unprocessable Entity) is returned then an eRS-OperationOutcome-1 will be included in the body, as detailed below. Check diagnostics property for specific information regarding the error.
@@ -2460,7 +3696,7 @@ HTTP status: 500
 
 Internal Server Error
 
-A005 - Retrieve referral request (versioned)
+A005 Retrieve Referral Request (Versioned)
 GET /STU3/ReferralRequest/{ubrn}/_history/{version}
 Try this API
 Overview
@@ -2530,7 +3766,7 @@ Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
 
 Required
 
-nhsd-ers-ods-code	
+NHSD-End-User-Organisation-ODS	
 
 String
 
@@ -2546,7 +3782,7 @@ String
 
 The e-RS Business Function of the caller
 
-Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
 
 Required
 
@@ -2662,12 +3898,6 @@ Copy
       "valueCoding" : {
         "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
         "code" : "HEART_FAILURE"
-      }
-    }, {
-      "name" : "organisation",
-      "valueIdentifier" : {
-        "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-        "value" : "TEST-ORG-GP1"
       }
     }, {
       "name" : "postcode",
@@ -2813,12 +4043,6 @@ Copy
       "valueCoding" : {
         "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
         "code" : "HEART_FAILURE"
-      }
-    }, {
-      "name" : "organisation",
-      "valueIdentifier" : {
-        "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-        "value" : "TEST-ORG-GP1"
       }
     }, {
       "name" : "postcode",
@@ -3024,12 +4248,6 @@ Copy
         "code" : "HEART_FAILURE"
       }
     }, {
-      "name" : "organisation",
-      "valueIdentifier" : {
-        "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-        "value" : "TEST-ORG-GP1"
-      }
-    }, {
       "name" : "postcode",
       "valueString" : "LS1 2TW"
     }, {
@@ -3224,12 +4442,6 @@ Copy
         "code" : "HEART_FAILURE"
       }
     }, {
-      "name" : "organisation",
-      "valueIdentifier" : {
-        "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-        "value" : "TEST-ORG-GP1"
-      }
-    }, {
       "name" : "postcode",
       "valueString" : "LS1 2TW"
     }, {
@@ -3419,12 +4631,6 @@ Copy
       "valueCoding" : {
         "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
         "code" : "HEART_FAILURE"
-      }
-    }, {
-      "name" : "organisation",
-      "valueIdentifier" : {
-        "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-        "value" : "TEST-ORG-GP1"
       }
     }, {
       "name" : "postcode",
@@ -3726,12 +4932,6 @@ Copy
       "valueCoding" : {
         "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
         "code" : "HEART_FAILURE"
-      }
-    }, {
-      "name" : "organisation",
-      "valueIdentifier" : {
-        "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-        "value" : "TEST-ORG-GP1"
       }
     }, {
       "name" : "postcode",
@@ -3930,6 +5130,20 @@ HTTP status: 404
 
 Not Found - Resource not found for ID provided or Resource version does not match version requested.
 
+HTTP status: 406
+
+Not Acceptable
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
 HTTP status: 422
 
 Where status code 422 (Unprocessable Entity) is returned then an eRS-OperationOutcome-1 will be included in the body, as detailed below. Check diagnostics property for specific information regarding the error.
@@ -4052,6 +5266,7 @@ In order to use this endpoint you must be an authenticated e-RS user or applicat
 REFERRING_CLINICIAN
 REFERRING_CLINICIAN_ADMIN
 SERVICE_PROVIDER_CLINICIAN
+SERVICE_PROVIDER_CLINICIAN_ADMIN
 
 You need to have retrieved the referral via A005 - Retrieve referral request to obtain the URLs for its attachments.
 
@@ -4104,13 +5319,15 @@ Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
 
 Required
 
-nhsd-ers-ods-code	
+NHSD-End-User-Organisation-ODS	
 
 String
 
 The ODS code of the caller's Organisation.
 
-Not allowed for application-restricted access. Required for user-restricted access.
+Not allowed for application-restricted access.
+
+Required for user-restricted access.
 
 Example: R69
 
@@ -4121,9 +5338,11 @@ String
 
 The e-RS Business Function of the caller.
 
-Not allowed for application-restricted access. Required for user-restricted access.
+Not allowed for application-restricted access.
 
-Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+Required for user-restricted access.
+
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
 
 
 X-Correlation-Id	
@@ -4137,6 +5356,23 @@ Tends to be unique, but does not have to be
 Returned, unchanged, in the response
 
 Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+
+NHSD-eRS-On-Behalf-Of-User-ID	
+
+String
+
+The (SDS) user ID of the user that the authenticating user wishes to act on behalf of (OBO).
+
+"On behalf of" is only supported for a Service Provider Clinician Admin (SPCA) acting on behalf of a Service Provider Clinician (SPC).
+
+Where an OBO User ID is supplied the authenticating user must be an SPCA and the OBO User ID must be that of an appropriate SPC.
+
+Not allowed for application-restricted access.
+
+Required for user-restricted access where the Service Provider Clinician Admin Business Function is used for authentication.
+
+Example: 021600556514
 
 Response
 HTTP status: 200
@@ -4336,6 +5572,16 @@ HTTP status: 406
 
 Not Acceptable
 
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
 HTTP status: 422
 
 Where status code 422 (Unprocessable Entity) is returned then an eRS-OperationOutcome-1 will be included in the body, as detailed below. Check diagnostics property for specific information regarding the error.
@@ -4458,6 +5704,7 @@ In order to use this endpoint you must be an authenticated e-RS user and use one
 REFERRING_CLINICIAN
 REFERRING_CLINICIAN_ADMIN
 SERVICE_PROVIDER_CLINICIAN
+SERVICE_PROVIDER_CLINICIAN_ADMIN
 
 You need to use the Unique Booking Reference Number (UBRN) of a referral request in order to use this endpoint.
 
@@ -4510,13 +5757,15 @@ Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
 
 Required
 
-nhsd-ers-ods-code	
+NHSD-End-User-Organisation-ODS	
 
 String
 
 The ODS code of the caller's Organisation.
 
-Not allowed for application-restricted access. Required for user-restricted access.
+Not allowed for application-restricted access.
+
+Required for user-restricted access.
 
 Example: R69
 
@@ -4527,9 +5776,28 @@ String
 
 The e-RS Business Function of the caller.
 
-Not allowed for application-restricted access. Required for user-restricted access.
+Not allowed for application-restricted access.
 
-Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+Required for user-restricted access.
+
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+
+
+NHSD-eRS-On-Behalf-Of-User-ID	
+
+String
+
+The (SDS) user ID of the user that the authenticating user wishes to act on behalf of (OBO).
+
+"On behalf of" is only supported for a Service Provider Clinician Admin (SPCA) acting on behalf of a Service Provider Clinician (SPC).
+
+Where an OBO User ID is supplied the authenticating user must be an SPCA and the OBO User ID must be that of an appropriate SPC.
+
+Not allowed for application-restricted access.
+
+Required for user-restricted access where the Service Provider Clinician Admin Business Function is used for authentication.
+
+Example: 021600556514
 
 
 X-Correlation-Id	
@@ -4608,6 +5876,20 @@ HTTP status: 404
 
 Not Found
 
+HTTP status: 406
+
+Not Acceptable
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
 HTTP status: 422
 
 Where status code 422 (Unprocessable Entity) is returned then an eRS-OperationOutcome-1 will be included in the body, as detailed below. Check diagnostics property for specific information regarding the error.
@@ -4732,6 +6014,7 @@ In order to use this endpoint you must be an authenticated e-RS user and use one
 
 SERVICE_PROVIDER_CLINICIAN
 SERVICE_PROVIDER_ADMIN
+SERVICE_PROVIDER_CLINICIAN_ADMIN
 Use case
 
 As an authenticated user
@@ -4776,7 +6059,7 @@ Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
 
 Required
 
-nhsd-ers-ods-code	
+NHSD-End-User-Organisation-ODS	
 
 String
 
@@ -4792,9 +6075,22 @@ String
 
 The e-RS Business Function of the caller
 
-Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
 
 Required
+
+NHSD-eRS-On-Behalf-Of-User-ID	
+
+String
+
+The (SDS) user ID of the user that the authenticating user wishes to act on behalf of (OBO).
+
+"On behalf of" is only supported for a Service Provider Clinician Admin (SPCA) acting on behalf of a Service Provider Clinician (SPC).
+
+Where an OBO User ID is supplied the authenticating user must be an SPCA and the OBO User ID must be that of an appropriate SPC.
+
+Example: 021600556514
+
 
 X-Correlation-Id	
 
@@ -5681,6 +6977,20 @@ HTTP status: 403
 
 Forbidden
 
+HTTP status: 406
+
+Not Acceptable
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
 HTTP status: 415
 
 Unsupported Media Type
@@ -5846,7 +7156,7 @@ Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
 
 Required
 
-nhsd-ers-ods-code	
+NHSD-End-User-Organisation-ODS	
 
 String
 
@@ -5862,7 +7172,7 @@ String
 
 The e-RS Business Function of the caller
 
-Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
 
 Required
 
@@ -7131,6 +8441,20 @@ HTTP status: 403
 
 Forbidden
 
+HTTP status: 406
+
+Not Acceptable
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
 HTTP status: 415
 
 Unsupported Media Type
@@ -7301,6 +8625,8 @@ For the referral to be processed by the service provider, you must ensure approp
 
 You can check to see what referral letter information has already been added to a referral by using A005 - Retrieve referral request, A007 - Retrieve clinical information, and A006 - Retrieve attachment endpoints where necessary.
 
+You can generate a letter for the patient, which summarises the current state of their referral and any steps the patient may need to follow, by using A019 - Generate patient letter.
+
 Request
 Headers
 Name	Description
@@ -7316,7 +8642,7 @@ Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
 
 Required
 
-nhsd-ers-ods-code	
+NHSD-End-User-Organisation-ODS	
 
 String
 
@@ -7332,7 +8658,7 @@ String
 
 The e-RS Business Function of the caller
 
-Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
 
 Required
 
@@ -8034,12 +9360,6 @@ Copy
         "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-CommissioningProvisioning-1",
         "code" : "ALL_AVAILABLE_FOR_BOOKING"
       }
-    }, {
-      "name" : "organisation",
-      "valueIdentifier" : {
-        "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-        "value" : "Cicero-Clinic"
-      }
     } ]
   }, {
     "id" : "shortlist",
@@ -8316,6 +9636,20 @@ HTTP status: 403
 
 Forbidden
 
+HTTP status: 406
+
+Not Acceptable
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
 HTTP status: 415
 
 Unsupported Media Type
@@ -8531,7 +9865,7 @@ Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
 
 Required
 
-nhsd-ers-ods-code	
+NHSD-End-User-Organisation-ODS	
 
 String
 
@@ -8547,7 +9881,7 @@ String
 
 The e-RS Business Function of the caller
 
-Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
 
 Required
 
@@ -8837,12 +10171,6 @@ Copy
         "code" : "HEART_FAILURE"
       }
     }, {
-      "name" : "organisation",
-      "valueIdentifier" : {
-        "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-        "value" : "TEST-ORG-GP1"
-      }
-    }, {
       "name" : "postcode",
       "valueString" : "LS1 2TW"
     }, {
@@ -9053,6 +10381,20 @@ HTTP status: 404
 
 Not Found
 
+HTTP status: 406
+
+Not Acceptable
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
 HTTP status: 409
 
 Conflict - Version supplied as part of the request does not match current version of the referral request
@@ -9204,6 +10546,7 @@ Pre-requisites
 In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
 
 SERVICE_PROVIDER_CLINICIAN
+SERVICE_PROVIDER_CLINICIAN_ADMIN
 
 You need to use A008 - Retrieve referral worklist to retrieve the contents of the 'Referrals For Review' worklist. A013 - Accept referral can only be used for referrals booked into bookable services, and not the referrals sent into triage services.
 
@@ -9247,7 +10590,7 @@ Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
 
 Required
 
-nhsd-ers-ods-code	
+NHSD-End-User-Organisation-ODS	
 
 String
 
@@ -9263,9 +10606,22 @@ String
 
 The e-RS Business Function of the caller
 
-Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
 
 Required
+
+NHSD-eRS-On-Behalf-Of-User-ID	
+
+String
+
+The (SDS) user ID of the user that the authenticating user wishes to act on behalf of (OBO).
+
+"On behalf of" is only supported for a Service Provider Clinician Admin (SPCA) acting on behalf of a Service Provider Clinician (SPC).
+
+Where an OBO User ID is supplied the authenticating user must be an SPCA and the OBO User ID must be that of an appropriate SPC.
+
+Example: 021600556514
+
 
 X-Correlation-Id	
 
@@ -9396,12 +10752,6 @@ Copy
       "valueCoding" : {
         "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
         "code" : "HEART_FAILURE"
-      }
-    }, {
-      "name" : "organisation",
-      "valueIdentifier" : {
-        "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-        "value" : "TEST-ORG-GP1"
       }
     }, {
       "name" : "postcode",
@@ -9643,6 +10993,20 @@ HTTP status: 404
 
 Not Found
 
+HTTP status: 406
+
+Not Acceptable
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
 HTTP status: 409
 
 Conflict - Version supplied as part of the request does not match current version of the referral request
@@ -9771,6 +11135,7 @@ Pre-requisites
 In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
 
 SERVICE_PROVIDER_CLINICIAN
+SERVICE_PROVIDER_CLINICIAN_ADMIN
 
 You need to use A008 - Retrieve referral worklist to retrieve the contents of the 'Referrals For Review' worklist. A014 - Reject referral can only be used for referrals booked into bookable services, and not the referrals sent into triage services.
 
@@ -9780,8 +11145,11 @@ You need to use A006 - Retrieve attachment to retrieve the clinical attachments 
 
 You need to use A007 - Retrieve clinical information to retrieve the clinical information summary PDF for the referral.
 
-You need to use A004 - Retrieve reference data to retrieve a list of rejection reason reference data codes along with their user-friendly display names.
+You need to use A004 - Retrieve reference data to retrieve a list of rejection reason reference data codes along with their user-friendly display names. To find relevant rejection reasons, obtain reference data from APPOINTMENT-CANCELLATION-REASON and filter as follows:
 
+appointmentBookingCancellationReasonType must be PROVIDER_REJECT
+effectiveFrom must be in the past, and
+effectiveTo must not be in the past
 Use cases
 
 As an authenticated user
@@ -9816,7 +11184,7 @@ Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
 
 Required
 
-nhsd-ers-ods-code	
+NHSD-End-User-Organisation-ODS	
 
 String
 
@@ -9832,9 +11200,22 @@ String
 
 The e-RS Business Function of the caller
 
-Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
 
 Required
+
+NHSD-eRS-On-Behalf-Of-User-ID	
+
+String
+
+The (SDS) user ID of the user that the authenticating user wishes to act on behalf of (OBO).
+
+"On behalf of" is only supported for a Service Provider Clinician Admin (SPCA) acting on behalf of a Service Provider Clinician (SPC).
+
+Where an OBO User ID is supplied the authenticating user must be an SPCA and the OBO User ID must be that of an appropriate SPC.
+
+Example: 021600556514
+
 
 X-Correlation-Id	
 
@@ -10045,12 +11426,6 @@ Copy
         "code" : "HEART_FAILURE"
       }
     }, {
-      "name" : "organisation",
-      "valueIdentifier" : {
-        "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-        "value" : "TEST-ORG-GP1"
-      }
-    }, {
       "name" : "postcode",
       "valueString" : "LS1 2TW"
     }, {
@@ -10233,12 +11608,6 @@ Copy
       "valueCoding" : {
         "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
         "code" : "HEART_FAILURE"
-      }
-    }, {
-      "name" : "organisation",
-      "valueIdentifier" : {
-        "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-        "value" : "TEST-ORG-GP1"
       }
     }, {
       "name" : "postcode",
@@ -10467,6 +11836,20 @@ HTTP status: 404
 
 Not Found
 
+HTTP status: 406
+
+Not Acceptable
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
 HTTP status: 409
 
 Conflict - Version supplied as part of the request does not match current version of the referral request
@@ -10817,7 +12200,7 @@ Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
 
 Required
 
-nhsd-ers-ods-code	
+NHSD-End-User-Organisation-ODS	
 
 String
 
@@ -10833,7 +12216,7 @@ String
 
 The e-RS Business Function of the caller
 
-Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
 
 Required
 
@@ -11786,6 +13169,20 @@ HTTP status: 403
 
 Forbidden
 
+HTTP status: 406
+
+Not Acceptable
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
 HTTP status: 429
 
 The e-Referral service APIs limit the number of transactions you can make per unit of time. This protects our service against excessive use and denial-of-service (DoS) attacks, and is also to encourage you to use our APIs efficiently.
@@ -11866,7 +13263,7 @@ Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
 
 Required
 
-nhsd-ers-ods-code	
+NHSD-End-User-Organisation-ODS	
 
 String
 
@@ -11882,7 +13279,7 @@ String
 
 The e-RS Business Function of the caller
 
-Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
 
 Required
 
@@ -12580,6 +13977,20 @@ HTTP status: 403
 
 Forbidden
 
+HTTP status: 406
+
+Not Acceptable
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
 HTTP status: 409
 
 Conflict - Version supplied as part of the request does not match current version of the referral request
@@ -12916,7 +14327,7 @@ Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
 
 Required
 
-nhsd-ers-ods-code	
+NHSD-End-User-Organisation-ODS	
 
 String
 
@@ -12932,7 +14343,7 @@ String
 
 The e-RS Business Function of the caller
 
-Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
 
 Required
 
@@ -13012,6 +14423,20 @@ HTTP status: 404
 
 Not Found
 
+HTTP status: 406
+
+Not Acceptable
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
 HTTP status: 422
 
 Where status code 422 (Unprocessable Entity) is returned then an eRS-OperationOutcome-1 will be included in the body, as detailed below. Check diagnostics property for specific information regarding the error.
@@ -13129,6 +14554,7 @@ In order to use this endpoint you must be an authenticated e-RS user and use one
 REFERRING_CLINICIAN
 REFERRING_CLINICIAN_ADMIN
 SERVICE_PROVIDER_CLINICIAN
+SERVICE_PROVIDER_CLINICIAN_ADMIN
 
 You can only upload file formats that are supported by e-RS. Currently, the supported file formats are:
 
@@ -13183,7 +14609,7 @@ Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
 
 Required
 
-nhsd-ers-ods-code	
+NHSD-End-User-Organisation-ODS	
 
 String
 
@@ -13199,9 +14625,22 @@ String
 
 The e-RS Business Function of the caller
 
-Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
 
 Required
+
+NHSD-eRS-On-Behalf-Of-User-ID	
+
+String
+
+The (SDS) user ID of the user that the authenticating user wishes to act on behalf of (OBO).
+
+"On behalf of" is only supported for a Service Provider Clinician Admin (SPCA) acting on behalf of a Service Provider Clinician (SPC).
+
+Where an OBO User ID is supplied the authenticating user must be an SPCA and the OBO User ID must be that of an appropriate SPC.
+
+Example: 021600556514
+
 
 X-Correlation-Id	
 
@@ -13417,6 +14856,20 @@ HTTP status: 403
 
 Forbidden
 
+HTTP status: 406
+
+Not Acceptable
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
 HTTP status: 415
 
 Unsupported Media Type
@@ -13586,7 +15039,7 @@ Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
 
 Required
 
-nhsd-ers-ods-code	
+NHSD-End-User-Organisation-ODS	
 
 String
 
@@ -13602,7 +15055,7 @@ String
 
 The e-RS Business Function of the caller
 
-Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
 
 Required
 
@@ -14262,6 +15715,20 @@ HTTP status: 403
 
 Forbidden
 
+HTTP status: 406
+
+Not Acceptable
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
 HTTP status: 415
 
 Unsupported Media Type
@@ -14411,6 +15878,7 @@ Pre-requisites
 In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
 
 SERVICE_PROVIDER_CLINICIAN
+SERVICE_PROVIDER_CLINICIAN_ADMIN
 
 You need to use A008 - Retrieve referral worklist to retrieve the contents of the 'Referrals For Review' worklist. A022 - Cancel appointment, action later can only be used for referrals booked into bookable services, and not the referrals sent into triage services.
 
@@ -14461,7 +15929,7 @@ Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
 
 Required
 
-nhsd-ers-ods-code	
+NHSD-End-User-Organisation-ODS	
 
 String
 
@@ -14477,9 +15945,22 @@ String
 
 The e-RS Business Function of the caller
 
-Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
 
 Required
+
+NHSD-eRS-On-Behalf-Of-User-ID	
+
+String
+
+The (SDS) user ID of the user that the authenticating user wishes to act on behalf of (OBO).
+
+"On behalf of" is only supported for a Service Provider Clinician Admin (SPCA) acting on behalf of a Service Provider Clinician (SPC).
+
+Where an OBO User ID is supplied the authenticating user must be an SPCA and the OBO User ID must be that of an appropriate SPC.
+
+Example: 021600556514
+
 
 X-Correlation-Id	
 
@@ -14743,12 +16224,6 @@ Copy
         "code" : "HEART_FAILURE"
       }
     }, {
-      "name" : "organisation",
-      "valueIdentifier" : {
-        "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-        "value" : "TEST-ORG-GP1"
-      }
-    }, {
       "name" : "postcode",
       "valueString" : "LS1 2TW"
     }, {
@@ -14947,12 +16422,6 @@ Copy
       "valueCoding" : {
         "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
         "code" : "HEART_FAILURE"
-      }
-    }, {
-      "name" : "organisation",
-      "valueIdentifier" : {
-        "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-        "value" : "TEST-ORG-GP1"
       }
     }, {
       "name" : "postcode",
@@ -15229,12 +16698,6 @@ Copy
         "code" : "HEART_FAILURE"
       }
     }, {
-      "name" : "organisation",
-      "valueIdentifier" : {
-        "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-        "value" : "TEST-ORG-GP1"
-      }
-    }, {
       "name" : "postcode",
       "valueString" : "LS1 2TW"
     }, {
@@ -15455,6 +16918,20 @@ HTTP status: 404
 
 Not Found
 
+HTTP status: 406
+
+Not Acceptable
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
 HTTP status: 409
 
 Conflict - Version supplied as part of the request does not match current version of the referral request
@@ -15611,6 +17088,7 @@ In order to use this endpoint you must be an authenticated e-RS user and use one
 
 SERVICE_PROVIDER_CLINICIAN
 SERVICE_PROVIDER_ADMIN
+SERVICE_PROVIDER_CLINICIAN_ADMIN
 Use case
 
 As an authenticated user
@@ -15643,7 +17121,7 @@ Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
 
 Required
 
-nhsd-ers-ods-code	
+NHSD-End-User-Organisation-ODS	
 
 String
 
@@ -15659,9 +17137,22 @@ String
 
 The e-RS Business Function of the caller
 
-Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
 
 Required
+
+NHSD-eRS-On-Behalf-Of-User-ID	
+
+String
+
+The (SDS) user ID of the user that the authenticating user wishes to act on behalf of (OBO).
+
+"On behalf of" is only supported for a Service Provider Clinician Admin (SPCA) acting on behalf of a Service Provider Clinician (SPC).
+
+Where an OBO User ID is supplied the authenticating user must be an SPCA and the OBO User ID must be that of an appropriate SPC.
+
+Example: 021600556514
+
 
 X-Correlation-Id	
 
@@ -15978,6 +17469,20 @@ HTTP status: 403
 
 Forbidden
 
+HTTP status: 406
+
+Not Acceptable
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
 HTTP status: 415
 
 Unsupported Media Type
@@ -16114,6 +17619,7 @@ In order to use this endpoint you must be an authenticated e-RS user and use one
 REFERRING_CLINICIAN
 REFERRING_CLINICIAN_ADMIN
 SERVICE_PROVIDER_CLINICIAN
+SERVICE_PROVIDER_CLINICIAN_ADMIN
 
 You need to use the Unique Booking Reference Number (UBRN) of the advice and guidance request. For service provider users, you may have identified the UBRN via A023 - Retrieve advice and guidance requests worklist.
 
@@ -16166,7 +17672,7 @@ Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
 
 Required
 
-nhsd-ers-ods-code	
+NHSD-End-User-Organisation-ODS	
 
 String
 
@@ -16182,9 +17688,22 @@ String
 
 The e-RS Business Function of the caller
 
-Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
 
 Required
+
+NHSD-eRS-On-Behalf-Of-User-ID	
+
+String
+
+The (SDS) user ID of the user that the authenticating user wishes to act on behalf of (OBO).
+
+"On behalf of" is only supported for a Service Provider Clinician Admin (SPCA) acting on behalf of a Service Provider Clinician (SPC).
+
+Where an OBO User ID is supplied the authenticating user must be an SPCA and the OBO User ID must be that of an appropriate SPC.
+
+Example: 021600556514
+
 
 X-Correlation-Id	
 
@@ -16714,6 +18233,20 @@ HTTP status: 404
 
 Not Found
 
+HTTP status: 406
+
+Not Acceptable
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
 HTTP status: 422
 
 Where status code 422 (Unprocessable Entity) is returned then an eRS-OperationOutcome-1 will be included in the body, as detailed below. Check diagnostics property for specific information regarding the error.
@@ -16880,7 +18413,7 @@ Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
 
 Required
 
-nhsd-ers-ods-code	
+NHSD-End-User-Organisation-ODS	
 
 String
 
@@ -16896,7 +18429,7 @@ String
 
 The e-RS Business Function of the caller
 
-Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
 
 Required
 
@@ -17428,6 +18961,20 @@ HTTP status: 404
 
 Not Found - Resource not found for ID provided or Resource version does not match version requested.
 
+HTTP status: 406
+
+Not Acceptable
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
 HTTP status: 422
 
 Where status code 422 (Unprocessable Entity) is returned then an eRS-OperationOutcome-1 will be included in the body, as detailed below. Check diagnostics property for specific information regarding the error.
@@ -17546,6 +19093,7 @@ In order to use this endpoint you must be an authenticated e-RS user and use one
 REFERRING_CLINICIAN
 REFERRING_CLINICIAN_ADMIN
 SERVICE_PROVIDER_CLINICIAN
+SERVICE_PROVIDER_CLINICIAN_ADMIN
 
 You need to use the Unique Booking Reference Number (UBRN) of the advice and guidance request. For service provider users, you may have identified the UBRN via A023 - Retrieve advice and guidance requests worklist.
 
@@ -17626,7 +19174,7 @@ Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
 
 Required
 
-nhsd-ers-ods-code	
+NHSD-End-User-Organisation-ODS	
 
 String
 
@@ -17642,9 +19190,22 @@ String
 
 The e-RS Business Function of the caller
 
-Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
 
 Required
+
+NHSD-eRS-On-Behalf-Of-User-ID	
+
+String
+
+The (SDS) user ID of the user that the authenticating user wishes to act on behalf of (OBO).
+
+"On behalf of" is only supported for a Service Provider Clinician Admin (SPCA) acting on behalf of a Service Provider Clinician (SPC).
+
+Where an OBO User ID is supplied the authenticating user must be an SPCA and the OBO User ID must be that of an appropriate SPC.
+
+Example: 021600556514
+
 
 X-Correlation-Id	
 
@@ -18884,6 +20445,20 @@ HTTP status: 404
 
 Not Found - Resource not found for ID provided or Resource version does not match version requested.
 
+HTTP status: 406
+
+Not Acceptable
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
 HTTP status: 429
 
 The e-Referral service APIs limit the number of transactions you can make per unit of time. This protects our service against excessive use and denial-of-service (DoS) attacks, and is also to encourage you to use our APIs efficiently.
@@ -18923,6 +20498,7 @@ Pre-requisites
 In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
 
 SERVICE_PROVIDER_CLINICIAN
+SERVICE_PROVIDER_CLINICIAN_ADMIN
 
 You need to use A024 - Retrieve advice and guidance request summary to retrieve the summary of an advice and guidance request.
 
@@ -18972,7 +20548,7 @@ Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
 
 Required
 
-nhsd-ers-ods-code	
+NHSD-End-User-Organisation-ODS	
 
 String
 
@@ -18988,9 +20564,22 @@ String
 
 The e-RS Business Function of the caller
 
-Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
 
 Required
+
+NHSD-eRS-On-Behalf-Of-User-ID	
+
+String
+
+The (SDS) user ID of the user that the authenticating user wishes to act on behalf of (OBO).
+
+"On behalf of" is only supported for a Service Provider Clinician Admin (SPCA) acting on behalf of a Service Provider Clinician (SPC).
+
+Where an OBO User ID is supplied the authenticating user must be an SPCA and the OBO User ID must be that of an appropriate SPC.
+
+Example: 021600556514
+
 
 X-Correlation-Id	
 
@@ -19266,12 +20855,6 @@ Copy
             "code" : "HEART_FAILURE"
           }
         }, {
-          "name" : "organisation",
-          "valueIdentifier" : {
-            "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-            "value" : "TEST-ORG-GP1"
-          }
-        }, {
           "name" : "postcode",
           "valueString" : "LS1 2TW"
         }, {
@@ -19515,12 +21098,6 @@ Copy
             "code" : "HEART_FAILURE"
           }
         }, {
-          "name" : "organisation",
-          "valueIdentifier" : {
-            "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-            "value" : "TEST-ORG-GP1"
-          }
-        }, {
           "name" : "postcode",
           "valueString" : "LS1 2TW"
         }, {
@@ -19762,12 +21339,6 @@ Copy
           "valueCoding" : {
             "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
             "code" : "HEART_FAILURE"
-          }
-        }, {
-          "name" : "organisation",
-          "valueIdentifier" : {
-            "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-            "value" : "TEST-ORG-GP1"
           }
         }, {
           "name" : "postcode",
@@ -20025,6 +21596,20 @@ HTTP status: 404
 
 Not Found
 
+HTTP status: 406
+
+Not Acceptable
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
 HTTP status: 409
 
 Conflict - Version supplied as part of the request does not match current version of the referral request
@@ -20176,6 +21761,7 @@ Pre-requisites
 In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
 
 SERVICE_PROVIDER_CLINICIAN
+SERVICE_PROVIDER_CLINICIAN_ADMIN
 
 You need to use A024 - Retrieve advice and guidance request summary to retrieve the summary of an advice and guidance request. This will include whether or not the referrer has authorised the provider to be able to convert an advice and guidance request into a referral, and thus dictate whether this endpoint can be used.
 
@@ -20222,7 +21808,7 @@ Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
 
 Required
 
-nhsd-ers-ods-code	
+NHSD-End-User-Organisation-ODS	
 
 String
 
@@ -20238,9 +21824,22 @@ String
 
 The e-RS Business Function of the caller
 
-Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
 
 Required
+
+NHSD-eRS-On-Behalf-Of-User-ID	
+
+String
+
+The (SDS) user ID of the user that the authenticating user wishes to act on behalf of (OBO).
+
+"On behalf of" is only supported for a Service Provider Clinician Admin (SPCA) acting on behalf of a Service Provider Clinician (SPC).
+
+Where an OBO User ID is supplied the authenticating user must be an SPCA and the OBO User ID must be that of an appropriate SPC.
+
+Example: 021600556514
+
 
 X-Correlation-Id	
 
@@ -20486,12 +22085,6 @@ Copy
         "code" : "HEART_FAILURE"
       }
     }, {
-      "name" : "organisation",
-      "valueIdentifier" : {
-        "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-        "value" : "TEST-ORG-GP1"
-      }
-    }, {
       "name" : "postcode",
       "valueString" : "LS1 2TW"
     }, {
@@ -20686,12 +22279,6 @@ Copy
       "valueCoding" : {
         "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
         "code" : "HEART_FAILURE"
-      }
-    }, {
-      "name" : "organisation",
-      "valueIdentifier" : {
-        "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-        "value" : "TEST-ORG-GP1"
       }
     }, {
       "name" : "postcode",
@@ -21063,6 +22650,20 @@ HTTP status: 404
 
 Not Found
 
+HTTP status: 406
+
+Not Acceptable
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
 HTTP status: 409
 
 Conflict - Version supplied as part of the request does not match current version of the referral request
@@ -21210,6 +22811,7 @@ Pre-requisites
 In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
 
 SERVICE_PROVIDER_CLINICIAN
+SERVICE_PROVIDER_CLINICIAN_ADMIN
 
 You need to use A008 - Retrieve referral worklist to retrieve the contents of the 'Referrals For Review' worklist. A028 - Record triage outcome can only be used for referrals sent into triage services, and not the referrals booked into bookable services.
 
@@ -21274,7 +22876,7 @@ Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
 
 Required
 
-nhsd-ers-ods-code	
+NHSD-End-User-Organisation-ODS	
 
 String
 
@@ -21290,9 +22892,22 @@ String
 
 The e-RS Business Function of the caller
 
-Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
 
 Required
+
+NHSD-eRS-On-Behalf-Of-User-ID	
+
+String
+
+The (SDS) user ID of the user that the authenticating user wishes to act on behalf of (OBO).
+
+"On behalf of" is only supported for a Service Provider Clinician Admin (SPCA) acting on behalf of a Service Provider Clinician (SPC).
+
+Where an OBO User ID is supplied the authenticating user must be an SPCA and the OBO User ID must be that of an appropriate SPC.
+
+Example: 021600556514
+
 
 X-Correlation-Id	
 
@@ -21537,12 +23152,6 @@ Copy
         "code" : "HEART_FAILURE"
       }
     }, {
-      "name" : "organisation",
-      "valueIdentifier" : {
-        "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-        "value" : "TEST-ORG-GP1"
-      }
-    }, {
       "name" : "postcode",
       "valueString" : "LS1 2TW"
     }, {
@@ -21735,12 +23344,6 @@ Copy
         "code" : "HEART_FAILURE"
       }
     }, {
-      "name" : "organisation",
-      "valueIdentifier" : {
-        "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-        "value" : "TEST-ORG-GP1"
-      }
-    }, {
       "name" : "postcode",
       "valueString" : "LS1 2TW"
     }, {
@@ -21931,12 +23534,6 @@ Copy
       "valueCoding" : {
         "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
         "code" : "HEART_FAILURE"
-      }
-    }, {
-      "name" : "organisation",
-      "valueIdentifier" : {
-        "system" : "https://directory.spineservices.nhs.uk/STU3/Organization",
-        "value" : "TEST-ORG-GP1"
       }
     }, {
       "name" : "postcode",
@@ -22196,6 +23793,20 @@ HTTP status: 404
 
 Not Found
 
+HTTP status: 406
+
+Not Acceptable
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
 HTTP status: 409
 
 Conflict - Version supplied as part of the request does not match current version of the referral request
@@ -22344,8 +23955,11 @@ Pre-requisites
 In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
 
 SERVICE_PROVIDER_CLINICIAN
+SERVICE_PROVIDER_CLINICIAN_ADMIN
+REFERRING_CLINICIAN
+REFERRING_CLINICIAN_ADMIN
 
-You should obtain a UBRN before using this endpoint, as the current UBRN version is required
+You should obtain a Unique Booking Reference Number (UBRN) before using this endpoint, as the current UBRN version is required
 
 Use case
 
@@ -22362,13 +23976,17 @@ To retrieve pertinent details relating to a referral:
 Use A005 - Retrieve referral request to retrieve the details of the referral, UBRN and UBRN version.
 Below is a list of actions that could be returned by calling A029 - Available actions for user list
 Use A028 - Record triage outcome to record a review outcome based on the available clinical information and attachments.
+Use A016 - Book or defer appointment to Book, or if unable, Defer, an appointment to a specific service on the current shortlist.
 Sandbox test scenarios
 
 You can test the following scenarios in our sandbox environment
 
 Scenario	Request
-An "action" is available	focus=ReferralRequest/000000070000/_history/6, intent=proposal, status=ready
-No "action" is available	focus=ReferralRequest/000000070001/_history/6, intent=proposal, status=ready
+"Record Review Outcome" is available	focus=ReferralRequest/000000070000/_history/6, intent=proposal, status=ready
+"Create Appointment" is available	focus=ReferralRequest/000000070001/_history/6, intent=proposal, status=ready
+"Change Shortlist" is available	focus=ReferralRequest/000000070002/_history/6, intent=proposal, status=ready
+"Change Shortlist and Send for Triage" is available	focus=ReferralRequest/000000070003/_history/6, intent=proposal, status=ready
+No "action" is available	focus=ReferralRequest/000000070004/_history/6, intent=proposal, status=ready
 Request
 Query parameters
 Name	Description
@@ -22422,7 +24040,7 @@ Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
 
 Required
 
-nhsd-ers-ods-code	
+NHSD-End-User-Organisation-ODS	
 
 String
 
@@ -22438,9 +24056,22 @@ String
 
 The e-RS Business Function of the caller
 
-Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
 
 Required
+
+NHSD-eRS-On-Behalf-Of-User-ID	
+
+String
+
+The (SDS) user ID of the user that the authenticating user wishes to act on behalf of (OBO).
+
+"On behalf of" is only supported for a Service Provider Clinician Admin (SPCA) acting on behalf of a Service Provider Clinician (SPC).
+
+Where an OBO User ID is supplied the authenticating user must be an SPCA and the OBO User ID must be that of an appropriate SPC.
+
+Example: 021600556514
+
 
 X-Correlation-Id	
 
@@ -22484,7 +24115,7 @@ Content type: application/fhir+json
 
 Examples
 
-With entries
+With Record Review Outcome
 
 Copy
 {
@@ -22526,6 +24157,132 @@ Copy
   } ]
 }
 
+With Create Appointment
+
+Copy
+{
+  "id" : "604dc1ea-986c-45ec-b36c-cf9d2fabc5c0",
+  "meta" : {
+    "lastUpdated" : "2021-11-01T11:05:40.046000+00:00",
+    "profile" : [ "http://hl7.org/fhir/STU3/StructureDefinition/Bundle" ]
+  },
+  "resourceType" : "Bundle",
+  "type" : "searchset",
+  "link" : [ {
+    "relation" : "self",
+    "url" : "_baseUrl_/STU3/Task?focus=ReferralRequest/000000070001/_history/6&intent=proposal&status=ready"
+  } ],
+  "entry" : [ {
+    "fullUrl" : "_baseUrl_/STU3/STU3/v1/Task/ed4dff57-503c-46ef-9084-4045a23f4c2a",
+    "resource" : {
+      "id" : "ed4dff57-503c-46ef-9084-4045a23f4c2a",
+      "meta" : {
+        "profile" : [ "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Task-1" ]
+      },
+      "resourceType" : "Task",
+      "status" : "ready",
+      "intent" : "proposal",
+      "focus" : {
+        "reference" : "ReferralRequest/000000070001/_history/6"
+      },
+      "code" : {
+        "coding" : [ {
+          "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AvailableActionsForUser-1",
+          "code" : "CREATE_APPOINTMENT",
+          "display" : "Create Appointment"
+        } ]
+      }
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  } ]
+}
+
+With Change Shortlist
+
+Copy
+{
+  "id" : "604dc1ea-986c-45ec-b36c-cf9d2fabc5c0",
+  "meta" : {
+    "lastUpdated" : "2021-11-01T11:05:40.046000+00:00",
+    "profile" : [ "http://hl7.org/fhir/STU3/StructureDefinition/Bundle" ]
+  },
+  "resourceType" : "Bundle",
+  "type" : "searchset",
+  "link" : [ {
+    "relation" : "self",
+    "url" : "_baseUrl_/STU3/Task?focus=ReferralRequest/000000070002/_history/6&intent=proposal&status=ready"
+  } ],
+  "entry" : [ {
+    "fullUrl" : "_baseUrl_/STU3/STU3/v1/Task/ed4dff57-503c-46ef-9084-4045a23f4c2a",
+    "resource" : {
+      "id" : "ed4dff57-503c-46ef-9084-4045a23f4c2a",
+      "meta" : {
+        "profile" : [ "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Task-1" ]
+      },
+      "resourceType" : "Task",
+      "status" : "ready",
+      "intent" : "proposal",
+      "focus" : {
+        "reference" : "ReferralRequest/000000070002/_history/6"
+      },
+      "code" : {
+        "coding" : [ {
+          "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AvailableActionsForUser-1",
+          "code" : "CHANGE_SHORTLIST",
+          "display" : "Change Shortlist"
+        } ]
+      }
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  } ]
+}
+
+With Change Shortlist and Send for Triage
+
+Copy
+{
+  "id" : "604dc1ea-986c-45ec-b36c-cf9d2fabc5c0",
+  "meta" : {
+    "lastUpdated" : "2021-11-01T11:05:40.046000+00:00",
+    "profile" : [ "http://hl7.org/fhir/STU3/StructureDefinition/Bundle" ]
+  },
+  "resourceType" : "Bundle",
+  "type" : "searchset",
+  "link" : [ {
+    "relation" : "self",
+    "url" : "_baseUrl_/STU3/Task?focus=ReferralRequest/000000070003/_history/6&intent=proposal&status=ready"
+  } ],
+  "entry" : [ {
+    "fullUrl" : "_baseUrl_/STU3/STU3/v1/Task/ed4dff57-503c-46ef-9084-4045a23f4c2a",
+    "resource" : {
+      "id" : "ed4dff57-503c-46ef-9084-4045a23f4c2a",
+      "meta" : {
+        "profile" : [ "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Task-1" ]
+      },
+      "resourceType" : "Task",
+      "status" : "ready",
+      "intent" : "proposal",
+      "focus" : {
+        "reference" : "ReferralRequest/000000070003/_history/6"
+      },
+      "code" : {
+        "coding" : [ {
+          "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-AvailableActionsForUser-1",
+          "code" : "CHANGE_SHORTLIST_AND_SEND_FOR_TRIAGE",
+          "display" : "Change Shortlist and Send for Triage"
+        } ]
+      }
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  } ]
+}
+
 Empty
 
 Copy
@@ -22539,7 +24296,7 @@ Copy
   "type" : "searchset",
   "link" : [ {
     "relation" : "self",
-    "url" : "_baseUrl_/STU3/Task?focus=ReferralRequest/000000070001/_history/6&intent=proposal&status=ready"
+    "url" : "_baseUrl_/STU3/Task?focus=ReferralRequest/000000070004/_history/6&intent=proposal&status=ready"
   } ],
   "entry" : [ ]
 }
@@ -22678,6 +24435,20 @@ HTTP status: 403
 
 Forbidden
 
+HTTP status: 406
+
+Not Acceptable
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
 HTTP status: 429
 
 The e-Referral service APIs limit the number of transactions you can make per unit of time. This protects our service against excessive use and denial-of-service (DoS) attacks, and is also to encourage you to use our APIs efficiently.
@@ -22724,7 +24495,76 @@ So I can choose the appropriate role and organisation to work under when perform
 
 Related endpoints
 
-You can then use the e-RS roles to perform specific tasks using other e-RS endpoints.
+You can then use the e-RS roles to perform specific tasks using other e-RS endpoints e.g. to satisfy Role and Organisation validation.
+
+Role and Organisation Validation
+
+The response from a successful call to A030 - Retrieve e-RS business functions represents a Practitioner Role Bundle. Each Practitioner Role represents an e-RS Role at a specific Organisation.
+
+For most e-RS endpoints requests are made in the context of a specific authorised e-RS Role at a specific Organisation for the authenticated user. This is accomplished by setting the values of the nhsd-ers-business-function and nhsd-ers-ods-code request headers.
+
+The e-RS Role is supplied to the endpoint via the nhsd-ers-business-function request header.
+
+The Organisation is supplied to the endpoint via the nhsd-ers-ods-code request header.
+
+The entry field in the response from A030 - Retrieve e-RS business functions is an array of PractitionerRole resources. An example of a PractitionerRole resource is:
+
+JSON
+
+Copy
+"resource": {
+  "id": "PractitionerRole-R69-000000000101",
+  "meta": {
+    "lastUpdated": "2021-05-24T16:09:32.252Z",
+    "profile": [
+      "https://fhir.hl7.org.uk/StructureDefinition/UKCore-PractitionerRole"
+    ]
+  },
+  "resourceType": "PractitionerRole",
+  "practitioner": {
+    "identifier": {
+      "system": "https://fhir.nhs.uk/Id/sds-user-id",
+      "value": "000000000101"
+    }
+  },
+  "organization": {
+    "identifier": {
+      "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+      "value": "R69"
+    }
+  },
+  "code": [
+    {
+      "coding": [
+        {
+          "system": "https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1",
+          "code": "SERVICE_DEFINER"
+        }
+      ]
+    },
+    {
+      "coding": [
+        {
+          "system": "https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1",
+          "code": "SERVICE_PROVIDER_CLINICIAN"
+        }
+      ]
+    },
+    {
+      "coding": [
+        {
+          "system": "https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1",
+          "code": "SERVICE_PROVIDER_ADMIN"
+        }
+      ]
+    }
+  ]
+},
+
+
+Each PractitionerRole resource has a code field which is an array of codings. The authorised e-RS Roles for the authenticated user at a particilar Organisation are represented by the value fields in the https://fhir.nhs.uk/CodeSystem/eRS-BusinessFunction-1 code system. The nhsd-ers-business-function request header value should be the code field value from the relevant eRS-Business-Function-1 coding in the PractitionerRole resource e.g. SERVICE_PROVIDER_CLINICIAN.
+
+Each PractitionerRole resource also has an organization field which has an identifier in the https://fhir.nhs.uk/Id/ods-organization-code code system. The nhsd-ers-ods-code request header value should be the value field value from the organization identifier in the PractitionerRole resource e.g. "R69".
 
 Request
 Headers
@@ -22936,6 +24776,2571 @@ Unauthorized
 HTTP status: 403
 
 Forbidden
+
+HTTP status: 406
+
+Not Acceptable
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
+HTTP status: 429
+
+The e-Referral service APIs limit the number of transactions you can make per unit of time. This protects our service against excessive use and denial-of-service (DoS) attacks, and is also to encourage you to use our APIs efficiently.
+
+Our standard rate limit for the production environment is 10 requests per second per application. APIs associated with the "Binary" resource are further restricted to 2 requests per second per application. If you go over the rate limit you'll receive a response with an HTTP status of 429 (Too Many Requests).
+
+Our path-to-live environments have very low rate limits. They are for functional testing only - you should not use them for performance testing.
+
+If you have problems with rate limits, contact us to discuss your application design and volumetrics, and to see whether it's appropriate to raise your rate limit.
+
+If a 429 response is received, indicating a request has been rate limited, then you must back off and retry with exponentially increasing periods between requests. Once a request is successful again, then you may continue to send requests inline with the documented rate limits.
+
+Example:
+
+Receive a 429 response
+Wait 1s and resend, but still receive a 429
+Wait 2s and resend, but still receive a 429
+Wait 4s, request is successful
+Return to normal request cadence
+HTTP status: 500
+
+Internal Server Error
+
+A031 - Change Shortlist
+POST /STU3/ReferralRequest/{ubrn}/$ers.changeShortlist
+Try this API
+Overview
+
+Use this endpoint to change the shortlist of bookable services on an existing referral.
+
+Please note: this endpoint cannot be used to shortlist triage services. In order to make use of triage services please use A032 - Change Shortlist and Send for Triage.
+
+A patient can request assistance at a service (e.g. a translator, transport or advocacy) when a shortlist is created within the e-RS web application, meaning that all services shortlisted would support the patient's additional requirements to attend.
+
+The e-RS API's do not currently support patients' additional requirements so you can neither specify services that support patients' additional requirements, view existing additional requirements for a patient, nor arrange additional requirements for a patient.
+
+If you do not know whether the patient has an existing additional requirement need and the referral may have been shortlisted within the e-RS web application, be mindful that if you chose to amend the shortlist via changing the services, you could remove this patient need.
+
+If you are changing services to send the patient to a triage service, the triaging service will not support additional requirements but will need to consider if the patient has any additional requirements as part of their decision for future care.
+
+You can view additional requirements on a referral via the e-RS web application.
+
+Supported security patterns
+Healthcare worker, user-restricted access
+Pre-requisites
+
+In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+
+REFERRING_CLINICIAN
+REFERRING_CLINICIAN_ADMIN
+
+You need to use the Unique Booking Reference Number (UBRN) of a referral request in order to use this endpoint.
+
+You need to have found services that meet the referral needs of a patient using A010 - Patient service search.
+
+Use case
+
+As an authenticated user
+
+I need to change the shortlist of bookable services on an existing referral
+
+So that I can adequately manage my patients referral pathway, allowing the patient to book into an appropriate service.
+
+Related endpoints
+
+To allow the patient to book their appointment in their own time, you can generate a letter for the patient by using A019 - Generate patient letter. The letter summarises the current state of the referral and any steps the patient may need to follow (e.g. appointment booking instructions).
+
+You can book an appointment for the patient by using A015 - Retrieve appointment slots and A016 - Book or defer appointment.
+
+For the referral to be processed by the service provider, you must ensure appropriate referral letter information has been added to the referral. You can add/manage referrer letter information by using A012 - Maintain referral letter.
+
+You can check to see what referral letter information has already been added to a referral by using A005 - Retrieve referral request, A007 - Retrieve clinical information, and A006 - Retrieve attachment endpoints where necessary.
+
+Request
+Path parameters
+Name	Description
+ubrn	
+
+String
+
+The unique booking reference number of the referral request
+
+Example: 000000070000
+
+Required
+Headers
+Name	Description
+Authorization	
+
+String (^Bearer\ [[:ascii:]]+$)
+
+An OAuth 2.0 bearer token.
+
+Required in all environments except sandbox.
+
+Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
+
+Required
+
+NHSD-End-User-Organisation-ODS	
+
+String
+
+The ODS code of the caller's Organisation
+
+Example: R69
+
+Required
+
+nhsd-ers-business-function	
+
+String
+
+The e-RS Business Function of the caller
+
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+
+Required
+
+X-Correlation-Id	
+
+String
+
+Arbitrary string value provided by API Consumer
+
+Tends to be unique, but does not have to be
+
+Returned, unchanged, in the response
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+
+If-Match	
+
+String
+
+The version of the resource to be updated
+
+Pattern: /^W\/"[0-9]+"$/
+
+Example: W/"4"
+
+Required
+Body
+Required
+
+Content type: application/fhir+json
+
+Examples
+
+Unbooked ReferralRequest
+
+Changing the shortlist of an unbooked ReferralRequest (single service shortlist)
+
+Copy
+{
+  "resourceType" : "Parameters",
+  "meta" : {
+    "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ChangeShortlist-Parameters-1" ]
+  },
+  "parameter" : [ {
+    "name" : "shortlist",
+    "resource" : {
+      "meta" : {
+        "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Shortlist-List-1" ]
+      },
+      "resourceType" : "List",
+      "status" : "current",
+      "mode" : "snapshot",
+      "contained" : [ {
+        "resourceType" : "Parameters",
+        "meta" : {
+          "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ServiceSearchCriteria-Parameters-1" ]
+        },
+        "id" : "ServiceSearchCriteria-1",
+        "parameter" : [ {
+          "name" : "priority",
+          "valueCoding" : {
+            "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+            "code" : "URGENT"
+          }
+        }, {
+          "name" : "specialty",
+          "valueCoding" : {
+            "system" : "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+            "code" : "CARDIOLOGY"
+          }
+        }, {
+          "name" : "clinicType",
+          "valueCoding" : {
+            "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
+            "code" : "HEART_FAILURE"
+          }
+        }, {
+          "name" : "commissioningProvisioning",
+          "valueCoding" : {
+            "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-CommissioningProvisioning-1",
+            "code" : "ALL_AVAILABLE_FOR_BOOKING"
+          }
+        }, {
+          "name" : "ageAndGenderAppropriate",
+          "valueBoolean" : false
+        } ]
+      } ],
+      "entry" : [ {
+        "item" : {
+          "identifier" : {
+            "system" : "http://fhir.nhs.net/Id/ers-service",
+            "value" : "11002"
+          }
+        }
+      } ],
+      "extension" : [ {
+        "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Shortlist-SearchCriteria-1",
+        "valueReference" : {
+          "reference" : "#ServiceSearchCriteria-1"
+        }
+      } ]
+    }
+  }, {
+    "name" : "intentionToAddReferralLetter",
+    "valueCoding" : {
+      "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralLetterIntention-1",
+      "code" : "NEED_TO_ADD_LATER"
+    }
+  }, {
+    "name" : "firstReminderLetterFollowUpDays",
+    "valueUnsignedInt" : 0
+  } ]
+}
+
+Unbooked ReferralRequest with Multiple Services
+
+Changing the shortlist of an unbooked ReferralRequest (multiple services shortlist)
+
+Copy
+{
+  "resourceType" : "Parameters",
+  "meta" : {
+    "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ChangeShortlist-Parameters-1" ]
+  },
+  "parameter" : [ {
+    "name" : "shortlist",
+    "resource" : {
+      "meta" : {
+        "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Shortlist-List-1" ]
+      },
+      "resourceType" : "List",
+      "status" : "current",
+      "mode" : "snapshot",
+      "contained" : [ {
+        "resourceType" : "Parameters",
+        "meta" : {
+          "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ServiceSearchCriteria-Parameters-1" ]
+        },
+        "id" : "ServiceSearchCriteria-1",
+        "parameter" : [ {
+          "name" : "priority",
+          "valueCoding" : {
+            "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+            "code" : "URGENT"
+          }
+        }, {
+          "name" : "specialty",
+          "valueCoding" : {
+            "system" : "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+            "code" : "CARDIOLOGY"
+          }
+        }, {
+          "name" : "clinicType",
+          "valueCoding" : {
+            "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
+            "code" : "HEART_FAILURE"
+          }
+        }, {
+          "name" : "commissioningProvisioning",
+          "valueCoding" : {
+            "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-CommissioningProvisioning-1",
+            "code" : "ALL_AVAILABLE_FOR_BOOKING"
+          }
+        }, {
+          "name" : "ageAndGenderAppropriate",
+          "valueBoolean" : false
+        } ]
+      } ],
+      "entry" : [ {
+        "item" : {
+          "identifier" : {
+            "system" : "http://fhir.nhs.net/Id/ers-service",
+            "value" : "11000"
+          }
+        }
+      }, {
+        "item" : {
+          "identifier" : {
+            "system" : "http://fhir.nhs.net/Id/ers-service",
+            "value" : "11001"
+          }
+        }
+      }, {
+        "item" : {
+          "identifier" : {
+            "system" : "http://fhir.nhs.net/Id/ers-service",
+            "value" : "11002"
+          }
+        }
+      }, {
+        "item" : {
+          "identifier" : {
+            "system" : "http://fhir.nhs.net/Id/ers-service",
+            "value" : "11003"
+          }
+        }
+      }, {
+        "item" : {
+          "identifier" : {
+            "system" : "http://fhir.nhs.net/Id/ers-service",
+            "value" : "11008"
+          }
+        }
+      } ],
+      "extension" : [ {
+        "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Shortlist-SearchCriteria-1",
+        "valueReference" : {
+          "reference" : "#ServiceSearchCriteria-1"
+        }
+      } ]
+    }
+  }, {
+    "name" : "intentionToAddReferralLetter",
+    "valueCoding" : {
+      "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralLetterIntention-1",
+      "code" : "NEED_TO_ADD_LATER"
+    }
+  }, {
+    "name" : "firstReminderLetterFollowUpDays",
+    "valueUnsignedInt" : 0
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+eRS-ChangeShortlist-Parameters
+
+Parameters provided when looking to change the services a referral has currently shortlisted
+
+
+
+resourceType
+string
+required
+	
+Allowed values: Parameters
+
+
+meta
+object
+required
+	
+
+parameter
+array
+required
+	
+Field	Cardinality	Notes
+Shortlist	1..1	Shortlist indicating the new services a referral should have shortlisted
+IntentionToAddReferralLetter	1..1	Flag indicating whether a referral letter is going to be added later or is already added
+FirstReminderLetterFollowUpDays	1..1	Time at which a reminder should be sent to remind the patient about the referral
+Response
+HTTP status: 200
+
+Referral updated with new service list
+
+Headers
+Name	Description
+x-correlation-id	
+
+String
+
+The X-Correlation-ID from the request header, if supplied, mirrored back.
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+
+x-request-id	
+
+String
+
+The e-RS transaction id
+
+Example: 58621d65-d5ad-4c3a-959f-0438e355990e-1
+
+
+ETag	
+
+String
+
+Record version identifier enclosed in quotes and preceded by 'W/'. For example, W/"2".
+
+This Weak ETag corresponds to meta.versionId attribute in the resource body.
+
+Pattern: /^W\/"[0-9]+"$/
+
+Example: W/"2"
+
+Body
+
+Content type: application/fhir+json
+
+Examples
+
+Unbooked ReferralRequest
+
+Changing the shortlist of an unbooked ReferralRequest (single service shortlist)
+
+Copy
+{
+  "id" : "000000070000",
+  "meta" : {
+    "versionId" : "3",
+    "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ReferralRequest-1" ]
+  },
+  "resourceType" : "ReferralRequest",
+  "extension" : [ {
+    "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralPriority-1",
+    "valueCodeableConcept" : {
+      "coding" : [ {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+        "code" : "URGENT",
+        "display" : "Urgent"
+      } ]
+    }
+  }, {
+    "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralShortlist-1",
+    "valueReference" : {
+      "reference" : "#shortlist"
+    }
+  }, {
+    "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Commissioning-Rule-Org-1",
+    "valueIdentifier" : {
+      "system" : "https://fhir.nhs.uk/Id/ods-organization-code",
+      "value" : "R69"
+    }
+  } ],
+  "contained" : [ {
+    "id" : "serviceSearchCriteria",
+    "meta" : {
+      "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ServiceSearchCriteria-Parameters-1" ]
+    },
+    "resourceType" : "Parameters",
+    "parameter" : [ {
+      "name" : "priority",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+        "code" : "URGENT"
+      }
+    }, {
+      "name" : "specialty",
+      "valueCoding" : {
+        "system" : "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+        "code" : "CARDIOLOGY"
+      }
+    }, {
+      "name" : "clinicType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
+        "code" : "HEART_FAILURE"
+      }
+    }, {
+      "name" : "ageAndGenderAppropriate",
+      "valueBoolean" : false
+    }, {
+      "name" : "commissioningProvisioning",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-CommissioningProvisioning-1",
+        "code" : "ALL_AVAILABLE_FOR_BOOKING"
+      }
+    } ]
+  }, {
+    "id" : "shortlist",
+    "meta" : {
+      "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Shortlist-List-1" ]
+    },
+    "resourceType" : "List",
+    "extension" : [ {
+      "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Shortlist-SearchCriteria-1",
+      "valueReference" : {
+        "reference" : "#serviceSearchCriteria"
+      }
+    } ],
+    "status" : "current",
+    "mode" : "snapshot",
+    "entry" : [ {
+      "item" : {
+        "identifier" : {
+          "system" : "http://fhir.nhs.net/Id/ers-service",
+          "value" : "11002"
+        },
+        "display" : "Good Cardiology Business Service"
+      }
+    } ]
+  } ],
+  "status" : "active",
+  "subject" : {
+    "identifier" : {
+      "system" : "http://fhir.nhs.net/Id/nhs-number",
+      "value" : "9912003888"
+    }
+  },
+  "supportingInfo" : [ ],
+  "intent" : "plan"
+}
+
+Unbooked ReferralRequest with Multiple Services
+
+Changing the shortlist of an unbooked ReferralRequest (multiple services shortlist)
+
+Copy
+{
+  "id" : "000000070000",
+  "meta" : {
+    "versionId" : "3",
+    "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ReferralRequest-1" ]
+  },
+  "resourceType" : "ReferralRequest",
+  "extension" : [ {
+    "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralPriority-1",
+    "valueCodeableConcept" : {
+      "coding" : [ {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+        "code" : "URGENT",
+        "display" : "Urgent"
+      } ]
+    }
+  }, {
+    "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralShortlist-1",
+    "valueReference" : {
+      "reference" : "#shortlist"
+    }
+  }, {
+    "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Commissioning-Rule-Org-1",
+    "valueIdentifier" : {
+      "system" : "https://fhir.nhs.uk/Id/ods-organization-code",
+      "value" : "R69"
+    }
+  } ],
+  "contained" : [ {
+    "id" : "serviceSearchCriteria",
+    "meta" : {
+      "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ServiceSearchCriteria-Parameters-1" ]
+    },
+    "resourceType" : "Parameters",
+    "parameter" : [ {
+      "name" : "priority",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+        "code" : "URGENT"
+      }
+    }, {
+      "name" : "specialty",
+      "valueCoding" : {
+        "system" : "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+        "code" : "CARDIOLOGY"
+      }
+    }, {
+      "name" : "clinicType",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
+        "code" : "HEART_FAILURE"
+      }
+    }, {
+      "name" : "ageAndGenderAppropriate",
+      "valueBoolean" : false
+    }, {
+      "name" : "commissioningProvisioning",
+      "valueCoding" : {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-CommissioningProvisioning-1",
+        "code" : "ALL_AVAILABLE_FOR_BOOKING"
+      }
+    } ]
+  }, {
+    "id" : "shortlist",
+    "meta" : {
+      "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Shortlist-List-1" ]
+    },
+    "resourceType" : "List",
+    "extension" : [ {
+      "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Shortlist-SearchCriteria-1",
+      "valueReference" : {
+        "reference" : "#serviceSearchCriteria"
+      }
+    } ],
+    "status" : "current",
+    "mode" : "snapshot",
+    "entry" : [ {
+      "item" : {
+        "identifier" : {
+          "system" : "http://fhir.nhs.net/Id/ers-service",
+          "value" : "11000"
+        },
+        "display" : "Good Cardiology Business Service 1"
+      }
+    }, {
+      "item" : {
+        "identifier" : {
+          "system" : "http://fhir.nhs.net/Id/ers-service",
+          "value" : "11001"
+        },
+        "display" : "Good Cardiology Business Service 2"
+      }
+    }, {
+      "item" : {
+        "identifier" : {
+          "system" : "http://fhir.nhs.net/Id/ers-service",
+          "value" : "11002"
+        },
+        "display" : "Good Cardiology Business Service 3"
+      }
+    }, {
+      "item" : {
+        "identifier" : {
+          "system" : "http://fhir.nhs.net/Id/ers-service",
+          "value" : "11003"
+        },
+        "display" : "Good Cardiology Business Service 4"
+      }
+    }, {
+      "item" : {
+        "identifier" : {
+          "system" : "http://fhir.nhs.net/Id/ers-service",
+          "value" : "11008"
+        },
+        "display" : "Good Cardiology Business Service 5"
+      }
+    } ]
+  } ],
+  "status" : "active",
+  "subject" : {
+    "identifier" : {
+      "system" : "http://fhir.nhs.net/Id/nhs-number",
+      "value" : "9912003888"
+    }
+  },
+  "supportingInfo" : [ ],
+  "intent" : "plan"
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+eRS-ReferralRequest
+
+
+id
+string
+required
+	
+Example: 000000070000
+
+
+meta
+object
+required
+	
+
+resourceType
+string
+required
+	
+Allowed values: ReferralRequest
+
+
+contained
+array
+nullable
+required
+	
+Field	Cardinality	Notes
+eRS-Shortlist-List	1..1	
+eRS-ServiceSearchCriteria-Parameters	1..1	
+eRS-Appointment	0..1	
+DocumentReference	0..*	
+
+
+extension
+array
+nullable
+required
+	
+Field	Cardinality	Notes
+Extension-eRS-ReferralShortlist	1..1	
+Extension-eRS-Commissioning-Rule-Org	1..1	
+Extension-eRS-ReferralPriority	1..1	
+Extension-eRS-Appointment	0..1	
+Extension-eRS-ClinicalInfoFirstSubmitted	0..1	
+Extension-eRS-ClinicalInfoLastUpdated	0..1	
+
+
+status
+string
+required
+	
+Allowed values: active, completed
+
+
+subject
+object
+required
+	
+
+supportingInfo
+array
+nullable
+required
+	
+
+intent
+string
+required
+	
+Allowed values: plan
+HTTP status: 400
+
+Bad Request
+
+HTTP status: 401
+
+Unauthorized
+
+HTTP status: 403
+
+Forbidden
+
+HTTP status: 404
+
+Not Found
+
+HTTP status: 409
+
+Conflict - Version supplied as part of the request does not match current version of the referral request
+
+HTTP status: 415
+
+Unsupported Media Type
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
+HTTP status: 422
+
+Where status code 422 (Unprocessable Entity) is returned then an eRS-OperationOutcome-1 will be included in the body, as detailed below. Check diagnostic property for specific information regarding the error.
+
+Error code	Description
+INAPPROPRIATE_VALUE	A value, which is acceptable under different conditions, is inappropriate in the context of the other information provided.
+TOO_MANY_ITEMS	In a list where a maximum number of items is specified (e.g. a Shortlist), too many entries are supplied.
+MISSING_VALUE	A field defined as mandatory for an endpoint has not been provided.
+PATIENT_ERROR	An error occurred while retrieving the requested patient. Do not attempt again.
+INVALID_VALUE	The input provided does not conform to the expected data types and format.
+INVALID_CODE	The input provided for a field is not one of the defined legal values.
+UNEXPECTED_FIELD	A field is provided that is not expected as part of the request. E.g. a field is mis-spelt, was defined on a previous version of the endpoint but has subsequently been removed.
+INVALID_FHIR_STRUCTURE	The FHIR data structure in the message body does not match the expected structure (e.g. an array is present for a value when no array is expected).
+ORGANISATION_IS_CLOSED	The organisation supplied corresponds to an organisation that is closed.
+ORGANISATION_NOT_APPROPRIATE	The organisation supplied corresponds to an organisation that is not valid for the given request.
+DUPLICATE_SERVICE	Unique service value expected.
+SHORTLISTED_SERVICE_NOT_IN_RESULTS	The service selected for the shortlist submitted does not satisfy the search criteria provided.
+SNOMED_NOT_FOUND	A SNOMED code, while potentially valid in the latest version of the international dictionary, is not found in the e-RS dictionary.
+NO_RELATIONSHIP	The user does not have a legitimate relationship with the request.
+INVALID_REQUEST_TYPE	The UBRN provided exists in e-RS but does not correspond to an active request.
+INVALID_REQUEST_STATE	The Request, while otherwise valid, is not in the correct state for the specific action being performed.
+Headers
+Name	Description
+x-correlation-id	
+
+String
+
+The X-Correlation-ID from the request header, if supplied, mirrored back.
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+
+x-request-id	
+
+String
+
+The e-RS transaction id
+
+Example: 58621d65-d5ad-4c3a-959f-0438e355990e-1
+
+Body
+
+Content type: application/fhir+json
+
+Example
+
+Copy
+{
+  "meta" : {
+    "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-OperationOutcome-1" ]
+  },
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "value",
+    "details" : {
+      "coding" : [ {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-APIErrorCode-1",
+        "code" : "UNEXPECTED_FIELD",
+        "display" : "Unexpected field"
+      } ]
+    },
+    "diagnostics" : "'parameter[0]/resource/contained[0]/parameter[1]' (unknownParameter) unknown parameter name"
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+eRS-OperationOutcome
+
+
+resourceType
+string
+required
+	
+Allowed values: OperationOutcome
+
+
+meta
+object
+required
+	
+
+issue
+array
+required
+	
+HTTP status: 423
+
+Locked - resource is locked
+
+HTTP status: 429
+
+The e-Referral service APIs limit the number of transactions you can make per unit of time. This protects our service against excessive use and denial-of-service (DoS) attacks, and is also to encourage you to use our APIs efficiently.
+
+Our standard rate limit for the production environment is 10 requests per second per application. APIs associated with the "Binary" resource are further restricted to 2 requests per second per application. If you go over the rate limit you'll receive a response with an HTTP status of 429 (Too Many Requests).
+
+Our path-to-live environments have very low rate limits. They are for functional testing only - you should not use them for performance testing.
+
+If you have problems with rate limits, contact us to discuss your application design and volumetrics, and to see whether it's appropriate to raise your rate limit.
+
+If a 429 response is received, indicating a request has been rate limited, then you must back off and retry with exponentially increasing periods between requests. Once a request is successful again, then you may continue to send requests inline with the documented rate limits.
+
+Example:
+
+Receive a 429 response
+Wait 1s and resend, but still receive a 429
+Wait 2s and resend, but still receive a 429
+Wait 4s, request is successful
+Return to normal request cadence
+HTTP status: 500
+
+Internal Server Error
+
+A032 - Change Shortlist and Send for Triage
+POST /STU3/ReferralRequest/{ubrn}/$ers.changeShortlistAndSendForTriage
+Try this API
+Overview
+
+Use this endpoint to change the shortlist to a single triage service and refer the patient directly to that triage service.
+
+Please note: this endpoint cannot be used to shortlist bookable services. In order to shortlist bookable services on an existing referral please use A031 - Change Shortlist.
+
+A patient can request assistance at a service (e.g. a translator, transport or advocacy) when a shortlist is created within the e-RS web application, meaning that all services shortlisted would support the patient's additional requirements to attend.
+
+The e-RS API's do not currently support patients' additional requirements so you can neither specify services that support patients' additional requirements, view existing additional requirements for a patient, nor arrange additional requirements for a patient.
+
+If you do not know whether the patient has an existing additional requirement need and the referral may have been shortlisted within the e-RS web application, be mindful that if you chose to amend the shortlist via changing the services, you could remove this patient need.
+
+If you are changing services to send the patient to a triage service, the triaging service will not support additional requirements but will need to consider if the patient has any additional requirements as part of their decision for future care.
+
+You can view additional requirements on a referral via the e-RS web application.
+
+Supported security patterns
+Healthcare worker, user-restricted access
+Pre-requisites
+
+In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+
+REFERRING_CLINICIAN
+REFERRING_CLINICIAN_ADMIN
+
+You need to use the Unique Booking Reference Number (UBRN) of a referral request in order to use this endpoint.
+
+You need to have found services that meet the referral needs of a patient using A010 - Patient service search.
+
+Use case
+
+As an authenticated user
+
+I need to change the shortlist and refer the patient to a triage service for assessment
+
+So that I can put the patient on the appropriate clinical pathway for the chosen service provider.
+
+Related endpoints
+
+For the referral to be processed by the service provider, you must ensure appropriate referral letter information has been added to the referral. You can add/manage referrer letter information by using A012 - Maintain referral letter.
+
+You can check to see what referral letter information has already been added to a referral by using A005 - Retrieve referral request, A006 - Retrieve attachment, and A007 - Retrieve clinical information endpoints where necessary.
+
+Request
+Path parameters
+Name	Description
+ubrn	
+
+String
+
+The unique booking reference number of the referral request
+
+Example: 000000070000
+
+Required
+Headers
+Name	Description
+Authorization	
+
+String (^Bearer\ [[:ascii:]]+$)
+
+An OAuth 2.0 bearer token.
+
+Required in all environments except sandbox.
+
+Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
+
+Required
+
+NHSD-End-User-Organisation-ODS	
+
+String
+
+The ODS code of the caller's Organisation
+
+Example: R69
+
+Required
+
+nhsd-ers-business-function	
+
+String
+
+The e-RS Business Function of the caller
+
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+
+Required
+
+X-Correlation-Id	
+
+String
+
+Arbitrary string value provided by API Consumer
+
+Tends to be unique, but does not have to be
+
+Returned, unchanged, in the response
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+
+If-Match	
+
+String
+
+The version of the resource to be updated
+
+Pattern: /^W\/"[0-9]+"$/
+
+Example: W/"4"
+
+Required
+Body
+Required
+
+Content type: application/fhir+json
+
+Example
+
+Unbooked ReferralRequest
+
+Changing the service list of an unbooked ReferralRequest and sending to Triage
+
+Copy
+{
+  "resourceType" : "Parameters",
+  "meta" : {
+    "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ChangeShortlistAndSendForTriage-Request-Parameters-1" ]
+  },
+  "parameter" : [ {
+    "name" : "shortlist",
+    "resource" : {
+      "meta" : {
+        "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Shortlist-List-1" ]
+      },
+      "resourceType" : "List",
+      "status" : "current",
+      "mode" : "snapshot",
+      "contained" : [ {
+        "resourceType" : "Parameters",
+        "meta" : {
+          "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ServiceSearchCriteria-Parameters-1" ]
+        },
+        "id" : "ServiceSearchCriteria-1",
+        "parameter" : [ {
+          "name" : "priority",
+          "valueCoding" : {
+            "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+            "code" : "ROUTINE"
+          }
+        }, {
+          "name" : "specialty",
+          "valueCoding" : {
+            "system" : "_baseUrl_/STU3/v1/CodeSystem/SPECIALTY",
+            "code" : "CARDIOLOGY"
+          }
+        }, {
+          "name" : "clinicType",
+          "valueCoding" : {
+            "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
+            "code" : "HEART_FAILURE"
+          }
+        }, {
+          "name" : "commissioningProvisioning",
+          "valueCoding" : {
+            "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-CommissioningProvisioning-1",
+            "code" : "ALL_AVAILABLE_FOR_BOOKING"
+          }
+        }, {
+          "name" : "ageAndGenderAppropriate",
+          "valueBoolean" : false
+        } ]
+      } ],
+      "entry" : [ {
+        "item" : {
+          "identifier" : {
+            "system" : "http://fhir.nhs.net/Id/ers-service",
+            "value" : "11004"
+          }
+        }
+      } ],
+      "extension" : [ {
+        "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Shortlist-SearchCriteria-1",
+        "valueReference" : {
+          "reference" : "#ServiceSearchCriteria-1"
+        }
+      } ]
+    }
+  }, {
+    "name" : "intentionToAddReferralLetter",
+    "valueCoding" : {
+      "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReferralLetterIntention-1",
+      "code" : "NEED_TO_ADD_LATER"
+    }
+  }, {
+    "name" : "firstReminderLetterFollowUpDays",
+    "valueUnsignedInt" : 0
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+eRS-ChangeShortlistAndSendForTriage-Request-Parameters
+
+Parameters provided when looking to change the services a referral has currently shortlisted
+
+
+
+resourceType
+string
+required
+	
+Allowed values: Parameters
+
+
+meta
+object
+required
+	
+
+parameter
+array
+required
+	
+Field	Cardinality	Notes
+Shortlist	1..1	Shortlist indicating the new service a referral should have shortlisted
+IntentionToAddReferralLetter	1..1	Flag indicating whether a referral letter is going to be added later or is already added
+FirstReminderLetterFollowUpDays	1..1	Time at which a reminder should be sent to remind the patient about the referral
+Response
+HTTP status: 200
+
+Referral updated with new service and sent for Triage
+
+Headers
+Name	Description
+x-correlation-id	
+
+String
+
+The X-Correlation-ID from the request header, if supplied, mirrored back.
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+
+x-request-id	
+
+String
+
+The e-RS transaction id
+
+Example: 58621d65-d5ad-4c3a-959f-0438e355990e-1
+
+
+ETag	
+
+String
+
+Record version identifier enclosed in quotes and preceded by 'W/'. For example, W/"2".
+
+This Weak ETag corresponds to meta.versionId attribute in the resource body.
+
+Pattern: /^W\/"[0-9]+"$/
+
+Example: W/"2"
+
+Body
+
+Content type: application/fhir+json
+
+Example
+
+TriagedReferralRequest
+
+Changing the service list of an unbooked ReferralRequest and send for Triage
+
+Copy
+{
+  "meta" : {
+    "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ChangeShortlistAndSendForTriage-Response-Parameters-1" ]
+  },
+  "resourceType" : "Parameters",
+  "parameter" : [ {
+    "name" : "updatedReferralRequest",
+    "resource" : {
+      "id" : "000000070000",
+      "meta" : {
+        "versionId" : "3",
+        "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ReferralRequest-1" ]
+      },
+      "resourceType" : "ReferralRequest",
+      "extension" : [ {
+        "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Appointment-1",
+        "valueReference" : {
+          "reference" : "#appointment"
+        }
+      }, {
+        "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralPriority-1",
+        "valueCodeableConcept" : {
+          "coding" : [ {
+            "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+            "code" : "ROUTINE",
+            "display" : "Routine"
+          } ]
+        }
+      }, {
+        "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ReferralShortlist-1",
+        "valueReference" : {
+          "reference" : "#shortlist"
+        }
+      }, {
+        "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Commissioning-Rule-Org-1",
+        "valueIdentifier" : {
+          "system" : "https://fhir.nhs.uk/Id/ods-organization-code",
+          "value" : "R69"
+        }
+      } ],
+      "contained" : [ {
+        "id" : "serviceSearchCriteria",
+        "meta" : {
+          "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ServiceSearchCriteria-Parameters-1" ]
+        },
+        "resourceType" : "Parameters",
+        "parameter" : [ {
+          "name" : "priority",
+          "valueCoding" : {
+            "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-Priority-1",
+            "code" : "ROUTINE"
+          }
+        }, {
+          "name" : "specialty",
+          "valueCoding" : {
+            "system" : "_baseUrl_/STU3/CodeSystem/SPECIALTY",
+            "code" : "CARDIOLOGY"
+          }
+        }, {
+          "name" : "clinicType",
+          "valueCoding" : {
+            "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ClinicType-1",
+            "code" : "HEART_FAILURE"
+          }
+        }, {
+          "name" : "ageAndGenderAppropriate",
+          "valueBoolean" : false
+        }, {
+          "name" : "commissioningProvisioning",
+          "valueCoding" : {
+            "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-CommissioningProvisioning-1",
+            "code" : "ALL_AVAILABLE_FOR_BOOKING"
+          }
+        } ]
+      }, {
+        "id" : "shortlist",
+        "meta" : {
+          "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Shortlist-List-1" ]
+        },
+        "resourceType" : "List",
+        "extension" : [ {
+          "url" : "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Shortlist-SearchCriteria-1",
+          "valueReference" : {
+            "reference" : "#serviceSearchCriteria"
+          }
+        } ],
+        "status" : "current",
+        "mode" : "snapshot",
+        "entry" : [ {
+          "item" : {
+            "identifier" : {
+              "system" : "http://fhir.nhs.net/Id/ers-service",
+              "value" : "11004"
+            },
+            "display" : "Cardiology Triage Business Service"
+          }
+        } ]
+      }, {
+        "id" : "appointment",
+        "meta" : {
+          "versionId" : "1",
+          "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Appointment-1", "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1" ]
+        },
+        "language" : "en",
+        "resourceType" : "Appointment",
+        "status" : "proposed",
+        "description" : "e-Referral Appointment",
+        "created" : "2021-05-06T11:21:45.652000+00:00",
+        "reason" : [ {
+          "coding" : [ {
+            "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewReason-1",
+            "code" : "TRIAGE"
+          } ]
+        } ],
+        "incomingReferral" : [ {
+          "reference" : "ReferralRequest/000000070000/_history/3"
+        } ],
+        "participant" : [ {
+          "actor" : {
+            "identifier" : {
+              "system" : "http://fhir.nhs.net/Id/ers-service",
+              "value" : "11004"
+            },
+            "display" : "Cardiology Triage Business Service"
+          },
+          "status" : "accepted"
+        }, {
+          "actor" : {
+            "identifier" : {
+              "system" : "http://fhir.nhs.net/Id/nhs-number",
+              "value" : "9912003888"
+            }
+          },
+          "status" : "accepted"
+        } ]
+      } ],
+      "status" : "active",
+      "specialty" : {
+        "coding" : [ {
+          "system" : "_baseUrl_/STU3/CodeSystem/SPECIALTY",
+          "code" : "CARDIOLOGY",
+          "display" : "Cardiology"
+        } ]
+      },
+      "subject" : {
+        "identifier" : {
+          "system" : "http://fhir.nhs.net/Id/nhs-number",
+          "value" : "9912003888"
+        }
+      },
+      "supportingInfo" : [ ],
+      "intent" : "plan"
+    }
+  }, {
+    "name" : "createdAppointment",
+    "resource" : {
+      "id" : "70001",
+      "meta" : {
+        "versionId" : "1",
+        "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Appointment-1", "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Appointment-1" ]
+      },
+      "language" : "en",
+      "resourceType" : "Appointment",
+      "status" : "proposed",
+      "description" : "e-Referral Appointment",
+      "created" : "2021-05-06T11:21:45.652000+00:00",
+      "reason" : [ {
+        "coding" : [ {
+          "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-ReviewReason-1",
+          "code" : "TRIAGE"
+        } ]
+      } ],
+      "incomingReferral" : [ {
+        "reference" : "ReferralRequest/000000070000/_history/3"
+      } ],
+      "participant" : [ {
+        "actor" : {
+          "identifier" : {
+            "system" : "http://fhir.nhs.net/Id/ers-service",
+            "value" : "11004"
+          },
+          "display" : "Cardiology Triage Business Service"
+        },
+        "status" : "accepted"
+      }, {
+        "actor" : {
+          "identifier" : {
+            "system" : "http://fhir.nhs.net/Id/nhs-number",
+            "value" : "9912003888"
+          }
+        },
+        "status" : "accepted"
+      } ]
+    }
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+eRS-ChangeShortlistAndSendForTriage-Response-Parameters
+
+Parameters provided when looking to change the services a referral has currently shortlisted
+
+
+
+resourceType
+string
+required
+	
+Allowed values: Parameters
+
+
+meta
+object
+required
+	
+
+parameter
+array
+required
+	
+Field	Cardinality	Notes
+updatedReferralRequest	1..1	
+createdAppointment	1..1	
+HTTP status: 400
+
+Bad Request
+
+HTTP status: 401
+
+Unauthorized
+
+HTTP status: 403
+
+Forbidden
+
+HTTP status: 404
+
+Not Found
+
+HTTP status: 409
+
+Conflict - Version supplied as part of the request does not match current version of the referral request
+
+HTTP status: 415
+
+Unsupported Media Type
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
+HTTP status: 422
+
+Where status code 422 (Unprocessable Entity) is returned then an eRS-OperationOutcome-1 will be included in the body, as detailed below. Check diagnostic property for specific information regarding the error.
+
+Error code	Description
+INAPPROPRIATE_VALUE	A value, which is acceptable under different conditions, is inappropriate in the context of the other information provided.
+TOO_MANY_ITEMS	In a list where a maximum number of items is specified (e.g. a Shortlist), too many entries are supplied.
+MISSING_VALUE	A field defined as mandatory for an endpoint has not been provided.
+PATIENT_ERROR	An error occurred while retrieving the requested patient. Do not attempt again.
+INVALID_VALUE	The input provided does not conform to the expected data types and format.
+INVALID_CODE	The input provided for a field is not one of the defined legal values.
+UNEXPECTED_FIELD	A field is provided that is not expected as part of the request. E.g. a field is mis-spelt, was defined on a previous version of the endpoint but has subsequently been removed.
+INVALID_FHIR_STRUCTURE	The FHIR data structure in the message body does not match the expected structure (e.g. an array is present for a value when no array is expected).
+ORGANISATION_IS_CLOSED	The organisation supplied corresponds to an organisation that is closed.
+ORGANISATION_NOT_APPROPRIATE	The organisation supplied corresponds to an organisation that is not valid for the given request.
+DUPLICATE_SERVICE	Unique service value expected.
+SHORTLISTED_SERVICE_NOT_IN_RESULTS	The service selected for the shortlist submitted does not satisfy the search criteria provided.
+SNOMED_NOT_FOUND	A SNOMED code, while potentially valid in the latest version of the international dictionary, is not found in the e-RS dictionary.
+NO_RELATIONSHIP	The user does not have a legitimate relationship with the request.
+INVALID_REQUEST_TYPE	The UBRN provided exists in e-RS but does not correspond to an active request.
+INVALID_REQUEST_STATE	The Request, while otherwise valid, is not in the correct state for the specific action being performed.
+Headers
+Name	Description
+x-correlation-id	
+
+String
+
+The X-Correlation-ID from the request header, if supplied, mirrored back.
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+
+x-request-id	
+
+String
+
+The e-RS transaction id
+
+Example: 58621d65-d5ad-4c3a-959f-0438e355990e-1
+
+Body
+
+Content type: application/fhir+json
+
+Example
+
+Copy
+{
+  "meta" : {
+    "profile" : [ "https://fhir.nhs.uk/STU3/StructureDefinition/eRS-OperationOutcome-1" ]
+  },
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "value",
+    "details" : {
+      "coding" : [ {
+        "system" : "https://fhir.nhs.uk/STU3/CodeSystem/eRS-APIErrorCode-1",
+        "code" : "UNEXPECTED_FIELD",
+        "display" : "Unexpected field"
+      } ]
+    },
+    "diagnostics" : "'parameter[0]/resource/contained[0]/parameter[1]' (unknownParameter) unknown parameter name"
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+eRS-OperationOutcome
+
+
+resourceType
+string
+required
+	
+Allowed values: OperationOutcome
+
+
+meta
+object
+required
+	
+
+issue
+array
+required
+	
+HTTP status: 423
+
+Locked - resource is locked
+
+HTTP status: 429
+
+The e-Referral service APIs limit the number of transactions you can make per unit of time. This protects our service against excessive use and denial-of-service (DoS) attacks, and is also to encourage you to use our APIs efficiently.
+
+Our standard rate limit for the production environment is 10 requests per second per application. APIs associated with the "Binary" resource are further restricted to 2 requests per second per application. If you go over the rate limit you'll receive a response with an HTTP status of 429 (Too Many Requests).
+
+Our path-to-live environments have very low rate limits. They are for functional testing only - you should not use them for performance testing.
+
+If you have problems with rate limits, contact us to discuss your application design and volumetrics, and to see whether it's appropriate to raise your rate limit.
+
+If a 429 response is received, indicating a request has been rate limited, then you must back off and retry with exponentially increasing periods between requests. Once a request is successful again, then you may continue to send requests inline with the documented rate limits.
+
+Example:
+
+Receive a 429 response
+Wait 1s and resend, but still receive a 429
+Wait 2s and resend, but still receive a 429
+Wait 4s, request is successful
+Return to normal request cadence
+HTTP status: 500
+
+Internal Server Error
+
+A033 - Retrieve Healthcare Service
+GET /R4/HealthcareService/{id}
+Try this API
+Overview
+
+A patient may have 0 to 20 services associated with a single referral. A service is a place where a referrer can send a patient or obtain clinical advice concerning a specific patient. Services have attributes that can be used to understand a services functionality, terms of use, and contact information. You can use this endpoint to obtain the current version and attributes of a single service.
+
+Supported security patterns
+Healthcare worker, user-restricted access
+Pre-requisites
+
+In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+
+REFERRING_CLINICIAN
+REFERRING_CLINICIAN_ADMIN
+
+You need to have identified one service ID in order to use this endpoint.
+
+Use case
+
+As an authenticated user
+
+I would like to be able to see current service information
+
+So that I can trust that the service information is correct for my patient's referral
+
+Related endpoints
+You can retrieve service ID's on a referral via A005 - Retrieve referral request as long as the referral has a shortlist containing at least a single service.
+You can check if a cached service has changed via [[HYPERLINK_A034]].
+You can retrieve the attributes of an entire shortlist of services (1-20) via A035 - Search for Healthcare Services.
+Sandbox test scenarios
+
+You can test the following scenarios in our sandbox environment
+
+Scenario	Service Id
+Service and minimal attributes	1
+Service and its attributes	2
+Request
+Path parameters
+Name	Description
+id	
+
+String
+
+The ID of the service to be retrieved. It must be valid and relate to an existing Healthcare Service otherwise a HTTP 404 response will be returned.
+
+Example: "1"
+
+Required
+Headers
+Name	Description
+Authorization	
+
+String (^Bearer\ [[:ascii:]]+$)
+
+An OAuth 2.0 bearer token.
+
+Required in all environments except sandbox.
+
+Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
+
+Required
+
+NHSD-End-User-Organisation-ODS	
+
+String
+
+The ODS code of the caller's Organisation
+
+Example: R69
+
+Required
+
+nhsd-ers-business-function	
+
+String
+
+The e-RS Business Function of the caller
+
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+
+Required
+
+X-Correlation-Id	
+
+String
+
+Arbitrary string value provided by API Consumer
+
+Tends to be unique, but does not have to be
+
+Returned, unchanged, in the response
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+Response
+HTTP status: 200
+
+Response contains the Healthcare Service requested.
+
+Headers
+Name	Description
+x-correlation-id	
+
+String
+
+The X-Correlation-ID from the request header, if supplied, mirrored back.
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+
+x-request-id	
+
+String
+
+The e-RS transaction id
+
+Example: 58621d65-d5ad-4c3a-959f-0438e355990e-1
+
+
+ETag	
+
+String
+
+Record version identifier enclosed in quotes and preceded by 'W/'. For example, W/"2".
+
+This Weak ETag corresponds to meta.versionId attribute in the resource body.
+
+Pattern: /^W\/"[0-9]+"$/
+
+Example: W/"2"
+
+
+Cache-Control	
+
+String
+
+To specify the caching policies in client requests and server responses
+
+Example: no-cache
+
+Body
+
+Content type: application/fhir+json
+
+Examples
+
+Service and minimal attributes.
+
+Copy
+{
+  "id" : "1",
+  "meta" : {
+    "versionId" : "1",
+    "profile" : [ "https://fhir.nhs.uk/StructureDefinition/eRS-HealthcareService" ]
+  },
+  "language" : "en",
+  "resourceType" : "HealthcareService",
+  "location" : [ {
+    "identifier" : {
+      "system" : "https://fhir.nhs.uk/Id/ods-site-code",
+      "value" : "R6901"
+    }
+  } ],
+  "name" : "Direct Service With Minimal"
+}
+
+Service and its attributes.
+
+Copy
+{
+  "id" : "2",
+  "meta" : {
+    "versionId" : "1",
+    "profile" : [ "https://fhir.nhs.uk/StructureDefinition/eRS-HealthcareService" ]
+  },
+  "language" : "en",
+  "resourceType" : "HealthcareService",
+  "extension" : [ {
+    "url" : "https://fhir.nhs.uk/StructureDefinition/Extension-eRS-HoursOfOperation",
+    "valueString" : "9-5 Mon-Fri"
+  }, {
+    "url" : "https://fhir.nhs.uk/StructureDefinition/Extension-eRS-ServiceInstructions",
+    "valueString" : "Instructions"
+  }, {
+    "url" : "https://fhir.nhs.uk/StructureDefinition/Extension-eRS-HealthcareService-Contact",
+    "extension" : [ {
+      "url" : "purpose",
+      "valueCodeableConcept" : {
+        "coding" : [ {
+          "system" : "http://terminology.hl7.org/CodeSystem/contactentity-type",
+          "code" : "PATINF",
+          "display" : "Patient"
+        } ]
+      }
+    }, {
+      "url" : "telecom",
+      "valueContactPoint" : {
+        "system" : "phone",
+        "value" : "01234567890"
+      }
+    } ]
+  }, {
+    "url" : "https://fhir.nhs.uk/StructureDefinition/Extension-eRS-HealthcareService-Contact",
+    "extension" : [ {
+      "url" : "purpose",
+      "valueCodeableConcept" : {
+        "coding" : [ {
+          "system" : "https://fhir.nhs.uk/CodeSystem/eRS-Purpose",
+          "code" : "HEALTHCARE_PROFESSIONALS",
+          "display" : "Healthcare Professionals"
+        } ]
+      }
+    }, {
+      "url" : "telecom",
+      "valueContactPoint" : {
+        "system" : "email",
+        "value" : "service@email.com"
+      }
+    } ]
+  } ],
+  "location" : [ {
+    "identifier" : {
+      "system" : "https://fhir.nhs.uk/Id/ods-site-code",
+      "value" : "R6901"
+    }
+  } ],
+  "name" : "Direct SVC 1",
+  "type" : {
+    "coding" : [ {
+      "system" : "https://fhir.nhs.uk/CodeSystem/eRS-AppointmentType",
+      "code" : "DAY_CASE",
+      "display" : "Day Case"
+    } ]
+  },
+  "characteristic" : [ {
+    "coding" : [ {
+      "system" : "https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType",
+      "code" : "BOOKABLE",
+      "display" : "Appointment Request"
+    } ]
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+eRS-HealthcareService
+
+A e-referral service
+
+
+
+id
+string
+required
+	
+Example: 1
+
+
+meta
+object
+required
+	
+
+language
+string
+	
+Example: en
+
+
+resourceType
+string
+required
+	
+Allowed values: HealthcareService
+
+
+extension
+array
+	
+Field	Cardinality	Notes
+Extension-eRS-HoursOfOperation	0..1	Details the hours the current HealthcareService is operational
+Extension-eRS-HealthcareService-Contact	0..*	Details any contact information for the HealthcareService
+Extension-eRS-ServiceInstructions	0..1	Outlines any specific instructions that should be followed around the HealthcareService
+
+
+location
+array
+required
+	
+
+name
+string
+required
+	
+
+Name of the current HealthcareService within eRS
+
+Example: Direct SVC 1
+
+
+type
+object
+	
+
+characteristic
+array
+	
+HTTP status: 403
+
+Forbidden
+
+HTTP status: 404
+
+Not Found
+
+HTTP status: 429
+
+The e-Referral service APIs limit the number of transactions you can make per unit of time. This protects our service against excessive use and denial-of-service (DoS) attacks, and is also to encourage you to use our APIs efficiently.
+
+Our standard rate limit for the production environment is 10 requests per second per application. APIs associated with the "Binary" resource are further restricted to 2 requests per second per application. If you go over the rate limit you'll receive a response with an HTTP status of 429 (Too Many Requests).
+
+Our path-to-live environments have very low rate limits. They are for functional testing only - you should not use them for performance testing.
+
+If you have problems with rate limits, contact us to discuss your application design and volumetrics, and to see whether it's appropriate to raise your rate limit.
+
+If a 429 response is received, indicating a request has been rate limited, then you must back off and retry with exponentially increasing periods between requests. Once a request is successful again, then you may continue to send requests inline with the documented rate limits.
+
+Example:
+
+Receive a 429 response
+Wait 1s and resend, but still receive a 429
+Wait 2s and resend, but still receive a 429
+Wait 4s, request is successful
+Return to normal request cadence
+HTTP status: 500
+
+Internal Server Error
+
+A035 - Search for Healthcare Services
+GET /R4/HealthcareService
+Try this API
+Overview
+
+A Patient may have 0 to 20 Services associated with a single referral. A service is a place where a referrer can send a patient or obtain clinical advise concerning a specific patient. You can use this endpoint to obtain a set of services (up to 20) and their associated attributes, in a single call.
+
+Supported security patterns
+Healthcare worker, user-restricted access
+Pre-requisites
+
+In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+
+REFERRING_CLINICIAN
+REFERRING_CLINICIAN_ADMIN
+
+You need to have identified one service ID in order to use this endpoint.
+
+Use case
+
+As an authenticated user
+
+I would like to obtain information about all services on my patients current shortlist
+
+So that I can review the entire shortlist of services and each services current attributes
+
+Related endpoints
+You can retrieve service ID's on a referral via A005 - Retrieve referral request as long as the referral has a shortlist of at least one service.
+You can check if a cached service has changed via A037 - Retrieve Healthcare Service Version.
+You can fetch the attributes of a single service via A033 - Retrieve Healthcare Service.
+Sandbox test scenarios
+
+You can test the following scenarios in our sandbox environment
+
+Scenario	Service Id
+Search for multiple service with minimal attributes	1,2
+Search for multiple service max and min attributes	3,4
+Search for multiple service, where the service ID's are formatted correctly, but non of the service ID's match	5,6
+Request
+Query parameters
+Name	Description
+_id	
+
+String
+
+One or many service ID(s) to include as part of the search. Must be supplied, otherwise a 400 response will be returned.
+
+Example: 1,2
+
+Required
+Headers
+Name	Description
+Authorization	
+
+String (^Bearer\ [[:ascii:]]+$)
+
+An OAuth 2.0 bearer token.
+
+Required in all environments except sandbox.
+
+Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
+
+Required
+
+NHSD-End-User-Organisation-ODS	
+
+String
+
+The ODS code of the caller's Organisation
+
+Example: R69
+
+Required
+
+nhsd-ers-business-function	
+
+String
+
+The e-RS Business Function of the caller
+
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+
+Required
+
+X-Correlation-Id	
+
+String
+
+Arbitrary string value provided by API Consumer
+
+Tends to be unique, but does not have to be
+
+Returned, unchanged, in the response
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+Response
+HTTP status: 200
+
+Response contains the results for the supplied search criteria.
+
+Headers
+Name	Description
+x-correlation-id	
+
+String
+
+The X-Correlation-ID from the request header, if supplied, mirrored back.
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+
+x-request-id	
+
+String
+
+The e-RS transaction id
+
+Example: 58621d65-d5ad-4c3a-959f-0438e355990e-1
+
+Body
+
+Content type: application/fhir+json
+
+Examples
+
+Search for multiple service with minimal attributes.
+
+Copy
+{
+  "id" : "123e4567-e89b-12d3-a456-426614174000",
+  "meta" : {
+    "profile" : [ "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle" ]
+  },
+  "resourceType" : "Bundle",
+  "type" : "searchset",
+  "timestamp" : "2021-08-04T14:35:00+00:00",
+  "total" : 2,
+  "link" : [ {
+    "relation" : "self",
+    "url" : "_baseUrl_/FHIR/R4/HealthcareService?_id=1,2"
+  } ],
+  "entry" : [ {
+    "fullUrl" : "_baseUrl_/FHIR/R4/HealthcareService/1",
+    "resource" : {
+      "id" : "1",
+      "meta" : {
+        "versionId" : "1",
+        "profile" : [ "https://fhir.nhs.uk/StructureDefinition/eRS-HealthcareService" ]
+      },
+      "language" : "en",
+      "resourceType" : "HealthcareService",
+      "location" : [ {
+        "identifier" : {
+          "system" : "https://fhir.nhs.uk/Id/ods-site-code",
+          "value" : "R6901"
+        }
+      } ],
+      "name" : "Direct SVC 1"
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  }, {
+    "fullUrl" : "_baseUrl_/FHIR/R4/HealthcareService/2",
+    "resource" : {
+      "id" : "2",
+      "meta" : {
+        "versionId" : "1",
+        "profile" : [ "https://fhir.nhs.uk/StructureDefinition/eRS-HealthcareService" ]
+      },
+      "language" : "en",
+      "resourceType" : "HealthcareService",
+      "active" : true,
+      "location" : [ {
+        "identifier" : {
+          "system" : "https://fhir.nhs.uk/Id/ods-site-code",
+          "value" : "R6901"
+        }
+      } ],
+      "name" : "Direct SVC 2"
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  } ]
+}
+
+Search for multiple service max and min attributes.
+
+Copy
+{
+  "id" : "123e4567-e89b-12d3-a456-426614174001",
+  "meta" : {
+    "profile" : [ "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle" ]
+  },
+  "resourceType" : "Bundle",
+  "type" : "searchset",
+  "timestamp" : "2021-08-04T14:35:00+00:00",
+  "total" : 2,
+  "link" : [ {
+    "relation" : "self",
+    "url" : "_baseUrl_/FHIR/R4/HealthcareService?_id=3,4"
+  } ],
+  "entry" : [ {
+    "fullUrl" : "_baseUrl_/FHIR/R4/HealthcareService/3",
+    "resource" : {
+      "id" : "1",
+      "meta" : {
+        "versionId" : "1",
+        "profile" : [ "https://fhir.nhs.uk/StructureDefinition/eRS-HealthcareService" ]
+      },
+      "language" : "en",
+      "resourceType" : "HealthcareService",
+      "extension" : [ {
+        "url" : "https://fhir.nhs.uk/StructureDefinition/Extension-eRS-HoursOfOperation",
+        "valueString" : "9-5 Mon-Fri"
+      }, {
+        "url" : "https://fhir.nhs.uk/StructureDefinition/Extension-eRS-ServiceInstructions",
+        "valueString" : "Instructions"
+      }, {
+        "url" : "https://fhir.nhs.uk/StructureDefinition/Extension-eRS-HealthcareService-Contact",
+        "extension" : [ {
+          "url" : "purpose",
+          "valueCodeableConcept" : {
+            "coding" : [ {
+              "system" : "http://terminology.hl7.org/CodeSystem/contactentity-type",
+              "code" : "PATINF",
+              "display" : "Patient"
+            } ]
+          }
+        }, {
+          "url" : "telecom",
+          "valueContactPoint" : {
+            "system" : "phone",
+            "value" : "01234567890"
+          }
+        } ]
+      }, {
+        "url" : "https://fhir.nhs.uk/StructureDefinition/Extension-eRS-HealthcareService-Contact",
+        "extension" : [ {
+          "url" : "purpose",
+          "valueCodeableConcept" : {
+            "coding" : [ {
+              "system" : "https://fhir.nhs.uk/CodeSystem/eRS-Purpose",
+              "code" : "HEALTHCARE_PROFESSIONALS",
+              "display" : "Healthcare Professionals"
+            } ]
+          }
+        }, {
+          "url" : "telecom",
+          "valueContactPoint" : {
+            "system" : "email",
+            "value" : "service@email.com"
+          }
+        } ]
+      } ],
+      "active" : true,
+      "location" : [ {
+        "identifier" : {
+          "system" : "https://fhir.nhs.uk/Id/ods-site-code",
+          "value" : "R6901"
+        }
+      } ],
+      "name" : "Direct SVC 1",
+      "type" : {
+        "coding" : [ {
+          "system" : "https://fhir.nhs.uk/CodeSystem/eRS-AppointmentType",
+          "code" : "DAY_CASE",
+          "display" : "Day Case"
+        } ]
+      },
+      "characteristic" : [ {
+        "coding" : [ {
+          "system" : "https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType",
+          "code" : "BOOKABLE",
+          "display" : "Appointment Request"
+        } ]
+      } ]
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  }, {
+    "fullUrl" : "_baseUrl_/FHIR/R4/HealthcareService/4",
+    "resource" : {
+      "id" : "2",
+      "meta" : {
+        "versionId" : "1",
+        "profile" : [ "https://fhir.nhs.uk/StructureDefinition/eRS-HealthcareService" ]
+      },
+      "language" : "en",
+      "resourceType" : "HealthcareService",
+      "active" : true,
+      "location" : [ {
+        "identifier" : {
+          "system" : "https://fhir.nhs.uk/Id/ods-site-code",
+          "value" : "R6901"
+        }
+      } ],
+      "name" : "Direct SVC 2",
+      "type" : {
+        "coding" : [ {
+          "system" : "https://fhir.nhs.uk/CodeSystem/eRS-AppointmentType",
+          "code" : "DAY_CASE",
+          "display" : "Day Case"
+        } ]
+      },
+      "characteristic" : [ {
+        "coding" : [ {
+          "system" : "https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType",
+          "code" : "BOOKABLE",
+          "display" : "Appointment Request"
+        } ]
+      }, {
+        "coding" : [ {
+          "system" : "https://fhir.nhs.uk/CodeSystem/eRS-RequestFlowType",
+          "code" : "REVIEW",
+          "display" : "Triage Request"
+        } ]
+      } ]
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  } ]
+}
+
+Search for multiple service, where the service ID's are formatted correctly, but non of the service ID's match
+
+Copy
+{
+  "id" : "123e4567-e89b-12d3-a456-426614174002",
+  "meta" : {
+    "profile" : [ "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Bundle" ]
+  },
+  "resourceType" : "Bundle",
+  "type" : "searchset",
+  "timestamp" : "2021-08-04T14:35:00+00:00",
+  "total" : 0,
+  "link" : [ {
+    "relation" : "self",
+    "url" : "_baseUrl_/FHIR/R4/HealthcareService?_id=5,6"
+  } ],
+  "entry" : [ ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+Bundle resource containg healthcare services
+
+
+id
+string
+required
+	
+Example: 123e4567-e89b-12d3-a456-426614174000
+
+
+meta
+object
+required
+	
+
+type
+string
+required
+	
+Allowed values: searchset
+
+
+timestamp
+string date-time
+required
+	
+Example: 2021-08-04T14:35Z
+
+
+total
+integer
+required
+	
+
+The total number of HeatlhcareServices that matched the supplied search critera
+
+Example: 1
+
+
+link
+array
+required
+	
+
+entry
+array
+required
+	
+Field	Cardinality	Notes
+HealthcareService	0..*	
+HTTP status: 400
+
+Where status code 400 (Bad Request) is returned then an eRS-OperationOutcome-1 will be included in the body, as detailed below. Check diagnostics property for specific information regarding the error.
+
+Error code	Description
+INVALID_VALUE	Service Id format is invalid or missing
+INAPPOPRIATE_VALUE	'Number of Service Ids' exceeds the range. Up to 20 service ID's can be provided.
+Headers
+Name	Description
+x-correlation-id	
+
+String
+
+The X-Correlation-ID from the request header, if supplied, mirrored back.
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+
+x-request-id	
+
+String
+
+The e-RS transaction id
+
+Example: 58621d65-d5ad-4c3a-959f-0438e355990e-1
+
+Body
+
+Content type: application/fhir+json
+
+Example
+
+Copy
+{
+  "meta" : {
+    "profile" : [ "https://www.hl7.org/fhir/R4/operationoutcome.html" ]
+  },
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "invalid",
+    "diagnostics" : "Example diagnostics message",
+    "details" : {
+      "coding" : [ {
+        "system" : "https://fhir.nhs.uk/CodeSystem/eRS-APIErrorCode",
+        "code" : "INVALID"
+      } ]
+    }
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+R4-OperationOutcome
+
+
+resourceType
+string
+required
+	
+Allowed values: OperationOutcome
+
+
+meta
+object
+required
+	
+
+issue
+array
+required
+	
+HTTP status: 403
+
+Forbidden
+
+HTTP status: 404
+
+Not Found
+
+HTTP status: 415
+
+Unsupported Media Type
+
+Body
+
+Content type: text/plain;charset=utf-8
+
+Schema
+Collapse all Expand all
+Name	Description
+
+string
+	
+HTTP status: 429
+
+The e-Referral service APIs limit the number of transactions you can make per unit of time. This protects our service against excessive use and denial-of-service (DoS) attacks, and is also to encourage you to use our APIs efficiently.
+
+Our standard rate limit for the production environment is 10 requests per second per application. APIs associated with the "Binary" resource are further restricted to 2 requests per second per application. If you go over the rate limit you'll receive a response with an HTTP status of 429 (Too Many Requests).
+
+Our path-to-live environments have very low rate limits. They are for functional testing only - you should not use them for performance testing.
+
+If you have problems with rate limits, contact us to discuss your application design and volumetrics, and to see whether it's appropriate to raise your rate limit.
+
+If a 429 response is received, indicating a request has been rate limited, then you must back off and retry with exponentially increasing periods between requests. Once a request is successful again, then you may continue to send requests inline with the documented rate limits.
+
+Example:
+
+Receive a 429 response
+Wait 1s and resend, but still receive a 429
+Wait 2s and resend, but still receive a 429
+Wait 4s, request is successful
+Return to normal request cadence
+HTTP status: 500
+
+Internal Server Error
+
+A037 - Retrieve Healthcare Service Version
+HEAD /R4/HealthcareService/{id}
+Try this API
+
+A Patient may have 0 to 20 services associated with a single referral. A service is a place where a referrer can send a patient or obtain clinical advice concerning a specific patient.
+
+You can use this endpoint to obtain the current service's "version" held in e-RS, in order to compare to a locally cached version.
+
+Supported security patterns
+Healthcare worker, user-restricted access
+Pre-requisites
+
+In order to use this endpoint you must be an authenticated e-RS user and use one of the following e-RS roles:
+
+REFERRING_CLINICIAN
+REFERRING_CLINICIAN_ADMIN
+
+You need to have identified one service ID in order to use this endpoint.
+
+Use case
+
+As an authenticated user
+
+I would like to be able to see the current information about a service on my patients current shortlist
+
+So that I can review and trust the information is still valid within the context of my patients needs
+
+Related endpoints
+You can obtain Service ID's on a referral via A005 - Retrieve referral request as long as the referral has a shortlist containing at least one service.
+You can retrieve a set of services and their attributes via A035 - Search for Healthcare Services.
+You can fetch the attributes of a single service via A033 - Retrieve Healthcare Service.
+Sandbox test scenarios
+
+You can test the following scenarios in our sandbox environment
+
+Scenario	Service Id
+Get Service Version	1
+Request
+Path parameters
+Name	Description
+id	
+
+String
+
+The ID of the service to be retrieved. It must be valid and relate to an existing Healthcare Service otherwise a HTTP 404 response will be returned.
+
+Example: "1"
+
+Required
+Headers
+Name	Description
+Authorization	
+
+String (^Bearer\ [[:ascii:]]+$)
+
+An OAuth 2.0 bearer token.
+
+Required in all environments except sandbox.
+
+Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
+
+Required
+
+NHSD-End-User-Organisation-ODS	
+
+String
+
+The ODS code of the caller's Organisation
+
+Example: R69
+
+Required
+
+nhsd-ers-business-function	
+
+String
+
+The e-RS Business Function of the caller
+
+Allowed values: REFERRING_CLINICIAN, REFERRING_CLINICIAN_ADMIN, REFERRING_ADMIN, COMMISSIONER, SERVICE_PROVIDER_CLINICIAN_ADMIN, SERVICE_PROVIDER_CLINICIAN, SERVICE_PROVIDER_ADMIN, INFORMATION_ANALYST, BOOKING_MANAGER, ADDITIONAL_REQUIREMENTS_MANAGER
+
+Required
+
+X-Correlation-Id	
+
+String
+
+Arbitrary string value provided by API Consumer
+
+Tends to be unique, but does not have to be
+
+Returned, unchanged, in the response
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+Response
+HTTP status: 200
+
+Response doesn't contain the payload. But the current version of the Healthcare Service is in the ETag Response Header.
+
+Headers
+Name	Description
+x-correlation-id	
+
+String
+
+The X-Correlation-ID from the request header, if supplied, mirrored back.
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+
+x-request-id	
+
+String
+
+The e-RS transaction id
+
+Example: 58621d65-d5ad-4c3a-959f-0438e355990e-1
+
+
+ETag	
+
+String
+
+Record version identifier enclosed in quotes and preceded by 'W/'. For example, W/"2".
+
+This Weak ETag corresponds to meta.versionId attribute in the resource body.
+
+Pattern: /^W\/"[0-9]+"$/
+
+Example: W/"2"
+
+
+cache-control	
+
+String
+
+To specify the caching policies in client requests and server responses
+
+Example: no-cache
+
+HTTP status: 403
+
+Forbidden
+
+HTTP status: 404
+
+Not Found
 
 HTTP status: 429
 

@@ -1,17 +1,29 @@
-Technology Reference Data Update Distribution API
+Technology Reference Update Distribution API
 
-Automate the download of TRUD release files.
+Automate the download of TRUD release files, including classification products, NHS data model and dictionary, and terminology products.
 
 Page contents
 Top of page
 Overview
+Who can use this API
+Related APIs
 API status
 Service level
 Technology
+Network access
+Security and authorisation
+Environments and testing
+Onboarding
 Interactions
 Overview
 
-Use this API to automate the download of Technology Reference data Update Distribution (TRUD) release files.
+Use this API to automate the download of Technology Reference Update Distribution (TRUD) release files.
+
+These include:
+
+classification products, including NHS Information Standards ICD and OPCS-4 in the UK, as well as other products to support the implementation of these clinical classifications and derivative products
+the NHS Data Model and Dictionary, which provides a reference point for approved Information Standards and Collections (including Extractions) (ISCEs) to support health care activities within the NHS in England
+terminology products such as SNOMED CT, the Read Codes and other products to support the implementation of terminology, including tools and derivative products
 
 You can:
 
@@ -19,6 +31,24 @@ request release information for an item
 request a release file once you have its release information
 
 You must have a TRUD account before you can use this API.
+
+Who can use this API
+
+This API is for TRUD account holders wanting to automate the download of release files.
+
+It's synchronised with your TRUD account subscriptions – anything an account holder can download from the website can also be downloaded through the API.
+
+Any restrictions on access are set per item. The content provider accepts or rejects each subscription request, based on the account details and subscription request data.
+
+In practice, most of the content is configured for auto-acceptance of subscriptions.
+
+Related APIs
+
+The following APIs are related to this API:
+
+Data Registers Service - REST API - access a wide range of live lists of reference data with our Data Registers Service, especially if you have a use case which needs historical data snapshots, and you have not subscribed to and kept historic releases from TRUD
+
+Terminology Server - FHIR API - use this  if you need richer functionality from a data source, such as being able to test data validity, extract a subset or map data across different schemas. This provides a richer view of the SNOMED data set only
 
 API status
 
@@ -36,8 +66,38 @@ This API is a REST API.
 
 For more details, see Basic REST.
 
+Network access
+
+This API is available on the internet and, indirectly, on the Health and Social Care Network (HSCN).
+
+For more details see Network access for APIs.
+
+Security and authorisation
+
+Each account has a unique API key based on the account’s primary email address and password. If either of these changes, a new key is generated and the old key is disabled.
+
+API access is synchronised with your account subscriptions – anything an account holder can download from the website can also be downloaded through the API.
+
+Environments and testing
+
+There are no testing environments.
+
+Once you have a TRUD account, you can use the production endpoints.
+
+For example, for details of all releases of an item:
+
+https://isd.digital.nhs.uk/trud/api/v1/keys/deadc0de/items/nnn/releases
+
+where deadc0de is the API key and nnn is the item number
+
+Onboarding
+
+To onboard with this API you must first create a TRUD account.
+
+See https://isd.digital.nhs.uk/trud/users/guest/filters/0/account/form. 
+
 Interactions
 
 For a full list of interactions for this API, see the endpoint details.
 
-Last edited: 1 February 2022 11:33 am
+Last edited: 22 March 2022 5:10 pm
