@@ -5,6 +5,6 @@ try {
 }
 
 module.exports = {
-  ckan: process.env.CKAN_URL || 'https://manage.dev.nhs.marvell-consulting.com',
+  ckan: process.env.CKAN_URL || 'https://manage.dev.standards.nhs.uk',
   ckanKey: process.env.CKAN_KEY
 };
