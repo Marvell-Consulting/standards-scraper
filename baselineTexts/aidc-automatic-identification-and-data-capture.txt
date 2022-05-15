@@ -1,16 +1,45 @@
-ISB 0108: AIDC: Automatic Identification and Data Capture
+DAPB0108: Automatic Identification and Data Capture (AIDC)
 
-The AIDC: Automatic Identification and Data Capture (AIDC) standard provides the specification and guidance for achieving accurate AIDC across the NHS.
+The Automatic Identification and Data Capture (AIDC) standard provides the specification and guidance for achieving accurate AIDC across the NHS in England.
 
 Page contents
 Top of page
 About this information standard
 Current release
+Previous release
 About this information standard
 
 This standard applies to any NHS setting in England where automatic identification and data capture (AIDC) technologies are used as enablers to improve patient safety, ensure greater clinical effectiveness and drive operational efficiencies. It should be used by all NHS organisations when procuring, implementing and using such technologies.
 
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the Specification and Implementation Guidance Documents provide further detail for those who have to implement the information standard.
+
 Current release
+Release date	14/04/2022
+Release number	Amd 1/2022
+Release title	Version 2.0
+Stage 	Implementation
+Key documents	
+Requirements Specification (Amd 1/2022)
+Change Specification (Amd 1/2022)
+Implementation Guidance (Amd 1/2022)
+Information Standards Notice (Amd 1/2022)
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request 1855 (Update to business definition)
+
+
+
+Further information
+
+	
+
+GS1 UK Healthcare resources
+
+This information standard is related to DCB1077 AIDC for Patient Identification and ISB 0099 Patient Identifiers for Identity Bands.
+
+ 
+
+Previous release
 Release date	20/09/2011
 Release number	Amd 145/2010
 Release title	Initial Standard
@@ -23,16 +52,6 @@ Supporting documents
 Coding for Success: Simple technology for safer patient care (Department of Health and Social Care, 2007)
 Review of Coding for Success implementation (Department of Health and Social Care, 2010) 
 
-
-
-Further information
-
-	
-
-Healthcare guides on the GS1 UK website
-
-This information standard is related to ISB 1077 AIDC for Patient Identification and ISB 0099 Patient Identifiers for Identity Bands.
-
  
 
-Last edited: 6 January 2022 10:01 am
+Last edited: 19 April 2022 10:45 am

@@ -5,11 +5,17 @@ Retrieve unstructured documents from a patient’s GP practice record.
 Page contents
 Top of page
 Overview
+Who can use this API
+Related APIs
 API status
 Service level
 Technology
 Network access
+Security and authorisation
+Environments and testing
+Onboarding
 Interactions
+Additional guidance: Clinical safety and hazard log
 Overview
 
 Use this API to retrieve unstructured documents from a patient’s GP practice record. Unstructured documents are usually clinical documents received from various health and care settings and held by a patient's registered GP practice.
@@ -23,9 +29,59 @@ For example, a district nurse attends a patient at home and views their hospital
 
 For more details, see the GP Connect specifications for developers.
 
+Who can use this API
+
+This API can be used by developers of clinical systems that support clinicians delivering direct care.
+
+Before you start development, read the GP Connect API 1.5.0-beta specification and the prerequisites listed below.  
+
+Prerequisites
+Technical
+
+You must:
+
+have access to the Health and Social Care Network (HSCN)
+be Personal Demographics Service (PDS) compliant or capable of performing a PDS search via NHS Digital or a third-party provider
+Information governance (IG)
+
+You must:
+
+be compliant with the GP Connect Direct Care API Information Governance Model
+manage access to your system locally using local role-based access control (RBAC). This does not need to be compliant with the national RBAC model and GP Connect products do not require smartcards to control access, though they can be used if already implemented
+be using the GP Connect APIs for direct care purposes for NHS patients in England
+Clinical safety
+
+You must:
+
+have a clinical safety officer (CSO) who is responsible for DCB0129 and, if necessary, DCB0160 . For more on clinical risk management, visit Clinical risk management standards
+
+If you are confident that you can meet the prerequisites, contact us to express your interest. See 'Onboarding' below.
+
+Related APIs
+
+The following APIs are also related to this API:
+
+GP Connect Access Record: Structured - FHIR API – use this API to retrieve structured information from a patient’s GP practice record
+Personal Demographics Service - FHIR API  – use this API to look up the registered GP for the patient
+Spine Directory Service - FHIR API  – access accredited system information and messaging endpoint details
 API status
 
-This API (v1.5.0) is in beta.
+The current working version is 1.5.0, which is in beta and available to all consumers, subject to an approved use case and onboarding process. As well as medications and allergies, version 1.5.0 includes the majority of the clinical record.
+
+It does not include:
+
+extended demographics information - for example, about carers
+flags and alerts
+templates
+test requests
+
+Read the specification for the exact details.
+
+It may not be fully supported by all providing systems. See GP Connect supplier progress for details of provider rollout.
+
+Roadmap
+
+The next planned version is 1.6.0, which is currently in beta. The 1.6.0 specification contains the full scope of 1.5.0, but additionally it introduces a new message to support GP2GP transactions. It is important to understand that the GP2GP transactions do not affect the consumer build. 1.6.0 will be backward compatible with the 1.5.0 specification.
 
 Service level
 
@@ -35,9 +91,11 @@ For more details, see service levels.
 
 Technology
 
-This API is a FHIR API.
+This is a synchronous API. It conforms to the FHIR global standard for health care data exchange. Specifically, it is aligned with FHIR UK Core, which is built on FHIR Release 3. 
 
-For more details, see FHIR.
+It uses a FHIR Operation that requires you to make a HTTP POST of a FHIR Parameters resource to the provider endpoint. The resource contains parameters that correspond to the requested clinical information – for example, medications, allergies or problems.
+
+We use this approach instead of a resource-based RESTful API in the interests of clinical safety. The provider system constructs a response that contains all clinical information relating to the request to ensure that the clinical information is interpreted safely.
 
 Network access
 
@@ -45,10 +103,129 @@ You need a Health and Social Care Network (HSCN) connection to use this API.
 
 For more details, see Network access for APIs.
 
+Security and authorisation
+Security
+
+Access to the GP Connect APIs is controlled and protected by the Spine Secure Proxy (SSP), a forward HTTP proxy.
+
+It provides a single security point for both authentication and authorisation for consuming systems. Additional responsibilities include auditing of requests, checking data sharing agreements and transaction logging.
+
+All HTTP communications are secured using TLS MA. This includes both legs of the request, from consumer system to the proxy and then from the proxy to provider system.
+
+Authorisation
+
+Authorisation takes place in two locations: 
+
+the consumer system
+the SSP
+
+The consumer system must have local RBAC in place and restrict GP Connect APIs to authorised users. With each request, a JSON Web Token (JWT) must be included with the following information:
+
+details of users, including role
+where smartcards are used in the consumer system, including SDS user and role IDs
+details of the consumer system
+details of the consumer’s organisation, including ODS code
+
+The information in the JWT is retained for audit purposes.
+
+The SSP checks data-sharing agreements to ensure that the consumer system is authorised to communicate with the provider system.
+
+Environments and testing
+Environment	URL
+Internet facing demonstrator 	
+
+https://orange.testlab.nhs.uk/
+
+
+Opentest environment	https://orange.testlab.nhs.uk/opentest.html
+Integration (INT)	Provided during onboarding process
+
+We have 2 testing streams:
+
+clinical testing
+technical testing
+
+Each stream is complicated in its own right and we've designed them to run in parallel to help you to work with us more easily and to consider your system design in a holistic way, rather than having to complete one stream before the other.
+
+Clinical testing
+
+The aim of clinical testing is to ensure the safe interoperability of information exported from GP systems and then processed or displayed in a consuming system. 
+
+To help you test that your consuming system is clinically safe, we have created the following resources:
+
+a patient record or, for some more complex areas, 2 records that can be requested from the GP Connect demonstrator
+a description of each of the data items, what it is intending to test and the hazards that it is intended to mitigate
+notes and guidance about each clinical area that describe how to process and display the data that it contains in a safe way
+
+See Clinical test data.
+
+Technical testing
+
+The purpose of technical testing is to help you assure the messaging capability of your system via the Spine with GP Connect provider FHIR endpoints. It ensures the consumer requests conform to FHIR standards as per the specification. In addition, it maintains the integrity of the data displayed to the user and assures pertinent functional requirements. It does not assure the message payload, which is covered in clinical assurance.
+
+See Consumer Supplier Test Assurance for achieving Technical Conformance (PDF) for full details of the technical conformance process and relevant artefacts.
+
+Onboarding
+Expressing an interest
+
+If you meet the prerequisites and have a product that can integrate with GP Connect, you should express an interest with us by submitting a use case.
+
+The main purpose of the use case is to help us understand how you plan to use GP Connect APIs and the business issue you are looking to address. You should email your use case to us at gpconnect@nhs.net.
+
+Your use case should include the following information as a minimum:
+
+the business problem you are intending to solve using GP Connect
+how GP Connect will be used in practice to benefit patients and staff
+which of the GP Connect products you will use to benefit patients and staff
+any end user organisations you are currently working with
+who your clinical safety officer is and, where available, your clinical risk management process documentation
+
+Once we receive your use case, we'll respond within 14 days.
+
+Consumer assurance process
+
+Once we approve your use case, we support you through the assurance process to go live. We will discuss the assurance process and artefacts with you to help you understand our requirements.
+
+Start your development work within 6 months of use case approval. If you miss this date, a review or new submission of the use case will be required. Changes or additional development will also require a review or new use case submission. For full details of the technical conformance process, see GP Connect Consumer Supplier Test Assurance for achieving Technical Conformance (PDF).
+
+Clinical assurance process
+
+We are here to support you to develop clinically safe systems in line with your responsibility to achieve the relevant DCB0129 or DCB0160 clinical safety standards. 
+
+We host a series of meetings to help you develop clinically safe systems:
+
+initial meeting
+clinical safety process readiness review meeting
+clinical evaluation of readiness for deployment meeting
+
+For more information, see Clinical assurance process details.
+
 Interactions
 
 For a full list of interactions for this API, see GP Connect API v1.5.0-beta – which contains Access Document.
 
 For details on the general structure of the interactions, see FHIR.
 
-Last edited: 20 January 2022 4:26 pm
+Additional guidance: Clinical safety and hazard log
+Clinical safety approach
+
+Your organisation must have a clinical safety officer. Information standards underpin national healthcare initiatives from the Department of Health, NHS England, the Care Quality Commission, and other national health organisations. They provide the mechanism for introducing requirements to which the NHS, those with whom it commissions services and its IT system suppliers, must conform.
+
+The following two standards relating to clinical safety are accepted for publication under section 250 of the Health and Social Care Act 2012 by the Data Coordination Board (DCB). In line with current DCB practice, each standard comprises:
+
+a specification, which defines the requirements and conformance criteria to be met by the user of the standard - how these requirements are met is the responsibility of the user
+implementation guidance, which provides an interpretation of the requirements and, where appropriate, defines possible approaches to achieving them
+
+Compliance with DCB0129 and DCB0160 is mandatory under the Health and Social Care Act 2012 (Clinical risk management standards - NHS Digital).
+
+Clinical safety guidance 
+
+The Guide for Access Record: Structured  is also applicable to this API. It helps clinical safety officers assure GP Connect consumer systems into their own organisations. It includes details of the clinical safety standards that consumer suppliers and their commissioning organisations must be compliant with (DCB0129 and DCB0160).
+
+Clinical safety principles shows you who is responsible for the clinical safety of GP Connect specifications and consumer systems.
+
+Hazard log
+
+The GP Connect Access Record: Structured generic hazard log shows you the clinical risks of using GP Connect functionality through a consumer system. Use it to identify the clinical risks of consuming clinical data and presenting it in your system, and record these in your own system-specific hazard log. If necessary, take mitigating action to ensure clinical safety.
+
+Last edited: 6 May 2022 3:20 pm

@@ -128,9 +128,19 @@ POST /communication/in-app/FHIR/R4/CommunicationRequest
 Try this API
 Overview
 
-Use this endpoint to send an in-app message to one or more NHS App users.
+Use this endpoint to send an in-app message followed by an associated native Apple or Android push notification to a single NHS App user.
 
-Recipients are specified by NHS number. A single request to this endpoint can send an identical message to between 1 and 100 distinct NHS numbers. In-app messages will only be sent to users who have had their identity verified to 'high' (P9) level.
+Push notifications will not be sent to users between the hours of 10pm and 6am UK time. If a valid request to send an in-app message with an associated push notification is processed between these hours, the in-app message will be delivered immediately, and the push notification will be scheduled for delivery at 6am.
+
+Recipients are specified by NHS number. A single request to this endpoint can send a message and push notification to a single NHS App user. In-app messages and push notifications will only be sent to users who have had their identity verified to 'high' (P9) level.
+
+If a recipient is an active NHS App user but has not registered a device to receive native push notifications, they will still receive the in-app message.
+
+This endpoint allows you to specify the content that will appear in the in-app message. It does not allow you to specify the content that will appear in the associated push notification. By default, the content of the associated push notification will read "NHS App. You have a new message." To discuss changing this standard push notification content for your application, contact the NHS App team.
+
+We are considering an improvement that would include message sender names in associated push notifications. This may be of benefit if your application sends communications on behalf of several NHS organisations. You can track, comment, and vote for this feature on our interactive product backlog.
+
+When a recipient taps the native notification, the NHS App will open on the in-app messaging inbox page.
 
 We support a subset of Markdown for describing the body text of in-app messages. The length of each in-app message is limited to 5000 characters, including any markdown characters and embedded hyperlinks.
 
@@ -211,7 +221,7 @@ string
 required
 	
 
-FHIR Resource Type - this must be CommunicationRequest.
+FHIR Resource Type – this must be CommunicationRequest.
 
 
 
@@ -223,8 +233,8 @@ An optional array of identifiers used to identify this request for later analysi
 
 We have defined the following two systems for identifiers that will be stored with the request:
 
-Campaign ID - denoted by system https://fhir.nhs.uk/NHSApp/campaign-id . This is an optional campaign identifier, used for later identification of a group of multiple communication requests. For example, this could be used to identify all messages that pertain to invitations for a particular vaccination programme.
-Request Reference - denoted by system https://fhir.nhs.uk/NHSApp/request-id . This is an optional request identifier, used for later identification of a specific request.
+Campaign ID – denoted by system https://fhir.nhs.uk/NHSApp/campaign-id . This is an optional campaign identifier, used for later identification of a group of multiple communication requests. For example, this could be used to identify all messages that pertain to invitations for a particular vaccination programme.
+Request Reference – denoted by system https://fhir.nhs.uk/NHSApp/request-id . This is an optional request identifier, used for later identification of a specific request.
 
 Note that these identifier system names are case-sensitive. The values provided for each of these two identifiers are limited to 50 characters, and must not match the regular expression <(.|\n)*?>. No more than one campaign ID and one request reference can be supplied with each request.
 
@@ -267,14 +277,14 @@ array
 required
 	
 
-An array of NHS numbers corresponding to the patient(s) to whom this in-app message should be sent. Each communication may be sent to between 1 and 100 distinct NHS numbers. The communication request will be rejected if any duplicated values exist in this array.
+An array containing a single NHS number corresponding to the patient to whom this in-app message should be sent. Each communication may be sent to only a single recipient.
 
-Max items: 100
+Max items: 1
 Min items: 1
 Response
 HTTP status: 201
 
-Request successfully received by the server and queued for sending to recipients.
+Request successfully received by the server and queued for sending to recipient.
 
 Headers
 Name	Description
@@ -341,7 +351,7 @@ resourceType
 string
 	
 
-FHIR Resource Type - this will be CommunicationRequest.
+FHIR Resource Type – this will be CommunicationRequest.
 
 
 
@@ -361,7 +371,7 @@ status
 string
 	
 
-Request Status of the message - this will be active.
+Request Status of the message – this will be active.
 
 
 
@@ -385,7 +395,7 @@ recipient
 array
 	
 
-An array of NHS numbers corresponding to the patient(s) to whom this in-app message was sent.
+An array containing a single NHS number corresponding to the patient to whom this in-app message was sent.
 
 HTTP status: 400
 
@@ -432,7 +442,7 @@ Copy
   } ]
 }
 
-No recipients have been specified
+No recipient has been specified
 
 Copy
 {
@@ -455,6 +465,19 @@ Copy
     "code" : "invalid",
     "diagnostics" : "NHS Number is invalid",
     "expression" : [ "recipient[0].identifier.value" ]
+  } ]
+}
+
+Too many recipients have been specified
+
+Copy
+{
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "invalid",
+    "diagnostics" : "Exceeds maximum length",
+    "expression" : [ "recipient" ]
   } ]
 }
 
@@ -718,19 +741,24 @@ Min items: 1
 Send an in-app message and push notification
 POST /communication/in-app-with-notification/FHIR/R4/CommunicationRequest
 Try this API
+
+⚠️ Please be advised that we will be removing this endpoint in a future release.
+
+Use /communication/in-app/FHIR/R4/CommunicationRequest end point to achieve the same functionality.
+
 Overview
 
-Use this endpoint to send an in-app message followed by an associated native Apple or Android push notification to one or more NHS App users.
+Use this endpoint to send an in-app message followed by an associated native Apple or Android push notification to one NHS App user.
 
 Push notifications will not be sent to users between the hours of 10pm and 6am UK time. If a valid request to send an in-app message with an associated push notification is processed between these hours, the in-app message will be delivered immediately, and the push notification will be scheduled for delivery at 6am.
 
-Recipients are specified by NHS number. A single request to this endpoint can send an identical message and push notification to between 1 and 100 distinct NHS numbers. In-app messages and push notifications will only be sent to users who have had their identity verified to 'high' (P9) level.
+Recipients are specified by NHS number. A single request to this endpoint can send a message and push notification to a single NHS number. In-app messages and push notifications will only be sent to users who have had their identity verified to 'high' (P9) level.
 
 If a recipient is an active NHS App user but has not registered a device to receive native push notifications, they will still receive the in-app message.
 
-This endpoint allows you to specify the content that will appear in the in-app message. It does not allow you to specify the content that will appear in the associated push notification. By default the content of the associated push notification will read "NHS App. You have a new message.". To discuss changing this standard push notification content for your application, contact the NHS App team.
+This endpoint allows you to specify the content that will appear in the in-app message. It does not allow you to specify the content that will appear in the associated push notification. By default, the content of the associated push notification will read "NHS App. You have a new message." To discuss changing this standard push notification content for your application, contact the NHS App team.
 
-We are considering making an enhancement to allow the sender name of the in-app message content to be dynamically included in the content of the associated push notification. This may be of benefit if your application sends communications on behalf of several NHS organisations. You can track, comment, and vote for this feature on our interactive product backlog.
+We are considering an improvement that would include message sender names in associated push notifications. This may be of benefit if your application sends communications on behalf of several NHS organisations. You can track, comment, and vote for this feature on our interactive product backlog.
 
 When a recipient taps the native notification, the NHS App will open on the in-app messaging inbox page.
 
@@ -813,7 +841,7 @@ string
 required
 	
 
-FHIR Resource Type - this must be CommunicationRequest.
+FHIR Resource Type – this must be CommunicationRequest.
 
 
 
@@ -825,8 +853,8 @@ An optional array of identifiers used to identify this request for later analysi
 
 We have defined the following two systems for identifiers that will be stored with the request:
 
-Campaign ID - denoted by system https://fhir.nhs.uk/NHSApp/campaign-id . This is an optional campaign identifier, used for later identification of a group of multiple communication requests. For example, this could be used to identify all messages that pertain to invitations for a particular vaccination programme.
-Request Reference - denoted by system https://fhir.nhs.uk/NHSApp/request-id . This is an optional request identifier, used for later identification of a specific request.
+Campaign ID – denoted by system https://fhir.nhs.uk/NHSApp/campaign-id . This is an optional campaign identifier, used for later identification of a group of multiple communication requests. For example, this could be used to identify all messages that pertain to invitations for a particular vaccination programme.
+Request Reference – denoted by system https://fhir.nhs.uk/NHSApp/request-id . This is an optional request identifier, used for later identification of a specific request.
 
 Note that these identifier system names are case-sensitive. The values provided for each of these two identifiers are limited to 50 characters, and must not match the regular expression <(.|\n)*?>. No more than one campaign ID and one request reference can be supplied with each request.
 
@@ -869,14 +897,14 @@ array
 required
 	
 
-An array of NHS numbers corresponding to the patient(s) to whom this in-app message and push notification should be sent. Each communication may be sent to between 1 and 100 distinct NHS numbers. The communication request will be rejected if any duplicated values exist in this array.
+An array containing a single NHS number corresponding to the patient to whom this in-app message and push notification should be sent. Each communication may be sent to only a single recipient.
 
-Max items: 100
+Max items: 1
 Min items: 1
 Response
 HTTP status: 201
 
-Request successfully received by the server and queued for sending to recipients.
+Request successfully received by the server and queued for sending to recipient.
 
 Headers
 Name	Description
@@ -943,7 +971,7 @@ resourceType
 string
 	
 
-FHIR Resource Type - this will be CommunicationRequest.
+FHIR Resource Type – this will be CommunicationRequest.
 
 
 
@@ -963,7 +991,7 @@ status
 string
 	
 
-Request Status of the message - this will be active.
+Request Status of the message – this will be active.
 
 
 
@@ -987,7 +1015,7 @@ recipient
 array
 	
 
-An array of NHS numbers corresponding to the patient(s) to whom this in-app message and push notification was sent.
+An array containing a single NHS number corresponding to the patient to whom this in-app message and push notification was sent.
 
 HTTP status: 400
 
@@ -1034,7 +1062,7 @@ Copy
   } ]
 }
 
-No recipients have been specified
+No recipient has been specified
 
 Copy
 {
@@ -1057,6 +1085,19 @@ Copy
     "code" : "invalid",
     "diagnostics" : "NHS Number is invalid",
     "expression" : [ "recipient[0].identifier.value" ]
+  } ]
+}
+
+Too many recipients have been specified
+
+Copy
+{
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "invalid",
+    "diagnostics" : "Exceeds maximum length",
+    "expression" : [ "recipient" ]
   } ]
 }
 
@@ -1181,7 +1222,7 @@ List of issues that have occurred.
 Min items: 1
 HTTP status: 403
 
-You are not authorised to perform this operation. For example, some onboarded client applications may be permitted to send Push Notifications but not In-app Messages, or vice versa.
+You are not authorised to perform this operation. For example, some onboarded client applications may be permitted to send push notifications but not in-app messages, or vice versa.
 
 Headers
 Name	Description
@@ -1340,14 +1381,14 @@ Use this endpoint to send a native Apple or Android push notifications to mobile
 
 Push notifications will not be sent to users between the hours of 10pm and 6am UK time. If a valid request to send a push notification is processed between these hours, the push notification will be scheduled for delivery at 6am.
 
-Recipients are specified by NHS number. A single request to this endpoint can send an identical push notification to between 1 and 100 distinct NHS numbers. Push notifications will only be sent to users who have had their identity verified to 'high' (P9) level.
+Recipients are specified by NHS number. A single request to this endpoint can send a push notification to a single NHS number. Push notifications will only be sent to users who have had their identity verified to 'high' (P9) level.
 
 The body text of notifications can be up to 200 characters in length.
 
-They must not contain
+They must not contain:
 
-personally identifiable information (for example:the name of a user's doctor)
-sensitive information (for example:details about a health condition)
+personally identifiable information (for example, the name of a user's doctor)
+sensitive information (for example, details about a health condition)
 links to external websites
 
 You can also optionally specify a URL for a page within the NHS App to be opened when the recipient taps on the push notification. If a URL is not specified, the NHS App will open on the home page.
@@ -1429,7 +1470,7 @@ string
 required
 	
 
-FHIR Resource Type - this must be CommunicationRequest.
+FHIR Resource Type – this must be CommunicationRequest.
 
 
 
@@ -1441,8 +1482,8 @@ An optional array of identifiers used to identify this request for later analysi
 
 We have defined the following two systems for identifiers that will be stored with the request:
 
-Campaign ID - denoted by system https://fhir.nhs.uk/NHSApp/campaign-id . This is an optional campaign identifier, used for later identification of a group of multiple communication requests. For example, this could be used to identify all messages that pertain to invitations for a particular vaccination programme.
-Request Reference - denoted by system https://fhir.nhs.uk/NHSApp/request-id . This is an optional request identifier, used for later identification of a specific request.
+Campaign ID – denoted by system https://fhir.nhs.uk/NHSApp/campaign-id . This is an optional campaign identifier, used for later identification of a group of multiple communication requests. For example, this could be used to identify all messages that pertain to invitations for a particular vaccination programme.
+Request Reference – denoted by system https://fhir.nhs.uk/NHSApp/request-id . This is an optional request identifier, used for later identification of a specific request.
 
 Note that these identifier system names are case-sensitive. The values provided for each of these two identifiers are limited to 50 characters, and must not match the regular expression <(.|\n)*?>. No more than one campaign ID and one request reference can be supplied with each request.
 
@@ -1476,14 +1517,14 @@ array
 required
 	
 
-An array of NHS numbers corresponding to the patient(s) to whom this push notification should be sent. Each communication may be sent to between 1 and 100 distinct NHS numbers. The communication request will be rejected if any duplicated values exist in this array.
+An array containing a single NHS number corresponding to the patient to whom this push notification should be sent. Each communication may be sent to only a single recipient.
 
-Max items: 100
+Max items: 1
 Min items: 1
 Response
 HTTP status: 201
 
-Request successfully received by the server and queued for sending to recipients.
+Request successfully received by the server and queued for sending to recipient.
 
 Headers
 Name	Description
@@ -1550,7 +1591,7 @@ resourceType
 string
 	
 
-FHIR Resource Type - this will be CommunicationRequest.
+FHIR Resource Type – this will be CommunicationRequest.
 
 
 
@@ -1570,7 +1611,7 @@ status
 string
 	
 
-Request Status of the message - this will be active
+Request Status of the message – this will be active
 
 
 
@@ -1586,7 +1627,7 @@ recipient
 array
 	
 
-An array of NHS numbers corresponding to the patient(s) to whom this push notification was sent.
+An array containing a single NHS number corresponding to the patient to whom this push notification was sent.
 
 HTTP status: 400
 
@@ -1633,7 +1674,7 @@ Copy
   } ]
 }
 
-No recipients have been specified
+No recipient has been specified
 
 Copy
 {
@@ -1656,6 +1697,19 @@ Copy
     "code" : "invalid",
     "diagnostics" : "NHS Number is invalid",
     "expression" : [ "recipient[0].identifier.value" ]
+  } ]
+}
+
+Too many recipients have been specified
+
+Copy
+{
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "invalid",
+    "diagnostics" : "Exceeds maximum length",
+    "expression" : [ "recipient" ]
   } ]
 }
 
@@ -2006,68 +2060,58 @@ Example
 
 Copy
 [ {
-  "eventDateTime" : "2021-08-05T13:28:58+00:00",
+  "eventDateTime" : "2021-08-05T13:22:52+00:00",
   "communicationId" : "a4d6af61-4302-48ab-b125-05daa8773836",
   "campaignId" : "Influenza_202108",
   "requestReference" : "AN_1234",
   "channel" : "AppMessage",
   "nhsNumber" : "9692113612",
-  "communicationCreatedDateTime" : "2021-08-05T13:28:52+00:00",
+  "communicationCreatedDateTime" : "2021-08-05T13:20:52+00:00",
   "event" : "Completed",
   "eventDetail" : null
 }, {
-  "eventDateTime" : "2021-08-05T13:30:01+00:00",
+  "eventDateTime" : "2021-08-05T18:32:52+00:00",
   "communicationId" : "a4d6af61-4302-48ab-b125-05daa8773836",
   "campaignId" : "Influenza_202108",
   "requestReference" : "AN_1234",
   "channel" : "PushNotification",
   "nhsNumber" : "9692113612",
-  "communicationCreatedDateTime" : "2021-08-05T13:28:52+00:00",
+  "communicationCreatedDateTime" : "2021-08-05T13:20:52+00:00",
   "event" : "Completed",
   "eventDetail" : null
 }, {
-  "eventDateTime" : "2021-08-05T13:28:00+00:00",
-  "communicationId" : "a4d6af61-4302-48ab-b125-05daa8773836",
+  "eventDateTime" : "2021-08-05T23:32:57+00:00",
+  "communicationId" : "fa1edc69-ab3b-46d0-b5a3-cbcc554e6707",
   "campaignId" : "Influenza_202108",
-  "requestReference" : "AN_1234",
+  "requestReference" : "AN_1235",
   "channel" : "AppMessage",
   "nhsNumber" : "9074732933",
-  "communicationCreatedDateTime" : "2021-08-05T13:28:52+00:00",
+  "communicationCreatedDateTime" : "2021-08-05T23:32:52+00:00",
   "event" : "Rejected",
   "eventDetail" : "NHS number not found"
 }, {
-  "eventDateTime" : "2021-08-05T13:28:01+00:00",
-  "communicationId" : "a4d6af61-4302-48ab-b125-05daa8773836",
+  "eventDateTime" : "2021-08-05T13:38:52+00:00",
+  "communicationId" : "fa1edc69-ab3b-46d0-b5a3-cbcc554e6707",
   "campaignId" : "Influenza_202108",
-  "requestReference" : "AN_1234",
+  "requestReference" : "AN_1235",
   "channel" : "PushNotification",
   "nhsNumber" : "9074732933",
-  "communicationCreatedDateTime" : "2021-08-05T13:28:52+00:00",
+  "communicationCreatedDateTime" : "2021-08-05T23:32:52+00:00",
   "event" : "Rejected",
   "eventDetail" : "NHS number not found"
 }, {
-  "eventDateTime" : "2021-08-05T13:28:58+00:00",
-  "communicationId" : "a4d6af61-4302-48ab-b125-05daa8773836",
+  "eventDateTime" : "2021-08-05T13:41:52+00:00",
+  "communicationId" : "df894b13-ae9f-4950-a06f-d36fefcf0f25",
   "campaignId" : "Influenza_202108",
-  "requestReference" : "AN_1234",
+  "requestReference" : "AN_1236",
   "channel" : "AppMessage",
   "nhsNumber" : "9482026470",
-  "communicationCreatedDateTime" : "2021-08-05T13:28:52+00:00",
+  "communicationCreatedDateTime" : "2021-08-05T13:40:52+00:00",
   "event" : "Completed",
   "eventDetail" : null
 }, {
-  "eventDateTime" : "2021-08-05T13:30:02+00:00",
-  "communicationId" : "a4d6af61-4302-48ab-b125-05daa8773836",
-  "campaignId" : "Influenza_202108",
-  "requestReference" : "AN_1234",
-  "channel" : "PushNotification",
-  "nhsNumber" : "9482026470",
-  "communicationCreatedDateTime" : "2021-08-05T13:28:52+00:00",
-  "event" : "Rejected",
-  "eventDetail" : "Notification registration not found"
-}, {
-  "eventDateTime" : "2021-08-05T14:59:24+00:00",
-  "communicationId" : "940a912d-13c2-466e-b9c2-46407532e89d",
+  "eventDateTime" : "2021-08-05T14:59:25+00:00",
+  "communicationId" : "b95faccc-9d63-42d7-aa99-aad84c3369ef",
   "campaignId" : null,
   "requestReference" : null,
   "channel" : "AppMessage",
@@ -2076,33 +2120,23 @@ Copy
   "event" : "Failed",
   "eventDetail" : "Failure details"
 }, {
-  "eventDateTime" : "2021-08-05T14:59:26+00:00",
-  "communicationId" : "940a912d-13c2-466e-b9c2-46407532e89d",
-  "campaignId" : null,
-  "requestReference" : null,
-  "channel" : "PushNotification",
-  "nhsNumber" : "9133760004",
-  "communicationCreatedDateTime" : "2021-08-05T14:59:16+00:00",
-  "event" : "Cancelled",
-  "eventDetail" : "Associated App Message failed"
-}, {
-  "eventDateTime" : "2021-08-05T22:01:59+00:00",
-  "communicationId" : "a4d6af61-4302-48ab-b125-05daa8773836",
+  "eventDateTime" : "2021-08-05T13:29:52+00:00",
+  "communicationId" : "4bed75b6-8dc8-4514-bf29-50737467a928",
   "campaignId" : "Influenza_202108",
-  "requestReference" : "AN_1234",
+  "requestReference" : "AN_1237",
   "channel" : "AppMessage",
   "nhsNumber" : "9692113612",
   "communicationCreatedDateTime" : "2021-08-05T13:28:52+00:00",
   "event" : "Read",
   "eventDetail" : null
 }, {
-  "eventDateTime" : "2021-08-05T23:07:19+00:00",
-  "communicationId" : "a4d6af61-4302-48ab-b125-05daa8773836",
+  "eventDateTime" : "2021-08-05T13:51:52+00:00",
+  "communicationId" : "e732e542-e705-4210-9b72-5269e5e19d73",
   "campaignId" : "Influenza_202108",
-  "requestReference" : "AN_1234",
+  "requestReference" : "AN_1238",
   "channel" : "AppMessage",
   "nhsNumber" : "9482026470",
-  "communicationCreatedDateTime" : "2021-08-05T13:28:52+00:00",
+  "communicationCreatedDateTime" : "2021-08-05T13:50:52+00:00",
   "event" : "Read",
   "eventDetail" : null
 } ]

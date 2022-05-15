@@ -145,4 +145,4 @@ Vaccinations
 
 For details on the general structure of the interactions, see FHIR.
 
-Last edited: 1 March 2022 12:31 pm
+Last edited: 29 April 2022 7:44 am

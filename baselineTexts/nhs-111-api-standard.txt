@@ -8,6 +8,11 @@ Overview
 API status
 Technology
 Interactions
+
+There is a later version of this API standard that was developed but not used, called the Integrated Urgent Care Domain Message Specification V3.0.
+
+We recommend you do not use it.
+
 Overview
 
 Use this API standard for point-to-point messaging to share information between NHS 111 and other organisations, such as GPs and ambulance services, when a patient interacts with NHS 111. 
@@ -18,9 +23,6 @@ advise a healthcare facility or GP of an expected visit from a patient who has c
 advise a patient's GP when a patient is referred to another healthcare facility
 advise the ambulance service that a patient requires an ambulance
 query the Repeat Caller Service
-
-Note there is a later version of this API standard which was developed but not used, called the Integrated Urgent Care Domain Message Specification V3.0. We recommend you do not use it. Instead use the version recommended in Interactions below.
-
 API status
 
 This API standard is stable.
@@ -41,4 +43,4 @@ NHS 111 Domain Message Specification V2.1 RC1
 
 ZIP 18 MB
 
-Last edited: 21 October 2021 3:53 pm
+Last edited: 11 April 2022 3:07 pm

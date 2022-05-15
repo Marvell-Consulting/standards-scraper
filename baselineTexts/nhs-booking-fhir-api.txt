@@ -5,17 +5,35 @@ Search for free slots and book an appointment with this API formerly known as FH
 Page contents
 Top of page
 Overview
+Who can use this API
 API status
 Service level
 Technology
+Network access
+Security and authorisation
+Environments and testing
+Onboarding
 Interactions
+
+This API will be retired in 12 to 18 months from March 2022.  The Booking and Referral Standard (BaRS) will replace it.
+
+The current API is still available for existing development, but not for new integrations.  For more details, contact the Booking and referral team.
+
 Overview
 
 Use this API to retrieve available slots and book an appointment for a specific health and care service, for example, from NHS 111 into an Urgent Treatment Centre (UTC).
 
+Who can use this API
+
+This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. You must do this before you can go live.
+
 API status
 
 This API is stable.
+
+This API will be retired in 12 to 18 months from March 2022.  
+
+For new integrations, use the Booking and Referral Standard.
 
 Service level
 
@@ -31,12 +49,32 @@ It is based on the HL7 FHIR STU3.
 
 For more details, see FHIR.
 
+Network access
+
+This API is available on the internet.
+
+For more details, see Network access for APIs.
+
+Security and authorisation
+
+You can find out more about security and authorisation here.
+
+Environments and testing
+
+You can find out more about environments and testing here.
+
+Onboarding
+
+This API will be retired in 12 to 18 months from March 2022. 
+
+It is being replaced by the Booking and Referral Standard (BaRS). You need to contact us at bookingandreferralstandard@nhs.net before you can use this API.
+
 Interactions
 
 All versions are based on the FHIR® STU3 standard.
 
 Status	Release Version	Release Date	Containing Capabilities	Version
-Live	FHIR NHS Booking 2.04	June 2021	Search for free slots, book appointment	Current version 2.0.4
+Live	FHIR NHS Booking 2.0.4	June 2021	Search for free slots, book appointment	Current version 2.0.4
 Beta	FHIR NHS Booking 2.0.3	April 2021	Search for free slots, book appointment	2.0.3
 Beta	FHIR NHS Booking 2.0.2 Beta	March 2021	Search for free slots, book appointment	2.0.2
 Beta	FHIR NHS Booking 2.0.1 Beta	November 2020	Search for free slots, book appointment	2.0.1
@@ -49,4 +87,4 @@ Alpha	FHIR NHS Scheduling 1.0.2 Alpha	November 2018	Search for free slots, book 
 
 For more details on the specifics of this use case, see Urgent & Emergency Care Appointment Booking
 
-Last edited: 1 February 2022 11:37 am
+Last edited: 3 May 2022 5:22 pm

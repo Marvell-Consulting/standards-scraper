@@ -19,7 +19,7 @@ Overview
 
 Use this API to receive notifications about changes to a patient's demographic details, including:
 
-birth notifications
+birth notifications - although another option is PDS HL7 V3 API
 death notifications
 change of address
 change of GP
@@ -46,7 +46,7 @@ Message Exchange for Social Care and Health (MESH) API - use this API to collect
 
 Personal Demographics Service - FHIR API - use this newer API to search for patients, retrieve patients by NHS number and update patients
 
-Personal Demographics Service - HL7 V3 API - use this if you want to use functions that are not yet available on the FHIR API
+Personal Demographics Service - HL7 V3 API - use this if you want to use functions that are not yet available on the FHIR API, such as creating a new record for a birth, receiving birth notifications, or creating a record for a new patient (except when registering a new patient at a GP Practice, use NHAIS).
 API status and roadmap
 
 This API is stable.
@@ -150,4 +150,4 @@ PDS Death Notification
 
 For details on the general structure of the interactions, see FHIR.
 
-Last edited: 1 February 2022 9:17 am
+Last edited: 29 April 2022 7:34 am

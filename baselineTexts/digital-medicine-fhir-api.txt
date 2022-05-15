@@ -16,7 +16,9 @@ Environments and testing
 Onboarding
 Interactions
 
-Parts of this API are planned for deprecation and retirement. For more details, see API status.
+Four use cases for this API are now retired.
+
+For more details, see API status.
 
 Overview
 
@@ -30,15 +32,15 @@ an emergency medication dispensed without a prescription
 
 Notifications take the form of FHIR messages sent via MESH.
 
-You cannot currently send notifications about:
+The following use cases are now retired and you cannot use them:
 
-a minor illness referral consultation 
+a minor illness referral consultation
 
 a medication review
 
-an appliance use review
+an appliance use review
 
-a New Medicine Service (NMS) appointment
+a New Medicine Service (NMS) appointment
 
 For more details, see API status.
 
@@ -64,10 +66,10 @@ This API consists of six different notification types. The status of each messag
 Notification type	Status
 immunisation	private beta - in active use, but with a limited number of connecting applications 
 emergency medication dispensed without prescription	private beta - in active use, but with a limited number of connecting applications
-minor illness referral consultation	alpha - planned for future use
-medication review	alpha - unused, obsolete and planned for retirement
-appliance use review	alpha - unused, obsolete and planned for retirement
-New Medicine Service (NMS) review	alpha - unused, obsolete and planned for retirement
+minor illness referral consultation	now retired
+medication review	now retired
+appliance use review	now retired
+New Medicine Service (NMS) review	now retired
 
 If you would like to be involved in our beta programme, contact us.
 
@@ -124,6 +126,7 @@ For details on the general structure of the interactions, see FHIR.
 The following versions are published:
 
 Status	Release version	Release date	Details
+Private beta	1.2.6-Private Beta	22 April 2022	Clarification around implementation of Emergency Supply
 Private beta	1.2.5-Private Beta	19 March 2021	Change from Digital Minor Illness Referral Service to Minor Illness Referral Consultation
 Private beta	1.2.4-Private Beta	3 March 2021	Example scenarios for COVID vaccination flows
 Private beta	1.2.3-Private Beta	4 May 2020	 
@@ -137,4 +140,4 @@ Alpha	1.1.0-Alpha	19 March 2019	Version 1.1.0-Alpha
 
  
 
-Last edited: 8 March 2022 8:11 am
+Last edited: 11 May 2022 12:09 pm
