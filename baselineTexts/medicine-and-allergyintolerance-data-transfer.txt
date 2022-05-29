@@ -6,7 +6,7 @@ Page contents
 Top of page
 About this information standard
 Current release
-Change control
+Updates
 About this information standard
 
 NHSX has commissioned NHS Digital to produce an Information Standard which puts in place definitions that are to be used when a health professional sends or receives patient medication and allergy/intolerance information, by computer system, between care locations.
@@ -31,14 +31,21 @@ Information Standards Notice (Amd 5/2021)
 Requirements Specification v 1.1 (Amd 5/2021)
 Corrigendum (Amd 5/2021)
 
+Supporting documents	
+Supplemental guidance (Amd 5/2021) (May 2022)
+
 Further information	
 
 NHS Digital: Interoperable Medicines
 
-FHIR UK Core:  Published versions of the UK Core Implementation Guide
+FHIR UK Core:  Published versions of the UK Core Implementation Guide
 
-Change control
+Updates
 
-Update: 9 November 2021: Publication of Corrigendum in respect of the Initial Standard, supported by changes to the Requirements Specification (uplifted to document version 1.1). See Corrigendum above for full details.
+23 May 2022: A 'Supplemental guidance' document has been published by the developers of DAPB4013 at NHS Digital, to summarise and answer common user queries from users implementing the standard. This document has been added to 'Supporting documents' in the table above.  
 
-Last edited: 9 November 2021 2:24 pm
+21 March 2022: A minor editorial change has been made to the Corrigendum and Requirements Specification. This update relates to a correction to the hyperlink for the 'Self-assurance guidance' in each document. No other changes to the documents have been made. 
+
+9 November 2021: Publication of Corrigendum in respect of the Initial Standard, supported by changes to the Requirements Specification (uplifted to document version 1.1). See Corrigendum above for full details.
+
+Last edited: 23 May 2022 1:55 pm

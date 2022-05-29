@@ -6,13 +6,14 @@ Successful joined up care depends on GPs, community and acute mental health care
 The mental health discharge summary will improve professional communication between the patient’s secondary care providers to their GP. It is very important to recognise the different nature of mental illness to physical illness and disease including the different methods of treatments and imperative follow-up care after discharge. The language used in the headings and in the clinical descriptions has been modified, where necessary, to be more inclusive and sympathetic to the nature of mental illness and processes of care. This project supports the NHS Digital and NHS England interoperability work.
 
 Endorsement
-Royal College of Psychiatrists
 Association of Directors of Adult Social Services
+British Psychological Society
+Royal College of Anaesthetists
+Royal College of Psychiatrists
+Royal College of Nursing  
 Royal College of General Practitioners
 Royal College of Occupational Therapists
 Royal Pharmaceutical Society
-British Psychological Society
-Royal College of Anaesthetists 
 Institute of Health Records and Information Management
 TechUK
 The standard

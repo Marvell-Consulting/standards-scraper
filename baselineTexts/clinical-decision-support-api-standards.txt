@@ -5,6 +5,7 @@ API standards to support the triage and onward referral of patients who are inte
 Page contents
 Top of page
 Overview
+API status
 API standards
 Overview
 
@@ -24,6 +25,10 @@ onward referral of the patient to the appropriate healthcare service along with 
 
 Before you begin any development work using these API standards, contact us to discuss your best options.
 
+API status
+
+This API standard is in alpha.
+
 API standards
 Date	Name	Version	Status & Notes	Links
 2020 	
@@ -38,4 +43,4 @@ Clinical Decision Support API
 
  
 
-Last edited: 28 September 2021 11:35 am
+Last edited: 26 May 2022 2:45 pm

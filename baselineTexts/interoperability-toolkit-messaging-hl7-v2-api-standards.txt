@@ -1,20 +1,29 @@
-Interoperability Toolkit Messaging HL7 V2 API standards
+Interoperability Toolkit 2 Messaging API standards
 
-API standards for a set of messaging components using HL7 V2.
+API standards for a set of messaging components using HL7 V2 and HL7 V3.
 
 Page contents
 Top of page
 Overview
+API status
 API standards
 Overview
 
-These API standards cover a set of HL7 V2 messaging specifications known as the Interoperability Toolkit (ITK). For example, for sending messages about the admission, discharge and transfer (ADT) of a patient.
+These API standards cover a set of messaging specifications known as the Interoperability Toolkit (ITK). Primarily consisting of ITK Release 2 (ITK2), they also include earlier versions.
+
+They're used, for example, for sending messages about the admission, discharge and transfer (ADT) of a patient.
+
+They are based on HL7 V2 and HL7 V3 standards. For example, ITK2.2 includes specific messaging domains based on HL7 V2, and also a number of message domains based on HL7 V3 - most notably the CDA messaging specifications which are used by NHS 111 domain messaging.
 
 For more details on this API standard, see the Interoperability Toolkit Core download below.
 
-These API standards were supplemented by the Interoperability Toolkit 3 (ITK3) Messaging Distribution FHIR API standards to support newer specifications, for example Transfer of Care, which is not supported under ITK V2.
+These API standards were later supplemented by the Interoperability Toolkit 3 (ITK3) Messaging Distribution FHIR API standards to support newer specifications, for example Transfer of Care, which is not supported under ITK2.
 
 For further information, contact the ITK conformance team.
+
+API status
+
+This API standard is in beta.
 
 API standards
 
@@ -34,4 +43,4 @@ Interoperability Toolkit Architecture - V2.2 Final
 
 ITK Architecture V2.2
 
-Last edited: 22 November 2021 5:05 pm
+Last edited: 26 May 2022 4:52 pm

@@ -5,6 +5,7 @@ API standards to enable sharing and updating of digital end of life care (EoLC) 
 Page contents
 Top of page
 Overview
+API status
 API standards
 Overview
 
@@ -13,6 +14,10 @@ Use these API standards to enable sharing and updating of digital end of life ca
 We have developed a number of API standards for different purposes which are outlined below.
 
 Before you begin any development work using these API standards, contact us to discuss your best options.
+
+API status
+
+This API standard is in alpha.
 
 API standards
 Year 	Name	Version	Status & Notes	Links
@@ -25,4 +30,4 @@ End of Life CDA on FHIR API
 
  
 
-Last edited: 27 September 2021 4:02 pm
+Last edited: 26 May 2022 2:49 pm

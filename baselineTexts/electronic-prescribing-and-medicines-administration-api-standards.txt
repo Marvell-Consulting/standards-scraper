@@ -5,6 +5,7 @@ Use these API standards to share medication requests between ePMA systems and ho
 Page contents
 Top of page
 Overview
+API Standard
 API standards
 Overview
 
@@ -15,6 +16,12 @@ In particular, they define the structure of the FHIR MedicationRequest which act
 There is guidance for the STU3 implementation of the FHIR standard and for the FHIR UK Core (R4) standard.
 
 For more details see Implementation guide for digital medicines.
+
+Or contact us at medicinestandards@nhs.net.
+
+API Standard
+
+This API standard is in alpha.
 
 API standards
 Year	Name	Version	Status & Notes	Links
@@ -29,4 +36,4 @@ ePMA Implementation Guidance for FHIR STU3
 
  
 
-Last edited: 8 December 2021 11:11 am
+Last edited: 26 May 2022 2:46 pm

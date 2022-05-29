@@ -31,6 +31,7 @@ Change Specification (Amd 25/2018)
 Specification (Amd 25/2018)
 Implementation Guidance (Amd 25/2018)
 Information Standards Notice (Amd 25/2018)
+Guidance - determine the applicability of DCB 0129 and 0160
 
 Further information	Please see the  NHS Digital website  for further information about the Clinical Safety team.
 Previous release
@@ -96,4 +97,4 @@ Previous releases
 
 Please see the ISB website for information on the previous releases.
 
-Last edited: 28 October 2020 3:38 pm
+Last edited: 27 May 2022 2:04 pm

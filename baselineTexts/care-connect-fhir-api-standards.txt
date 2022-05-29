@@ -5,6 +5,7 @@ API standards using FHIR STU3 to create a unified approach to interoperability a
 Page contents
 Top of page
 Overview
+API status
 Reference server
 API standards
 Overview
@@ -16,6 +17,10 @@ The specification was published as a work in progress to support discussion and 
 The FHIR standards work is continuing as FHIR UK Core using FHIR release 4 to create a unified approach to interoperability across England, Scotland, Wales and Northern Ireland. This is to enable consistent information flows across borders to improve health and care outcomes for all patients.
 
 For queries and comments, email interoperabilityteam@nhs.net.
+
+API status
+
+This API standard is in alpha.
 
 Reference server
 
@@ -37,4 +42,4 @@ HL7 FHIR STU3 based standard from INTEROPen and NHS Digital
 
  
 
-Last edited: 10 March 2022 4:13 pm
+Last edited: 26 May 2022 2:44 pm

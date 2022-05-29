@@ -45,4 +45,4 @@ For details on the general structure of the interactions, see FHIR.
 
 Transfer of Care Inpatient Discharge - FHIR API
 
-Last edited: 3 March 2022 3:36 pm
+Last edited: 26 May 2022 4:39 pm
