@@ -4,7 +4,7 @@ About Me information is the most important details that a person wants to share 
 
 Latest release v1.2
 
-The standard is now aligned with updates to the Core information standard and Urgent transfer from care home to hospital to keep consistency. Please see the detailed V1.2 Release notes, outlining the changes to this latest version.
+The standard is now aligned with updates to the Core information standard and Urgent transfer from care home to hospital to keep consistency. Please see the detailed  , outlining the changes to this latest version.
 
 Sharing information across health and social care
 
@@ -25,29 +25,33 @@ Compassion in Dying
 Health and Social Care Alliance Scotland
 Institute of Health Records and Information Management
 Local Government Association
+Resuscitation Council UK
 Royal College of Emergency Medicine
 Royal College of General Practitioners
 Royal College of Nursing
 Royal College of Occupational Therapists
 Royal College of Physicians
 Royal Pharmaceutical Society
+ 
 Why is ‘About Me’ so important?
 
 Clinical Informatics Lead of the Social Care Programme at NHS Digital, Keith Strahan, explains the crucial importance of ‘About Me’ information in records.
 
+
+
 About me standard v1.2
-V1.2 View the standard
-V1.2 Download the standard (xlsx file)
-V1.2 Release notes
 Supporting documents
-Implementation guidance
-Digital social care final report
-Survey 1 Report
-Hazard log
-Safety case
+
+
+PRSB launches #CareAboutMe
+
+PRSB’s new campaign #CareAboutMe aims to raise widespread awareness of the About Me standard and the improvements it can make to the quality of care administered in health and care, as well as the positive impact it can have on people’s quality of life and health.
+
+Visit the campaign website
+
 PRSB’s patient lead – Sam discusses the standard and current implementation work
 
-Watch a video clip introduction to the About me standard and an update on the successful implementation at Oxleas NHS Foundation Trust.
+ to the About me standard and an update on the successful implementation at Oxleas NHS Foundation Trust.
 
 IHRIM record correction guidance
 

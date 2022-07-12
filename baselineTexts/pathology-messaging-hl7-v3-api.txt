@@ -98,10 +98,10 @@ Onboarding
 
 You must get your software onboarded before it can go live.
 
-As part of onboarding, this API uses the Common Assurance Process (CAP), which is tailored for each NHS service. For more details, contact us.
+Contact us before onboarding with this API. It uses the Common Assurance Process (CAP) which is tailored for each NHS service.
 
 Interactions
 
 For a full list of interactions for this API, see the Laboratory section in the Spine Message Implementation Manual (MIM). 
 
-Last edited: 16 February 2022 11:31 am
+Last edited: 26 May 2022 4:28 pm

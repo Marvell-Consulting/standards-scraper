@@ -5,6 +5,7 @@ API standards to enable sharing of patients' vital signs and National Early Warn
 Page contents
 Top of page
 Overview
+API status
 API standards
 Overview
 
@@ -13,6 +14,10 @@ Use this API standard to enable sharing of patients' vital signs and National Ea
 We have developed a number of API standards for different purposes which are outlined below.
 
 Before you begin any development work using these API standards, contact us to discuss your best options.
+
+API status
+
+This API standard is in alpha.
 
 API standards
 Year 	Name	Version	Status & Notes	Links
@@ -25,4 +30,4 @@ alpha.1	Alpha - release to support the development of NEWS2	https://developer.nh
 
  
 
-Last edited: 28 September 2021 11:39 am
+Last edited: 26 May 2022 2:56 pm

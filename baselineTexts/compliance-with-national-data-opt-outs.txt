@@ -10,11 +10,11 @@ About this information standard
 
 The national data opt-out policy was introduced on 25 May 2018, enabling patients to opt out from the use of their data for anything other than their individual care and treatment , for example research or planning purposes, in line with the recommendations of the National Data Guardian in her Review of Data Security, Consent and Opt-Outs.
 
-By March 2022 all health and adult social care organisations are required to be compliant with the national data opt-out policy, where they are using confidential patient information for purposes beyond an individual’s care and treatment. This information standard provides a set of requirements to ensure that all health and adult social care organisations in England can comply with the National data opt-out policy.
+By July 2022 all health and adult social care organisations are required to be compliant with the national data opt-out policy, where they are using confidential patient information for purposes beyond an individual’s care and treatment. This information standard provides a set of requirements to ensure that all health and adult social care organisations in England can comply with the National data opt-out policy.
 
 This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the other documents provide further detail for those who have to implement the information standard.
 
-September 2021 update: NHSX has made a decision to further extend the compliance deadline for the national data opt-out to 31 March 2022. The deadline has been extended to enable health and care organisations to focus their resources on the coronavirus (COVID-19) outbreak.  Read the letter sent from NHSX.
+March 2022 update: NHSX made a decision that the mandatory implementation of the National Data Opt-Out (NDOO), deadline of 31 March 2022, has been extended until 31 July 2022. We do not intend to extend implementation of the deadline any further.
 
 Current release
 
@@ -69,4 +69,4 @@ Further information
 
 NHS Digital National Data Opt-outs
 
-Last edited: 1 September 2021 2:04 pm
+Last edited: 30 March 2022 3:14 pm

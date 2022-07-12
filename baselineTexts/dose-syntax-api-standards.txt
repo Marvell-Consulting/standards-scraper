@@ -5,6 +5,7 @@ API standards to provide a structured way to record dosage instructions between
 Page contents
 Top of page
 Overview
+API status
 API standards
 Overview
 
@@ -20,6 +21,10 @@ Follow on work for interoperability across England, Scotland, Wales and Norther
 
 Before you begin any development work using these API standards, contact us to discuss your best options.
 
+API status
+
+This API standard is in beta.
+
 API standards
 Year 	Name	Version	Status & Notes	Links
 2021	Dose Syntax 
@@ -31,4 +36,4 @@ STU3 / CareConnect	1.4.0-private-beta	Beta - under active development 	https:/
 
  
 
-Last edited: 27 September 2021 3:59 pm
+Last edited: 26 May 2022 3:21 pm

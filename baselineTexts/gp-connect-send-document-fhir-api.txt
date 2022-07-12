@@ -5,22 +5,21 @@ Send a PDF consultation summary to a registered GP practice.
 Page contents
 Top of page
 Overview
+Who can use this API
+Related APIs
 API status
 Service level
 Technology
 Network access
+Security and authorisation
+Environments and testing
+Onboarding
 Interactions
 Overview
 
 Use this API to send a PDF consultation summary to a registered GP practice - using GP Connect Messaging.
 
-You can:
-
-create messages to send using MESH
-use the HL7 FHIR STU3 interoperability standard to define the message structure
-include FHIR messaging information as defined by the ITK3 message distribution standard v2.5.0
-
-For example, to send a document containing a patient's consultation notes to their GP practice when a patient is seen:
+For example, use it to send a document containing a patient's consultation notes to their GP practice when a patient is seen:
 
 at another GP practice than their own
 by an out of hours service
@@ -32,9 +31,50 @@ Each message sent is a FHIR Message, defined as a FHIR composition, construct
 
 For more details, see the GP Connect specifications for developers.
 
+Who can use this API
+
+This API can be used by developers of clinical systems that support clinicians delivering direct care.
+
+Before you start development, read the Send Document section of the GP Connect API 1.5.1-beta messaging specification and the prerequisites listed below.  
+
+Prerequisites
+Technical
+
+You must:
+
+have access to the Health and Social Care Network (HSCN) or the internet to send ITK3 standard messages over MESH
+have MESH API compliance or access to the MESH client
+have ITK3 compliance
+be Personal Demographics Service (PDS) compliant or capable of performing a PDS search via NHS Digital or a third-party provider
+Information governance (IG)
+
+You must:
+
+be compliant with the GP Connect Direct Care API Information Governance Model
+manage access to your system locally using local role-based access control (RBAC). This does not need to be compliant with the national RBAC model and GP Connect products do not require smartcards to control access, though they can be used if already implemented
+be using the GP Connect APIs for direct care purposes for NHS patients in England
+Clinical safety
+
+You must:
+
+have a clinical safety officer (CSO) who is responsible for DCB0129 and, if necessary, DCB0160 . For more on clinical risk management, visit Clinical risk management standards
+
+If you are confident that you can meet the prerequisites, contact us to express your interest. See 'Onboarding' below.
+
+Related APIs
+
+The following APIs and API standards are also related to this API:
+
+Personal Demographics Service - FHIR API  – use this API to look up the registered GP for the patient
+Message Exchange for Social Care and Health (MESH) API - transfer messages and large files securely across health and social care organisations
+
+Interoperability Toolkit 3 Messaging Distribution FHIR API standards - define a set of generic messaging components using FHIR STU3
+
 API status
 
-This API (v1.3.0) is stable.
+This API (v1.5.1) is in beta.
+
+It might not be fully supported by all providing systems. See GP Connect supplier progress for details of provider rollout.
 
 Service level
 
@@ -46,6 +86,8 @@ Technology
 
 This API is a FHIR API.
 
+It sends HL7 FHIR STU3 message payloads over MESH as defined by ITK3 v2.10.0.
+
 For more details, see FHIR.
 
 Network access
@@ -53,9 +95,40 @@ Network access
 You can access this API via:
 
 the Health and Social Care Network (HSCN)
-the internet - but note that devices using NHS smartcards do require HSCN access
+the internet
 
  For more details, see Network access for APIs.
+
+Security and authorisation
+
+This API uses MESH which is an application-restricted API.
+
+The API does not perform any end user authentication or authorisation checks. Rather, the calling system is expected to perform them.
+
+Environments and testing
+
+The following test environments are available:
+
+Opentest 
+the Path-to-Live integration environment 
+
+To test sending a message, see Message sender testing.
+
+Onboarding
+
+If you meet the prerequisites and have a product that can integrate with GP Connect, you should express an interest with us by submitting a use case.
+
+The main purpose of the use case is to help us understand how you plan to use GP Connect APIs and the business issue you are looking to address. You should email your use case to us at gpconnect@nhs.net.
+
+Your use case should include the following information as a minimum:
+
+the business problem you are intending to solve using GP Connect
+how GP Connect will be used in practice to benefit patients and staff
+which of the GP Connect products you will use to benefit patients and staff
+any end user organisations you are currently working with
+who your clinical safety officer is and, where available, your clinical risk management process documentation
+
+Once we receive your use case, we'll respond within 14 days.
 
 Interactions
 
@@ -63,4 +136,4 @@ For a full list of interactions for this API, see Send Document.
 
 For details on the general structure of the interactions, see FHIR.
 
-Last edited: 20 January 2022 4:20 pm
+Last edited: 26 May 2022 3:30 pm

@@ -45,8 +45,6 @@ Royal College of Surgeons
 
 Renewed endorsement is in progress for v2.0 and will be published here once available.
 
- 
- c
 Core information standard v2.0
 Supporting documentation
 Core information standard V2.0 logical model

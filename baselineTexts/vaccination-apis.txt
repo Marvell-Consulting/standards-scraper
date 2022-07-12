@@ -106,6 +106,22 @@ Latest addenda
 
 These are Microsoft Word files. To request a different format, contact us.
 
+Removal of £10 supplementary payment for severely immunosuppressed individuals V1.0
+
+DOCX 96 KB
+
+POC system updates to accommodate COVID-19 vaccinations with Comirnaty® Ready to Use V1.1
+
+DOCX 112 KB
+
+POC to restrict retrospective COVID-19 vaccination event record entries V1.0
+
+DOCX 86 KB
+
+Vaxzevria® (AstraZeneca) Vaccine Rebranding V1.1
+
+DOCX 101 KB
+
 POC system updates to accommodate reporting of COVID-19 vaccinations for 5 to 11 children not at risk V1.0
 
 DOCX 96 KB
@@ -117,38 +133,50 @@ DOCX 93 KB
 POC system updates to accommodate COVID-19 vaccinations for ‘at-risk’ 5 to 11 children V1.2
 
 DOCX 117 KB
+
+PoC system updates to accommodate COVID-19 vaccinations for 12 year olds in school year 7
+
+DOCX 107 KB
+
+POC to display full vaccination history
+
+DOCX 96 KB
 Interactions
 
 These are Microsoft Word files. To request a different format, contact us.
 
-Daily clinical vaccination specification V3.5 - COVID-19
+Extended attributes for additional data capture V1.5
 
-DOCX 496 KB
-
-Extended attributes for additional data capture V1.4 - COVID-19
-
-DOCX 435 KB
+DOCX 437 KB
 
 Hourly vaccination system aggregate data specification V1.2 - COVID-19
 
 DOCX 494 KB
 
-Daily clinical vaccination specification V2.3 - seasonal flu 2021-22
-
-DOCX 455 KB
-
-MMR vaccination - technical specification for GPIT suppliers to NHS Digital delimited extract V1.0
+MMR vaccination - technical specification for GPIT suppliers to NHS Digital delimited extract V1.1
 
 DOCX 489 KB
+
+NHS Digital daily clinical vaccination extract technical specification v4.0 approved
+
+DOCX 470 KB
 Additional guidance
 
 Use these functional specifications to understand how your system must interact with end users in order to collect information safely and assist in decision making, relating to COVID-19 vaccinations.
 
 These are Microsoft Word files. To request a different format, contact us.  
 
-Functional specification for additional point of care data capture V2.3 - COVID-19
+Functional specification for capture of clinical screening questions at point of care V3.4 - COVID-19
 
-DOCX 431 KB
+DOCX 430 KB
+
+Functional specification for immunisation status V1.0 - flu and COVID-19
+
+DOCX 970 KB
+
+NHS Digital Functional Spec for Additional PoC Data Capture v3.0 Approved
+
+DOCX 444 KB
 
 Overall specification for point of care systems V4.0 – COVID-19
 
@@ -158,16 +186,4 @@ Vaccine specific information for suppliers of point of care systems V3.2 - COVID
 
 DOCX 427 KB
 
-Functional specification for capture of clinical screening questions at point of care V3.4 - COVID-19
-
-DOCX 430 KB
-
-Functional specification for vaccination coadministration V1.1 - flu and COVID-19
-
-DOCX 467 KB
-
-Functional specification for immunisation status V1.0 - flu and COVID-19
-
-DOCX 970 KB
-
-Last edited: 11 March 2022 10:50 am
+Last edited: 26 May 2022 4:46 pm

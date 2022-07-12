@@ -100,4 +100,4 @@ For a full list of interactions for this API, see ISB 1557 EDIFACT Pathology M
 
 You can also use our Lab Results adaptor to receive these EDIFACT results via an easy-to-use FHIR-compliant format. 
 
-Last edited: 24 January 2022 12:42 pm
+Last edited: 26 May 2022 4:29 pm

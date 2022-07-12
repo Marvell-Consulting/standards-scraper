@@ -26,6 +26,11 @@ Detailed implementation guidance
 Clinical safety case report
 Hazard log
 Information Standards Notice (ISN)
+PCSP implementation toolkit
+
+This toolkit has been developed to support the adoption and implementation of this information standard. The materials and resources will support you with your local implementation of the standard.
+View the toolkit
+
 Digital Care and Support Plan (V1.1 2018)
 
 The original Digital care and support plan has been updated to V2.0 Personalised care and support plan (above). You may still access V1.1 documentation here:

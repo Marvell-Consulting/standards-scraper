@@ -104,7 +104,7 @@ Onboarding
 
 You must get your software onboarded before it can go live.
 
-As part of onboarding, this API uses the Common Assurance Process (CAP), which is tailored for each NHS service. For more details, contact us.
+Contact us before onboarding with this API. It uses the Common Assurance Process (CAP) which is tailored for each NHS service.
 
 Interactions
 
@@ -116,4 +116,4 @@ Additional guidance
 
 For more details about requirements and specifications of the record transfer mechanism, see the GP2GP section in the GP IT Futures Capabilities and Standards guidance.
 
-Last edited: 16 February 2022 12:21 pm
+Last edited: 26 May 2022 4:17 pm
