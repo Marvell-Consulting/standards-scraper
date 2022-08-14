@@ -51,11 +51,12 @@ For more details, see service levels.
 
 Technology
 
-This API:
+This API is RESTful.
 
-is RESTful
-conforms to the FHIR global standard for health care data exchange
-aligns with FHIR UK Core (which is built on FHIR Release 4)
+It conforms to the FHIR global standard for health care data exchange, specifically to FHIR R4 (v4.0.1), except that it does not support the capabilities interaction.
+
+It includes some country-specific FHIR extensions, which conform to FHIR UK Core, specifically fhir.r4.ukcore.stu1 0.5.1.
+
 Specific rules for FHIR APIs
 
 FHIR APIs are RESTful APIs that follow specific rules. In particular:
@@ -76,7 +77,7 @@ For more details see Network access for APIs.
 
 Security and authorisation
 
-This API is application-restricted, meaning we authenticate the calling application but not the end user. In particular, the three FHIR CommunicationRequest endpoints use signed JWT authentication - you authenticate your application by sending a signed JSON web token (JWT) to our OAuth 2.0 authorisation server. For more details see Application-restricted RESTful APIs - signed JWT authentication.
+This API is application-restricted, meaning we authenticate the calling application but not the end user. In particular, the two FHIR CommunicationRequest endpoints use signed JWT authentication - you authenticate your application by sending a signed JSON web token (JWT) to our OAuth 2.0 authorisation server. For more details see Application-restricted RESTful APIs - signed JWT authentication.
 
 After following these steps to create an application and register the public key, the App ID should be provided to the NHS App onboarding team to grant your application permissions to the features that are appropriate to your use cases. If this step is not completed, all calls to this API will return responses with status code 403 Forbidden.
 
@@ -137,8 +138,6 @@ If a recipient is an active NHS App user but has not registered a device to rece
 
 This endpoint allows you to specify the content that will appear in the in-app message. It does not allow you to specify the content that will appear in the associated push notification. By default, the content of the associated push notification will read "NHS App. You have a new message." To discuss changing this standard push notification content for your application, contact the NHS App team.
 
-We are considering an improvement that would include message sender names in associated push notifications. This may be of benefit if your application sends communications on behalf of several NHS organisations. You can track, comment, and vote for this feature on our interactive product backlog.
-
 When a recipient taps the native notification, the NHS App will open on the in-app messaging inbox page.
 
 We support a subset of Markdown for describing the body text of in-app messages. The length of each in-app message is limited to 5000 characters, including any markdown characters and embedded hyperlinks.
@@ -193,16 +192,20 @@ Copy
   "payload" : [ {
     "contentString" : "You have a new appointment, please confirm you can attend. Open the Onboarded Third Party appointment [here](https://www.nhsapp.service.nhs.uk/appointments/hospital-appointments)"
   } ],
-  "sender" : {
-    "display" : "Onboarded Third Party"
-  },
   "recipient" : [ {
     "type" : "Patient",
     "identifier" : {
       "system" : "https://fhir.nhs.uk/Id/nhs-number",
       "value" : "9903002157"
     }
-  } ]
+  } ],
+  "requester" : {
+    "type" : "Organization",
+    "identifier" : {
+      "system" : "https://fhir.nhs.uk/Id/ods-organization-code",
+      "value" : "B82041"
+    }
+  }
 }
 Schema
 Collapse all Expand all
@@ -262,15 +265,6 @@ The body text of the message to be displayed in the NHS App
 
 
 
-sender
-object
-required
-	
-
-The sender of the in-app message.
-
-
-
 recipient
 array
 required
@@ -280,6 +274,15 @@ An array containing a single NHS number corresponding to the patient to whom thi
 
 Max items: 1
 Min items: 1
+
+
+requester
+object
+required
+	
+
+The requester who initiated the communication and would like to send an in-app message to the patient.
+
 Response
 HTTP status: 201
 
@@ -331,8 +334,12 @@ Copy
       "value" : "9903002157"
     }
   } ],
-  "sender" : {
-    "display" : "Onboarded Third Party"
+  "requester" : {
+    "type" : "Organization",
+    "identifier" : {
+      "system" : "https://fhir.nhs.uk/Id/ods-organization-code",
+      "value" : "B82041"
+    }
   }
 }
 Schema
@@ -382,19 +389,19 @@ The body text of the message to be displayed in the NHS App.
 
 
 
-sender
-object
-	
-
-The sender of the in-app message.
-
-
-
 recipient
 array
 	
 
 An array containing a single NHS number corresponding to the patient to whom this in-app message was sent.
+
+
+
+requester
+object
+	
+
+The requester who has sent the request for in-app message to the patient.
 
 HTTP status: 400
 
@@ -480,7 +487,7 @@ Copy
   } ]
 }
 
-Multiple issues - sender name is missing and campaign ID exceed maximum length
+Multiple issues - no recipient has been specified and campaign ID exceeds maximum length
 
 Copy
 {
@@ -499,7 +506,20 @@ Copy
     "severity" : "error",
     "code" : "invalid",
     "diagnostics" : "Not specified",
-    "expression" : [ "sender.display" ]
+    "expression" : [ "recipient" ]
+  } ]
+}
+
+The requester has an invalid identifier
+
+Copy
+{
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "invalid",
+    "diagnostics" : "Identifier system is invalid",
+    "expression" : [ "requester.identifier.system" ]
   } ]
 }
 Schema
@@ -1078,7 +1098,7 @@ Copy
   } ]
 }
 
-Multiple issues - sender name is missing and campaign ID exceed maximum length
+Multiple issues - no recipient has been specified and campaign ID exceeds maximum length
 
 Copy
 {
@@ -1097,7 +1117,7 @@ Copy
     "severity" : "error",
     "code" : "invalid",
     "diagnostics" : "Not specified",
-    "expression" : [ "sender.display" ]
+    "expression" : [ "recipient" ]
   } ]
 }
 Schema

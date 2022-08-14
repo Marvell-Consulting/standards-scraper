@@ -2,15 +2,12 @@ Document naming
 Electronic Health and care records can include a significant number of documents, these may have originated from digital systems or scanned paper documents. 
 We require a standardised way of attributing information to those documents so they can easily be found when needed, particularly in an emergency. We also need to ensure they can be exchanged efficiently between different systems.
 
-
 Often, information about a person’s previous care may be held on a number of different IT systems; a variety of options being available to provide a single view to a patient’s digital record. Documents form one part of such information and may have been captured in a number of ways, for example:
 
 as a pdf which has been exported from an IT system
 a scanned document: In their efforts to create a full set of digital notes, many trusts are/have scanned historical paper records
 As a word-processed unstructured document
 As a pointer to file in a document management system.
-
- 
 
 As a result, without appropriate additional data (referred to as metadata), these are often hard to find or even know they exist, and can be difficult to retrieve, thus increasing the risk of error.
 
@@ -35,7 +32,7 @@ PRSB have undertaken a recent review in this area with recommendations for two s
 
 However, in light of the work that has recently started on the International Patient Summary (IPS), and with guidance from the UK Strategy Board, the PRSB has agreed to defer any further development until the outcomes of the IPS work are published.
 
-The standard
+The standard: V4.1 July 2022
 
 Standards relating to document naming exist in Scotland and Wales; given developments on the International Patient Summary, PRSB are currently signposting to those existing standards rather than looking to develop an updated UK standard. The following are available on the respective websites:
 
@@ -46,10 +43,9 @@ A standard for the metadata in the document management system (managed by NHS Wa
 * Note that each UK country may publish their own Value lists for the Clinical specialty data item.
 
 Supporting documents
-
 Fact Sheet (pdf)
 
-Clinical Document Indexing Standard – notes of Guidance: published by Public Health Scotland.
+Clinical Document Indexing Standard – notes of Guidance: : published by Public Health Scotland.
 
 IHRIM record correction guidance
 

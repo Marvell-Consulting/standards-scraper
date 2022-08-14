@@ -32,9 +32,9 @@ Release number	Amd 11/2015
 Release title	Version 4.0
 Stage	Implementation
 Key documents	
-Requirements Specification (Amd 11/2015)
+Requirements Specification (Amd 11/2015) [Archive Content]
 Implementation Guidance (Amd 11/2015)
-Change Specification (Amd 11/2015)
+Change Specification (Amd 11/2015) [Archive Content]
 Implementing the Changes (Amd 11/2015)
 Information Standards Notice (Amd 11/2015)
 Corrigendum (Amd 11/2015)

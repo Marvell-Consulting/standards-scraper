@@ -10,7 +10,6 @@ Prerequisites
 Related APIs
 API status and roadmap
 Service level
-Service level
 Technology
 Network access
 Environments and testing
@@ -83,12 +82,6 @@ To see our roadmap, or to suggest, comment or vote on features for this API, see
 Service level
 
 This API is a silver service, meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding Bank Holidays.
-
-For more details, see service levels.
-
-Service level
-
-This API is a silver service, meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
 
 For more details, see service levels.
 
@@ -296,11 +289,12 @@ Onboarding
 
 You need to get your software approved by us before it can go live with this API. We call this onboarding. The onboarding process can sometimes be quite long, so it's worth planning well ahead:
 
-request a Test mailbox using the form
+apply for a Testing (Path to Live) mailbox using the form
 read carefully how to request your certificate
-send your business use case to sa.servicedesk@nhs.net
-when you receive your SCAL (Supplier Conformance Assessment List), fill in and return it to sa.servicedesk@nhs.net
-our solutions assurance team certificates your integration and it's ready to go live
+
+This API uses our online digital onboarding process.
+
+For more details, and to get started, see digital onboarding.
 
 For any other queries, contact our support mailbox ssd.nationalservicedesk@nhs.net.
 
@@ -1116,7 +1110,7 @@ Name	Description
 object
 	
 Look up MESH address
-GET /endpointlookup/mesh/{odsCode}/{Mex-workflowid}
+GET /messageexchange/endpointlookup/{odsCode}/{Mex-workflowid}
 Overview
 
 Use this endpoint to search for the mailbox of the organisation you want to send data to, using their unique Organisation Data Service (ODS) code, their MESH mailboxID and the agreed workflowId for the data.
@@ -1133,7 +1127,7 @@ curl -k \
 --key 'mesh-client-key.pem' \
 --cert 'mesh-client-cert.pem' \
 --header 'Authorization: NHSMESH X26HC005:a5d25a21-57c3-40d1-8794-bea42e82039b:0:202006041718:725665f0956b73c5f9ec5e0e0d413046fc0729e3b893864b6d5f672dda2bfd13' \
-https://mesh-sync.spineservices.nhs.uk/endpointlookup/mesh/SCREEN2/SPINE_GPCAPITATION_EXTRACT
+https://mesh-sync.spineservices.nhs.uk/messageexchange/endpointlookup/SCREEN2/SPINE_GPCAPITATION_EXTRACT
 
 Response
 
@@ -2496,13 +2490,6 @@ curl -k \
   --header 'Mex-OSVersion: #44~18.04.2-Ubuntu' \
   https://mesh-sync.spineservices.nhs.uk/messageexchange/X26HC005
 
-Response
-
-JSON
-
-Copy
-  {"mailboxId" : "X26HC005"}
-
 Request
 Path parameters
 Name	Description
@@ -2575,16 +2562,6 @@ HTTP status: 200
 
 OK
 
-Body
-
-Content type: application/json
-
-Schema
-Collapse all Expand all
-Name	Description
-
-object
-	
 HTTP status: 400
 
 Bad Request

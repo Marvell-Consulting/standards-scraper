@@ -1,0 +1,34 @@
+DAPB4020: UK Core Fast Healthcare Interoperability Resources (FHIR) Release 4 (R4) Governance
+
+This information standard facilitates interoperability in the sharing of data across the NHS, health services and adult social care in England.
+
+Page contents
+Top of page
+About this information standard
+Current release
+Contacts
+About this information standard
+
+This new information standard formally introduces the governance process for the oversight, direction and leadership of the UK Core Fast Healthcare Interoperability Resources (FHIR) Release 4. The standard mandates, within the health and care sector in England, a consistent approach to the development of UK Core resources, thereby facilitating clear interoperability in the sharing of data across the NHS, health services and adult social care in England.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the requirements specification provides further detail for those who have to implement the information standard.
+
+Current release
+Release date	11 March 2022 
+Release number	Amd 33/2021
+Release title	Initial standard
+Key documents	
+Information Standards Notice (Amd 33/2021)
+Specification and Guidance (Amd 33/2021)
+
+Further	
+
+NHS Digital FHIR resources
+
+Contacts
+
+For information relating to the UK Core governance process please email the HL7 UK Secretariat: secretariat@hl7.org.uk
+
+For information relating to Clinical and Technical Assurance and the development and release of UK Core assets, please email the NHS Digital Interoperability Standards Team (IOPS): interoperabilityteam@nhs.net
+
+Last edited: 11 March 2022 3:33 pm

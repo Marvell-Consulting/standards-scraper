@@ -22,18 +22,22 @@ Institute of Health Records Information Management (IHRIM)
 TechUK
 Supported by: Clinical leadership was provided by the Royal College of Paediatrics and Child Health (RCPCH) and the Royal College of General Practitioners (RCGP). Work was conducted in partnership with the Royal College of Physicians (RCP) Health Informatics Unit (HIU).
 The standard
+
 Healthy child standard specification
+
 Current release – 08/10/2020
 Release number – Amd 11/2020
+
 Information standards notice (ISN)
 The ISN informs service providers that the Healthy child record must be adopted and gives the time frame for doing this, along with the relevant guidance materials and previous releases.
+
 Supporting documentation
 Implementation Guidance
 Section specific implementation guidance
 Healthy child record final report
 Information standards notice
 Clinical safety case report
-Technical Specifications – Should local areas wish to share data in their region then this should be done as an electronic message. These are available on NHS Developer Network and will be updated as the development cycle continues (https://developer.nhs.uk/apis/dch-beta/).
+Technical Specifications – Should local areas wish to share data in their region then this should be done as an electronic message. These are available on NHS Developer Network and will be updated as the development cycle continues.
 IHRIM record correction guidance
 
 Despite vigilance when filing information in records, mistakes can occur. The Institute of Health Records and Information Management has guidance to support professionals in making corrections following errors.
