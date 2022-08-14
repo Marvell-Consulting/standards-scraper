@@ -27,8 +27,8 @@ The Mental health inpatient discharge has been updated to version 2.1 (Dec 17 20
 – structured dose timing and dose direction duration.
 
 Previous revisions
-– Release Notes V2.0
-– Release Notes V1.1
+Release Notes V2.0
+Release Notes V1.1
 
 Supporting documentation
 Implementation guidance report – Mental health inpatient discharge

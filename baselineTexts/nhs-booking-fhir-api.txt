@@ -15,7 +15,7 @@ Environments and testing
 Onboarding
 Interactions
 
-This API will be retired in 12 to 18 months from March 2022.  The Booking and Referral Standard (BaRS) will replace it.
+This API will be retired in 12 to 18 months from March 2022.  The Booking and Referral Standard (BaRS) will replace it.  We will contact you before we agree a retirement date.
 
 The current API is still available for existing development, but not for new integrations.  For more details, contact the Booking and referral team.
 
@@ -87,4 +87,4 @@ Alpha	FHIR NHS Scheduling 1.0.2 Alpha	November 2018	Search for free slots, book 
 
 For more details on the specifics of this use case, see Urgent & Emergency Care Appointment Booking
 
-Last edited: 26 May 2022 4:23 pm
+Last edited: 12 August 2022 12:43 pm

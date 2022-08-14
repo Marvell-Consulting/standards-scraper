@@ -1,0 +1,182 @@
+Shared Decision Making Standard
+
+Shared decision making is a collaborative process where clinicians and individuals consider treatment options based on evidence about their potential benefits and harms, to enable the person to decide the best course for themselves. The conversation and decision made should be informed by what matters to the person, their goals, values, hopes, ideas, concerns and expectations.
+
+When people are listened to, given the information they need and the time and support to make informed decisions about their care and treatment, they have the potential for better outcomes and experiences of care.
+
+On this page
+About this standard
+The patient’s journey
+Summary view of the standard
+Current release and supporting documentation
+About this standard
+
+The PRSB information standard on shared decision making provides a framework for clinicians to record the decision-making process between themselves and their patients. The standard also allows the shared decision information to be shared between professionals and their different record systems. The standard has been developed based on the GMC guidance on shared decision-making and consent and the NICE guidelines. 
+
+What is included?
+The standard was developed with UK wide consultation and engagement to meet the needs of all four UK nations.
+The standard is intended for all areas of healthcare except for the noted exclusions
+The standard covers all ages including children
+
+
+The following 8 different scenarios were used to help develop and test the standard;
+
+Elective surgery
+Multiple long-term conditions  
+Mental Health 
+Genetic conditions
+Polypharmacy  
+Orthopaedics 
+Gynaecology
+Children and dentistry
+What is not in scope
+Maternity – The standard may work for maternity, but it is believed that this complex area justifies specific additional work and potentially an extended standard.
+
+
+Social Care – The Shared Decision Making Standard is defined for clinical uses and the consultation was targeted at healthcare professionals not social care professionals. However the standard’s principles may work in social care and in the future the standard could potentially be adapted for use in social care.
+The patient's journey
+
+Here we can see an example of a shared decision making journey from starting a shared decision with a patient and their clinician, through to planning and discussion and then making a final agreement to document in a patient’s care record. 
+
+Starting a shared decision
+The first meeting
+
+
+Joe meets or talks on the phone with his clinician (this is his doctor or nurse or other health professional) who has diagnosed the problem.
+
+
+The clinician explains the diagnosis to Joe and says there are choices for his treatment or support.
+
+
+The clinician gives Joe some information on the choices available to consider before further meetings.
+
+
+The clinician asks if Joe would want someone to be at the next meeting.
+Shared decision discussions
+Talking through the choices
+
+
+Joe meets the clinician to discuss the best treatment or support for him. This is the shared decision making discussion.
+
+
+Joe consents to the meeting being recorded so it can be referred to later.
+
+
+The clinician checks with Joe to agree that this is the expectation for the meeting so that he understands his diagnosis.
+
+
+The clinician and Joe explore what’s important to Joe, his concerns, expectations, needs and goals.
+
+
+The clinician explains each of the options along with their risks and benefits for Joe.
+
+
+They discuss and reach a shared decision on the best option for Joe. Joe decides he needs more time to consider. The doctor sends Joe a letter with the details of the discussion.
+Reaching a final decision
+Agreeing what is important
+
+
+They recap and discuss as needed, considering what’s important to Joe, the options and their risks and benefits.
+
+
+They record the option agreed and a review date. If needed they can record any issues Joe had with the decision or any comments made by the clinician.
+
+
+If required, Joe provides consent for the chosen treatment or support. Details about the consent form are recorded.
+
+
+The clinician notes the actions for Joe and themselves (such as to start the chosen treatment or support option).
+Summary view of the standard
+
+The standard sets out the information that should be recorded for a shared decision making discussion between a clinician and patient, and then shared afterwards with the patient and other professionals who care for them. 
+
+Here is an excerpt from a summary view of the standard that shows main sections and elements.  It gives a description of the information to be captured and also tells the clinician what information is Mandatory (M – must be recorded), Required (R – should be recorded if the information exists), and what is Optional (O – local decision if its recorded) in the Conformance column. 
+
+Section and element name
+	
+Conformance
+	
+Description
+
+
+Problem list
+	
+M
+	
+A summary of the problems that require investigation or treatment.
+
+
+Problem
+	
+M
+	
+The problem that the shared decision is addressing
+
+
+Shared decision point
+	
+M
+	
+This is a shared decision point record entry. There may be 0 to many record entries under a section. Each record entry is made up of a number of elements or data items.
+
+
+Shared decision status
+	
+M
+	
+The current status of the decision (In progress, Valid, Cancelled).
+
+
+Pre-discussion information shared
+	
+R
+	
+A record of the actions taken to prepare the patient to make a shared decision before the encounter where a shared decision was made. This should include a summary of any resources the person was offered to prepare them for the decision making process.
+
+This excerpt is taken from a high-level summary view of the standard. The full standard can be found in the documentation section of this page.
+
+Open the summary view: Shared Decision Making Standard summary view
+
+We have created some examples to help make it clearer what information is recorded in several different SDM scenarios, and how this works across multiple appointments.  These examples are based on role plays with practising clinicians and either patients or actors. In some cases they are shown with two views, one for clinicians and people and another for system suppliers using the full information model.   
+
+Current release
+Current release
+Release date: 8 June 2022
+Version: V0.6 Shared Decision Making Information Standard
+
+Supporting documents
+General implementation guidance
+(Detailed guidance, specific to the sections and elements of the standard, are included within the information model)
+Business rules
+Final report
+Survey report
+Safety case report - draft
+Hazard log - draft
+Phase 1 report V1.0
+– Appendix A – Evidence review report
+– Appendix C – Original use case scenarios
+– Appendix D – Structured role play materials
+– Appendix E – Webinar materials and participants
+ 
+Examples
+
+Example for Elective surgery (Abdominal Aortic Aneurysm)
+Clinician/Person view
+System Supplier view
+
+Example for Primary Care
+Clinician/Person view
+
+Example for Pharmacy medications review
+Medicine Review by Pharmacy
+
+Further resources
+Shared decision making – NICE guidelines
+Decision making and consent – GMC
+Working group feedback video
+IHRIM record correction guidance
+Despite vigilance when filing information in records, mistakes can occur. The Institute of Health Records and Information Management has guidance to support professionals in making corrections following errors.
+ 
+Endorsement
+Endorsement is in progress for the draft standard and details will be published here when this work is complete. 
+ 

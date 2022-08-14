@@ -19,6 +19,7 @@ Latest version: V2.0
 
 In 2021 an updated version of the standard was published to support adults who live with severe and enduring mental health conditions in the community. Co-produced with health and social care professionals, as well as people who use services, the standard is designed to help people stay well and live the best lives they can at home or in supported accommodation. 
 
+V2.0 – View the standard (Excel)
 Personalised care and support plan standard
 V2.0 – View the standard (Excel)
 Supporting documents
@@ -37,7 +38,6 @@ The original Digital care and support plan has been updated to V2.0 Personalised
 
 DCSP standard Version 1.1
 Implementation guidance V1.0
-
 Digital care and support plan final report V1.0
 Survey results and analysis
 Clinical safety case report V0.3
