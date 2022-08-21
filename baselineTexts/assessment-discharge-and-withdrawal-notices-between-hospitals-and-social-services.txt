@@ -1,53 +1,51 @@
 SCCI2075: Assessment, Discharge and Withdrawal Notices between Hospitals and Social Services
 
-This information standard defines a set of Assessment, Discharge and Withdrawal (ADW) Notices to support compliance with the Care Act 2014.
+This information standard defined a set of Assessment, Discharge and Withdrawal (ADW) Notices to support compliance with the Care Act 2014.
 
 Page contents
 Top of page
 About this information standard
 Current release
 Initial release
-
-This standard will not be updated and there will be no further development on this product.
-
-It should be noted that the product does not support the Discharge to Assess process.
-
-Any development to this standard will be at the supplier’s risk as it doesn’t support government policy. 
-
-For any questions, please contact enquries@nhsdigital.nhs.uk.
-
+Updates
 About this information standard
 
-This information standard defines a set of Assessment, Discharge and Withdrawal (ADW) Notices to support compliance with the Care Act 2014. These Notices are to be used to support the discharge of hospital patients that are considered to have social care needs.
+This information standard defined a set of Assessment, Discharge and Withdrawal (ADW) Notices to support compliance with the Care Act 2014. These Notices were used to support the discharge of hospital patients considered to have social care needs, and the information standard defined the minimum set of data items to be used for these Notices.
 
-The initial standard was published in June 2016. An updated release (Amd 70/2016, November 2016) introduces changes to, and corrections of, a number of data items and notes the removal of technical implementation options from the standard documents. Full details of the changes can be found in the Information Standards Notice (see below).
+Following engagement with NHS England, Local Authorities, the Professional Record Standards Body (PRSB), suppliers and users, the NHS Digital developers of SCCI2075 agreed that no further development of the standard would occur, and that it would no longer be supported, as the product does not support current national government or NHS discharge policy, including Discharge to Assess (D2A).
 
-This information standard is published under section 250 of the Health and Social Care Act 2012. The Information Standards Notice provides an overview of scope and implementation timescales, and the other listed documents provide further detail for those who have to implement the information standard.
+The retirement of this information standard was formally approved by the Data Alliance Partnership Board (DAPB) in June 2022, and an Information Standards Notice (ISN) confirming the retirement was issued. 
+
+The documents on this page relating to the standard are now provided for reference only. 
+
+ 
 
 Current release
 Release date	02/11/2016
 Release number	Amd 70/2016
 Release title	Version 2.0
-Stage	Implementation
+Stage	Retired
 Key documents	
-Requirements Specification (Amd 70/2016)
+Requirements Specification (Amd 70/2016) [Archive Content]
 Implementation Guidance (Amd 70/2016)
 Information Standards Notice (Amd 70/2016)
+Information Standards Notice (retirement of standard)
 
 Further information	
 
-Technical guidance is available on the
-
- NHS Health Developer Network
+ NHS Digital ADW specification guidance 
 
 Initial release
 Release date	22/06/2016
 Release number	Amd 29/2015
 Release title	Initial Standard
-Stage	Implementation
+Stage	Superseded by Amd 70/2016
 Key documents	
-Requirements Specification (Amd 29/2015)
+Requirements Specification (Amd 29/2015) [Archive Content]
 Implementation Guidance (Amd 29/2015)
 Information Standards Notice (Amd 29/2015)
+Updates
 
-Last edited: 12 January 2022 11:47 am
+21 July 2022: Publication of Information Standards Notice announcing retirement of the standard. 
+
+Last edited: 5 August 2022 1:57 pm

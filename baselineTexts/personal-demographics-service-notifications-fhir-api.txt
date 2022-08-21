@@ -1,13 +1,13 @@
-Personal Demographics Service Notifications - FHIR API
+Personal Demographics Service Notifications - FHIR
 
-Receive notifications about changes to a patient's demographic details, including birth, death, change of address and change of GP.
+Receive notifications about changes to a patient's demographic details, including record change, birth, death, change of address and change of GP.
 
 Page contents
 Top of page
 Overview
-Who can use this API
+Who can use this
 Related APIs
-API status and roadmap
+Status and roadmap
 Service level
 Technology
 Network access
@@ -16,21 +16,45 @@ Environments and testing
 Onboarding
 Interactions
 Overview
+Sending System
 
-Use this API to receive notifications about changes to a patient's demographic details, including:
+NEMS
+publish event
+MESH
+
+send event to all
+subscribing systems
+
+Subscribed
+System B
+
+Subscribed
+System A
+
+Subscribed
+System C
+
+manage subscriptions
+
+ 
+
+Use this integration to receive notifications about changes to a patient's demographic details, including:
 
 birth notifications - although another option is PDS HL7 V3 API
 death notifications
 change of address
 change of GP
+any record change (beta) - to notify subscribers to synchronise their local PDS patient database
 
-We share information about these events, using a publication-subscription model, with healthcare workers in other organisations such as GPs, Emergency Departments and Local Authorities. To receive these messages you need to subscribe to them via National Events Management Service (NEMS) and collect them via MESH.
+We share information about these events with healthcare workers in other organisations such as GPs, Emergency Departments and Local Authorities.
+
+This integration uses a publish-subscribe model - the sending system publishes events to National Events Management Service (NEMS), and NEMS forwards the events to all subscribed systems via Message Exchange for Social Care and Health (MESH).
 
 For example, when we update Personal Demographics Service (PDS) with a birth, PDS sends a birth notification event containing information about the birth to NEMS. NEMS then sends the event to all healthcare workers who have subscribed to receive birth notifications.
 
-Who can use this API
+Who can use this
 
-This API can only be used where there is a legal basis to do so.
+This integration can only be used where there is a legal basis to do so.
 
 Make sure you have a valid use case before you go too far with your development. To do this, contact us.
 
@@ -38,48 +62,50 @@ For details of the legal basis for sharing NEMS events, see the NEMS controller 
 
 Related APIs
 
-The following APIs are also related to this API:
+The following APIs are also related to this integration:
 
-National Events Management Service (NEMS) API - use this API to publish and subscribe to patient-centric event messages
+National Events Management Service (NEMS) - use this integration to publish and subscribe to patient-centric event messages
 
 Message Exchange for Social Care and Health (MESH) API - use this API to collect events that you have subscribed to
 
 Personal Demographics Service - FHIR API - use this newer API to search for patients, retrieve patients by NHS number and update patients
 
 Personal Demographics Service - HL7 V3 API - use this if you want to use functions that are not yet available on the FHIR API, such as creating a new record for a birth, receiving birth notifications, or creating a record for a new patient (except when registering a new patient at a GP Practice, use NHAIS).
-API status and roadmap
+Status and roadmap
 
-This API is stable.
+This integration is stable.
+
+The PDS Record Change event is in beta.
 
 To see our roadmap, or to suggest, comment or vote on features for this API, see our interactive product backlog.
 
 Service level
 
-This API is a bronze service, meaning it is operational and supported only during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+This integration uses NEMS which is a bronze service, meaning it is operational and supported only during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+
+It also uses MESH which is a silver service, meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding Bank Holidays.
 
 For more details, see service levels.
 
 Technology
 
-This API is a FHIR API.
+This integration uses a publish-subscribe model.
 
-It uses a publish-subscribe model.
-
-Use our National Events Management Service (NEMS) API to subscribe to events.
+Use National Events Management Service (NEMS) to subscribe to events.
 
 Use our MESH API to collect event messages that you have subscribed to.
 
-The message payload is based on the HL7 FHIR STU3 Messaging Implementation.
+NEMS is a FHIR API. Specifically it uses FHIR STU3.
 
 Network access
 
-This API is available on the internet and on the Health and Social Care Network (HSCN).
+This integration uses NEMS and MESH, both of which are available on the internet and on the Health and Social Care Network (HSCN).
 
 For more details see Network access for APIs.
 
 Security and authorisation
 
-This API uses NEMS and MESH APIs which are application-restricted, meaning we authenticate the calling application but not the end user.
+This integration uses the NEMS and MESH APIs, both of which are application-restricted, meaning we authenticate the calling application but not the end user.
 
 You can use this pattern as follows:
 
@@ -87,13 +113,13 @@ unattended (end user not present), for example as part of a back end process to 
 
 attended (end user present) - in which case, you must ensure the end user is authenticated and suitably authorised locally by the calling application
 
-In particular, this API uses TLS-MA authentication.
+In particular, NEMS and MESH both uses TLS-MA authentication.
 
-It also implements authorisation controls which restrict the event types that the connecting application can subscribe to or publish.
+NEMS also implements authorisation controls which restrict the event types that the connecting application can subscribe to or publish.
 
 Environments and testing
 
-This API uses NEMS, which is available in Opentest for early development and testing.
+This integration uses NEMS, which is available in Opentest for early development and testing.
 
 NEMS is also available for testing purposes in:
 
@@ -133,21 +159,22 @@ For more details, see the NEMS onboarding guide on getting access to Opentest an
 
 Onboarding
 
-You need to get your software approved by us before it can go live with this API. We call this onboarding. The onboarding process can sometimes be quite long, so it’s worth planning well ahead.
+You need to get your software approved by us before it can go live with this integration. We call this onboarding. The onboarding process can sometimes be quite long, so it’s worth planning well ahead.
 
-To outline your use case and start the onboarding process for this API, contact us.
+To outline your use case and start the onboarding process for this integration, contact us.
 
 Interactions
 
-For a full list of interactions for this API, see Publish an Event Message and Subscriptions Overview.
+For a full list of interactions, see Publish an Event Message and Subscriptions Overview.
 
-This API supports the following event types:
+This integration supports the following event types:
 
 PDS Birth Notification
 PDS Change of Address
 PDS Change of GP
 PDS Death Notification
+PDS Record Change (beta)
 
 For details on the general structure of the interactions, see FHIR.
 
-Last edited: 26 May 2022 4:32 pm
+Last edited: 18 August 2022 11:04 am

@@ -1,0 +1,55 @@
+DAPB0089: Cover of Vaccination Evaluated Rapidly (COVER)
+
+The COVER (Cover of Vaccination Evaluated Rapidly) surveillance scheme evaluates the childhood immunisation programme in England
+
+Page contents
+Top of page
+About this information standard
+Current releases
+About this information standard
+
+The COVER (Cover of Vaccination Evaluated Rapidly) surveillance scheme evaluates the childhood immunisation programme in England, for children aged one, two and five years of age. General Practice and local authority level vaccine coverage data is submitted quarterly and annually to the NHS Digital Strategic Data Collection Service (SDCS). 
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the other documents provide further detail for those who have to implement the information standard.
+
+Current releases
+Version 2.3
+Release date	6 January 2022 
+Release number	Amd 80/2021
+Stage	Implementation
+Key documents	
+Change Specification (Amd 80/2021)
+Specification (Amd 80/2021)
+Appendix 1 (Amd 80/2021)
+Implementation Guidance (Amd 80/2021)
+Information Standards Notice (Amd 80/2021)
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request 1847 (Basic CR) (Amd 80/2021)
+NHS Data Model and Dictionary Change Request 1847 (Data Set CR) (Amd 80/2021)
+
+Further information	
+
+Further guidance is published by:
+
+the UK Health Security Agency (UKHSA) and
+the Strategic Data Collections Service (SDCS) at NHS Digital
+
+ 
+
+Version 2.2
+Release date	6 February 2020
+Release number	Amd 60/2019
+Stage	Maintenance
+Key documents	
+Specification (Amd 60/2019) [Archive Content]
+Implementation Guidance (Amd 60/2019) [Archive Content]
+Information Standards Notice (Amd 60/2019)
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request 1753 (Basic CR) (Amd 60/2019)
+NHS Data Model and Dictionary Change Request 1753 (Data Set CR) (Amd 60/2019)
+
+Documentation from previous releases are available on request from standards.assurance@nhs.net 
+
+Last edited: 11 January 2022 7:54 am

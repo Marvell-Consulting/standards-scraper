@@ -32,10 +32,10 @@ Release number	Amd 11/2015
 Release title	Version 4.0
 Stage	Implementation
 Key documents	
-Requirements Specification (Amd 11/2015)
-Implementation Guidance (Amd 11/2015)
-Change Specification (Amd 11/2015)
-Implementing the Changes (Amd 11/2015)
+Requirements Specification (Amd 11/2015) [Archive Content]
+Implementation Guidance (Amd 11/2015) [Archive Content]
+Change Specification (Amd 11/2015) [Archive Content]
+Implementing the Changes (Amd 11/2015) [Archive Content]
 Information Standards Notice (Amd 11/2015)
 Corrigendum (Amd 11/2015)
 
@@ -45,7 +45,7 @@ Record Keeping Guidance (Amd 11/2015)
 Clinical Hazard Log Final (Amd 11/2015)
 NHS Data Model and Dictionary Change Request 1521 (Amd 11/2015)
 
-EPACCS IT System Requirements (Amd 11/2015)
+EPACCS IT System Requirements (Amd 11/2015) [Archive Content]
 
 
 Further information	PHE - National End of Life Care Intelligence Network

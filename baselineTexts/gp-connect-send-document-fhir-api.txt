@@ -1,13 +1,13 @@
-GP Connect Send Document - FHIR API
+GP Connect Send Document - FHIR
 
 Send a PDF consultation summary to a registered GP practice.
 
 Page contents
 Top of page
 Overview
-Who can use this API
+Who can use this
 Related APIs
-API status
+Status
 Service level
 Technology
 Network access
@@ -16,8 +16,15 @@ Environments and testing
 Onboarding
 Interactions
 Overview
+Point-of-care application
+MESH
+Patient's  registered GP system
+send  consultation summary
+receive consultation summary
 
-Use this API to send a PDF consultation summary to a registered GP practice - using GP Connect Messaging.
+ 
+
+Use this integration to send a PDF consultation summary to a registered GP practice - using GP Connect Messaging.
 
 For example, use it to send a document containing a patient's consultation notes to their GP practice when a patient is seen:
 
@@ -25,17 +32,17 @@ at another GP practice than their own
 by an out of hours service
 by a district nurse at home
 
-Each message sent using this API uses the GP Connect Messaging components, MESH, and ITK3, to deliver the message.
+Each message sent using this integration uses the GP Connect Messaging components, MESH, and ITK3, to deliver the message.
 
 Each message sent is a FHIR Message, defined as a FHIR composition, constructed to meet the ITK3 standard with a specific payload structure.
 
 For more details, see the GP Connect specifications for developers.
 
-Who can use this API
+Who can use this
 
-This API can be used by developers of clinical systems that support clinicians delivering direct care.
+This integration can be used by developers of clinical systems that support clinicians delivering direct care.
 
-Before you start development, read the Send Document section of the GP Connect API 1.5.1-beta messaging specification and the prerequisites listed below.  
+Before you start development, read the Send Document Implementation Guide.  
 
 Prerequisites
 Technical
@@ -63,36 +70,34 @@ If you are confident that you can meet the prerequisites, contact us to express 
 
 Related APIs
 
-The following APIs and API standards are also related to this API:
+The following APIs and API standards are also related to this integration:
 
 Personal Demographics Service - FHIR API  – use this API to look up the registered GP for the patient
 Message Exchange for Social Care and Health (MESH) API - transfer messages and large files securely across health and social care organisations
 
 Interoperability Toolkit 3 Messaging Distribution FHIR API standards - define a set of generic messaging components using FHIR STU3
 
-API status
+Status
 
-This API (v1.5.1) is in beta.
+This integration is in beta.
 
 It might not be fully supported by all providing systems. See GP Connect supplier progress for details of provider rollout.
 
 Service level
 
-This API uses MESH which is a silver service, meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+This integration uses MESH which is a silver service, meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
 
 For more details, see service levels.
 
 Technology
 
-This API is a FHIR API.
-
-It sends HL7 FHIR STU3 message payloads over MESH as defined by ITK3 v2.10.0.
+This integration sends HL7 FHIR STU3 message payloads over MESH as defined by ITK3 v2.10.0.
 
 For more details, see FHIR.
 
 Network access
 
-You can access this API via:
+You can access this integration via:
 
 the Health and Social Care Network (HSCN)
 the internet
@@ -101,9 +106,9 @@ the internet
 
 Security and authorisation
 
-This API uses MESH which is an application-restricted API.
+This integration uses MESH which is an application-restricted API.
 
-The API does not perform any end user authentication or authorisation checks. Rather, the calling system is expected to perform them.
+The integration does not perform any end user authentication or authorisation checks. Rather, the calling system is expected to perform them.
 
 Environments and testing
 
@@ -132,8 +137,8 @@ Once we receive your use case, we'll respond within 14 days.
 
 Interactions
 
-For a full list of interactions for this API, see Send Document.
+For a full list of interactions for this integration, see the latest supported version.
 
 For details on the general structure of the interactions, see FHIR.
 
-Last edited: 26 May 2022 3:30 pm
+Last edited: 21 July 2022 9:44 am

@@ -69,8 +69,6 @@ PSIS Document Data Request
 
 For more details, see HL7 V3.
 
- 
-
 Network access
 
 You need a Health and Social Care Network (HSCN) connection to use these API standards.
@@ -170,4 +168,4 @@ SMSP Response Codes - 24/07/2014 XLS
 
 XLSX 17 KB
 
-Last edited: 18 November 2021 4:56 pm
+Last edited: 6 June 2022 5:37 pm

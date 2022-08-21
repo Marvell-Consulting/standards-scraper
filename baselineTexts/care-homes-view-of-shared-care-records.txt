@@ -31,6 +31,7 @@ Royal College of Nursing
 Royal College of Occupational Therapists
 Royal College of Physicians
 Royal Pharmaceutical Society
+View the standard
 Care homes view of shared care records V1.1
 V1.1 View the standard
 V1.1 Download the standard (xlsx file)
@@ -41,11 +42,6 @@ Digital social care final report
 Survey 1 Report
 Hazard log
 Safety case report
-IHRIM record correction guidance
-
-Despite vigilance when filing information in records, mistakes can occur. The Institute of Health Records and Information Management has guidance to support professionals in making corrections following errors.
-
-VIEW THE GUIDANCE
 IHRIM record correction guidance
 
 Despite vigilance when filing information in records, mistakes can occur. The Institute of Health Records and Information Management has guidance to support professionals in making corrections following errors.

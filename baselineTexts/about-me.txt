@@ -14,6 +14,8 @@ Endorsement
 
 This standard has been endorsed by the following organisations;
 
+Association for Real Change
+Associated Retirement Community Operators
 British Association for Music Therapy
 British Dietetic Association
 British Geriatrics Society
@@ -25,12 +27,15 @@ Compassion in Dying
 Health and Social Care Alliance Scotland
 Institute of Health Records and Information Management
 Local Government Association
+National Data Guardian
+Patient Information Forum
 Resuscitation Council UK
 Royal College of Emergency Medicine
 Royal College of General Practitioners
 Royal College of Nursing
 Royal College of Occupational Therapists
 Royal College of Physicians
+Royal College of Radiologists
 Royal Pharmaceutical Society
  
 Why is ‘About Me’ so important?
@@ -38,6 +43,8 @@ Why is ‘About Me’ so important?
 Clinical Informatics Lead of the Social Care Programme at NHS Digital, Keith Strahan, explains the crucial importance of ‘About Me’ information in records.
 
 
+
+ 
 
 About me standard v1.2
 Supporting documents
