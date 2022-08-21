@@ -1,0 +1,51 @@
+DCB1533: Systemic Anti-Cancer Therapy Data Set
+
+The Systemic Anti-Cancer Therapy (SACT) data set captures activity data relating to the treatment of cancer with medicines.
+
+Page contents
+Top of page
+About this information standard
+Current release
+Previous release
+About this information standard
+
+Since May 2014, all NHS trusts in England which deliver systemic anti-cancer therapy (SACT) are required to provide comprehensive monthly usage data to Public Health England. These data include information on all anti-cancer drugs given to adult and paediatric patients with solid or haematological malignancies.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the other listed documents provide further detail for those who have to implement the information standard.
+
+Current release
+Release date	06/12/2018
+Release number	Amd 80/2018
+Release title	Version 3.0
+Stage	Implementation 
+Key documents 	
+Information Standards Notice (Amd 80/2018)
+Specification (Amd 80/2018)
+Change request (Amd 80/2018)
+Implementation guide (Amd 80/2018)
+
+Supporting documents 	
+NHS Data Model and Dictionary Change Request 1661 (basic) 
+NHS data Model and Dictionary Change Request 1661 (data set) 
+
+Further information 	
+
+More information can be found on the Public Health England Systemic Anti-Cancer Therapy (SACT) web pages.
+
+Previous release
+Release date	06/11/2013
+Release number	Amd 24/2013
+Release title 	Version 2.0 updates
+Stage 	Maintenance
+Key documents 	
+Information Standards Notice (Amd 24/2013)
+Specification (Amd 24/2013)
+Change request (Amd 24/2013)
+Guidance (Amd 24/2013)
+SACT Dataset v2.0 (Amd 24/2013)
+
+Supporting documents 	NHS Data Model and Dictionary Change Request 1370
+
+ 
+
+Last edited: 13 December 2018 11:30 am

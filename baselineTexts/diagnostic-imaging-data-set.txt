@@ -1,0 +1,27 @@
+SCCI1577: Diagnostic Imaging Data Set
+
+The Diagnostic Imaging Data set (DID) is a central collection of detailed information about diagnostic imaging tests carried out on NHS patients, to be extracted and submitted monthly.
+
+Page contents
+Top of page
+About this information standard
+Current release
+About this information standard
+
+The Diagnostic Imaging Data set (DID) is a central collection of detailed information about diagnostic imaging tests carried out on NHS patients, to be extracted and submitted monthly. It captures information about referral source and patient type, details of the test (type of test and body site), demographic information such as GP registered practice, patient postcode, ethnicity, gender and date of birth, plus items about waiting times for each diagnostic imaging event, from time of test request through to time of reporting.
+
+Note that this information standard, formerly approved by the Information Standards Board for Health and Social Care (ISB), has been assured by SCCI as suitable for publication under section 250 of the Health and Social Care Act 2012. While no changes have been made to the content of the standard, the key documents below have been updated to reflect the owning organisation's branding guidelines.
+
+Current release
+Release date	05/10/2016
+Release number	Amd 10/2011
+Release title	Initial Standard: Conversion
+Stage	Implementation
+Key documents	
+Requirements Specification (Amd 10/2011)
+Guidance document (Amd 10/2011) [Archive Content]
+Information Standards Notice (Amd 10/2011)
+
+Further information	DID dataset pages
+
+Last edited: 5 November 2018 12:12 pm

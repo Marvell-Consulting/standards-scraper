@@ -1,0 +1,36 @@
+DAPB3103: Surgical Devices and Implants Core Data Set
+
+The Surgical Devices and Implants Core Data Set enables the national reporting of activity relating to surgical devices and implants in health care settings.
+
+Page contents
+Top of page
+About this information standard
+Current release
+Updates
+About this information standard
+
+The Surgical Devices and Implants Core Data Set (SDICDS) is a patient level, secondary uses data set which is intended to capture generic data to link patients to specific implants or devices inserted by specific clinicians at a specific location in a robust, comprehensive, nationally consistent and comparable patient-based manner.
+
+The standard has been commissioned by the Department of Health and Social Care to support the Secretary of State’s strategic requirements to ensure patient safety in the use of surgical devices and implants and the equivalent requirements raised by the Independent Medicines and Medical Devices Safety Review: First Do No Harm (Cumberlege Report).
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the other listed documents provide further detail for those who have to implement the information standard.
+
+Current release
+ 
+Release date	03/02/2022
+Release number	Amd 100/2021
+Release title	Version 1.0
+Stage	Implementation (until 1 July 2022)
+Key documents	
+Information Standards Notice (Amd 100/2021)
+Requirements Specification (Amd 100/2021)
+Implementation Guidance (Amd 100/2021)
+Technical Output Specification v 1.1 (April 2022) (Amd 100/2021)
+Corrigendum (April 2022) (Amd 100/2021)
+
+Further information	NHS Digital National Perioperative Data Standard Programme
+Updates
+
+11 April 2022: Publication of Corrigendum in respect of Version 1.0, supported by changes to the Technical Output Specification (uplifted to document version 1.1). See Corrigendum above for full details.
+
+Last edited: 11 May 2022 12:20 pm

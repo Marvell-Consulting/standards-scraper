@@ -2,6 +2,9 @@ NHS App API
 
 Engage with users of the NHS App.
 
+This specification is written from an OAS file.
+
+Get this specification in OAS format
 Page content
 Top of page
 Overview
@@ -51,11 +54,12 @@ For more details, see service levels.
 
 Technology
 
-This API:
+This API is RESTful.
 
-is RESTful
-conforms to the FHIR global standard for health care data exchange
-aligns with FHIR UK Core (which is built on FHIR Release 4)
+It conforms to the FHIR global standard for health care data exchange, specifically to FHIR R4 (v4.0.1), except that it does not support the capabilities interaction.
+
+It includes some country-specific FHIR extensions, which conform to FHIR UK Core, specifically fhir.r4.ukcore.stu1 0.5.1.
+
 Specific rules for FHIR APIs
 
 FHIR APIs are RESTful APIs that follow specific rules. In particular:
@@ -76,7 +80,7 @@ For more details see Network access for APIs.
 
 Security and authorisation
 
-This API is application-restricted, meaning we authenticate the calling application but not the end user. In particular, the three FHIR CommunicationRequest endpoints use signed JWT authentication - you authenticate your application by sending a signed JSON web token (JWT) to our OAuth 2.0 authorisation server. For more details see Application-restricted RESTful APIs - signed JWT authentication.
+This API is application-restricted, meaning we authenticate the calling application but not the end user. In particular, the two FHIR CommunicationRequest endpoints use signed JWT authentication - you authenticate your application by sending a signed JSON web token (JWT) to our OAuth 2.0 authorisation server. For more details see Application-restricted RESTful APIs - signed JWT authentication.
 
 After following these steps to create an application and register the public key, the App ID should be provided to the NHS App onboarding team to grant your application permissions to the features that are appropriate to your use cases. If this step is not completed, all calls to this API will return responses with status code 403 Forbidden.
 
@@ -92,6 +96,7 @@ Our development environment:
 includes authorisation
 is for initial development and integration testing
 points to the Onboarding Sandpit NHS App environment, which in turn is using the NHS Login Sandpit environment
+has a rate limit of 20 requests per second per application
 
 We have created a Postman collection during internal development and testing of the API, which you may find useful when working with this environment.
 
@@ -104,8 +109,13 @@ Our integration test environment:
 includes authorisation
 is for formal release testing and assurance when onboarding with NHS Login
 points to the Onboarding AOS NHS App environment, which in turn is using the NHS Login Integration (AOS) environment
+has a rate limit of 20 requests per second per application
 
 For more details see integration testing with our RESTful APIs.
+
+Production
+
+Our production environment has a rate limit of 200 requests per second per application.
 
 Onboarding
 
@@ -137,11 +147,9 @@ If a recipient is an active NHS App user but has not registered a device to rece
 
 This endpoint allows you to specify the content that will appear in the in-app message. It does not allow you to specify the content that will appear in the associated push notification. By default, the content of the associated push notification will read "NHS App. You have a new message." To discuss changing this standard push notification content for your application, contact the NHS App team.
 
-We are considering an improvement that would include message sender names in associated push notifications. This may be of benefit if your application sends communications on behalf of several NHS organisations. You can track, comment, and vote for this feature on our interactive product backlog.
-
 When a recipient taps the native notification, the NHS App will open on the in-app messaging inbox page.
 
-We support a subset of Markdown for describing the body text of in-app messages. The length of each in-app message is limited to 5000 characters, including any markdown characters and embedded hyperlinks.
+We support a subset of Markdown for describing the body text of in-app messages. For details of the subset see the 'payload' property of the schema. The length of each in-app message is limited to 5000 characters, including any markdown characters and embedded hyperlinks.
 
 The body of requests made to this endpoint are instances of HL7 FHIR R4 CommunicationRequest resources. This schema documentation describes which fields on that resource we require and support. The API is tolerant of (but will silently ignore) any additionally supplied optional fields. For example, we do not currently honour the doNotPerform or priority fields.
 
@@ -193,16 +201,20 @@ Copy
   "payload" : [ {
     "contentString" : "You have a new appointment, please confirm you can attend. Open the Onboarded Third Party appointment [here](https://www.nhsapp.service.nhs.uk/appointments/hospital-appointments)"
   } ],
-  "sender" : {
-    "display" : "Onboarded Third Party"
-  },
   "recipient" : [ {
     "type" : "Patient",
     "identifier" : {
       "system" : "https://fhir.nhs.uk/Id/nhs-number",
       "value" : "9903002157"
     }
-  } ]
+  } ],
+  "requester" : {
+    "type" : "Organization",
+    "identifier" : {
+      "system" : "https://fhir.nhs.uk/Id/ods-organization-code",
+      "value" : "B82041"
+    }
+  }
 }
 Schema
 Collapse all Expand all
@@ -239,7 +251,7 @@ Note that these identifier system names are case-sensitive. The values provided 
 
 The API will not reject requests that contain other identifier systems, but these values will be ignored and not recorded against the request.
 
-When a CommunicationRequest resource is returned in the response body to a successful request, this array will also include a globally unique identifier assigned by the API, with the system urn:ietf:rfc:3986. This is the same logical ID contained within the Location header of the successful response.
+When a CommunicationRequest resource is returned in the response body to a successful request, this array will also include a globally unique identifier assigned by the API, with the system https://fhir.nhs.uk/Id/nhs-app-communication-id. This is the same logical ID contained within the Location header of the successful response.
 
 
 
@@ -262,15 +274,6 @@ The body text of the message to be displayed in the NHS App
 
 
 
-sender
-object
-required
-	
-
-The sender of the in-app message.
-
-
-
 recipient
 array
 required
@@ -278,8 +281,17 @@ required
 
 An array containing a single NHS number corresponding to the patient to whom this in-app message should be sent. Each communication may be sent to only a single recipient.
 
-Max items: 1
 Min items: 1
+Max items: 1
+
+
+requester
+object
+required
+	
+
+The requester who initiated the communication and would like to send an in-app message to the patient.
+
 Response
 HTTP status: 201
 
@@ -312,7 +324,7 @@ Copy
 {
   "resourceType" : "CommunicationRequest",
   "identifier" : [ {
-    "system" : "urn:ietf:rfc:3986",
+    "system" : "https://fhir.nhs.uk/Id/nhs-app-communication-id",
     "value" : "8f7ec136-66eb-4a9e-97ca-5c7a53d2710c"
   }, {
     "system" : "https://fhir.nhs.uk/NHSApp/campaign-id",
@@ -331,8 +343,12 @@ Copy
       "value" : "9903002157"
     }
   } ],
-  "sender" : {
-    "display" : "Onboarded Third Party"
+  "requester" : {
+    "type" : "Organization",
+    "identifier" : {
+      "system" : "https://fhir.nhs.uk/Id/ods-organization-code",
+      "value" : "B82041"
+    }
   }
 }
 Schema
@@ -360,7 +376,7 @@ array
 
 An array of identifiers used to identify this request.
 
-This array will always include a globally unique identifier assigned by the API, with the system urn:ietf:rfc:3986.
+This array will always include a globally unique identifier assigned by the API, with the system https://fhir.nhs.uk/Id/nhs-app-communication-id.
 
 It will include optional identifiers that were provided in the request if the API recognised the identifier system name.
 
@@ -382,19 +398,19 @@ The body text of the message to be displayed in the NHS App.
 
 
 
-sender
-object
-	
-
-The sender of the in-app message.
-
-
-
 recipient
 array
 	
 
 An array containing a single NHS number corresponding to the patient to whom this in-app message was sent.
+
+
+
+requester
+object
+	
+
+The requester who has sent the request for in-app message to the patient.
 
 HTTP status: 400
 
@@ -480,7 +496,7 @@ Copy
   } ]
 }
 
-Multiple issues - sender name is missing and campaign ID exceed maximum length
+Multiple issues - no recipient has been specified and campaign ID exceeds maximum length
 
 Copy
 {
@@ -499,7 +515,20 @@ Copy
     "severity" : "error",
     "code" : "invalid",
     "diagnostics" : "Not specified",
-    "expression" : [ "sender.display" ]
+    "expression" : [ "recipient" ]
+  } ]
+}
+
+The requester has an invalid identifier
+
+Copy
+{
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "invalid",
+    "diagnostics" : "Identifier system is invalid",
+    "expression" : [ "requester.identifier.system" ]
   } ]
 }
 Schema
@@ -854,7 +883,7 @@ Note that these identifier system names are case-sensitive. The values provided 
 
 The API will not reject requests that contain other identifier systems, but these values will be ignored and not recorded against the request.
 
-When a CommunicationRequest resource is returned in the response body to a successful request, this array will also include a globally unique identifier assigned by the API, with the system urn:ietf:rfc:3986. This is the same logical ID contained within the Location header of the successful response.
+When a CommunicationRequest resource is returned in the response body to a successful request, this array will also include a globally unique identifier assigned by the API, with the system https://fhir.nhs.uk/Id/nhs-app-communication-id. This is the same logical ID contained within the Location header of the successful response.
 
 
 
@@ -884,8 +913,8 @@ required
 
 An array containing a single NHS number corresponding to the patient to whom this push notification should be sent. Each communication may be sent to only a single recipient.
 
-Max items: 1
 Min items: 1
+Max items: 1
 Response
 HTTP status: 201
 
@@ -918,7 +947,7 @@ Copy
 {
   "resourceType" : "CommunicationRequest",
   "identifier" : [ {
-    "system" : "urn:ietf:rfc:3986",
+    "system" : "https://fhir.nhs.uk/Id/nhs-app-communication-id",
     "value" : "54615138-df34-4a79-840d-dd07e9451519"
   }, {
     "system" : "https://fhir.nhs.uk/NHSApp/campaign-id",
@@ -966,7 +995,7 @@ array
 
 An array of identifiers used to identify this request.
 
-This array will always include a globally unique identifier assigned by the API, with the system urn:ietf:rfc:3986.
+This array will always include a globally unique identifier assigned by the API, with the system https://fhir.nhs.uk/Id/nhs-app-communication-id.
 
 It will include optional identifiers that were provided in the request if the API recognised the identifier system name.
 
@@ -1078,7 +1107,7 @@ Copy
   } ]
 }
 
-Multiple issues - sender name is missing and campaign ID exceed maximum length
+Multiple issues - no recipient has been specified and campaign ID exceeds maximum length
 
 Copy
 {
@@ -1097,7 +1126,7 @@ Copy
     "severity" : "error",
     "code" : "invalid",
     "diagnostics" : "Not specified",
-    "expression" : [ "sender.display" ]
+    "expression" : [ "recipient" ]
   } ]
 }
 Schema

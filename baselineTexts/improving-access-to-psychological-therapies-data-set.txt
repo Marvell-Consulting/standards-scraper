@@ -1,0 +1,61 @@
+DAPB1520: Improving Access to Psychological Therapies Data Set
+
+The Improving Access to Psychological Therapies (IAPT) Data Set collects information about adults in contact with psychological therapy services.
+
+Page contents
+Top of page
+About this information standard
+Current release
+Change control
+Previous releases
+About this information standard
+
+This information standard provides national definitions for the collection of IAPT data, allowing providers to extract data from their local systems in a consistent manner which enables national and local reporting to be undertaken.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the other listed documents provide further detail for those who have to implement the information standard.
+
+Current release
+Version 2.1
+Release date	20/07/2021
+Release number	Amd 13/2021
+Stage	Implementation
+Key documents 	
+Requirements Specification (Amd 13/2021) (October 2021)
+Implementation Guidance (Amd 13/2021) (October 2021)
+Change Specification (Amd 13/2021) (October 2021)
+Technical Output Specification (TOS) (Amd 13/2021)
+Information Standards Notice (Amd 13/2021)
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request - 1818 (Basic CR) (Amd 13/2021) (October 2021)
+NHS Data Model and Dictionary Change Request - 1818 (Data Set CR) (Amd 13/2021) (October 2021) 
+
+Further information 	NHS Digital IAPT web pages
+Change control
+
+Update 6 October 2021
+
+At the time of publication of version 2.1 (20 July 2021), users were expected to fully conform with this standard by 25 March 2022. Due to continuing investment in COVID-19 activity, NHS Digital has since extended the implementation and conformance dates of this standard by three months. Full conformance is now expected with the submission of the April 2022 reporting activity by 29 June 2022.
+
+The Requirements Specification, Change Specification, and Implementation Guidance have been annotated to reflect this and the updated copies are available in the version 2.1 release table above.
+
+Previous releases
+Version 2.0
+Release date	05/09/2019
+Release number	Amd 14/2019
+Stage	Maintenance
+Key documents 	
+Requirements Specification (Amd 14/2019)
+Implementation Guidance (Amd 14/2019)
+Information Standards Notice (Amd 14/2019)
+Corrigendum (Amd 14/2019) (October 2019)
+Change Specification (Amd 14/2019) (October 2019)
+Data Set Specification (Amd 14/2019) (October 2019) [Archive Content]
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request - 1719 (Basic CR) (Amd 14/2019) (October 2019)
+NHS Data Model and Dictionary Change Request - 1719 (Data Set CR) (Amd 14/2019) (October 2019)
+
+Documentation from previous releases are available on request from standards.assurance@nhs.net 
+
+Last edited: 8 October 2021 9:59 am

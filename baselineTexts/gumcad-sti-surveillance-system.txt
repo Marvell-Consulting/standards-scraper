@@ -1,0 +1,48 @@
+DCB0139: GUMCAD STI Surveillance System
+
+GUMCAD (Genitourinary Medicine Clinic Activity Dataset) is the mandatory surveillance system for sexually transmitted infections (STIs) in England.
+
+Page contents
+Top of page
+About this information standard
+Current release
+About this information standard
+
+The GUMCAD STI Surveillance System is the new name for the Genitourinary Medicine Clinic Activity Dataset (GUMCAD).
+
+It is a mandatory reporting system providing data on sexual health services and STI diagnoses from all commissioned Level 3 and Level 2 sexual health services in England.
+
+GUMCAD data are primarily collected to monitor trends in STI diagnoses, to identify inequalities in sexual health, and to measure the success or impact of service delivery.
+
+Public Health England (PHE) co-ordinates and manages this quarterly data collection; processing, storage and analysis on behalf of the Department of Health and Social Care (DHSC). Data are:
+
+reported quarterly to service providers and local authority commissioners
+used for the chlamydia detection rate (1 of only 3 sexual health indicators on the Public Health Outcomes Framework)
+published annually as official statistics.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the other documents provide further detail for those who have to implement the information standard.
+
+Update 10 December 2019: The current release of DCB0139 GUMCAD STI Surveillance System was published on 25 June 2018, with a full conformance date of 1 April 2019. Since then the need for a minor change to the data set has been identified and a corrigendum has been published (see below) alongside an updated Information Standards Notice. The data set needs to be changed to add a new national code of “180 tablets” to the following attribute in the NHS Data Model and Dictionary: PRESCRIBED ITEM QUANTITIES FOR PRE EXPOSURE PROPHYLAXIS
+
+Current release
+Release date	25 June 2018
+Release number	Amd 21/2017
+Stage	Implementation
+Key documents	
+Change specification (Amd 21/2017)
+Requirements specification (Amd 21/2017) [Archive Content]
+Implementation guidance (Amd 21/2017)
+Information Standards Notice Version 2 (Amd 21/2017)
+Information Standards Notice (Superseded) (Amd 21/2017)
+Corrigendum (Amd 21/2017)
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request 1618 (Basic CR) (Amd 21/2017) 
+NHS Data Model and Dictionary Change Request 1618 (Data Set CR) (Amd 21/2017)
+NHS Data Model and Dictionary Change Request 1746 (Amd 21/2017 Corrigendum)
+
+Further information	
+
+Please see the ISB website for information on the previous releases.
+
+Last edited: 11 January 2022 8:11 am
