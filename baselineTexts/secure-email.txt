@@ -59,10 +59,10 @@ Release date
 Release number	Amd 3/2016
 Stage	Retirement
 Key documents	
-Requirements Specification (Amd 3/2016)
+Requirements Specification (Amd 3/2016) [Archive Content]
 Implementation Guidance (Amd 3/2016)
-Change Specification (Amd 3/2016)
-Information Standards Notice (Amd 3/2016)
+Change Specification (Amd 3/2016) [Archive Content]
+Information Standards Notice (Amd 3/2016) [Archive Content]
 
 Previous releases	
 

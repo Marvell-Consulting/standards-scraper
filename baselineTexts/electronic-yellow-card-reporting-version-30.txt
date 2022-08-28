@@ -27,7 +27,7 @@ Information Standards Notice (Amd 16/2017)
 
 Supporting documents	
 Message Fields and Validations XLS (Amd 16/2017)
-Message Documents XML (Amd 16/2017)
+Message Documents XML (Amd 16/2017) [Archive Content]
 
 Previous releases of this information standard can be found on the ISB website (external link)
 

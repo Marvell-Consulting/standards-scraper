@@ -1,0 +1,129 @@
+Female Genital Mutilation - Information Sharing - SMSP API standards
+
+Become a Spine Mini Service Provider giving access to female genital mutilation (FGM) information for children under 18 to relevant NHS professionals across England, using our Female Genital Mutilation - Information Sharing (FGM-IS) SMSP API standards.
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status
+Technology
+Network access
+Security and authorisation
+Environments and testing
+Onboarding
+Interactions
+Downloads
+Overview
+
+Become a Spine Mini Service Provider giving access to female genital mutilation (FGM) information for children under 18 to relevant NHS professionals across England, using our Female Genital Mutilation - Information Sharing (FGM-IS) SMSP API standards.
+
+Your commercially available Spine Mini Service Providers (SMSP) product will give access to FGM-IS for your SMSP clients. We will list your SMSP provider service along with other conforming software products in our Conformance Catalogue.
+
+Before you begin any development work using these API standards, contact us to discuss your best options.
+
+Note your SMSP clients can only:
+
+query a patient's FGM status
+
+In addition to SMSP provider software assurance, we also need to assure your SMSP clients.
+
+For more details, see Introduction to the FGM Information Sharing Service.
+
+Who can use this API
+
+These API standards can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development.
+
+You must do this before you can go live (see ‘Onboarding’ below). 
+
+Related APIs
+
+The following APIs are related to these API standards:
+
+Personal Demographics Service - FHIR API - use this to find the correct NHS number for a given patient
+Female Genital Mutilation - Information Sharing - FHIR API - use this for the full features of our FHIR API
+API status
+
+These API standards are in beta.
+
+Technology
+
+These API standards are based on our FGM - IS - FHIR API but with a simplified read-only model.
+
+Specifically, they are based on the HL7 FHIR DSTU2 1.0.1 Messaging Implementation.
+
+For more details, see FHIR.
+
+Network access
+
+You need a Health and Social Care Network (HSCN) connection to use these API standards.
+
+For more details, see Network access for APIs.
+
+Security and authorisation
+
+These API standards are application-restricted, meaning the calling application is authenticated but the end user is either not authenticated or not present.
+
+In particular, these API standards use TLS-MA authentication.
+
+For more details on authentication, see application-restricted APIs.
+
+Even though these API standards do not technically require the end user to be authenticated, a condition of onboarding is that the calling application must:
+
+authenticate the end user locally
+use local role-based access controls to authorise the end user
+Environments and testing
+
+You can test these API standards using our Path to Live environments.
+
+Onboarding
+
+You must get your software onboarded before it can go live.
+
+As part of onboarding, these API standards use a slightly scaled down version of the Common Assurance Process (CAP) which involves a Target Operating Model (TOM) form for the transfer of risk. 
+
+Note that in addition to SMSP provider software assurance, for clinical safety reasons, we also need to assure your SMSP clients.
+
+For more details, and to get a copy of the latest TOM forms to complete, contact the interoperability conformance team on itkconformance@nhs.net.
+
+Interactions
+
+For details of SMSP provider interactions, see the following downloads:
+
+SMSP Common Provider Requirements V1.0 - 12/05/2017 PDF
+FGM-IS SMSP Provider Requirements 1.0.1 - 24/04/2020 PDF
+
+For details of SMSP client interactions, to share with your clients, see the following downloads:
+
+SMSP Common Client Requirements V1.0 - 12/05/2017 PDF
+FGM-IS Client Requirements V2.0.1 - 04/06/2020
+
+Both SMSP providers and SMSP clients need the same response codes:
+
+SMSP Response Codes - 24/07/2014 XLS
+Downloads
+
+These are PDF and Microsoft Excel files. To request a different format, contact us.
+
+SMSP Common Provider Requirements V1.0 - 12/05/2017 PDF
+
+PDF 610 KB
+
+FGM-IS SMSP Provider Requirements 1.0.1 - 24/04/2020 PDF
+
+PDF 280 KB
+
+SMSP Common Client Requirements V1.0 - 12/05/2017 PDF
+
+PDF 503 KB
+
+FGM-IS Client Requirements V2.0.1 - 04/06/2020
+
+PDF 276 KB
+
+SMSP Response Codes - 24/07/2014 XLS
+
+XLSX 17 KB
+
+Last edited: 26 May 2022 3:25 pm

@@ -22,7 +22,7 @@ A Corrigendum, below, notes the closure of the ISTV Programme Board and the tr
 
 2 April 2019 Update:
 
-The implementation guidance for ISB 1594: Information Sharing to Tackle Violence Minimum Dataset has been updated; while no changes have been made to the content of the standard, the implementation guidance has been updated to reflect the introduction of the Data Protection Act 2018 (GDPR) and the owning organisation's branding guidelines. A formal review and update of the information standard and implementation guidance will be undertaken shortly.  
+The implementation guidance for ISB 1594: Information Sharing to Tackle Violence Minimum Dataset has been updated [Archive Content]; while no changes have been made to the content of the standard, the implementation guidance has been updated to reflect the introduction of the Data Protection Act 2018 (GDPR) and the owning organisation's branding guidelines. A formal review and update of the information standard and implementation guidance will be undertaken shortly.  
 
  
 
@@ -34,7 +34,7 @@ Stage 	Maintenance
 Key documents	
 Information Standards Notice (Amd 31/2012)
 Specification (Amd 31/2012)
-Guidance (Amd 31/2012) (Version 2.1, April 2019)
+Guidance (Amd 31/2012) [Archive Content] (Version 2.1, April 2019)
 Corrigendum (Amd 31/2012)
 
 Supporting documents 	NHS Data Model and Dictionary Change Request 1344 (Amd 31/2012)

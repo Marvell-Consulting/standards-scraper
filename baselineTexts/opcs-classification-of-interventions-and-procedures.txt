@@ -27,7 +27,7 @@ Release number	Amd 18/2019
 Release title	Version 4.9
 Stage	Implementation
 Key documents	
-Requirements Specification (Amd 18/2019)  
+Requirements Specification (Amd 18/2019) [Archive Content]  
 Change Specification (Amd 18/2019)
 Implementation Guidance (Amd 18/2019)
 Information Standards Notice (Amd 18/2019)
@@ -44,7 +44,7 @@ Release number	Amd 105/2015
 Release title	Version 4.8
 Stage	Maintenance
 Key documents	
-Requirements Specification (Amd 105/2015) 
+Requirements Specification (Amd 105/2015) [Archive Content] 
 Change Paper (Amd 105/2015)
 Implementation Guidance (Amd 105/2015)
 Information Standards Notice (Amd 105/2015)
