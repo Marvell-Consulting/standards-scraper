@@ -1,0 +1,46 @@
+DAPB4042: Transfer of Care – Acute Inpatient Discharge Standard
+
+An information standard to establish consistency in the creation and issue of transfer of care acute inpatient discharge documents.
+
+Page contents
+Top of page
+About this information standard
+Current release
+Supporting information
+About this information standard
+
+This new information standard provides the guidelines to structure information in an encoded form that can support the auto population of transfer of care inpatient and day case discharge documents from acute trusts to GP Practice systems.
+
+The standard helps to achieve the ambitions of the NHS Digital Transfer of Care initiative, which aims to improve patient care by using the Transfer of Care Application Programming Interfaces (APIs) to share this structured information consistently between different systems and organisations across England.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the requirements specification provides further detail for those who have to implement the information standard.
+
+Current release
+Release date	3 February 2022 
+Release number	Amd 75/2021
+Release title	Version 1.0
+Stage	Implementation (to 31 October 2022)
+Key documents	
+Information Standards Notice (Amd 75/2021)
+Requirements Specification (Amd 75/2021)
+Implementation Guidance (Amd 75/2021)
+
+Further	
+
+NHS Digital Transfer of Care Initiative web pages
+
+Supporting information
+
+Message from Ian Townend, Chief Architect at NHS England and NHS Improvement and Senior Responsible Owner (SRO) for the DAPB4042 standard:
+
+A national information standard, the Transfer of Care: Acute Inpatient Discharge has been approved by the Data Alliance Partnership Board (DAPB) and published as DAPB4042. It covers inpatient and day case discharge correspondence going from secondary care acute trusts to general practice. Its aim is to regulate the content and electronic delivery of discharge clinical information. In practice, this will remove the need for hospitals to send email attachments or paper letters requiring manual processing by general practice.
+
+This is the first of four messages to be approved for Transfer of Care, the others being Inpatient and Day Case Discharge Summary for Mental Health, Emergency Care Discharge Summary, and Outpatient Clinic Letter.  These are planned to go through the DAPB approval process during 2022/23.
+
+The DAPB4042 standard is based on FHIR (Fast Healthcare Interoperability Resources) which is a HL7 global industry standard for passing healthcare data between systems. It is free, open, and designed to be quick to learn and implement. The STU3 version of FHIR is used for DAPB4042.  
+
+Considerable work has been undertaken by suppliers and care provider organisations to implement this Transfer of Care message in STU3 which was the current version of FHIR at the time of development.  Plans for the next release will include alignment with the latest version of FHIR at the time of publication. This will also enable alignment with the DAPB4013: Medicine and Allergy/Intolerance Data Transfer standard which is based on FHIR R4.
+
+Feedback from suppliers and timescales to migrate to the latest version of FHIR mean that in order to obtain the benefits this standard brings we decided to keep to the STU3 version. We are looking into services and support to transform messages between versions of FHIR.
+
+Last edited: 4 February 2022 10:52 am

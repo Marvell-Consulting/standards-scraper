@@ -1,0 +1,56 @@
+DAPB1595: Neonatal Data Set
+
+The Neonatal Data Set is the authoritative source of national information relating to neonatal patient demographics, clinical interventions, diagnoses and outcomes.
+
+Page contents
+Top of page
+About this information standard
+Current release
+Previous release
+About this information standard
+
+The Neonatal Data Set outlines the data items required for the secondary uses data set, the National Neonatal Research Database (NNRD). The NNRD collects data about the care of babies admitted to NHS neonatal units and is maintained by the Neonatal Data Analysis Unit (NDAU), based at the Chelsea and Westminster Hospital Campus of Imperial College London.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the other listed documents provide further detail for those who have to implement the information standard.
+
+Current release
+Release date	13/06/2022
+Release number	Amd 30/2022
+Release title	Version 2.0
+Stage	Implementation
+Key documents 	
+Requirements Specification (Amd 30/2022)
+Change Specification (Amd 30/2022)
+Implementation Guidance (Amd 30/2022)
+Information Standards Notice (Amd 30/2022)
+
+Supporting documents 	
+Data Set Specification - Episodic Daily (Amd 30/2022)
+Data Set Specification - Two Year Follow Up (Amd 30/2022)
+Data Quality Assessment (Amd 30/2022)
+NHS Data Model and Dictionary Change Request 1738 (Basic CR) (Amd 30/2022)
+NHS Data Model and Dictionary Change Request 1738 (Full CR) (Amd 30/2022)
+
+Further information 	
+
+National Neonatal Research Database (NNRD)
+
+ 
+
+Previous release
+Release date	16/01/2014
+Release number	Amd 32/2012
+Release title	Initial Standard
+Stage	Maintenance
+Key documents 	
+Information Standards Notice
+Specification
+Data Set
+
+Supporting documents 	
+NHS Data Model and Dictionary Change Request 1346 – Standard
+NHS Data Model and Dictionary Change Request 1346 - Full
+
+ 
+
+Last edited: 14 June 2022 9:10 am

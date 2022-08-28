@@ -2,6 +2,9 @@ NHS App API
 
 Engage with users of the NHS App.
 
+This specification is written from an OAS file.
+
+Get this specification in OAS format
 Page content
 Top of page
 Overview
@@ -17,6 +20,7 @@ Endpoints: Communication
 Send an in-app message
 Send a push notification
 Get a daily communication event report
+Get a daily communication event report (New FHIR version)
 Get details of NHS App users
 Overview
 
@@ -51,11 +55,12 @@ For more details, see service levels.
 
 Technology
 
-This API:
+This API is RESTful.
 
-is RESTful
-conforms to the FHIR global standard for health care data exchange
-aligns with FHIR UK Core (which is built on FHIR Release 4)
+It conforms to the FHIR global standard for health care data exchange, specifically to FHIR R4 (v4.0.1), except that it does not support the capabilities interaction.
+
+It includes some country-specific FHIR extensions, which conform to FHIR UK Core, specifically fhir.r4.ukcore.stu1 0.5.1.
+
 Specific rules for FHIR APIs
 
 FHIR APIs are RESTful APIs that follow specific rules. In particular:
@@ -76,7 +81,7 @@ For more details see Network access for APIs.
 
 Security and authorisation
 
-This API is application-restricted, meaning we authenticate the calling application but not the end user. In particular, the three FHIR CommunicationRequest endpoints use signed JWT authentication - you authenticate your application by sending a signed JSON web token (JWT) to our OAuth 2.0 authorisation server. For more details see Application-restricted RESTful APIs - signed JWT authentication.
+This API is application-restricted, meaning we authenticate the calling application but not the end user. In particular, the two FHIR CommunicationRequest endpoints use signed JWT authentication - you authenticate your application by sending a signed JSON web token (JWT) to our OAuth 2.0 authorisation server. For more details see Application-restricted RESTful APIs - signed JWT authentication.
 
 After following these steps to create an application and register the public key, the App ID should be provided to the NHS App onboarding team to grant your application permissions to the features that are appropriate to your use cases. If this step is not completed, all calls to this API will return responses with status code 403 Forbidden.
 
@@ -92,6 +97,7 @@ Our development environment:
 includes authorisation
 is for initial development and integration testing
 points to the Onboarding Sandpit NHS App environment, which in turn is using the NHS Login Sandpit environment
+has a rate limit of 20 requests per second per application
 
 We have created a Postman collection during internal development and testing of the API, which you may find useful when working with this environment.
 
@@ -104,8 +110,13 @@ Our integration test environment:
 includes authorisation
 is for formal release testing and assurance when onboarding with NHS Login
 points to the Onboarding AOS NHS App environment, which in turn is using the NHS Login Integration (AOS) environment
+has a rate limit of 20 requests per second per application
 
 For more details see integration testing with our RESTful APIs.
+
+Production
+
+Our production environment has a rate limit of 200 requests per second per application.
 
 Onboarding
 
@@ -137,13 +148,13 @@ If a recipient is an active NHS App user but has not registered a device to rece
 
 This endpoint allows you to specify the content that will appear in the in-app message. It does not allow you to specify the content that will appear in the associated push notification. By default, the content of the associated push notification will read "NHS App. You have a new message." To discuss changing this standard push notification content for your application, contact the NHS App team.
 
-We are considering an improvement that would include message sender names in associated push notifications. This may be of benefit if your application sends communications on behalf of several NHS organisations. You can track, comment, and vote for this feature on our interactive product backlog.
-
 When a recipient taps the native notification, the NHS App will open on the in-app messaging inbox page.
 
-We support a subset of Markdown for describing the body text of in-app messages. The length of each in-app message is limited to 5000 characters, including any markdown characters and embedded hyperlinks.
+We support a subset of Markdown for describing the body text of in-app messages. For details of the subset see the 'payload' property of the schema. The length of each in-app message is limited to 5000 characters, including any markdown characters and embedded hyperlinks.
 
 The body of requests made to this endpoint are instances of HL7 FHIR R4 CommunicationRequest resources. This schema documentation describes which fields on that resource we require and support. The API is tolerant of (but will silently ignore) any additionally supplied optional fields. For example, we do not currently honour the doNotPerform or priority fields.
+
+The outcome of communication requests can be determined using the daily communication event report endpoint.
 
 Request
 Headers
@@ -193,16 +204,20 @@ Copy
   "payload" : [ {
     "contentString" : "You have a new appointment, please confirm you can attend. Open the Onboarded Third Party appointment [here](https://www.nhsapp.service.nhs.uk/appointments/hospital-appointments)"
   } ],
-  "sender" : {
-    "display" : "Onboarded Third Party"
-  },
   "recipient" : [ {
     "type" : "Patient",
     "identifier" : {
       "system" : "https://fhir.nhs.uk/Id/nhs-number",
       "value" : "9903002157"
     }
-  } ]
+  } ],
+  "requester" : {
+    "type" : "Organization",
+    "identifier" : {
+      "system" : "https://fhir.nhs.uk/Id/ods-organization-code",
+      "value" : "B82041"
+    }
+  }
 }
 Schema
 Collapse all Expand all
@@ -239,7 +254,7 @@ Note that these identifier system names are case-sensitive. The values provided 
 
 The API will not reject requests that contain other identifier systems, but these values will be ignored and not recorded against the request.
 
-When a CommunicationRequest resource is returned in the response body to a successful request, this array will also include a globally unique identifier assigned by the API, with the system urn:ietf:rfc:3986. This is the same logical ID contained within the Location header of the successful response.
+When a CommunicationRequest resource is returned in the response body to a successful request, this array will also include a globally unique identifier assigned by the API, with the system https://fhir.nhs.uk/Id/nhs-app-communication-id. This is the same logical ID contained within the Location header of the successful response.
 
 
 
@@ -262,15 +277,6 @@ The body text of the message to be displayed in the NHS App
 
 
 
-sender
-object
-required
-	
-
-The sender of the in-app message.
-
-
-
 recipient
 array
 required
@@ -278,8 +284,17 @@ required
 
 An array containing a single NHS number corresponding to the patient to whom this in-app message should be sent. Each communication may be sent to only a single recipient.
 
-Max items: 1
 Min items: 1
+Max items: 1
+
+
+requester
+object
+required
+	
+
+The requester who initiated the communication and would like to send an in-app message to the patient.
+
 Response
 HTTP status: 201
 
@@ -312,7 +327,7 @@ Copy
 {
   "resourceType" : "CommunicationRequest",
   "identifier" : [ {
-    "system" : "urn:ietf:rfc:3986",
+    "system" : "https://fhir.nhs.uk/Id/nhs-app-communication-id",
     "value" : "8f7ec136-66eb-4a9e-97ca-5c7a53d2710c"
   }, {
     "system" : "https://fhir.nhs.uk/NHSApp/campaign-id",
@@ -331,8 +346,12 @@ Copy
       "value" : "9903002157"
     }
   } ],
-  "sender" : {
-    "display" : "Onboarded Third Party"
+  "requester" : {
+    "type" : "Organization",
+    "identifier" : {
+      "system" : "https://fhir.nhs.uk/Id/ods-organization-code",
+      "value" : "B82041"
+    }
   }
 }
 Schema
@@ -360,7 +379,7 @@ array
 
 An array of identifiers used to identify this request.
 
-This array will always include a globally unique identifier assigned by the API, with the system urn:ietf:rfc:3986.
+This array will always include a globally unique identifier assigned by the API, with the system https://fhir.nhs.uk/Id/nhs-app-communication-id.
 
 It will include optional identifiers that were provided in the request if the API recognised the identifier system name.
 
@@ -382,19 +401,19 @@ The body text of the message to be displayed in the NHS App.
 
 
 
-sender
-object
-	
-
-The sender of the in-app message.
-
-
-
 recipient
 array
 	
 
 An array containing a single NHS number corresponding to the patient to whom this in-app message was sent.
+
+
+
+requester
+object
+	
+
+The requester who has sent the request for in-app message to the patient.
 
 HTTP status: 400
 
@@ -480,7 +499,7 @@ Copy
   } ]
 }
 
-Multiple issues - sender name is missing and campaign ID exceed maximum length
+Multiple issues - no recipient has been specified and campaign ID exceeds maximum length
 
 Copy
 {
@@ -499,7 +518,20 @@ Copy
     "severity" : "error",
     "code" : "invalid",
     "diagnostics" : "Not specified",
-    "expression" : [ "sender.display" ]
+    "expression" : [ "recipient" ]
+  } ]
+}
+
+The requester has an invalid identifier
+
+Copy
+{
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "invalid",
+    "diagnostics" : "Identifier system is invalid",
+    "expression" : [ "requester.identifier.system" ]
   } ]
 }
 Schema
@@ -657,7 +689,7 @@ List of issues that have occurred.
 Min items: 1
 HTTP status: 429
 
-You have exceeded your application's rate limit or the API is currently receiving a high volume of requests.
+You have exceeded your application’s rate limit or the API is currently receiving a high volume of requests.
 
 Headers
 Name	Description
@@ -752,13 +784,15 @@ The body text of notifications can be up to 200 characters in length.
 
 They must not contain:
 
-personally identifiable information (for example, the name of a user's doctor)
+personally identifiable information (for example, the name of a user’s doctor)
 sensitive information (for example, details about a health condition)
 links to external websites
 
 You can also optionally specify a URL for a page within the NHS App to be opened when the recipient taps on the push notification. If a URL is not specified, the NHS App will open on the home page.
 
 The body of requests made to this endpoint are instances of HL7 FHIR R4 CommunicationRequest resources. This schema documentation describes which fields on that resource we require and support. The API is tolerant of (but will silently ignore) any additionally supplied optional fields. For example, we do not currently honour the doNotPerform or priority fields.
+
+The outcome of communication requests can be determined using the daily communication event report endpoint.
 
 Request
 Headers
@@ -854,7 +888,7 @@ Note that these identifier system names are case-sensitive. The values provided 
 
 The API will not reject requests that contain other identifier systems, but these values will be ignored and not recorded against the request.
 
-When a CommunicationRequest resource is returned in the response body to a successful request, this array will also include a globally unique identifier assigned by the API, with the system urn:ietf:rfc:3986. This is the same logical ID contained within the Location header of the successful response.
+When a CommunicationRequest resource is returned in the response body to a successful request, this array will also include a globally unique identifier assigned by the API, with the system https://fhir.nhs.uk/Id/nhs-app-communication-id. This is the same logical ID contained within the Location header of the successful response.
 
 
 
@@ -884,8 +918,8 @@ required
 
 An array containing a single NHS number corresponding to the patient to whom this push notification should be sent. Each communication may be sent to only a single recipient.
 
-Max items: 1
 Min items: 1
+Max items: 1
 Response
 HTTP status: 201
 
@@ -918,7 +952,7 @@ Copy
 {
   "resourceType" : "CommunicationRequest",
   "identifier" : [ {
-    "system" : "urn:ietf:rfc:3986",
+    "system" : "https://fhir.nhs.uk/Id/nhs-app-communication-id",
     "value" : "54615138-df34-4a79-840d-dd07e9451519"
   }, {
     "system" : "https://fhir.nhs.uk/NHSApp/campaign-id",
@@ -966,7 +1000,7 @@ array
 
 An array of identifiers used to identify this request.
 
-This array will always include a globally unique identifier assigned by the API, with the system urn:ietf:rfc:3986.
+This array will always include a globally unique identifier assigned by the API, with the system https://fhir.nhs.uk/Id/nhs-app-communication-id.
 
 It will include optional identifiers that were provided in the request if the API recognised the identifier system name.
 
@@ -1078,7 +1112,7 @@ Copy
   } ]
 }
 
-Multiple issues - sender name is missing and campaign ID exceed maximum length
+Multiple issues - no recipient has been specified and campaign ID exceeds maximum length
 
 Copy
 {
@@ -1097,7 +1131,7 @@ Copy
     "severity" : "error",
     "code" : "invalid",
     "diagnostics" : "Not specified",
-    "expression" : [ "sender.display" ]
+    "expression" : [ "recipient" ]
   } ]
 }
 Schema
@@ -1255,7 +1289,7 @@ List of issues that have occurred.
 Min items: 1
 HTTP status: 429
 
-You have exceeded your application's rate limit or the API is currently receiving a high volume of requests.
+You have exceeded your application’s rate limit or the API is currently receiving a high volume of requests.
 
 Headers
 Name	Description
@@ -1340,9 +1374,11 @@ GET /communication/report/events
 Try this API
 Overview
 
-Use this endpoint to get a daily report of events relating to in-app messages and push notifications that you have previously sent to NHS App users.
+Use this endpoint to get a daily report of events relating to in-app messages and push notifications that you have sent to NHS App users.
 
-An event will be included in this report detailing the outcome of attempting to send each communication to each individual recipient, for each channel (push notification or in-app message). Additionally, for in-app messages only, an event will be included in this report if and when the recipient reads the message.
+This endpoint is scheduled for deprecation. We are working on an updated version that will return responses represented as FHIR Task resources, and will provide richer information regarding the outcome of push notification requests. If you have not already begun integrating with this endpoint, we encourage you to consider waiting until the new endpoint is available.
+
+This report will include events detailing the outcome of an attempt to send each communication. For in-app messages, an event will also be included in this report if the recipient reads the message.
 
 The information provided by this endpoint is generated by a daily batch process. Note that events in the report may pertain to communication requests that were submitted on earlier days.
 
@@ -1704,7 +1740,601 @@ List of issues that have occurred.
 Min items: 1
 HTTP status: 429
 
-You have exceeded your application's rate limit or the API is currently receiving a high volume of requests.
+You have exceeded your application’s rate limit or the API is currently receiving a high volume of requests.
+
+Headers
+Name	Description
+X-Correlation-ID	
+
+String
+
+The X-Correlation-ID from the request header, if supplied, mirrored back.
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+Body
+
+Content type: application/fhir+json
+
+Examples
+
+Your application has exceeded its quota
+
+Copy
+{
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "throttled",
+    "diagnostics" : "Your application, my-app, has exceeded its quota of 100 requests every 1 minute(s) and is being rate limited."
+  } ]
+}
+
+Your application has created a spike in traffic
+
+Copy
+{
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "throttled",
+    "diagnostics" : "Your application, my-app, has created a spike in traffic and is being rate limited. Please reduce the frequency of your requests."
+  } ]
+}
+
+API is receiving a high volume of requests
+
+Copy
+{
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "throttled",
+    "diagnostics" : "This API is currently receiving a high volume of requests and is being rate limited."
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+Operation outcome
+
+
+
+resourceType
+string
+	
+
+FHIR Resource Type.
+
+Default: OperationOutcome
+
+
+issue
+array
+	
+
+List of issues that have occurred.
+
+Min items: 1
+Get a daily communication event report (New FHIR version)
+GET /communication/report/events/FHIR/R4/Task
+Try this API
+Overview
+
+Use this endpoint to get a daily report of events relating to in-app messages and push notifications that you have sent to NHS App users.
+
+This endpoint is currently in development and is not yet available for use. This documentation is provided to give early visibility of forthcoming functionality.
+
+This report will include events detailing the outcome of an attempt to send each communication. For in-app messages, an event will also be included in this report if the recipient reads the message.
+
+The following five types of event may be included in this response:
+
+Rejected – a request to send a communication was rejected. For example, this could happen if the NHS number of the intended recipient does not correspond to an NHS App user.
+Delivered – an in-app message has been successfully added to a user’s inbox.
+Notified – a push notification is reported as having been successfully relayed to one or more native devices.
+Unnotified – it has been determined that a push notification has not been successfully relayed to any native devices.
+Read – a user has read an in-app message for the first time.
+
+In addition to this daily report endpoint, we also plan to offer the ability for onboarded partners to receive these events in realtime by having us push individual Task resources to an endpoint that you make available to us for this purpose. We call this feature "real-time receipts". Contact the NHS App team for additional information on how to subscribe to real-time receipts.
+
+Pagination
+
+To avoid returning excessively large response bodies, the results may be split across multiple pages. On retrieving the response for the first page of results, the Link header or Link array in the response body should be inspected to determine whether any additional pages of results exist. If so, these can be retrieved by making additional request(s) with the optional page parameter specified.
+
+Request
+Query parameters
+Name	Description
+day	
+
+date (date)
+
+The day for which to retrieve an event report.
+
+Example: 2022-08-22
+
+Required
+
+page	
+
+Integer (int32)
+
+The ordinal number of the page of results to be retrieved. If omitted, the first page of results will be returned. Use the Link header in the response to determine whether any further pages of results exist.
+
+Example: 2
+
+Headers
+Name	Description
+Authorization	
+
+String (^Bearer\ [[:ascii:]]+$)
+
+An OAuth 2.0 bearer token.
+
+Example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
+
+Required
+
+X-Correlation-ID	
+
+String
+
+A unique message identifier. We use this to trace the message if you raise an issue with our helpdesk.
+
+If provided, we recommend a GUID for uniqueness and convenience.
+
+This is mirrored back in the response headers.
+
+Example: b5bc6879-103e-4a78-975e-87e815c5da58
+
+Response
+HTTP status: 200
+
+Information successfully returned.
+
+Headers
+Name	Description
+Link	
+
+String
+
+Comma-separated links to the last page and (if applicable) next page of paginated results.
+
+
+X-Correlation-ID	
+
+String
+
+The X-Correlation-ID from the request header, if supplied, mirrored back.
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+Body
+
+Content type: application/json
+
+Example
+
+Copy
+{
+  "resourceType" : "Bundle",
+  "type" : "searchset",
+  "total" : 7,
+  "link" : [ {
+    "relation" : "self",
+    "url" : "https://api.service.nhs.uk/nhs-app/communication/report/events/FHIR/R4/Task?day=2022-08-19&page=1"
+  }, {
+    "relation" : "last",
+    "url" : "https://api.service.nhs.uk/nhs-app/communication/report/events/FHIR/R4/Task?day=2022-08-19&page=1"
+  } ],
+  "entry" : [ {
+    "fullUrl" : "https://api.service.nhs.uk/nhs-app/communication/report/events/FHIR/R4/Task/b2ac2ae7-1a24-4e90-8f3f-9a62c6ebb4e7",
+    "resource" : {
+      "id" : "b2ac2ae7-1a24-4e90-8f3f-9a62c6ebb4e7",
+      "resourceType" : "Task",
+      "intent" : "order",
+      "identifier" : [ {
+        "system" : "https://fhir.nhs.uk/NHSApp/campaign-id",
+        "value" : "optional campaign id"
+      }, {
+        "system" : "https://fhir.nhs.uk/NHSApp/request-id",
+        "value" : "optional request reference"
+      }, {
+        "system" : "http://fhir.nhs.uk/Id/nhs-app-communication-id",
+        "value" : "882cc757-5096-4565-9779-af25a751a65f"
+      } ],
+      "status" : "completed",
+      "code" : {
+        "coding" : [ {
+          "system" : "https://fhir.nhs.uk/CodeSystem/NHSApp-Communication-Status",
+          "code" : "Delivered"
+        } ]
+      },
+      "authoredOn" : "2022-08-19T09:15:12+00:00",
+      "lastModified" : "2022-08-19T09:15:56+00:00"
+    }
+  }, {
+    "fullUrl" : "https://api.service.nhs.uk/nhs-app/communication/report/events/FHIR/R4/Task/a762b523-4e04-4a47-8cdb-e28b06dd3ea1",
+    "resource" : {
+      "id" : "a762b523-4e04-4a47-8cdb-e28b06dd3ea1",
+      "resourceType" : "Task",
+      "intent" : "order",
+      "identifier" : [ {
+        "system" : "https://fhir.nhs.uk/NHSApp/campaign-id",
+        "value" : "optional campaign id"
+      }, {
+        "system" : "https://fhir.nhs.uk/NHSApp/request-id",
+        "value" : "optional request reference"
+      }, {
+        "system" : "http://fhir.nhs.uk/Id/nhs-app-communication-id",
+        "value" : "882cc757-5096-4565-9779-af25a751a65f"
+      } ],
+      "status" : "completed",
+      "code" : {
+        "coding" : [ {
+          "system" : "https://fhir.nhs.uk/CodeSystem/NHSApp-Communication-Status",
+          "code" : "Notified"
+        } ]
+      },
+      "authoredOn" : "2022-08-19T09:15:12+00:00",
+      "lastModified" : "2022-08-19T09:16:02+00:00"
+    }
+  }, {
+    "fullUrl" : "https://api.service.nhs.uk/nhs-app/communication/report/events/FHIR/R4/Task/71fedfbc-d1c9-4342-8ee0-b8201b15f28f",
+    "resource" : {
+      "id" : "71fedfbc-d1c9-4342-8ee0-b8201b15f28f",
+      "resourceType" : "Task",
+      "intent" : "order",
+      "identifier" : [ {
+        "system" : "https://fhir.nhs.uk/NHSApp/campaign-id",
+        "value" : "optional campaign id"
+      }, {
+        "system" : "https://fhir.nhs.uk/NHSApp/request-id",
+        "value" : "optional request reference"
+      }, {
+        "system" : "http://fhir.nhs.uk/Id/nhs-app-communication-id",
+        "value" : "882cc757-5096-4565-9779-af25a751a65f"
+      } ],
+      "status" : "completed",
+      "code" : {
+        "coding" : [ {
+          "system" : "https://fhir.nhs.uk/CodeSystem/NHSApp-Communication-Status",
+          "code" : "Read"
+        } ]
+      },
+      "authoredOn" : "2022-08-19T09:15:12+00:00",
+      "lastModified" : "2022-08-19T09:38:17+00:00"
+    }
+  }, {
+    "fullUrl" : "https://api.service.nhs.uk/nhs-app/communication/report/events/FHIR/R4/Task/8c241d11-8957-4148-a298-0df6ffcb5521",
+    "resource" : {
+      "id" : "8c241d11-8957-4148-a298-0df6ffcb5521",
+      "resourceType" : "Task",
+      "intent" : "order",
+      "identifier" : [ {
+        "system" : "http://fhir.nhs.uk/Id/nhs-app-communication-id",
+        "value" : "410baa9d-0b7e-4120-af1b-2f5b2656edf9"
+      } ],
+      "status" : "completed",
+      "code" : {
+        "coding" : [ {
+          "system" : "https://fhir.nhs.uk/CodeSystem/NHSApp-Communication-Status",
+          "code" : "Delivered"
+        } ]
+      },
+      "authoredOn" : "2022-08-19T11:51:05+00:00",
+      "lastModified" : "2022-08-19T11:51:07+00:00"
+    }
+  }, {
+    "fullUrl" : "https://api.service.nhs.uk/nhs-app/communication/report/events/FHIR/R4/Task/f2c5b23f-387c-4c9e-87c9-346bd8bd9f03",
+    "resource" : {
+      "id" : "f2c5b23f-387c-4c9e-87c9-346bd8bd9f03",
+      "resourceType" : "Task",
+      "intent" : "order",
+      "identifier" : [ {
+        "system" : "http://fhir.nhs.uk/Id/nhs-app-communication-id",
+        "value" : "410baa9d-0b7e-4120-af1b-2f5b2656edf9"
+      } ],
+      "status" : "completed",
+      "code" : {
+        "coding" : [ {
+          "system" : "https://fhir.nhs.uk/CodeSystem/NHSApp-Communication-Status",
+          "code" : "Unnotified"
+        } ]
+      },
+      "authoredOn" : "2022-08-19T11:51:05+00:00",
+      "lastModified" : "2022-08-19T11:51:34+00:00"
+    }
+  }, {
+    "fullUrl" : "https://api.service.nhs.uk/nhs-app/communication/report/events/FHIR/R4/Task/0dc3ba21-ec8f-4d93-a74b-0d717c186dbe",
+    "resource" : {
+      "id" : "0dc3ba21-ec8f-4d93-a74b-0d717c186dbe",
+      "resourceType" : "Task",
+      "intent" : "order",
+      "identifier" : [ {
+        "system" : "http://fhir.nhs.uk/Id/nhs-app-communication-id",
+        "value" : "410baa9d-0b7e-4120-af1b-2f5b2656edf9"
+      } ],
+      "status" : "completed",
+      "code" : {
+        "coding" : [ {
+          "system" : "https://fhir.nhs.uk/CodeSystem/NHSApp-Communication-Status",
+          "code" : "Read"
+        } ]
+      },
+      "authoredOn" : "2022-08-19T11:51:05+00:00",
+      "lastModified" : "2022-08-19T13:17:30+00:00"
+    }
+  }, {
+    "fullUrl" : "https://api.service.nhs.uk/nhs-app/communication/report/events/FHIR/R4/Task/46fb07d6-e679-4ff8-97af-538935a707a3",
+    "resource" : {
+      "id" : "46fb07d6-e679-4ff8-97af-538935a707a3",
+      "resourceType" : "Task",
+      "intent" : "order",
+      "identifier" : [ {
+        "system" : "https://fhir.nhs.uk/NHSApp/campaign-id",
+        "value" : "flu campaign 202208"
+      }, {
+        "system" : "http://fhir.nhs.uk/Id/nhs-app-communication-id",
+        "value" : "01389fa3-2cb9-4440-b075-c4902b526fbc"
+      } ],
+      "status" : "rejected",
+      "statusReason" : {
+        "text" : "NHS number not found"
+      },
+      "code" : {
+        "coding" : [ {
+          "system" : "https://fhir.nhs.uk/CodeSystem/NHSApp-Communication-Status",
+          "code" : "Rejected"
+        } ]
+      },
+      "authoredOn" : "2021-08-19T15:20:52+00:00",
+      "lastModified" : "2021-08-19T15:20:56+00:00"
+    }
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+Bundle resource containing tasks
+
+A bundle resource containing tasks representing events relating to in-app messages and push notifications that you have previously sent to NHS App users.
+
+
+
+resourceType
+string
+required
+	
+Allowed values: Bundle
+
+
+type
+string
+required
+	
+Allowed values: searchset
+
+
+link
+array
+required
+	
+Min items: 1
+Max items: 3
+
+
+entry
+array
+required
+	
+HTTP status: 400
+
+There is an error in your request.
+
+Headers
+Name	Description
+X-Correlation-ID	
+
+String
+
+The X-Correlation-ID from the request header, if supplied, mirrored back.
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+Body
+
+Content type: application/fhir+json
+
+Examples
+
+No day parameter has been specified
+
+Copy
+{
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "invalid",
+    "diagnostics" : "Not specified",
+    "expression" : [ "day" ]
+  } ]
+}
+
+The supplied day parameter is not in the correct format.
+
+Copy
+{
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "invalid",
+    "diagnostics" : "Invalid format",
+    "expression" : [ "day" ]
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+Operation outcome
+
+
+
+resourceType
+string
+	
+
+FHIR Resource Type.
+
+Default: OperationOutcome
+
+
+issue
+array
+	
+
+List of issues that have occurred.
+
+Min items: 1
+HTTP status: 401
+
+Authorisation issue, for example a missing or expired bearer token.
+
+Headers
+Name	Description
+X-Correlation-ID	
+
+String
+
+The X-Correlation-ID from the request header, if supplied, mirrored back.
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+Body
+
+Content type: application/fhir+json
+
+Examples
+
+Invalid Access Token
+
+Copy
+{
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "forbidden",
+    "diagnostics" : "Invalid Access Token"
+  } ]
+}
+
+Expired Access Token
+
+Copy
+{
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "expired",
+    "diagnostics" : "Access Token expired"
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+Operation outcome
+
+
+
+resourceType
+string
+	
+
+FHIR Resource Type.
+
+Default: OperationOutcome
+
+
+issue
+array
+	
+
+List of issues that have occurred.
+
+Min items: 1
+HTTP status: 403
+
+You are not authorised to perform this operation. Some client applications may not be permitted to access the event report endpoint. To discuss granting your application access to this endpoint, contact the NHS App team.
+
+Headers
+Name	Description
+X-Correlation-ID	
+
+String
+
+The X-Correlation-ID from the request header, if supplied, mirrored back.
+
+Example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
+
+Body
+
+Content type: application/fhir+json
+
+Example
+
+Copy
+{
+  "resourceType" : "OperationOutcome",
+  "issue" : [ {
+    "severity" : "error",
+    "code" : "security",
+    "diagnostics" : "Supplier with ID cdd248b8-cefb-404e-8da4-b79de3a9062a does not have event report access permission"
+  } ]
+}
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+Operation outcome
+
+
+
+resourceType
+string
+	
+
+FHIR Resource Type.
+
+Default: OperationOutcome
+
+
+issue
+array
+	
+
+List of issues that have occurred.
+
+Min items: 1
+HTTP status: 429
+
+You have exceeded your application’s rate limit or the API is currently receiving a high volume of requests.
 
 Headers
 Name	Description
@@ -2100,7 +2730,7 @@ List of issues that have occurred.
 Min items: 1
 HTTP status: 429
 
-You have exceeded your application's rate limit or the API is currently receiving a high volume of requests.
+You have exceeded your application’s rate limit or the API is currently receiving a high volume of requests.
 
 Headers
 Name	Description

@@ -1,0 +1,41 @@
+SCCI1518: Sexual and Reproductive Health Activity Dataset
+
+The Sexual and Reproductive Health Activity Dataset (SRHAD) mandates the collection of contraceptive activity data from sexual and reproductive health services.
+
+Page contents
+Top of page
+About this information standard
+Current release
+About this information standard
+
+Initially published in March 2010, this latest release introduces:
+
+minor amendments to data items to align with the NHS Data Model and Dictionary
+confirmation of annual submission
+clarification of coverage in general practice settings.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales and the other listed documents provide further detail for those who have to implement the information standard.
+
+Current release
+Release date	29 June 2017
+Release number	Amd 92/2015
+Release title	2017 update
+Stage	Implementation
+Key documents	
+Information Standards Notice (Amd 92/2015)
+Requirements Specification (Amd 92/2015)
+Implementation Guidance (Amd 92/2015)
+Change Specification (Amd 92/2015)
+
+
+
+Supportingdocuments
+
+	
+NHS Data Model and Dictionary Change Request 1555 (Amd 92/2015)
+NHS Data Model and Dictionary Change Request 1555 (Full) (Amd 92/2015)
+
+More information	Go to the SRHAD pages of the NHS Digital website for more detailed guidance
+Archive	Go to the ISB website for previous releases of this standard
+
+Last edited: 9 October 2019 1:06 pm
