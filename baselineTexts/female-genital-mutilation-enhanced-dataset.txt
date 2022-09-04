@@ -1,0 +1,62 @@
+SCCI2026: Female Genital Mutilation Enhanced Dataset
+
+The FGM Enhanced Dataset requires organisations to record collect and return detailed information about FGM within the patient population, as treated by the NHS in England.
+
+Page contents
+Top of page
+About this information standard
+Current release
+About this information standard
+
+The FGM Enhanced Dataset requires organisations to record collect and return detailed information about FGM within the patient population, as treated by the NHS in England. This release introduces the Female Genital Mutilation (FGM) Enhanced Dataset, which supersedes the FGM Prevalence Dataset (ISB 1610).
+
+NHS Digital has been directed to collect the FGM Enhanced Dataset by the Department of Health (see link to right of page). NHS Digital has issued a Data Provision Notice to care providers to inform them of the requirement to submit this data.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the Requirements Specification and Implementation Guidance documents provide further detail for those who have to implement the information standard.
+
+This information standard uses SNOMED CT codes; the most up-to-date set of codes are available through the Data Dictionary for Care (external link).
+
+Update 24 September 2015:The current release (SCCI2026 Amd 12/2014) was published on 01 April 2015. As part of the HSCIC's implementation monitoring and support, the need for assistance and clarification in a number of areas has been identified by both users and suppliers. The Corrigendum dated 24-Sep-15 (see below) provides this in relation to: implementation dates; use in general practice; exempt clinical settings and clinical terminology codes. A minor change to one data item is also noted.
+
+Update 20 April 2015:The current release (SCCI2026 Amd 12/2014) was published on 01 April 2015.  Since then an error has been identified, in relation to the data item FEMALE GENITAL MUTILATION IDENTIFICATION METHOD CODE. The Corrigendum dated 20-Apr-15 (see below) lists the error and the correction; this should be read alongside the Requirements Specification and Implementation Guidance. The corrigendum will be incorporated in the next release of this information standard.
+
+Note: A post-implementation review (PIR) of the Initial Standard was conducted between November 2015 and March 2016; details of the review findings were provided in a report which was presented to SCCI in June 2016. Find out more about the PIR and view the report..
+
+Current release
+Release date	01/04/2015
+Release number	Amd 12/2014
+Release title	Initial Standard
+Stage	Implementation
+Key documents	
+Requirements Specification (Amd 12/2014) [Archive Content]
+Implementation Guidance (Amd 12/2014) [Archive Content]
+Information Standards Notice (Amd 12/2014)
+Corrigendum 20-Apr-15 (Amd 12/2014)
+Corrigendum 24-Sep-15 (Amd 12/2014)
+NHS Data Model and Dictionary Change Request 1554 (Amd 12/2014)
+
+Supporting documents	
+Implementation Guidance Summary (Amd 12/2014)
+NHS Data Model and Dictionary Change Request 1494 (Amd 12/2014)
+SNOMED CT codes via the Data Dictionary for Care
+
+Guidance - Issued Sep 15	
+FGM Enhanced Dataset - GP Approach v1.0 (Amd 12/2014)
+FGM Prevention Programme: Understanding the FGM Enhanced Dataset - updated guidance and clarification to support implementation (Amd 12/2014)
+
+Further information	  NHS Digital FGM
+
+ISB 1610 Female Genital Mutilation Prevalence Dataset
+
+This information standard has been superseded by the FGM Enhanced Dataset (see above),
+
+Retirement date	10/04/2015
+Key documents	
+Information Standards Notice (Retirement)
+NHS Data Model and Dictionary Change Request 1506
+
+Further information	NHS Digital FGM
+
+ 
+
+Last edited: 5 November 2018 12:26 pm

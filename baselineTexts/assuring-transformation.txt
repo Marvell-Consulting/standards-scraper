@@ -1,0 +1,60 @@
+DCB2007: Assuring Transformation
+
+This data collection informs NHS England's monitoring of the progress in moving people with learning disabilities from inpatient to community settings.
+
+Page contents
+Top of page
+About this information standard
+Current release
+Previous releases
+About this information standard
+
+Assuring Transformation is an information standard incorporating a mandatory data collection that has been developed in response to Transforming Care: A national response to Winterbourne View Hospital and Winterbourne View Review: Concordat: A Programme of Action.
+
+This data collection supports NHS England and NHS Improvement's monitoring of the progress in moving people with learning disabilities from inpatient to community settings.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the other listed documents provide further detail for those who have to implement the information standard.
+
+ 
+
+Update 30 March 2021:
+
+The latest release of this standard (DCB2007 Amd 35/2020) was published on 23 December 2020.  Following publication, several minor typographical errors were identified in the Data Set Specification. An updated Data Set Specification (Version 1.1 dated March 2021) has been published to correct these minor issues, and is available below. Note that there is no impact on the published Requirements Specification, Implementation Guidance or Change Specification.
+
+If you have any questions about this update, or other Assuring Transformation issues, you can contact the developers by emailing: enquiries@nhsdigital.nhs.uk (quote Assuring Transformation in the subject line). 
+
+ 
+
+Current release
+Release date	23/12/2020
+Release number	Amd 35/2020
+Release title	Version 3.0
+Stage	Implementation
+Key documents	
+Information Standards Notice (Amd 35/2020)
+Requirements Specification (Amd 35/2020) [Archive Content]
+Implementation Guidance (Amd 35/2020)
+Change Specification (Amd 35/2020)
+Data Set Specification v1.1 (Amd 35/2020) (March 2021)
+
+Further information	Further information, and additional user guidance, is available on the NHS Digital website.
+Previous releases
+Release date	09/11/2015
+Release number	Amd 37/2015
+Release title	Version 2.0
+Stage	Maintenance
+Key documents	
+Requirements Specification (Amd 37/2015) [Archive Content]
+Implementation Guidance (Amd 37/2015)
+Change Specification (Amd 37/2015)
+Information Standards Notice (Amd 37/2015)
+Release date	06/01/2015
+Release number	Amd 7/2014
+Release title	Initial Collection
+Stage	Retirement
+Key documents	
+Requirements Specification (Amd 7/2014) [Archive Content]
+Implementation Guidance (Amd 7/2014)
+Information Standards Notice (Amd 7/2014)
+
+Last edited: 30 March 2021 3:56 pm

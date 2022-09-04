@@ -1,0 +1,233 @@
+Diabetes standards
+
+There are approximately 4.8 million people living with diabetes in the UK and this is expected to rise to 5.3 million by 2025. It is a condition that is predominately self-managed and people with diabetes need education and support from health and care professionals across multiple care settings.
+
+People are increasingly using medical devices to help manage their diabetes. These include devices for monitoring glucose and delivering insulin. 
+
+It is important that health and care professionals can access information about a person with diabetes and the data from the medical devices they are using to enable them to provide the best advice and support but this information is often not available or easy to view in one place. 
+
+On this page
+About the standards
+Examples of the standards in use 
+Key findings
+The standards and supporting documentation
+Next steps
+About the standards
+
+PRSB was commissioned by NHS England and NHS Improvement to produce standards for sharing diabetes information between people and professionals across all care settings, including self management data from digital apps and medical devices (e.g. continuous glucose monitors).
+
+ 
+Current information sharing issues
+
+Information about a person’s diabetes is not all being digitally shared between the different professionals involved in their care. For example, information recorded by community nurses or podiatrists is not always available to GPs or hospital doctors and information such as latest HbA1c test results are not always shared across systems. This means that a person may be asked back for repeat tests.
+
+Digital and technological innovations are delivering tools and devices to help people better self-manage their diabetes and the number of people offered them is growing, but it can be hard for people to understand and interpret the data and they may need help with this. Professionals are unable to bring together data from different devices to have a complete view.
+
+There is inconsistency in use of codes to record information related to a diabetes diagnosis, there are a number of similar SNOMED CT codes and it is not clear which codes should be used particularly when there is an indeterminate diagnosis.
+
+PRSB has developed two standards to address these information sharing issues.
+
+The Diabetes Information Record Standard
+This defines the information needed to support a person’s diabetes management. It includes information that could be recorded by health and care professionals or the person themselves that is relevant to the diabetes care of the person and should be shared between different care providers.
+The Diabetes Self-Management Standard
+This defines information that could be recorded by the person (or their carer) at home (either using digital apps or medical devices) and shared with health and care professionals.
+
+ 
+
+These standards are based what professionals and people with diabetes have told us that they want recorded and shared.
+
+What is included?
+The standards were developed with UK wide consultation and engagement to meet the needs of all four UK nations.
+The standards are intended for all types of diabetes mellitus (except ‘prediabetes’).
+The standards were designed to support the 9 care processes for diabetes (glycated haemoglobin (HbA1c), blood pressure, cholesterol, urinary albumin, serum creatinine, weight, foot checks, retinal screening and smoking status), glucose monitoring and insulin dosing.
+The standards cover all ages including children.
+The standards include the information needed by health and care professionals about family planning and pregnancy to manage the diabetes but not everything needed to manage the pregnancy. The Maternity Record Standard sets out the information structure and content for managing a pregnancy.
+The standards are relevant for a wide variety of healthcare settings including primary care, secondary care and community and social care settings (e.g. care homes and domiciliary care).
+The National Diabetes Audits (for adults and children) were considered in the development of these standards with the aim of enabling information recorded for the purposes of direct care to be reused for the audits.
+What is not in scope
+Prisons, schools, police and armed forces – some of the information in the standard may work for some of these settings but it was not tested in consultation.
+How the information should be presented to the person viewing it e.g. graphs or summary dashboards or who should be able see or change what information.
+A definition of where the information should come from, how it should be processed and how and where it should be stored.
+Examples of the standards in use
+
+Here is an example of how the Diabetes Information Record Standard might be used. The example shows the information that could be recorded and shared between the person and their different care providers.
+
+Ayra’s story
+About Ayra and her condition
+
+
+Ayra is a 45-year-old female of Sri-Lankan origin who works as a healthcare assistant at her local hospital, a job which is largely spent at a desk. She has smoked a pack of cigarettes a day for 5 years She has a family history of type 2 diabetes.
+
+
+She was diagnosed with type 2 diabetes a year ago and has been self-managing with metformin, increasing her movement and trying to cut down on smoking after being referred to a smoking cessation service. She has found it difficult to make dietary changes.
+
+
+Ayra is invited by her GP surgery for her annual diabetes review and is asked to attend an appointment 3 weeks before this is due with the healthcare assistant for tests. The healthcare assistant goes through a number of standard care process measures including an assessment of Ayra’s feet, measures her blood pressure and weight, and collects the urine and blood samples to be sent off to the lab for testing. The healthcare assistant checks Ayra’s diabetes record to see whether Arya had attended the eye screening service within the last 12 months.
+
+
+The healthcare assistant informs Ayra she will be contacted when the results return from her urine and blood tests, so that she can see them before her annual review.
+Getting her test results
+Ayra receives the results from her tests
+
+
+The results have been annotated and colour coded for ease of reference and understanding. She is concerned that although her HbA1c result has improved it is still showing as red (65mmol/mol) and her blood pressure (146/94 mmHg) and BMI (31.3) have both increased. Her urine test results show an increased risk of kidney disease (moderately increased albuminuria). Her foot check and eye screening results are normal.
+
+
+Ayra completes a form before her appointment setting out that she wants to discuss eating a better diet, as that is important to her. She is also keen to do more exercise and is worried about her high blood sugar and kidneys in particular.
+Attending the review
+Ayra returns for her annual review appointment at the surgery
+
+
+Ayra is booked in to see the practice nurse. Ayra remembers to bring her results sheet with her and other notes she has made about what she wants to talk about at the appointment. The practice nurse reviews Ayra’s medical records before the appointment and notes that she is only using metformin for her blood glucose control. She also notes the results for blood pressure and urine as well as the rise in weight. Ayra is able to sit down with the nurse and discuss her results in a collaborative and supportive way. She highlights the main things that are bothering her and is surprised to hear about the impact of blood pressure on kidney health.
+
+
+Ayra decides that she would like to take more care of her blood pressure as well and agrees to start a new tablet for blood pressure. She also decides to get a blood pressure monitor to check things at home and say that she will update the nurse with her blood pressure readings after starting the new medicine.
+
+
+Ayra admits that her weight bothers her and the nurse suggests a few things she could work on to try and help with that. The important parts of the discussion are recorded in Ayra’s medical records as a care plan. The care plan is broken down into a summary of the conversation; goals and actions are listed alongside obstacles and resources she could potentially use to help. Ayra is given a copy of this care plan to take away and refer to after the appointment.
+
+
+The nurse suggests that it would be a good idea to follow up her progress in 3 months’ time but that Ayra can send her blood pressure readings in the meantime to help adjust her new tablet. They agree that other tablets and treatments might be needed for her blood glucose in the future but Ayra would prefer to focus on her dietary intake and new blood pressure medicine first. She feels confident with the goals she has set and the nurse notes the plan and that confidence down.
+Follow up
+After the review and the follow up appointment
+
+
+Ayra purchases a blood pressure monitor online and starts to check her blood pressure regularly. She contacts the nurse and sends blood pressure readings online for the nurse to review. This helps the nurse to adjust the medication dose accordingly. Ayra continues to struggle with dietary changes but is pleased that her blood pressure is improving.
+
+
+Ayra books a follow up appointment with the healthcare assistant a little later than planned and gets her blood glucose, weight and blood pressure repeated along with her kidney health tests. She has a better understanding of the results now and is more active in the consultation. This time, the appointment is with one of the doctors. The doctor reviews the previous care plan and checks progress. Ayra is aware that the blood glucose and weight remain outliers in terms of her results but she is pleased with the remaining results. She agrees to start a new tablet for her blood glucose and a further follow up is planned based on that. The doctor advises that she can reduce the frequency of blood pressure checks now and Ayra agrees a new set of goals for her dietary intake to try ahead of her next appointment.
+
+Here is an example of how the The Diabetes Self-Management Standard might be used. The example shows how self-management data can be captured by a person with Type 1 Diabetes and shared remotely with their consultant.
+
+Alicia’s story
+About Alicia and her condition
+
+
+Alicia is a 21-year-old woman with Type 1 diabetes who lives at home with her parents. She has had diabetes since the age of 10. Alicia recently graduated from university and is now studying for a teaching qualification in her hometown.
+
+
+She lives an active lifestyle, very rarely drinks and is a non-smoker. She has a passion for long distance running.
+
+
+Before she went to university, her mother used to help her with regular fingerstick testing to measure her blood sugars levels. She moved from paediatric care to adult care just before she went to university. During the time she was at university, her glucose control suffered as her blood sugar monitoring dropped off, but she had no significant acute problems other than one admission to hospital for diarrhoea and vomiting, complicated by ketosis.
+
+
+On her return from university, she was given a flash glucose monitor when she attended a refresher education session.
+
+
+Alicia shares the data from her glucose monitor with her specialist diabetes team via her smartphone so that her consultant can view the data at her next appointment or if she contacts him .
+Self-management
+Alicia’s self-management on a typical day
+
+
+Alicia wakes up and scans her sensor to check her blood sugars levels to determine if any correction is needed and to ensure her control overnight has been stable.
+
+
+Before breakfast Alicia works out how much carbohydrate she is going to have in her meal and calculates the amount of bolus insulin to give herself using both an individualised insulin to carbohydrate ratio (1unit per 12g carb) and an individualised sensitivity factor (1unit for 4mmol/L) and glucose target (7.5mmol/L). If she plans to exercise she has an adjustment factor for her bolus insulin dose.
+
+
+After breakfast she scans her sensor and again before exercising. She eats a snack before exercising if her blood sugar levels are below 7 to try and ensure she does not become hypoglycaemic during her run.
+
+
+Alicia goes for a run (between 45 and 80 mins usually) ensuring that her sensor alarms are set and working beforehand and then checks her blood sugars. Typically, her levels are low after exercise, so she has a snack high in carbohydrates.
+
+
+Alicia scans her sensor again, both before lunch and evening meal, to check her blood sugars and calculates her bolus insulin dose. At these mealtimes she uses individualised carb and correction ratios for her calculations that are slightly less aggressive than her breakfast ratios.
+
+
+Around 9pm she checks her blood sugars and administers her daily basal insulin injection (insulin glargine). Before bed she scans her sensor a final time before going to sleep.
+The hospital appointment
+Reviewing the self-management data
+
+
+Alicia attends a review with her consultant diabetologist. She had submitted information in advance of the appointment to say that she wants to talk about her concerns. Since returning home from university she has found that her blood sugar levels are increased following long distance runs instead of dropping as was previously the case. This has worsened over the last week or so and she is worried and frustrated about the change.
+
+
+The consultant checks Alicia’s diabetes record and notes that she has never smoked, has had no hospital admissions due to diabetes in the last 12 months and that she had attended the refresher DAFNE structured education course she had been referred to. He asks about her experiences using the glucose sensor and whether this has helped with her self-management decisions.
+
+
+The consultant asks Alicia questions about the pre-clinic preparatory data which she’s provided in the form of questionnaire responses including her confidence in carbohydrate counting, awareness of hypoglycaemia (Gold score) and the demands of living with diabetes (Diabetes Distress Score 2 (DDS2)). He notes her distress score has increased and explores with her the reasons why this may have occurred and how she can access support if it’s needed.
+
+
+Her consultant looks at the data that Alicia had made available from her glucose sensor and can see from the last 14 days of data that the blood sugar levels are initially around 5 – 8 mmol/L before exercise, they then decrease to 3 – 4 mmol/L at the end of her runs and then increase up to 13 – 18 mmol/L as she recovers. As a result of this on the days when she’s run, her glucose variability is significantly higher and less predictable than on the days when she does not run, which is the cause of her frustration.
+
+
+The consultant congratulates her on her degree and asks her about her plans now she’s returned from university. He then comments on the general control of her sugar levels which he assesses as good based on her overall sensor data and most recent HbA1c and asks if she has any other health concerns.
+
+
+He then explores the issue of concern around exercise with Alicia including how she plans for her runs (what exercise correction she applies at breakfast), the timing of her runs (and if this could be altered to a time when her short-acting insulin is less active), the impact of different lengths of run and the potential need for isotonic drinks to provide carbohydrate during the runs, the impact of different types of exercise and her menstrual cycle in her exercise responses.
+
+In particular, he focusses on the role of her post exercise snack and the low glucose levels at the end of exercise as a trigger for her later hyperglycaemia. The consultant mentions the possibility of using a connected pen to monitor her insulin doses more closely around the days when she exercises in order to determine which strategies work best for her, which she agrees to consider. He recommends further information resources which she can access to investigate this (online) and makes sure she has the contact details for the local diabetes support group and exercise interest group.
+
+Between them they agree on a strategy and how to make plans to address the issues she’s raised including a virtual review of her data after 2-3 weeks. In addition to the detailed discussion, he gives safety-netting advice about her runs including wearing her diabetes alert bracelet/ID and continuing to take snacks with her in case of hypos.
+Key findings
+
+There were a number of key points raised by healthcare professionals and people with diabetes during the consultation phase of these standards. These are the highlights of the consultation findings. For more information, please read the final report.
+
+
+Better support is needed for understanding complex information
+
+There can be vast amounts of complex data and information available to people with diabetes, and they need on-going support with this. Some health and care staff also need education on this so that they are able to advise people on self-management. There also needs to be a consistent focus on primary support staff, privately employed carers or carers commissioned from private and sometime very small providers as well as staff in care homes. Their understanding, skills and abilities and ability to input to and access systems is fundamental. 
+
+
+Consider digital poverty and inequalities
+
+With the rise in use of medical devices for self-monitoring and self-management it is important to consider digital poverty and not exacerbate inequalities such as for those in areas with no internet access, or those less able to use digital technologies.
+
+
+
+Concern about the potential volume of data
+
+Concerns were raised about the volume of information and the potential numbers of individuals who would be able to share information from their apps and medical devices, including workload and capacity issues related to managing, monitoring and reviewing the information on a regular basis. There was a general lack of clarity of liability in a scenario where an individual develops complications or urgent clinical issue which could potentially have been identified from the data but had not been reviewed and/or acted upon. It was suggested that this could be addressed through clear, evidenced, communication about when the data will be reviewed, at the point at which the person is initially given the device.
+
+
+Validated self-management data is important
+
+People with diabetes are experts in their condition and use many different types of information in the daily management of their condition and want to be able to share that information with professionals to inform their consultations. Validated information recorded and shared by a person with diabetes is important in day-to-day condition management and should not be disregarded by health and care professionals.
+
+
+Access to self-management data
+
+People with diabetes also want to be able to control who has access to the information that they have recorded at home. It was noted that there are risks if people do not share the information, or share partial information, as it means that health and care professionals cannot provide advice based on accurate information about a person and it can lead to poorer decisions and on occasions to incorrect diagnoses especially for patients with complex multi-system disorders.
+
+Next steps
+
+PRSB is now working with NHS Digital on terminology, to specify how the information is coded, and technical standards (based on FHIR UK Core), to specify how information is to be held or moved between systems.
+
+This will support the consistent recording of information and will enable information to be sent and received between clinical systems (and digital apps and medical devices). The standards will then be piloted.
+
+Current release
+Current release
+Date: June 2022
+Version: V1.0
+
+Diabetes Information Record Standard 
+
+Standards viewer
+Excel file
+Json file
+
+
+Diabetes Self-Management Data Standard
+
+Standards viewer
+Excel file
+Json file
+
+Supporting documents
+General implementation guidance
+(Detailed guidance, specific to the sections and elements of the standard, are included within the information model)
+Final report
+Survey report
+Safety case report
+Hazard log
+ 
+ 
+Further resources
+IHRIM record correction guidance
+Despite vigilance when filing information in records, mistakes can occur. The Institute of Health Records and Information Management has guidance to support professionals in making corrections following errors.
+ 
+Endorsement
+Endorsement is in progress for the draft standard and details will be published here when this work is complete. 
+ 
+ 
