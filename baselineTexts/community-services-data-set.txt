@@ -1,0 +1,69 @@
+DAPB1069: Community Services Data Set
+
+The Community Services Data Set (CSDS) is a patient level, output based, secondary uses data about publicly funded Community Services.
+
+Page contents
+Top of page
+About this information standard
+Current releases
+Updates
+About this information standard
+
+The Community Services Data Set (CSDS) is a patient level, output based, secondary uses data set which will deliver robust, comprehensive, nationally consistent and comparable person centred information for people who are in contact with publicly funded Community Services.
+
+The standard defines the data items, definitions and associated value sets to be extracted or derived from local systems, and submitted to NHS Digital on a monthly basis. Note that this data set does not specify the data to be captured for direct patient care, but will make use of such clinical and operational data for secondary uses.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the other listed documents provide further detail for those who have to implement the information standard.
+
+Current releases
+Version 1.6
+Release date	06/01/2022
+Release number	Amd 82/2021
+Stage	Implementation
+Key documents	
+Requirements Specification (Amd 82/2021) (May 2022)
+Change Specification (Amd 82/2021) (May 2022)
+Implementation Guidance (Amd 82/2021) (May 2022) [Archive Content]
+Technical Output Specification (Amd 82/2021)
+Information Standards Notice (Amd 82/2021) (May 2022)
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request - 1844  (Basic CR) (Amd 82/2021) (May 2022)
+NHS Data Model and Dictionary Change Request - 1844 (Data Set CR) (Amd 82/2021) (May 2022)
+XML Schema (Amd 82/2021) (external site; login required). 
+
+Further information	
+
+More information, including the Enhanced Technical Output Specification, can be found on the NHS Digital CSDS web pages 
+
+ 
+
+ 
+
+Version 1.5
+Release date	16/10/2019
+Release number	Amd 95/2018
+Stage	Maintenance
+Key documents	
+Requirements Specification (Amd 95/2018)
+Change Specification (Amd 95/2018)
+Implementation Guidance (Amd 95/2018) [Archive Content]
+Technical Output Specification (Amd 95/2018)
+Information Standards Notice (Amd 95/2018)
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request - 1690 (Basic CR) (Amd 95/2018)
+NHS Data Model and Dictionary Change Request - 1690 (Data Set CR) (Amd 95/2018)
+XML Schema (Amd 95/2018) (external site; login required)
+
+Documentation from previous releases are available on request from standards.assurance@nhs.net 
+
+ 
+
+Updates
+
+12 May 2022:  At the time of publication of version 1.6 (6 January 2022), users were expected to fully conform with this standard by 14 September 2022. Due to resource pressures that have built up at NHS Digital over 2021-22, NHS Digital has since extended the implementation and conformance dates of this standard by six months. Full conformance is now expected with the submission of the January 2023 reporting activity by 14 March 2023.
+
+The Requirements Specification, Change Specification, Implementation Guidance and Information Standards Notice have been annotated to reflect this, and updated NHS Data Model and Dictionary Change Requests have been published.  The updated copies of the documents are available in the version 1.6 release table above.
+
+Last edited: 12 May 2022 10:32 am

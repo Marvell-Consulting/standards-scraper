@@ -27,7 +27,7 @@ Stage	Implementation
 Key documents	
 Specification (Amd 27/2017)
 Specification - Change Paper (Amd 27/2017)
-Implementation Guidance (Amd 27/2017)
+Implementation Guidance (Amd 27/2017) [Archive Content]
 Implementation Guidance - Change Paper (Amd 27/2017)
 Information Standards Notice (Amd 27/2017)
 
@@ -41,8 +41,8 @@ Release number	Amd 8/2013
 Release title	Initial Standard
 Stage	Retirement
 Key documents	
-Specification (Amd 8/2013)
-Implementation Guidance (Amd 8/2013)
+Specification (Amd 8/2013) [Archive Content]
+Implementation Guidance (Amd 8/2013) [Archive Content]
 Information Standards Notice (Amd 8/2013)
 
 Supporting documents	
@@ -50,4 +50,4 @@ NHS Data Model and Dictionary Change Request 1475 (Amd 8/2013)
 
 Further information	Accessible Information web pages
 
-Last edited: 1 November 2018 3:18 pm
+Last edited: 12 July 2022 10:19 am

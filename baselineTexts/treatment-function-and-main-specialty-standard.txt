@@ -50,11 +50,11 @@ Key documents
 Information Standards Notice (Amd 17/2012)
 Specification (Amd 17/2012)
 Change Request (Amd 17/2012)
-Technical Specification (Amd 17/2012)
+Technical Specification (Amd 17/2012) [Archive Content]
 
 Supporting documents 	
 NHS Data Model and Dictionary Change Request 1286 (Amd 17/2012)
-Guidance (Amd 17/2012)
+Guidance (Amd 17/2012) [Archive Content]
 Maintenance Plan (Amd 17/2012)
 Treatment Function Maintenance Group Terms of Reference (Amd 17/2012)
 Treatment Function Maintenance Group Acceptance Criteria (Amd 17/2012)

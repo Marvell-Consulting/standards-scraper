@@ -1,0 +1,62 @@
+DCB0011: Mental Health Services Data Set
+
+The Mental Health Services Data Set (MHSDS) is a national data set, covering mental health and learning disabilities.
+
+Page contents
+Top of page
+About this information standard
+Current release
+Previous releases
+Updates
+About this information standard
+
+The Mental Health Services Data Set (MHSDS) is a patient level, output based, secondary uses data set which aims to deliver robust, comprehensive, nationally consistent and comparable person-based information for children, young people and adults who are in contact with services for mental health and wellbeing, learning disability, autism or other neurodevelopmental conditions.  As a secondary uses data set it re-uses clinical and operational data for purposes other than direct patient care. It defines the data items, definitions and associated value sets to be extracted or derived from local information systems.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the other listed documents provide further detail for those who have to implement the information standard.
+
+Current release
+Version 5.0
+Release date	08/04/2021 (updated 6 August 2021, 7 January 2022)
+Release number	Amd 29/2020
+Stage	Implementation
+Key documents	
+Change Specification v1.1 (Amd 29/2020) (August 2021)
+Requirements Specification (Amd 29/2020)
+Implementation Guidance (Amd 29/2020)
+Information Standards Notice (Amd 29/2020)
+Corrigendum (Amd 29/2020) (August 2021)
+Second Corrigendum (Amd 29/2020) (January 2022) 
+
+Supporting documents	
+Data Set Specification v1.2 (Amd 29/2020) (January 2022) [Archive Content]
+NHS Data Model and Dictionary Change Request 1856 v1.0 (Amd 29/2020) (Basic CR) (January 2022)
+NHS Data Model and Dictionary Change Request 1768 v2.0 (Amd 29/2020) (Basic CR) (August 2021)
+NHS Data Model and Dictionary Change Request 1768 v2.0 (Amd 29/2020) (Data Set CR) (August 2021)
+
+Further information	NHS Digital MHSDS web pages
+Previous releases
+Version 4.1
+Release date	09/10/2019
+Release number	Amd 43/2019
+Stage	Maintenance
+Key documents	
+Change Specification (Amd 43/2019)
+Requirements Specification (Amd 43/2019)
+Implementation Guidance (Amd 43/2019)
+Information Standards Notice (Amd 43/2019)
+
+Supporting documents	
+Data Set Specification (Amd 43/2019) [Archive Content]
+NHS Data Model and Dictionary Change Request - 1732 (Basic CR) (Amd 43/2019)
+NHS Data Model and Dictionary Change Request - 1732 (Data Set CR) (Amd 43/2019)
+NHS Digital Data Provision Notice
+
+Documentation from previous releases are available on request from standards.assurance@nhs.net 
+
+Updates
+
+Update 7 January 2022: Publication of second Corrigendum in respect of Version 5.0, supported by changes to the Data Set Specification (uplifted to document version 1.2). See Second Corrigendum above for full details.
+
+Update 6 August 2021: Publication of Corrigendum in respect of Version 5.0, supported by changes to Change Specification and Data Set Specification (both uplifted to document version 1.1). See Corrigendum above for full details.
+
+Last edited: 22 February 2022 2:59 pm

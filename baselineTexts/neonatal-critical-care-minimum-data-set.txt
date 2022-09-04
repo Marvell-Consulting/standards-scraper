@@ -1,0 +1,33 @@
+SCCI0075: Neonatal Critical Care Minimum Data Set (version 2)
+
+The primary purpose of the NCCMDS is to allow the operation of the National Tariff Payment System (NTPS) within neonatal critical care.
+
+Page contents
+Top of page
+About this information standard
+Releases
+About this information standard
+
+The Neonatal Critical Care Minimum Data Set (NCCMDS) provides a record of what happens to a patient when they receive neonatal critical care in a Neonatal Intensive Care Unit (NICU), Maternity Ward or Neonatal Transitional Care Ward. 
+
+The primary purpose of the NCCMDS is to allow the operation of the National Tariff Payment System (NTPS) within neonatal critical care. It supports the NTPS by specifying and facilitating the capture of data needed to generate a Neonatal Critical Care Healthcare Resource Group (HRG) for each calendar day (or part thereof) of a period of neonatal critical care.
+
+This information standard is maintained by the National Casemix Office within NHS Digital. It is related to SCCI0076 Paediatric Critical Care Minimum Data Set, in that it shares common fields and values, including an agreed list of Critical Care Activity Codes.
+
+An Information Standards Notice (see release table below) provides an overview of scope and implementation timescales, and the Specification and Implementation Documents provide further detail for those who have to implement the information standard.
+
+Releases
+Release date	07/09/2016
+Release number	Amd 112/2015
+Release title	Version 2.0
+Stage	Implementation
+Key documents	
+Requirements Specification (Amd 112/2015)
+Implementation Guidance (Amd 112/2015)
+Change Specification (Amd 112/2015) [Archive Content]
+Information Standards Notice (Amd 112/2015)
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request 1545 Changes (Amd 112/2015)
+
+Last edited: 5 November 2018 10:49 am

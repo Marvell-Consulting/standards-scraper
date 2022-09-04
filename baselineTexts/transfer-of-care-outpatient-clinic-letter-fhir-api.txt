@@ -1,46 +1,53 @@
-Transfer of Care Outpatient Clinic Letter - FHIR API
+Transfer of Care Outpatient Clinic Letter - FHIR
 
 Create and transmit documents containing Transfer of Care information following an outpatient consultation in a clinic.
 
 Page contents
 Top of page
 Overview
-API status
+Status
 Service level
 Technology
 Interactions
 Overview
+Outpatient clinic system
+MESH
+NHS healthcare systems
+send outpatient clinic letter
+receive outpatient clinic letter
 
-Use this API to create and transmit documents containing Transfer of Care information following an outpatient consultation in a clinic.
+ 
+
+Use this integration to create and transmit documents containing Transfer of Care information following an outpatient consultation in a clinic.
 
 An Outpatient Clinic Letter (also known as an ITK3 Outpatient Letter) is an ITK3 FHIR document containing Transfer of Care information from the hospital to the patient's GP and other relevant parties following a consultation in a clinic.
 
 For example, a patient suffering from double vision is referred to an eye hospital and subsequently attends their outpatient appointment. Investigations indicate hypertropia, and the ophthalmologist recommends glasses fitted with prisms for treatment. The ophthalmologist completes and sends an Outpatient Clinic Letter to her GP.
 
-For more details see the Transfer of Care FHIR API.
+This integration uses MESH to send and receive messages. It is part of a suite of Transfer of Care FHIR specifications.
 
-Before you begin any development work using these API standards, contact us to discuss your best options.
+Before you begin any development work using this integration, contact us to discuss your best options.
 
-API status
+Status
 
-This API is stable.
+This integration is stable.
 
 Service level
 
-This API uses MESH which is a silver service, meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+This integration uses MESH which is a silver service, meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
 
 For more details, see service levels.
 
 Technology
 
-This API is a FHIR API.
+This integration uses MESH to send and receive messages.
 
-For more details, see FHIR.
+The message payload conforms to the FHIR global standard for health care data exchange. Specifically, it conforms to FHIR STU3 and to our ITK3 Messaging Distribution standard.
 
 Interactions
 
-For the latest interactions for this API, see the live implementable specification versions of the Transfer of Care FHIR API.
+For details of the interactions for this integration, see Transfer of Care message specifications.
 
 For details on the general structure of the interactions, see FHIR.
 
-Last edited: 26 May 2022 4:42 pm
+Last edited: 21 July 2022 9:52 am

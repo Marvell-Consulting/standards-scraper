@@ -18,8 +18,8 @@ Release number	Amd 13/2013
 Release title	Conversion under the Health and Social Care Act 2012
 Stage	Implementation
 Key documents	
-Requirement Specification (Amd 13/2013) 
-Implementation Guidance (Amd 13/2013)
+Requirement Specification (Amd 13/2013) [Archive Content] 
+Implementation Guidance (Amd 13/2013) [Archive Content]
 Information Standards Notice (Amd 13/2013)
 
 Guidance documents	Further information about dm+d is available on the website of NHS Prescription Services

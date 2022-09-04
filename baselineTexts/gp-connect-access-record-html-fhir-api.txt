@@ -36,7 +36,7 @@ Who can use this API
 
 This API can be used by developers of clinical systems that support clinicians delivering direct care.
 
-Before you start development, read the GP Connect API v0.7.3 specification and the prerequisites listed below.  
+Before you start development, read the GP Connect API v0.7.4 specification and the prerequisites listed below.  
 
 Prerequisites
 Technical
@@ -69,7 +69,7 @@ Personal Demographics Service - FHIR API  – use this API to look up the regi
 Spine Directory Service - FHIR API  – access accredited system information and messaging endpoint details
 API status
 
-This API (v0.7.3) is stable.
+This API (v0.7.4) is stable.
 
 It might not be fully supported by all providing systems. See GP Connect supplier progress for details of provider rollout.
 
@@ -154,8 +154,8 @@ Start your development work within 6 months of use case approval. If you miss t
 
 Interactions
 
-For a full list of interactions for this API, see GP Connect API v0.7.3.
+For a full list of interactions for this API, see GP Connect API v0.7.4.
 
 For details on the general structure of the interactions, see FHIR.
 
-Last edited: 26 May 2022 4:15 pm
+Last edited: 7 June 2022 2:18 pm

@@ -1,46 +1,54 @@
-Transfer of Care Mental Health Discharge - FHIR API
+Transfer of Care Mental Health Discharge - FHIR
 
 Create and transmit documents containing Transfer of Care information supporting a mental health discharge.
 
 Page contents
 Top of page
 Overview
-API status
+Status
 Service level
 Technology
 Interactions
 Overview
+Inpatient or day case system
+MESH
+GP system
+send mental
+health adult discharge summary
+receive mental health adult discharge summary
 
-Use this API to create and transmit documents containing Transfer of Care information supporting a mental health discharge.
+ 
+
+Use this integration to create and transmit documents containing Transfer of Care information supporting a mental health discharge.
 
 An Inpatient and Day Case Discharge Summary (Mental Health) Document (also known as an ITK3 Mental Health Discharge) is an ITK3 FHIR document containing Transfer of Care information supporting a mental health adult discharge summary to a GP practice.
 
 For example, following an apparent overdose, a patient is admitted to a psychiatric ward for evaluation and treatment which is successful. He is discharged and the consultant sends a copy of the Mental Health Discharge to his GP.
 
-For more details see the Transfer of Care FHIR API.
+This API is a messaging API which uses MESH to send and receive messages. It is part of a suite of Transfer of Care FHIR message specifications.
 
-Before you begin any development work using this API, contact us to discuss your best options.
+Before you begin any development work using this integration, contact us to discuss your best options.
 
-API status
+Status
 
-This API is stable.
+This integration is stable.
 
 Service level
 
-This API uses MESH which is a silver service,  meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+This integration uses MESH which is a silver service,  meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
 
 For more details, see service levels.
 
 Technology
 
-This API is a FHIR API.
+This integration uses MESH to send and receive messages.
 
-For more details, see FHIR.
+The message payload conforms to the FHIR global standard for health care data exchange. Specifically, it conforms to FHIR STU3 and to our ITK3 Messaging Distribution standard.
 
 Interactions
 
-For the latest interactions for this API, see the live implementable specification versions of the Transfer of Care FHIR API.
+For details of the interactions for this integration, see Transfer of Care message specifications.
 
 For details on the general structure of the interactions, see FHIR.
 
-Last edited: 26 May 2022 4:41 pm
+Last edited: 21 July 2022 9:51 am
