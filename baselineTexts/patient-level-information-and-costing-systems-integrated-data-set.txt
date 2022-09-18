@@ -1,0 +1,154 @@
+Patient-Level Information and Costing Systems
+
+Two information standards for patient-level costing, to provide a consistent approach to reporting cost information at patient level.
+
+Page contents
+Top of page
+About these information standards
+Current releases
+Previous releases
+Updates
+About these information standards
+
+These information standards support the implementation of NHS England and NHS Improvement's Patient Costing Transformation programme which is intended to deliver:
+
+better benchmarking of costs and patient pathways, enabling a reduction in unwarranted variation
+better understanding of patient pathways, supporting the introduction of more effective care models
+an improvement in accuracy of the national tariff and local prices, helping to strengthen efficiency incentives.
+
+The information standards mandate providers of acute, ambulance, mental health, Improving Access to Psychological Therapies (IAPT) and community services within England to submit patient-level activity and financial data to NHS Digital, acting on behalf of NHS England and NHS Improvement.
+
+For the 2021-2022 financial year, 2 standards have been approved:
+
+DAPB4001 Ambulance
+DAPB4000 Integrated
+covering acute, mental health, Improving Access to Psychological Therapies (IAPT) and community services.
+
+These information standards are published under section 250 of the Health and Social Care Act 2012.  An Information Standards Notice for each standard (see below) provides an overview of scope and implementation timescales, and the other documents provide further detail for those who have to implement the information standards.
+
+In the event of issues or questions about any of these standards, please contact the developers at NHS England and NHS Improvement: costing@england.nhs.uk
+
+Current releases
+DAPB4001 Ambulance
+Release date	28 June 2022
+Release number	Amd 21/2022
+Key documents	
+Specification (Amd 21/2022)
+Change Specification (Amd 21/2022)
+Implementation Guidance (Amd 21/2022)
+Information Standards Notice (Amd 21/2022)
+
+ 
+
+
+Further information	
+
+Approved Costing Guidance (ACG) on the NHS England and NHS Improvement website.
+
+Guidance on the PLICS data collection on the NHS Digital website. 
+
+ 
+
+DAPB4000 Integrated
+Release date	28 June 2022 
+Release number	Amd 20/2022
+Key documents	
+Specification (Amd 20/2022)
+Change Specification (Amd 20/2022)
+Implementation Guidance (Amd 20/2022)
+Information Standards Notice (Amd 20/2022)
+
+ 
+
+
+Further information	
+
+Approved Costing Guidance (ACG) on the NHS England and NHS Improvement website.
+
+Guidance on the PLICS data collection on the NHS Digital website. 
+
+Previous releases
+DAPB4001 Ambulance
+Release date	13 August 2021
+Release number	Amd 17/2021
+Key documents	
+Information Standards Notice (superseded) (Amd 17/2021)
+Information Standards Notice Version 1.1 (Amd 17/2021)
+Change Specification (Amd 17/2021)
+Specification (Amd 17/2021)
+Implementation Guidance (Amd 17/2021)
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request 1817 (covers both Ambulance and Integrated)
+NHS Data Model and Dictionary Change Request 1817 (Full) (covers both Ambulance and Integrated)
+
+ 
+
+DCB2123-02 Ambulance
+Release date	16 December 2020
+Release number	Amd 38/2020
+Key documents	
+Standard Specification (Amd 38/2020)
+Implementation Guidance (Amd 38/2020)
+Information Standards Notice (Amd 38/2020)
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request 1774 (Basic CR) (Amd 38/2020)
+NHS Data Model and Dictionary Change Request 1774 (Data Set CR) (Amd 38/2020)
+
+ 
+
+DAPB4000 Integrated
+Release date	13 August 2021
+Release number	Amd 15/2021
+Key documents	
+Information Standards Notice (superseded) (Amd 15/2021)
+Information Standards Notice Version 1.1 (Amd 15/2021)
+Specification (Amd 15/2021)
+Implementation Guidance (Amd 15/2021)
+
+Supporting documents	
+ NHS Data Model and Dictionary Change Request 1817 (covers both Ambulance and Integrated)
+NHS Data Model and Dictionary Change Request 1817 (Full) (covers both Ambulance and Integrated)
+ 
+DCB2123 Acute
+Release date	26/06/2020
+Release number	Amd 90/2019
+Key documents	
+Information Standards Notice (Amd 90/2019)
+Change Specification (Amd 90/2019)
+Standard Specification (Amd 90/2019)
+Implementation Guidance (Amd 90/2019)
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request 1759 (Basic CR) (Amd 90/2019)
+NHS Data Model and Dictionary Change Request 1759 (Data Set CR) (Amd 90/2019)
+ 
+DCB2123-03 Mental Health 
+Release date 	16 December 2020
+Release number	Amd 39/2020
+Key documents 	
+Standard Specification (Amd 39/2020)
+Implementation Guidance (Amd 39/2020)
+Information Standards Notice (Amd 39/2020)
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request 1797 (Basic CR) (Amd 39/2020)
+NHS Data Model and Dictionary Change Request 1797 (Data Set CR) (Amd 39/2020)
+ 
+DCB2123-04 Improving Access to Psychological Therapies (IAPT)
+Release date	16 December 2020
+Release number	Amd 40/2020
+Key documents	
+Standard Specification (Amd 40/2020)
+Implementation Guidance (Amd 40/2020)
+Information Standards Notice (Amd 40/2020)
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request 1778 (Basic CR) (Amd 40/2020)
+NHS Data Model and Dictionary Change Request 1778 (Data Set CR) (Amd 40/2020)
+Updates
+
+7 October 2021: Version 1.1 of the Information Standards Notices for both Ambulance (Amd 17/2021) and Integrated (Amd 15/2021) have been issued to note a change to the submission window which will now close on 26 November 2021 (extended from 29 October 2021).
+
+Last edited: 28 June 2022 1:39 pm

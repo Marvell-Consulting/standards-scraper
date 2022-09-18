@@ -26,10 +26,12 @@ Royal College of Speech and Language Therapists
 Royal College of Surgeons
 Royal Pharmaceutical Society
 The standard
+
 Clinical referral information standard
 
 Version 1.1 (Dec 17 2019)
-The standard has been updated in-line with new PRSB digital medications information assurance.
+The standard has been updated in-line with new PRSB digital medications information assurance .
+
 
 
 

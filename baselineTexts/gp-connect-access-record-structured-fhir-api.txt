@@ -58,13 +58,11 @@ Retrieving documents
 
 To retrieve documents from a patient’s registered GP practice, use GP Connect Access Document - FHIR API. After you've found the relevant document references within Access Record returns, use GP Connect Access Document to retrieve the documents. All documents can be requested separately.
 
-For more details, see the Access Document part of the Access Record: Structured specification.
-
 Who can use this API
 
 This API can be used by developers of clinical systems that support clinicians delivering direct care.
 
-Before you start development, read the GP Connect API 1.5.0-beta specification and the prerequisites listed below.  
+Before you start development, read the GP Connect API 1.5.1-beta specification and the prerequisites listed below.  
 
 Prerequisites
 Technical
@@ -100,7 +98,7 @@ Personal Demographics Service - HL7 V3 API  – use this if you want to use f
 Spine Directory Service - FHIR API  – access accredited system information and messaging endpoint details
 API status and roadmap
 
-The current working version is 1.5.0, which is in beta and available to all consumers, subject to an approved use case and onboarding process. As well as medications and allergies, version 1.5.0 includes the majority of the clinical record.
+The current working version is 1.5.1, which is in beta and available to all consumers, subject to an approved use case and onboarding process. As well as medications and allergies, version 1.5.1 includes the majority of the clinical record. It also includes the ability to access deceased patients' documents.
 
 It does not include:
 
@@ -109,13 +107,15 @@ flags and alerts
 templates
 test requests
 
-Read the specification for the exact details.
+Read the specification for the exact details.
 
-It may not be fully supported by all providing systems. See GP Connect supplier progress for details of provider rollout.
+It may not be fully supported by all providing systems. See GP Connect supplier progress for details of provider rollout.
+
+The previous version (1.5.0) does not include the ability to access deceased patients' documents, but is available for system suppliers who have started to develop against it.
 
 Roadmap
 
-The next planned version is 1.6.0, which is currently in beta. The 1.6.0 specification contains the full scope of 1.5.0, but additionally it introduces a new message to support GP2GP transactions. It is important to understand that the GP2GP transactions do not affect the consumer build. 1.6.0 will be backward compatible with the 1.5.0 specification.
+The next planned version is 1.6.0, which is currently in beta. The 1.6.0 specification contains the full scope of 1.5.1, but additionally it introduces a new message to support GP2GP transactions. It is important to understand that the GP2GP transactions do not affect the consumer build. 1.6.0 will be backward compatible with the 1.5.1 specification.
 
 Service level
 
@@ -234,7 +234,7 @@ For more information, see Clinical assurance process details.
 
 Interactions
 
-For a full list of interactions for this API, see GP Connect API v1.5.0-beta, which contains Access Record: Structured.
+For a full list of interactions for this API, see GP Connect API v1.5.1-beta, which contains Access Record: Structured.
 
 For details on the general structure of the interactions, see FHIR.
 
@@ -260,4 +260,4 @@ Hazard log
 
 The GP Connect Access Record: Structured generic hazard log shows you the clinical risks of using GP Connect functionality through a consumer system. Use it to identify the clinical risks of consuming clinical data and presenting it in your system, and record these in your own system-specific hazard log. If necessary, take mitigating action to ensure clinical safety.
 
-Last edited: 26 May 2022 3:28 pm
+Last edited: 24 June 2022 11:04 am

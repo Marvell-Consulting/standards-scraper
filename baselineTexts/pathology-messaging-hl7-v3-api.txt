@@ -1,13 +1,13 @@
-Pathology Messaging - HL7 V3 API
+Pathology Messaging - HL7 V3
 
 Request laboratory tests and send the results back to the requester, usually the patient's GP or consultant.
 
 Page contents
 Top of page
 Overview
-Who can use this API
+Who can use this
 Related APIs
-API status
+Status
 Service level
 Technology
 Network Access
@@ -17,43 +17,45 @@ Onboarding
 Interactions
 Overview
 
-Use this API to request laboratory tests and send the results back to the requester, usually the patient's GP or consultant. Results can also be copied to other healthcare providers for information.
+Use this integration to request laboratory tests and send the results back to the requester, usually the patient's GP or consultant. Results can also be copied to other healthcare providers for information.
 
 One request can lead to several results reports and each report is complete in its own right. If incomplete reports are issued, a final report carries all the reported information, replacing the originals entirely.
 
-This API is not widely adopted - it is only used as part of the NHS Newborn Blood Spot (NBS) Screening Programme which involves a limited number of pathology laboratories. Pathology Messaging - EDIFACT API supports most of the pathology interactions.
+This integration is not widely adopted - it is only used as part of the NHS Newborn Blood Spot (NBS) Screening Programme which involves a limited number of pathology laboratories. Pathology Messaging - EDIFACT API supports most of the pathology interactions.
 
-This API will be superseded by the Pathology Messaging - FHIR API.
+This integration will be superseded by the Pathology Messaging - FHIR API.
 
-Who can use this API
+Who can use this
 
-This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development.
+This integration can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development.
 
 You must do this before you can go live (see ‘Onboarding’ below).
 
 Related APIs
 
-The following APIs are also related to this API:
+The following APIs and integrations are similar to this one:
 
-Message Exchange for Social Care and Health (MESH) API - use this API to transfer messages securely across health and social care organisations
+Digital Child Heath - FHIR API - use this API to create, update or delete a record of a blood spot test outcome, newborn hearing test or Newborn and Infant Physical Examination (NIPE) outcome
 
-Pathology Messaging - EDIFACT API - use this API to send pathology results from pathology laboratories to the requestor, using UN/EDIFACT based messages sent over MESH
+Message Exchange for Social Care and Health (MESH) API - use this to transfer messages securely across health and social care organisations
 
-Pathology Messaging - FHIR API - use this API to request chemical pathology results from a Laboratory Information Management System (LIMS) to NHS primary or secondary care settings.
+Pathology Messaging - EDIFACT - use this to send pathology results from pathology laboratories to the requestor, using UN/EDIFACT based messages sent over MESH
 
-API status
+Pathology Messaging - FHIR - use this to request chemical pathology results from a Laboratory Information Management System (LIMS) to NHS primary or secondary care settings.
 
-This API is stable and has been in a V1.2 draft state since 2008. 
+Status
+
+This integration is stable and has been in a V1.2 draft state since 2008. 
 
 Service level
 
-This API is a platinum service, meaning it is operational and supported 24 x 7 x 365.
+This integration is a platinum service, meaning it is operational and supported 24 x 7 x 365.
 
 For more details, see service levels.
 
 Technology
 
-This API is an HL7 V3 API and uses asynchronous interactions, using HL7 V3 ebXML messaging.
+This integration meets HL7 V3 standard and uses asynchronous interactions, using HL7 V3 ebXML messaging.
 
 For more details, see HL7 V3.
 
@@ -65,14 +67,14 @@ It makes it easier to connect to the NHS Spine and perform business operations b
 
 Network Access
 
-You need a Health and Social Care Network (HSCN) connection to use this API.
+You need a Health and Social Care Network (HSCN) connection to use this integration.
 
 For more details, see Network access for APIs.
 
 Security and authorisation
 Authentication
 
-This API is user-restricted, meaning an end user must be present and authenticated to use it.
+This integration is user-restricted, meaning an end user must be present and authenticated to use it.
 
 The end user must be:
 
@@ -86,22 +88,22 @@ Authorisation
 
 For some activities, the end user must be authorised to perform that activity.
 
-The API itself does not perform any authorisation checks. Rather, the calling system is expected to perform them. The authorisation rules are specified in our national Role Based Access Control (RBAC) database.
+The integration itself does not perform any authorisation checks. Rather, the calling system is expected to perform them. The authorisation rules are specified in our national Role Based Access Control (RBAC) database.
 
 For more details see our national Role Based Access Control (RBAC) database on the registration authorities and smartcards page.
 
 Environments and testing
 
-In order to perform end-to-end testing with the MHS Adaptor, you will require access to NHS Digital’s Path to Live environments.
+To perform end-to-end testing with the MHS Adaptor, you need access to NHS Digital’s Path to Live environments.
 
 Onboarding
 
 You must get your software onboarded before it can go live.
 
-Contact us before onboarding with this API. It uses the Common Assurance Process (CAP) which is tailored for each NHS service.
+Contact us before onboarding with this integration. It uses the Common Assurance Process (CAP) which is tailored for each NHS service.
 
 Interactions
 
-For a full list of interactions for this API, see the Laboratory section in the Spine Message Implementation Manual (MIM). 
+For a full list of interactions for this integration, see the Laboratory section in the Spine Message Implementation Manual (MIM). 
 
-Last edited: 26 May 2022 4:28 pm
+Last edited: 24 August 2022 5:26 pm
