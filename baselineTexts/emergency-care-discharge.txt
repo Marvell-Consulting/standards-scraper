@@ -19,6 +19,7 @@ Royal Pharmaceutical Society
 Institute of Health Records and Information Management
 Tech UK
 The Standard
+
 Emergency care discharge summary standard
 
 Release Notes V2.1
@@ -36,7 +37,9 @@ Transfers or care safety case report
 Transfers of care hazard log
 Final report – Emergency Care discharge standard
 Transfer of care FHIR specifications
+
 Example letters
+
 Emergency Care Example Letter 1
 Emergency Care Example Letter 2
 Emergency Care Example Letter 3

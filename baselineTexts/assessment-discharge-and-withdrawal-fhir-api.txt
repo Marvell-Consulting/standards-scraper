@@ -1,13 +1,13 @@
-Assessment Discharge and Withdrawal - FHIR API
+Assessment Discharge and Withdrawal - FHIR
 
 Support transfer of care from hospital to social services for patients with care and support needs.
 
 Page contents
 Top of page
 Overview
-Who can use this API
+Who can use this
 Related APIs
-API status
+Status
 Service level
 Technology
 Network access
@@ -17,11 +17,22 @@ Onboarding
 Interactions
 Additional guidance
 
-This specification is under review following changes to discharge process guidance during 2020 to reflect Discharge to Assess (D2A). Contact enquires@nhsdigital.nhs.uk if you have any questions.
+This integration is deprecated, but we do not have any plans to retire it.
+
+For more details, see the status.
 
 Overview
+Hospital system
+MESH
+Social services
+send admission, assessment, discharge and withdrawal notices 
+receive admission,
+assessment, discharge
+ and withdrawal notices
 
-Use this API to support transfer of care from hospital to social services for patients with care and support needs, as described in the Care Act 2014. It enables the exchange of structured information between hospitals and social care organisations.
+ 
+
+Use this integration to support transfer of care from hospital to social services for patients with care and support needs, as described in the Care Act 2014. It enables the exchange of structured information between hospitals and social care organisations.
 
 You can send:
 
@@ -29,44 +40,55 @@ hospital assessment notices to inform social services that an assessment of a p
 hospital discharge notices to confirm a patient's proposed discharge date
 withdrawal notices to withdraw a previous assessment or discharge notice
 
-You can also send an admissions notice with this API so a hospital can inform social services that a patient has been admitted.
+You can also send an admissions notice with this integration so a hospital can inform social services that a patient has been admitted.
+
+This is a messaging integration which uses MESH to send and receive messages.
 
 Information Standard SCCI2075 defines the minimum data sets that you must use for Assessment, Discharge and Withdrawal (ADW) notices. There is also additional message guidance on the implementation and use of ADW FHIR messages and some divergences from this ADW Information Standard.
 
 For more details see Assessment Discharge and Withdrawal - FHIR API.
 
-Before you begin any development work using this API, contact us to discuss your best options.
+This integration is deprecated. Do not begin any development work using this API.
 
-Who can use this API
+Who can use this
 
-This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. 
+This integration can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. 
 
 You must have made this request before you can go live (see 'Onboarding' below).
 
 Related APIs
 
-The following APIs are related to this one:
+The following API is related to this integration:
 
 Message Exchange for Social Care and Health (MESH) API - use this API to transfer messages and large files securely across health and social care organisations
-API status
+Status
 
-This API is in beta.
+This integration is deprecated, meaning:
+
+new integrations are not allowed
+we will not make any updates to it
+it is still available for use
+service levels still apply
+
+We do not have any plans to retire it.
+
+This specification is deprecated following changes to the discharge process guidance during 2020 to reflect Discharge to Assess (D2A). If you have any concerns, contact enquires@nhsdigital.nhs.uk.
 
 Service level
 
-This API uses MESH which is a silver service, meaning it is operational  24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+This integration uses MESH which is a silver service, meaning it is operational  24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
 
 For more details, see service levels.
 
 Technology
 
-This API is a FHIR API. Specifically, it sends a DSTU2 payload over MESH.
+This integration sends a FHIR DSTU2 payload over MESH.
 
 For more details, see FHIR.
 
 Network access
 
-You can access this API via:
+You can access this integration via:
 
 the Health and Social Care Network (HSCN)
 the internet
@@ -75,17 +97,21 @@ For more details, see Network access for APIs.
 
 Security and authorisation
 
-This API uses MESH which is an application-restricted API.
+This integration uses MESH which is an application-restricted API.
 
-The API does not perform any end user authentication or authorisation checks. Rather, the calling system is expected to perform them. The authorisation rules are specified in our national Role Based Access Control (RBAC) database.
+This integration does not perform any end user authentication or authorisation checks. Rather, the calling system is expected to perform them. The authorisation rules are specified in our national Role Based Access Control (RBAC) database.
 
 For more details see our national Role Based Access Control (RBAC) database on the registration authorities and smartcards page.
 
 Environments and testing
 
-This API uses MESH.
+This integration uses MESH.
 
 We have developed an ADW-MESH validator to help you check your messages are valid when sending ADW messages over the MESH transport.
+
+Additionally, use the following validator to implement this integration:
+
+Interoperability Toolkit (ITK) ADW MESH validator - use this validator to ensure that the constructed messages are valid according to ITK FHIR schemas and requirements
 
 As a developer, you are most likely to want to connect to MESH using either the MESH client or the MESH API.
 
@@ -95,18 +121,29 @@ For the MESH API, there are several independent, externally accessible instances
 
 Onboarding
 
-You need to get your software approved by us before it can go live with this API. We call this onboarding. The onboarding process can sometimes be quite long, so it’s worth planning well ahead.
-
-To onboard for this API, follow the Supplier Conformance Assessment List (SCAL) process.
+This integration is deprecated and is not available for new onboarding.
 
 Interactions
 
-For a full list of interactions for this API, see Social Care Assessment, Discharge and Withdrawal.
+For a full list of interactions for this integration, see Social Care Assessment, Discharge and Withdrawal.
 
 This FHIR messaging specification is based on and is intended to be used alongside the FHIR DSTU2 specification, published in September 2015.
 
+The following MESH workflow IDs are used to send the admission, assessment, discharge and withdrawal notifications in England:
+
+Scenario	From	To	MESH Workflow ID
+Send admission notice 	Hospital systems	Social care service systems	SOCCARE_ADMISSN_NTC
+Send assessment notice	Hospital systems	Social care service systems	SOCCARE_ASSESS_NTC
+Send assessment notice accepted response 	Social care service systems	Hospital systems	SOCCARE_ASSESS_NTC__ACPT
+Send assessment notice rejected response	Social care service systems	Hospital systems	SOCCARE_ASSESS_NTC_RJT
+Send discharge notice	Hospital systems	Social care service systems	SOCCARE_DISCH_NTC
+Send discharge notice accepted response	Social care service systems	Hospital systems	SOCCARE_DISCH_NTC_ACPT
+Send assessment notice rejected response	Social care service systems	Hospital systems	SOCCARE_DISCH_NTC_RJT
+Send withdrawal notice	Hospital systems	Social care service systems	SOCCARE_WDRAW_NTC
+Send withdrawal notice accepted response	Social care service systems	Hospital systems	SOCCARE_WDRAW_NTC_ACPT
+Send withdrawal notice rejected response	Social care service systems	Hospital systems	SOCCARE_WDRAW__NTC_RJT
 Additional guidance
 
-For additional guidance on interactions for this API, see the Social care DMS - additional messaging guidance.
+For additional guidance on interactions for this integration, see the Social care DMS - additional messaging guidance.
 
-Last edited: 26 May 2022 3:10 pm
+Last edited: 8 September 2022 12:49 pm
