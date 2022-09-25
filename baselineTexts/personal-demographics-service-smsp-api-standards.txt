@@ -1,0 +1,150 @@
+Personal Demographics Service - SMSP API standards
+
+Become a Spine Mini Service Provider giving access to patients' personal information, such as name, address, date of birth, related people, registered GP and NHS number, using our Spine Mini Service Provider (SMSP) API standards.
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status
+Technology
+Network access
+Security and authorisation
+Environments and testing
+Onboarding
+Interactions
+Downloads
+
+This page describes our PDS SMSP API standards. They are under review and we're considering deprecating them. If you have any concerns, contact us.
+
+For our own NHS Digital operated PDS SMSP API service, see Personal Demographics Service - SMSP API.
+
+Overview
+
+Become a Spine Mini Service Provider giving access to the Personal Demographics Service (PDS), using our Spine Mini Service Provider (SMSP) API standards. PDS is the national electronic database of NHS patient details such as name, address, date of birth, related people, registered GP and NHS number.
+
+Your commercially available Spine Mini Service Providers (SMSP) product will give access to PDS for your SMSP clients. We will list your SMSP provider service along with other conforming software products in our Conformance Catalogue.
+
+Before you begin any development work using these API standards, contact us to discuss your best options.
+
+Your SMSP clients can:
+
+verify a patient's NHS number
+retrieve a patient's details
+search for patient details
+
+Your SMSP clients cannot:
+
+update patient details
+create a new record for a birth
+receive birth notifications
+create a new record for a new patient
+register a new patient at a GP Practice - use National Health Application and Infrastructure Services (NHAIS) instead
+
+These API standards:
+
+do not require the SMSP client end user to be strongly authenticated with a smartcard
+only return a result from a search if there is a single, unique match - it does not return multiple matches
+Who can use this API
+
+These API standards can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development.  To do this, make a PDS access request. 
+
+You must do this before you can go live (see ‘Onboarding’ below). 
+
+Related APIs
+
+The following APIs also give access to the Personal Demographics Service:
+
+Personal Demographics Service - FHIR API - use this newer API to search for patients, retrieve patients by NHS number and update patients
+Personal Demographics Service - HL7 V3 API - use this if you want to use functions that are not yet available on the FHIR API, such as creating a new record for a birth, receiving birth notifications, or creating a record for a new patient (except when registering a new patient at a GP Practice, use NHAIS). For birth notifications, another option is PDS Notifications FHIR API
+Personal Demographics Service - SMSP API - this API is now deprecated
+
+The following APIs are also related to these API standards:
+
+Organisation Data Service - FHIR API - use this to get full details for the organisations related to the patient, such as their registered GP or nominated pharmacy
+Organisation Data Service - ORD API - use this to access a searchable national repository of NHS Organisation Reference Data using an ORD interface
+API status
+
+These API standards are stable but under review.
+
+Technology
+
+These API standards are based on our Personal Demographics Service - HL7 V3 API but with a simplified read-only model. All interactions are synchronous.
+
+For more details, see HL7 V3.
+
+Network access
+
+You need a Health and Social Care Network (HSCN) connection to use these API standards.
+
+For more details, see Network access for APIs.
+
+Security and authorisation
+
+These API standards are application-restricted, meaning:
+
+the calling SMSP client application is authenticated - we do care who it is
+the SMSP client end user is not authenticated - we do not verify who it is or whether they are present
+
+In particular, these API standards use TLS-MA authentication.
+
+In addition, we require SMSP client calling applications to:
+
+authenticate end users locally with a minimum of user ID and password
+use role-based access control (RBAC) locally to control end user access to the patient data
+keep an audit trail locally of all accesses to patient data by end users
+Environments and testing
+
+You can test these API standards using our Path to Live environments.
+
+Onboarding
+
+You must get your software onboarded before it can go live.
+
+As part of onboarding, these API standards use the Target Operating Model (TOM) process, which is simpler than the traditional Common Assurance Process (CAP).
+
+Note that SMSP provider software assurance is required but we do not need to assure your SMSP clients.
+
+For more details, and to get a copy of the latest TOM forms to complete, contact the interoperability conformance team on itkconformance@nhs.net.
+
+Interactions
+
+For details of SMSP provider interactions, see the following downloads:
+
+SMSP Common Provider Requirements V1.1 - 23/09/2014 PDF
+PDS SMSP Provider Requirements V1.1 - 23/09/2014 PDF
+
+For details of SMSP client interactions, to share with your clients, see the following downloads:
+
+SMSP Common Client Requirements - 23/09/2014 PDF
+PDS SMSP Client Requirements V1.1 - 18/12/2014 PDF
+
+Both SMSP providers and SMSP clients need the same response codes:
+
+SMSP Response Codes - 24/07/2014 XLS
+Downloads
+
+These are PDF and Microsoft Excel files. To request a different format, contact us.
+
+SMSP Common Provider Requirements V1.1 - 23/09/2014 PDF
+
+PDF 718 KB
+
+PDS SMSP Provider Requirements V1.1 - 23/09/2014 PDF
+
+PDF 761 KB
+
+SMSP Common Client Requirements - 23/09/2014 PDF
+
+PDF 663 KB
+
+PDS SMSP Client Requirements V1.1 - 18/12/2014 PDF
+
+PDF 714 KB
+
+SMSP Response Codes - 24/07/2014 XLS
+
+XLSX 17 KB
+
+Last edited: 12 August 2022 12:40 pm

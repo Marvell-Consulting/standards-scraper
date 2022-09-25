@@ -4,6 +4,7 @@ The Core information standard defines a set of information that can potentially 
 
 In January 2021, PRSB was commissioned by NHSX to update the Core information standard from a conceptual information model to a logical model.
 
+
 What is new in V2.0?
 
 The updated Core information standard includes;
@@ -13,7 +14,14 @@ A clinical relationship model that links relationships within sections and eleme
 Aligns with many other published PRSB standards including Maternity, Healthy child and the Community pharmacy standard.
 Updates from the Social care programme including more detail of the services being provided to a person such as equipment and adaptions as well as vital About me content – the information a person wants to share with health and care professionals.
 Alignment with FHIR. We are working closely with the NHS Digital interoperability team to align V2.0 to the UK core R4 FHIR profiles. This is in progress and with work completed on many areas such as person demographics, allergies and adverse reactions, medications and medical devices.
- 
+
+Using the standard in five community settings: pharmacy, optometry, dentistry, ambulance and community services
+
+PRSB has extended the use of the Core information standard for shared care records to professionals working in pharmacy, optometry, dentistry, ambulance and community services, following widespread consultation with clinicians, people using these services and a range of PRSB stakeholders.
+
+This will ensure that professionals working in these care settings have access to the right information at the right time to provide clinically safe and effective care, subject to appropriate information governance controls. Using the standard in these settings should improve care and outcomes for people, and it should improve the working lives of professionals who won’t need to create workarounds or log into multiple systems to ensure they have a complete picture of a person’s current and relevant care history, before starting treatment.
+
+
 Endorsement
 
 The core information standard V1 is endorsed by the following organisations:
@@ -42,24 +50,19 @@ Royal College of Pathologists
 Royal College of Physicians
 Royal College of Speech and Language Therapists
 Royal College of Surgeons
-
-Renewed endorsement is in progress for v2.0 and will be published here once available.
-
-Core information standard v2.0
+View the Core information standard
 Supporting documentation
-Core information standard V2.0 logical model
-Core information standard implementation guidance V2.0
-Release notes V2.0
+Core information standard use in five community settings
+
 Clinical safety case report – publishing soon
 Core information standard V1 documentation
-Core information standard V1
-Final report V1
-Survey results V1
-Implementation guidance
-Clinical safety case report V1
-Hazard log V1
 IHRIM record correction guidance
 
 Despite vigilance when filing information in records, mistakes can occur. The Institute of Health Records and Information Management has guidance to support professionals in making corrections following errors.
 
 VIEW THE GUIDANCE
+Orion Health first to become conformant against the Core Information Standard
+
+Orion Health has been awarded the PRSB Quality Mark for conformance with the Core Information Standard – the first supplier to achieve this watershed on the journey to interoperable shared care records.
+
+READ MORE

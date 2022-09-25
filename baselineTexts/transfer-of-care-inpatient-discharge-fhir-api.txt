@@ -1,48 +1,53 @@
-Transfer of Care Inpatient Discharge - FHIR API
+Transfer of Care Inpatient Discharge - FHIR
 
 Create and transmit documents containing Transfer of Care information supporting an inpatient discharge.
 
 Page contents
 Top of page
 Overview
-API status
+Status
 Service level
 Technology
 Interactions
 Overview
+Inpatient or day case system
+MESH
+GP system
+send patient discharge summary
+receive patient discharge summary
 
-Use this API to create and transmit documents containing Transfer of Care information supporting an inpatient discharge.
+ 
+
+Use this integration to create and transmit documents containing Transfer of Care information supporting an inpatient and day case discharge.
 
 An Inpatient and Day Case Discharge Summary Document (also known as an ITK3 eDischarge) is an ITK3 FHIR document containing Transfer of Care information supporting inpatient and day case discharges typically between an acute hospital and a GP practice.
 
 For example, a patient attends hospital for elective hip replacement surgery and is discharged by her consultant after a couple of days. The consultant completes and sends an eDischarge document to her GP.
 
-For more details see the Transfer of Care FHIR API.
+This integration uses MESH to send and receive messages. It is part of a suite of Transfer of Care FHIR message specifications.
 
-Before you begin any development work using this API, contact us to discuss your best options.
+Before you begin any development work using this integration, contact us to discuss your best options.
 
-API status
+Status
 
-This API is stable.
+This integration is stable.
 
 Service level
 
-This API uses MESH which is a silver service,  meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+This integration uses MESH which is a silver service,  meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
 
 For more details, see service levels.
 
 Technology
 
-This API is a FHIR API.
+This integration uses MESH to send and receive messages.
 
-For more details, see FHIR.
+The message payload conforms to the FHIR global standard for health care data exchange. Specifically, it conforms to FHIR STU3 and to our ITK3 Messaging Distribution standard.
 
 Interactions
 
-For the latest interactions for this API, see the live implementable specification versions of the Transfer of Care FHIR API.
+For details of the interactions for this integration, see Transfer of Care message specifications.
 
 For details on the general structure of the interactions, see FHIR.
 
-Transfer of Care Inpatient Discharge - FHIR API
-
-Last edited: 26 May 2022 4:39 pm
+Last edited: 21 July 2022 9:50 am

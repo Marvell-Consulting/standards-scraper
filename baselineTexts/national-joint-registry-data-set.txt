@@ -1,0 +1,83 @@
+DCB1567 National Joint Registry Data Set
+
+The national data set for joint replacement surgery and joint replacement implants.
+
+Page contents
+Top of page
+About this information standard
+Current release
+About this information standard
+
+The National Joint Registry (NJR) has been in operation for 15 years and provides activity and outcome data about the orthopaedic sector.
+
+Hip, knee, ankle, elbow and shoulder joint replacements have become common operations, using a wide range of implants. The NJR helps to monitor the performance of these implants and the effectiveness of different types of surgery, improving clinical standards and benefiting patients, clinicians and the orthopaedic sector as a whole.
+
+The NJR is managed by the Healthcare Quality Improvement Partnership (HQIP) under a contract with NHS England as part of the delivery of the National Clinical Audit and Patient Outcomes Programme (NCAPOP).
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the other documents provide further detail for those who have to implement the information standard
+
+Current release
+
+Release date
+
+	
+
+08/06/2018
+
+
+
+
+Release number
+
+	
+
+Amd 66/2017
+
+
+
+
+Release title
+
+	
+
+Version 7
+
+
+
+
+Stage
+
+	
+
+Implementation
+
+
+
+
+Key documents
+
+	
+Change Specification (Amd 66/2017)
+Specification (Amd 66/2017)
+Implementation Guide (Amd 66/2017)
+Information Standards Notice (Amd 66/2017)
+
+
+
+Supporting documents
+
+	
+NHS Data Model and Dictionary Change Request 1630 (Basic CR) (Amd 66/2017)
+NHS Data Model and Dictionary Change Request 1630 (Data Set CR) (Amd 66/2017)
+
+
+
+Previous releases
+
+	
+
+Please see the ISB website for information on the previous releases.
+
+ 
+
+Last edited: 5 November 2018 12:35 pm
