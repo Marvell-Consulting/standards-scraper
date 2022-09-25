@@ -1,0 +1,90 @@
+DCB0092-2062 : Commissioning Data Sets: Emergency Care Data Set
+
+Type 011: Emergency Care Data Set (ECDS) is the Commissioning Data Set (CDS) Type for emergency care services.
+
+Page contents
+Top of page
+About this information standard
+Current release
+Previous releases
+Updates
+About this information standard
+
+The Emergency Care Data Set (ECDS) enables the capture of information about:
+
+the complexity and acuity of attending patients
+the causes of rising demand
+the value added by emergency departments.
+
+It also allows for:
+
+the capture of diagnostic data to ensure an enhanced understanding of need, activity and outcomes
+consistent monitoring of data across local and national initiatives
+support for injury surveillance, such that it will be possible to identify patterns that may be amenable to targeted interventions and improved public health.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the other listed documents provide further detail for those who have to implement the information standard.
+
+Current release
+Release date	10/09/2020
+Release number	Amd 19/2020
+Release title	CDS Version 6.2.3 Type 011
+Stage 	Implementation
+Key documents 	
+Information Standards Notice (Amd 19/2020)
+Requirements Specification (Amd 19/2020) 
+Change Specification (Amd 19/2020)
+Implementation Guidance (Amd 19/2020)
+Technical Output Specification v1.2 (Amd 19/2020) (February 2022) [Archive Content]
+
+Supporting documents	
+User Guidance
+NHS Data Model and Dictionary Change Request 1740
+NHS Data Model and Dictionary Change Request 1740 (data set)
+XML Schema (external site, registration required)
+
+Note	ISB 0092 is the overarching information standard for the Commissioning Data Sets, refer to this for submission of existing CDS types. 
+Previous releases
+CDS Version 6.2.2 Type 011
+Release date	07/11/2018
+Release number	Amd 34/2018
+Stage 	Maintenance
+Key documents 	
+Requirements Specification (Amd 34/2018) 
+Change Specification (Amd 34/2018)
+Implementation Guidance (Amd 34/2018)
+Information Standards Notice (Amd 34/2018)
+Technical Output Specification v2.1 (March 2019) [Archive Content]
+Corrigendum (March 2019)
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request 1654
+NHS Data Model and Dictionary Change Request 1654 (data set)
+NHS Data Model and Dictionary Change Request 1715 (March 2019)
+ 
+Version 6.2.1: Addition of Type 011: Emergency Care Data Set (ECDS)
+
+Release date
+
+	19/04/2017
+Release number	Amd 17/2015
+Stage	Retirement
+Key documents	
+Requirements Specification (Amd 17/2015) [Archive Content]
+Change Specification (Amd 17/2015) [Archive Content]
+Implementation Guidance (Amd 17/2015) [Archive Content]
+Information Standards Notice (Amd 17/2015) [Archive Content]
+Technical Output Specification v1.01 (Amd 17/2015) [Archive Content]
+Corrigendum (October 2017)
+Corrigendum (March 2019)
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request 1598 (Amd 17/2015)
+NHS Data Model and Dictionary Change Request Data Set 1598 (Amd 17/2015)
+NHS Data Model and Dictionary Change Request 1717 (March 2019)
+Updates
+
+Update 2 March 2022: Publication of updated Technical Output Specification (TOS) in respect of CDS Version 6.2.3 Type 011 (Amd 19/2020).  Editorial corrections to the TOS have been made, information about the changes can be found in the Change Control tab of the TOS (uplifted to document version 1.2 February 2022). 
+
+Update 26 January 2022: Publication of updated Technical Output Specification (TOS) in respect of CDS Version 6.2.3 Type 011 (Amd 19/2020).  Editorial corrections to the TOS have been made, information about the changes can be found in the Change Control tab of the TOS (uplifted to document version 1.1 January 2022). 
+
+Last edited: 2 March 2022 1:41 pm

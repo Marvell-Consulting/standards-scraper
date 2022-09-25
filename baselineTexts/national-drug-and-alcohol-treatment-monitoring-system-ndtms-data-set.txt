@@ -1,0 +1,74 @@
+DAPB0107: National Drug and Alcohol Treatment Monitoring System
+
+The National Drug and Alcohol Treatment Monitoring System (NDTMS) collects person level, patient identifiable data from drug and alcohol treatment providers at a national level.
+
+Page contents
+Top of page
+About this information standard
+Current release
+Previous release
+Updates
+About this information standard
+
+The NDTMS is a well-established collection with early iterations dating back to the 1980s and has been an Information Standard since 2007.
+
+Providers of drug and alcohol treatment submit data on a monthly basis to the National Drug and Alcohol Treatment Monitoring System (NDTMS), for the purpose of:
+
+monitoring the effectiveness of drug and alcohol treatment services
+supporting the improvement of outcomes for service users
+planning and developing services that best meet local needs.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales and the other listed documents provide further detail for those who have to implement the information standard.
+
+Current release
+Release date	30/09/2021
+Release number	Amd 50/2021
+Release title	Dataset Q
+Stage	Implementation
+Key documents	
+Requirements Specification (Amd 50/2021)
+Change Request (Amd 50/2021) (June 2022)
+Implementation Guidance (Amd 50/2021)
+Information Standards Notice (Amd 50/2021)
+Corrigendum (Amd 50/2021) (June 2022)
+
+Supporting documents	
+Technical Output Specification - Adult community data set (AD) (Amd 50/2021) (June 2022)
+Technical Output Specification - Young People community data set (YP) (Amd 50/2021) (June 2022)
+Technical Output Specification - Secure setting Young People data set (SA) (Amd 50/2021) (June 2022)
+Technical Output Specification - Secure setting Young People data set (SY) (Amd 50/2021) (June 2022)
+NDTMS data flow diagram (Amd 50/2021)
+
+Further information	
+
+National drug treatment monitoring system dataset guidelines on gov.uk
+
+ 
+
+Previous release
+Release date	04/10/2019
+Release number	Amd 38/2019
+Release title	Dataset P
+Stage	Maintenance
+Key documents	
+Requirements Specification (Amd 38/2019)
+Change Specification (Amd 38/2019)
+Implementation Guidance (Amd 38/2019)
+Information Standards Notice (Amd 38/2019)
+
+Supporting documents	
+Technical Output Specification - Adult community data set (AD) (Amd 38/2019)
+Technical Output Specification - Young People community data set (YP) (Amd 38/2019)
+Technical Output Specification - Secure estate Adult data set (SA) (Amd 38/2019)
+Technical Output Specification - Secure estate Young People data set (SY) (Amd 38/2019)
+NDTMS data flow diagram (Amd 38/2019)
+
+ 
+
+Documentation from previous releases are available on request from standards.assurance@nhs.net 
+
+Updates
+
+28 June 2022: Publication of Corrigendum in respect of Dataset Q (Amd 50/2021), supported by changes to the Change Request and Technical Output Specifications (all uplifted to document version 1.1, June 2022). See Corrigendum above for full details.
+
+Last edited: 29 June 2022 2:21 pm

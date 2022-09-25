@@ -5,6 +5,7 @@ API standards to enable sharing and updating of digital maternity records.
 Page contents
 Top of page
 Overview
+API status
 API standards
 Overview
 
@@ -13,6 +14,10 @@ Use this API standard to enable sharing and updating of digital maternity record
 For more details, see the Digital maternity specifications - developer guidance.
 
 NHSX has taken over responsibility for the delivery of the Digital Maternity programme. If you have any questions about future digital maternity work please email england.digitalmaternitynhsx@nhs.net.
+
+API status
+
+This API standard is experimental - an early pre-alpha version under development.
 
 API standards
 Year 	Name	Version	Status & Notes	Links
@@ -25,4 +30,4 @@ Experimental	Experimental - for consultation and discussion only	https://develo
 
  
 
-Last edited: 28 September 2021 12:33 pm
+Last edited: 31 May 2022 5:18 pm
