@@ -18,14 +18,14 @@ Release number	Amd 10/2014
 Release title	ICD-10 5th Edition
 Stage	Implementation
 Key documents	
-Requirements Specification (Amd 10/2014)
-Change Specification (Amd 10/2014)
-Implementation Guidance (Amd 10/2014)
+Requirements Specification (Amd 10/2014) [Archive Content]
+Change Specification (Amd 10/2014) [Archive Content]
+Implementation Guidance (Amd 10/2014) [Archive Content]
 Codes and Titles and Metadata File Specification (Amd 10/2014)
-Information Standards Notice (Amd 10/2014)
+Information Standards Notice (Amd 10/2014) [Archive Content]
 
 Supporting documents	
-NHS Data Model and Dictionary Change Request 1412 (Amd 10/2014)
-Advance Notification (Amd 10/2014)
+NHS Data Model and Dictionary Change Request 1412 (Amd 10/2014) [Archive Content]
+Advance Notification (Amd 10/2014) [Archive Content]
 
 Last edited: 2 November 2018 12:24 pm

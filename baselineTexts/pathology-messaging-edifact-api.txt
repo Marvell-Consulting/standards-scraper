@@ -1,13 +1,13 @@
-Pathology Messaging - EDIFACT API
+Pathology Messaging - EDIFACT
 
 Receive pathology test results in GP practices from laboratories.
 
 Page contents
 Top of page
 Overview
-Who can use this API
+Who can use this
 Related APIs
-API status
+Status
 Service level
 Technology
 Network access
@@ -15,42 +15,61 @@ Security and authorisation
 Environments and testing
 Onboarding
 Interactions
+
+This integration is in production, but under review for deprecation. 
+
+If you are developing a new integration, consider using the Pathology Messaging - FHIR integration instead.
+
+If you have any concerns, contact us.
+
 Overview
+send test results
+Pathology system
+MESH
+GP system
+receive test results
 
-Use this API to receive pathology test results in GP practices from laboratories.
+ 
 
-It's designed for the transmission of structured pathology results from pathology laboratories to primary care GP systems, using UN/EDIFACT based messages over MESH. 
+Use this integration to receive structured pathology test results in GP practices from pathology laboratories.
+
+This integration uses MESH to send and receive UN/EDIFACT based messages. 
 
 For more details, see the Pathology EDIFACT v1.003 Standard.
 
 If you are building a system to receive pathology test results, you can use our Lab Results adaptor to receive these EDIFACT results via an easy-to-use FHIR-compliant format. 
 
-Before you begin any development work using this API, contact us to discuss your best options.
+Before you begin any development work using this integration, contact us to discuss your best options.
 
-Who can use this API
+Who can use this
 
-This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development.
+This integration can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development.
 
 You must do this before you can go live (see ‘Onboarding’ below).
 
 Related APIs
 
-The following screening APIs are related to this one:
+The following API is related to this integration:
 
-Bowel Cancer Screening - EDIFACT API - use this to receive bowel cancer screening test results in GP practices from the screening system using EDIFACT messages sent over MESH
-API status
+Message Exchange for Social Care and Health (MESH) API - use this API to transfer messages and large files securely across health and social care organisations
 
-This API is stable.
+The following screening integrations are similar to this one:
+
+Bowel Cancer Screening - EDIFACT - use this to receive bowel cancer screening test results in GP practices from the screening system using EDIFACT messages sent over MESH
+Cervical Screening - EDIFACT - use this to receive cervical screening test results in GP practices from the screening system using EDIFACT messages sent over MESH
+Status
+
+This integration is in production, but under review for deprecation. 
 
 Service level
 
-This API uses MESH which is a silver service, meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+This integration uses MESH which is a silver service, meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
 
 For more details, see service levels.
 
 Technology
 
-This is an asynchronous messaging API. Messages are:
+This integration uses asynchronous messaging. Messages are:
 
 formatted as EDIFACT
 sent and received via MESH
@@ -63,7 +82,7 @@ If you are building a system to receive pathology test results, you can use our�
 
 Network access
 
-You can access this API via:
+You can access this integration via:
 
 the Health and Social Care Network (HSCN)
 the internet
@@ -72,15 +91,15 @@ For more details see Network access for APIs.
 
 Security and authorisation
 
-This API uses MESH which is an application-restricted API.
+This integration uses MESH which is an application-restricted API.
 
-The API does not perform any end user authentication or authorisation checks. Rather, the calling system is expected to perform them. The authorisation rules are specified in our national Role Based Access Control (RBAC) database.
+The integration does not perform any end user authentication or authorisation checks. Rather, the calling system is expected to perform them. The authorisation rules are specified in our national Role Based Access Control (RBAC) database.
 
 For more details see our national Role Based Access Control (RBAC) database on the registration authorities and smartcards page.
 
 Environments and testing
 
-This API uses MESH. As a developer, you are most likely to want to connect to MESH using either the MESH client or the MESH API.
+This integration uses MESH. As a developer, you are most likely to want to connect to MESH using either the MESH client or the MESH API.
 
 For more details about using the MESH client, see MESH client.
 
@@ -90,14 +109,14 @@ Onboarding
 
 You must get your software onboarded before it can go live. The onboarding process can sometimes be quite long, so it's worth planning well ahead.
 
-This API has a specific onboarding process for new market entrant GP IT developers. This applies whether you are integrating with it directly or using our Lab results adaptor. Contact your GP IT delivery lead for more details.
+This integration has a specific onboarding process for new market entrant GP IT developers. This applies whether you are integrating with it directly or using our Lab results adaptor. Contact your GP IT delivery lead for more details.
 
 For other use cases, contact us.
 
 Interactions
 
-For a full list of interactions for this API, see ISB 1557 EDIFACT Pathology Messaging.
+For a full list of interactions for this integration, see ISB 1557 EDIFACT Pathology Messaging.
 
 You can also use our Lab Results adaptor to receive these EDIFACT results via an easy-to-use FHIR-compliant format. 
 
-Last edited: 26 May 2022 4:29 pm
+Last edited: 13 October 2022 1:12 pm

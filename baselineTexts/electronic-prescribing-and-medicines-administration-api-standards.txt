@@ -5,7 +5,7 @@ Use these API standards to share medication requests between ePMA systems and ho
 Page contents
 Top of page
 Overview
-API Standard
+API status
 API standards
 Overview
 
@@ -19,9 +19,9 @@ For more details see Implementation guide for digital medicines.
 
 Or contact us at medicinestandards@nhs.net.
 
-API Standard
+API status
 
-This API standard is in alpha.
+This API standard is in beta.
 
 API standards
 Year	Name	Version	Status & Notes	Links
@@ -36,4 +36,4 @@ ePMA Implementation Guidance for FHIR STU3
 
  
 
-Last edited: 26 May 2022 2:46 pm
+Last edited: 6 June 2022 4:17 pm

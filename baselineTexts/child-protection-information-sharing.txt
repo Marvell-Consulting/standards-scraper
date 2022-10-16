@@ -48,7 +48,7 @@ Release number	Amd 27/2013
 Release title	Initial Standard
 Stage	Superseded by Amd 113/2018
 Key documents	
-Standard Specification (Amd 27/2013)
+Standard Specification (Amd 27/2013) [Archive Content]
 Implementation Guidance (Amd 27/2013)
 Information Standards Notice (Amd 27/2013)
 
@@ -56,4 +56,4 @@ Information Standards Notice (Amd 27/2013) (Version 2)
 
  
 
-Last edited: 11 February 2022 9:51 am
+Last edited: 27 September 2022 5:40 pm

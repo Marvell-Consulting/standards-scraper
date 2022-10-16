@@ -1,13 +1,13 @@
-Digital Child Health - FHIR API
+Digital Child Health - FHIR
 
 Share information about a child's health between healthcare workers. 
 
 Page contents
 Top of page
 Overview
-Who can use this API
+Who can use this
 Related APIs
-API status
+Status
 Service level
 Technology
 Network access
@@ -16,8 +16,29 @@ Environments and testing
 Onboarding
 Interactions
 Overview
+Sending System
 
-Use this API to share information about a child's health between healthcare workers.
+NEMS
+publish event
+MESH
+
+send event to all
+subscribing systems
+
+Subscribed
+System B
+
+Subscribed
+System A
+
+Subscribed
+System C
+
+manage subscriptions
+
+ 
+
+Use this integration to share information about a child's health between healthcare workers.
 
 This information is recorded throughout a child's clinical pathway or patient journey about:
 
@@ -35,19 +56,17 @@ blood spot test outcome
 newborn hearing test
 Newborn and Infant Physical Examination (NIPE) outcome
 
-This API enables the sharing of information about these events in the form of small, structured and interoperable health event FHIR messages.
+This integration uses a publish-subscribe model - the sending system publishes events to National Events Management Service (NEMS), and NEMS forwards the events to all subscribed systems via MESH.
 
-A publication-subscription model allows sharing of this information, in a controlled way, with health and care workers in other organisations such as GPs, Emergency Departments and Local Authorities. This uses our National Events Management Service (NEMS).
+Subscribed systems might be GPs, emergency departments, local authorities or some other care provider. Potentially, patients and carers could also share this information.
 
-Potentially, patients and carers could also share this information.
+For more information see Digital Child Health specification versions.
 
-For more information see Digital Child Health - FHIR API.
+Before you begin any development work using this integration, contact us to discuss your best options.
 
-Before you begin any development work using this API, contact us to discuss your best options.
+Who can use this
 
-Who can use this API
-
-This API can only be used where there is a legal basis to do so.
+This integration can only be used where there is a legal basis to do so.
 
 Make sure you have a valid use case before you go too far with your development. To do this, contact us. 
 
@@ -57,31 +76,31 @@ You must do this before you can go live (see 'Onboarding' below).
 
 Related APIs
 
-The following APIs and API standard are also related to this API:
+The following APIs and integrations are also related to this one:
 
-National Events Management Service (NEMS) API - use this API to publish and subscribe to patient-centric event messages
+National Events Management Service (NEMS) - use this to publish and subscribe to patient-centric event messages
 
-Message Exchange for Social Care and Health (MESH) API - use this API to collect events that you have subscribed to
+Message Exchange for Social Care and Health (MESH) API - use this to collect events that you have subscribed to
 
-Child Protection - Information Sharing - HL7 V3 API - use this API to access child protection information from Child Protection - Information Sharing (CP-IS) as a local authority or an unscheduled care provider using our HL7 V3 API
+Child Protection - Information Sharing - HL7 V3 API - use this to access child protection information from Child Protection - Information Sharing (CP-IS) as a local authority or an unscheduled care provider using our HL7 V3 API
 
-API status
+Status
 
-This API is in beta.
+This integration is in production.
 
 Service level
 
-This API is a bronze service, meaning it is operational and supported only during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+This integration is a bronze service, meaning it is operational and supported only during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
 
 For more details, see service levels.
 
 Technology
 
-This API is a FHIR API.
+This integration uses FHIR.
 
 It uses a publish-subscribe model and is specifically based on the HL7 FHIR STU3 Messaging Implementation.
 
-Use our National Events Management Service (NEMS) API to subscribe to events.
+Use our National Events Management Service (NEMS) integration to subscribe to events.
 
 Use our MESH API to collect event messages that you have subscribed to.
 
@@ -89,13 +108,13 @@ For more details, see FHIR.
 
 Network access
 
-This API is available on the internet and on the Health and Social Care Network (HSCN).
+This integration is available on the internet and on the Health and Social Care Network (HSCN).
 
 For more details see Network access for APIs.
 
 Security and authorisation
 
-This API uses NEMS and MESH APIs which are application-restricted, meaning we authenticate the calling application but not the end user.
+This integration uses NEMS and the MESH API which are application-restricted, meaning we authenticate the calling application but not the end user.
 
 You can use this pattern as follows:
 
@@ -103,7 +122,7 @@ unattended (end user not present), for example as part of a back end process to 
 
 attended (end user present) - in which case, you must ensure the end user is authenticated and suitably authorised locally by the calling application
 
-In particular, this API uses TLS-MA authentication.
+In particular, this integration uses TLS-MA authentication.
 
 It also implements authorisation controls which restrict the event types that the connecting application can subscribe to or publish.
 
@@ -111,7 +130,7 @@ For more details, see application-restricted APIs.
 
 Environments and testing
 
-This API uses NEMS, which is available in Opentest for early development and testing.
+This integration uses NEMS, which is available in Opentest for early development and testing.
 
 NEMS is also available for testing purposes in:
 
@@ -151,15 +170,15 @@ For more details, see the NEMS onboarding guide on getting access to Opentest an
 
 Onboarding
 
-You need to get your software approved by us before it can go live with this API. We call this onboarding. The onboarding process can sometimes be quite long, so it’s worth planning well ahead.
+You need to get your software approved by us before it can go live with this integration. We call this onboarding. The onboarding process can sometimes be quite long, so it’s worth planning well ahead.
 
-To outline your use case and start the onboarding process for this API, contact us.
+To outline your use case and start the onboarding process for this integration, contact us.
 
 Interactions
 
-For a full list of interactions for this API, see Publish an Event Message and Subscriptions Overview.
+For a full list of interactions for this integration, see Publish an Event Message and Subscriptions Overview.
 
-This API supports the following event types:
+This integration supports the following event types:
 
 Blood Spot Test Outcome
 Newborn Hearing
@@ -169,4 +188,4 @@ Vaccinations
 
 For details on the general structure of the interactions, see FHIR.
 
-Last edited: 26 May 2022 3:18 pm
+Last edited: 13 October 2022 5:28 pm

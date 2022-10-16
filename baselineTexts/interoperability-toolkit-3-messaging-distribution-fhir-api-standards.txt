@@ -5,8 +5,16 @@ API standards for a set of generic messaging components using FHIR STU3 to creat
 Page contents
 Top of page
 Overview
+API status
 API standards
 Overview
+NHS healthcare system A
+MESH
+NHS healthcare system B
+send FHIR messages and documents
+receive FHIR messages and documents
+
+ 
 
 These API standards cover a set of generic FHIR messaging components we developed using FHIR STU3 running over MESH to create a unified approach to NHS message and document flows across England. 
 
@@ -17,6 +25,10 @@ These components, along with the NHS Digital FHIR Message and FHIR Document spec
 The FHIR Messaging components were developed by NHS Digital and use CareConnect profiles created in collaboration with the INTEROPen community.
 
 For further information, contact the ITK conformance team.
+
+API status
+
+This API standard is stable.
 
 API standards
 Year 	Name	Version	Status & Notes	Links
@@ -70,4 +82,4 @@ public beta and earlier
 
  
 
-Last edited: 16 March 2022 6:01 pm
+Last edited: 14 October 2022 6:20 am
