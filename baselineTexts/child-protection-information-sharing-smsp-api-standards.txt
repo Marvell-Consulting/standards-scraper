@@ -1,0 +1,179 @@
+Child Protection - Information Sharing - SMSP API standards
+
+Become a Spine Mini Service Provider giving access to child protection information from Child Protection - Information Sharing (CP-IS) for an unscheduled care provider using our SMSP API standards.
+
+Page contents
+Top of page
+Overview
+Who can use this API
+Related APIs
+API status
+Technology
+Network access
+Security and authorisation
+Testing
+Onboarding
+Interactions
+Downloads
+Overview
+
+Become a Spine Mini Service Provider giving access to child protection information from Child Protection - Information Sharing (CP-IS) for an unscheduled care provider using our SMSP API standards. CP-IS is the national electronic database of child protection information.
+
+Your commercially available Spine Mini Service Providers (SMSP) product will give access to CP-IS for your SMSP clients. We will list your SMSP provider service along with other conforming software products in our Conformance Catalogue.
+
+Before you begin any development work using these API standards, contact us to discuss your best options.
+
+These API standards can be used by unscheduled care providers as follows:
+
+Unscheduled Care Application
+CP-IS
+Unscheduled Care
+User
+
+1. request CP-IS information
+4. receive CP-IS information
+
+
+CP-IS Data
+CP-IS
+SMSP Provider
+(External developer)
+
+2. request CP-IS information
+3. receive CP-IS information
+
+NHS Spine
+CP-IS system
+Unscheduled care providers
+
+As an unscheduled care provider, your CP-IS SMSP clients can:
+
+get a patient's CP-IS information, which automatically triggers a notification to the relevant local authority.
+
+These SMSP API standards are easier for SMSP clients to use than our CP-IS HL7 V3 API because:
+
+they have fewer security requirements (for example, NHS smartcards are not required)
+the onboarding process is simpler (see Onboarding below)
+Scheduled care providers
+
+CP-IS SMSP client access is not currently available for use in scheduled care settings.
+
+Local authorities
+
+CP-IS SMSP client access is not available to local authorities.
+
+Information held in CP-IS
+
+CP-IS holds the following information for each registered patient:
+
+NHS number
+details of their plan - type, start date and end date
+details of the 25 most recent CP-IS information accesses from unscheduled care settings in England
+the name of the responsible local authority - together with their office hours phone and emergency duty contact numbers
+Identifying patients
+
+All records in CP-IS are held against the patient's NHS number. It is therefore very important to ensure you use the correct NHS number for each patient.
+
+For more details, see CP-IS NHS number matching information.
+
+Using SCRa as an interim measure
+
+We prefer unscheduled care providers to integrate their applications directly with CP-IS using our CP-IS HL7 V3 API or these API standards. However, as an interim measure, you also can use our Summary Care Record application (SCRa) to access CP-IS information.
+
+Who can use this API
+
+These API standards can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development.
+
+You must do this before you can go live (see ‘Onboarding’ below). 
+
+Related APIs
+
+The following APIs are related to these API standards:
+
+Personal Demographics Service - FHIR API - use this to find the correct NHS number for a given patient
+Child Protection - Information Sharing - HL7 V3 API - use this for the full features of our HL7 V3 API
+API status
+
+These API standards are stable.
+
+Technology
+
+These API standards are based on our CP-IS HL7 V3 API but with a simplified read-only model and synchronous interactions.
+
+For more details, see HL7 V3.
+
+Network access
+
+You need a Health and Social Care Network (HSCN) connection to use these API standards.
+
+For more details, see Network access for APIs.
+
+Security and authorisation
+
+For unscheduled care providers, these API standards are application-restricted, meaning the calling application is authenticated but the end user is either not authenticated or not present.
+
+In particular, these API standards use TLS-MA authentication.
+
+For more details on authentication, see application-restricted APIs.
+
+Even though these API standards do not technically require the end user to be authenticated, a condition of onboarding is that the calling application must:
+
+authenticate the end user locally
+use local role-based access controls to authorise the end user
+
+For more details on the calling application requirements, see DCB1609: Child Protection - Information Sharing.
+
+Testing
+
+You can test these API standards using our Path to Live environments.
+
+Onboarding
+
+You must get your software onboarded before it can go live.
+
+As part of onboarding, these API standards use the Target Operating Model (TOM) process, which is simpler than the traditional Common Assurance Process (CAP).
+
+Note that in addition to SMSP provider software assurance, for clinical safety reasons, we also need to assure your SMSP clients.
+
+For more details, and to get a copy of the latest TOM forms to complete, contact the interoperability conformance team on itkconformance@nhs.net.
+
+Interactions
+
+For details of SMSP provider interactions, see the following downloads:
+
+SMSP Common Provider Requirements V1.1 - 23/09/2014 PDF
+CP-IS SMSP Provider Requirements V1.1 - 09/12/2014 PDF
+
+For details of SMSP client interactions, to share with your clients, see the following downloads:
+
+SMSP Common Client Requirements - 23/09/2014 PDF
+CP-IS SMSP Client Requirements - 15/07/2014 PDF
+
+Both SMSP providers and SMSP clients need the same response codes:
+
+SMSP Response Codes - 24/07/2014 XLS
+Downloads
+
+These are PDF and Microsoft Excel files. To request a different format, contact us.
+
+SMSP Common Provider Requirements V1.1 - 23/09/2014 PDF
+
+PDF 718 KB
+
+CP-IS SMSP Provider Requirements V1.1 - 09/12/2014 PDF
+
+PDF 678 KB
+
+SMSP Common Client Requirements - 23/09/2014 PDF
+
+PDF 663 KB
+
+CP-IS SMSP Client Requirements - 15/07/2014 PDF
+
+PDF 565 KB
+
+SMSP Response Codes - 24/07/2014 XLS
+
+XLSX 17 KB
+
+Last edited: 13 October 2022 4:56 pm

@@ -1,0 +1,48 @@
+DCB0134: Surveillance of Healthcare Associated Infections (HCAI)
+
+This information standard supports the national surveillance programme managed by Public Health England in respect of Healthcare Associated Infections (HCAI).
+
+Page contents
+Top of page
+About this information standard
+Current release
+Previous release
+About this information standard
+
+This information standard supports the national surveillance programme managed by Public Health England in respect of Healthcare Associated Infections (HCAI):
+
+Meticillin resistant Staphylococcus aureus(MRSA)
+Meticillin susceptible Staphylococcus aureus(MSSA)
+Clostridium difficile infection (CDI)
+Escherichia coli (E. coli)
+
+The data are used to:
+
+identify trends in the prevalence of HCAI
+monitor progress on infection control
+provide epidemiological evidence to inform action to reduce HCAI
+provide information to the public to support patient choice.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the other documents provide further detail for those who have to implement the information standard.
+
+Current release
+Release date	20 December  2017
+Release number	Amd 18/2017
+Release title	Version 3.0
+Stage	Implementation
+Key documents	
+Specification (Amd 18/2017)
+Change Request (Amd 18/2017)
+Implementation Guidance (Amd 18/2017)
+Information Standards Notice (Amd 18/2017)
+
+Supporting documents	
+PHE Data Dictionary July 2017 (Amd 18/2017) [Archive Content]
+HCAI Operating Procedure Codes supplement (Amd 18/2017)
+
+Further information	Further guidance is published by Public Health England
+Previous release
+
+Previous releases of this information standard can be found on the ISB website (external link).
+
+Last edited: 1 November 2018 2:52 pm

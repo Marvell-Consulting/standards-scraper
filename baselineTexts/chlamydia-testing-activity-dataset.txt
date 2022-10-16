@@ -1,0 +1,2046 @@
+Standards and collections
+
+An alphabetical list of all current approved national information standards and data collections (including extractions).
+
+Page contents
+Top of page
+Approved standards and collections
+Current standards and collections
+How to use the list
+Other resources
+Approved standards and collections
+
+This list shows all current Data Alliance Partnership Board (DAPB) approved national information standards and data collections (including extractions) (known as ISCE) for use in health and adult social care. 
+
+The list is updated on a monthly basis following the approval of new items, and changes, by the DAPB.
+
+Current standards and collections
+Title
+	
+ISCE
+	
+Documentation
+
+
+
+Accessible Information
+
+	
+
+Standard
+
+	
+
+DCB1605 Guidance (NHS England and NHS Improvement)
+
+
+Adolescent Vaccine Coverage data	Collection	DAPB0133 Guidance (UK Health Security Agency)
+
+
+Adult Social Care Finance Return
+
+	
+
+Collection
+
+	
+
+DCB2135 Guidance (NHS Digital)
+
+
+Adult Social Care Workforce Data Set	Collection	DCB2143 Guidance (Department of Health and Social Care)
+Aggregate Contract Monitoring	Standard and a Collection	DCB2050 Guidance (NHS England and NHS Improvement) 
+
+
+AIDC for Patient Identification
+
+	
+
+Standard
+
+	
+
+DCB1077 Guidance (NHS Digital)
+
+
+
+
+AIDC: Automatic Identification and Data Capture
+
+	
+
+Standard
+
+	
+
+DAPB0108 Guidance (NHS Digital)
+
+
+Alcohol Dependence Programme Patient Level Data Collection	Collection	DAPB4044 Guidance (NHS Digital)
+Ambulance Data Set	Collection	DAPB3107 Guidance (NHS Digital)
+
+
+Ambulance Electronic Patient Report
+
+	
+
+Standard
+
+	
+
+ISB 1516 Guidance
+
+
+Ambulance Services: Computer Aided Dispatch Data	Collection	DCB3088 documentation
+
+
+Ambulance Quality Indicators - Clinical Outcomes
+
+	
+
+Collection
+
+	
+
+DCB3028-01 Guidance (NHS Digital)
+
+
+
+
+Ambulance Quality Indicators - Systems Indicators
+
+	
+
+Collection
+
+	
+
+DCB3028-02 Guidance (NHS Digital)
+
+
+Antibiotic Consumption Data	Collection	DCB3063 Guidance (NHS England and NHS Improvement)
+
+
+Annual GP Practice electronic Self Declaration (eDEC)
+
+	
+
+Collection
+
+	
+
+DCB2053 Guidance (NHS Digital)
+
+
+
+
+Anonymisation Standard for Publishing Health and Social Care Data
+
+	
+
+Standard
+
+	
+
+ISB 1523 Guidance
+
+
+
+
+Assuring Transformation
+
+	
+
+Standard and a Collection
+
+	
+
+DCB2007 Guidance (NHS England and NHS Improvement)
+
+
+Better Care Fund Quarterly Reporting	Collection	DCB3067 Guidance (NHS England and NHS Improvement)
+
+
+Birth Notifications
+
+	
+
+Standard
+
+	
+
+ISB 1555 Guidance
+
+
+Board Vacancies and Commercial Spend	Collection	DAPB4009 documentation
+
+
+Breast and Cosmetic Implant Registry
+
+	
+
+Collection
+
+	
+
+SCCI2132 Guidance (NHS Digital)
+
+
+
+
+Breast Screening Programme Data Set (KC63 and KC62)
+
+	
+
+Standard and a Collection
+
+	
+
+ISB 1597 Guidance
+
+
+
+
+British Society of Surgery of the Hand (BSSH) Audit
+
+	
+
+Collection
+
+	
+
+DCB2196 Guidance (The British Society for Surgery of the Hand (BSSH) Members Area)
+
+
+
+
+Cancer Outcomes and Services Data set, Version 8.0
+
+	
+
+Standard and a Collection
+
+	
+
+DCB1521 Guidance (Public Health England)
+
+
+Cancer Quality of Life (QoL) Metric survey	Collection	DCB3102 Guidance (NHS England and NHS Improvement)
+
+
+Cancer Patient Experience Survey
+
+	
+
+Collection
+
+	
+
+DCB2116 Guidance (NHS England and NHS Improvement)
+
+
+
+
+Cancer Patient Tracking List (PTL)
+
+	
+
+Collection
+
+	
+
+DAPB3037 Guidance (NHS Digital)
+
+
+
+
+Cataract Data Set
+
+	
+
+Standard and a Collection
+
+	
+
+ISB 0085 Guidance
+
+
+
+
+CCG Digital Maturity Questionnaire
+
+	
+
+Collection
+
+	
+
+DAPB2167 Guidance (NHS Digital)
+
+
+
+
+Child Protection Information Sharing
+
+	
+
+Standard
+
+	
+
+DCB1609 Guidance (NHS Digital)
+
+
+
+
+Childhood Influenza Vaccination Programme Primary School Age Children
+
+	
+
+Collection
+
+	
+
+DCB2195 Guidance (Public Health England)
+
+
+
+
+Childhood Measurement Central Return
+
+	
+
+Standard and a Collection
+
+	
+
+ISB 0146 Guidance
+
+
+
+
+Children and Young People (CYP) with an Eating Disorder Referral to Treatment Times (RTT)
+
+	
+
+Collection
+
+	
+
+SCCI2185 Guidance (NHS Digital)
+
+
+
+
+Chlamydia Testing Activity Dataset
+
+	
+
+Standard and a Collection
+
+	
+
+SCCI1538 Guidance (Public Health England)
+
+
+
+
+Clinical Risk Management: its Application in the Deployment and Use of Health IT Systems
+
+	
+
+Standard
+
+	
+
+DCB0160 Guidance (NHS Digital)
+
+
+
+
+Clinical Risk Management: its Application in the Manufacture of Health IT Systems
+
+	
+
+Standard
+
+	
+
+DCB0129 Guidance (NHS Digital)
+
+
+
+
+Commissioning Data Sets (CDS)
+
+	
+
+Standard and a Collection
+
+	
+
+DAPB0092 Guidance (NHS Digital)
+
+
+
+
+Commissioning Data Sets (CDS) Version 6.2.3: Emergency Care Data Set (ECDS)
+
+	
+
+Standard and a Collection
+
+	
+
+DCB0092-2062 Guidance (NHS Digital)
+
+
+Community Health Staff data collection	Collection	DCB3095 documentation
+
+
+Community Pharmacy Contractual Framework National Audit
+
+	
+
+Collection
+
+	
+
+DCB2103 documentation
+
+
+
+
+Community Services Data Set
+
+	
+
+Standard and a Collection
+
+	
+
+DAPB1069 Guidance (NHS Digital)
+
+
+Compliance with National Data Opt-outs	Standard	DCB3058 Guidance (NHS Digital)
+
+
+Conflict of Interest Indicator
+
+	
+
+Collection
+
+	
+
+DCB2221 Guidance (NHS England and NHS Improvement)
+
+
+Consultant-led Referral to Treatment (RTT) Waiting Times	Standard and a Collection	DCB0095 Guidance (NHS Digital)
+Corporate Services annual data collection	Collection	DAPB4006 (no guidance published) NHS England and NHS Improvement
+
+
+Cover of Vaccination Evaluated Rapidly (COVER) Return
+
+	
+
+Standard and a Collection
+
+	
+
+DAPB0089 Guidance (UKHSA)
+
+
+COVID-19: Bulk capture of COVID-19 vaccinations data collection	Collection	DAPB4036 (no guidance published) NHS England and NHS Improvement
+COVID-19: Community Daily Discharge Situation Report (SitRep)	Collection	DCB3136 Guidance (NHS Digital)
+COVID-19: Community Health Services Situation Report (SitRep)	Collection	DAPB3132 Guidance (NHS Digital)
+COVID-19: Daily Discharge Situation Report (SitRep)	Collection	DCB3129 Guidance (NHS Digital)
+COVID-19: ICU Consumables Stocktake: Renal Stocktake	Collection	DCB3122 (no guidance published) NHS England and NHS Improvement
+COVID-19: Independent Sector Provider (ISP) Weekly Activity Situation Report (SitRep)	Collection	DCB3139 Guidance (NHS Digital)
+COVID-19: Independent Sector Provider (ISP) Diagnostics and Cancer Treatments Daily Situation Report (SitRep)	Collection	DCB3138 (no guidance published) NHS England and NHS Improvement
+COVID-19: Long COVID Assessment Services Data	Collection	DCB3135 Guidance (NHS Digital)
+COVID-19: Maternity COVID Service Alterations Situation Report (SitRep) 	Collection	DAPB4067 (no guidance published) NHS England and NHS Improvement
+COVID-19: NHS Staff Lateral Flow Testing	Collection	DCB3137 Guidance (NHS Digital)
+COVID-19: NHS Weekly Activity Return	Collection	DCB3142 Guidance (NHS Digital)
+COVID-19: Theatre Productivity data collection	Collection	DAPB4028 documentation
+
+
+CQC provider survey
+
+	
+
+Collection
+
+	
+
+DAPB3030 (no guidance published) CQC 
+
+
+CQUIN consolidated data collection	Collection	DAPB2239 Guidance (NHS England and NHS Improvement)
+
+
+Critical Care Minimum Data Set
+
+	
+
+Standard and a Collection
+
+	
+
+ISB 0153 Guidance
+
+
+
+
+Daily 111 Winter Collection
+
+	
+
+Collection
+
+	
+
+DCB3056 Guidance (NHS Digital)
+
+
+
+
+Database for the National Latent Tuberculosis Screening Programme in New Migrants from High-incidence Countries
+
+	
+
+Collection
+
+	
+
+SCCI2108 Guidance (Public Health England)
+
+
+
+
+Data Security and Protection Toolkit
+
+	
+
+Standard and a Collection
+
+	
+
+DAPB0086 Guidance (NHS Digital)
+
+
+
+
+Delayed Transfers of Care
+
+	
+
+Collection
+
+	
+
+DCB3032 Guidance (NHS Digital)
+
+
+Dental Working Patterns	Collection	DCB3027 Guidance (NHS Digital)
+
+
+Deprivation of Liberty Safeguards (DoLS), under the Mental Capacity Act 2005, Data Collection
+
+	
+
+Collection
+
+	
+
+DAPB2101 Guidance (NHS Digital)
+
+
+Devices Patient Level Contract Monitoring	Standard and a Collection	DCB3002 Guidance (NHS England and NHS Improvement)
+
+
+Diabetic Retinopathy Screening Data Set
+
+	
+
+Standard and a Collection
+
+	
+
+ISB 0073 Guidance
+
+
+
+
+Diagnostic Imaging Data Set
+
+	
+
+Standard and a Collection
+
+	
+
+SCCI1577 Guidance (NHS Digital)
+
+
+
+
+Diagnostics Waiting Times and Activity Monthly Return
+
+	
+
+Collection
+
+	
+
+DCB0103-01 Guidance (NHS Digital)
+
+
+
+
+Dictionary of Medicines and Devices (dm+d)
+
+	
+
+Standard
+
+	
+
+SCCI0052 Guidance (NHS Digital)
+
+
+
+
+Digital Imaging and Communications in Medicine (DICOM)
+
+	
+
+Standard
+
+	
+
+ISB 1556 Guidance
+
+
+Digital Maternity Record Standard	Standard	DCB3066 Guidance (NHS Digital)
+
+
+Direct Access Audiology Priority Treatment List (PTL) and Waiting Times (WT) Dataset
+
+	
+
+Collection
+
+	
+
+DCB0127 Guidance (NHS Digital)
+
+
+Drugs Patient Level Contract Monitoring	Standard and a Collection	DCB2212 Guidance (NHS England and NHS Improvement)
+Early Childhood Baseline (DTaP/IPV/Hib+HepB, At-Risk Hepatitis B and Early MMR)	Extraction	DAPB4046 (no guidance published) UKHSA
+
+
+EDIFACT Pathology Messaging
+
+	
+
+Standard
+
+	
+
+ISB 1557 Guidance
+
+
+
+
+Electronic Yellow Card Reporting, Version 3.0
+
+	
+
+Standard
+
+	
+
+DCB1582 Guidance (Medicines and Healthcare products Regulatory Agency (MHRA))
+
+
+
+
+eMED3 (fit notes)
+
+	
+
+Collection
+
+	
+
+SCCI2118 Guidance (NHS Digital)
+
+
+
+
+Estates Return information Collection (ERIC)
+
+	
+
+Collection
+
+	
+
+DAPB2083 Guidance (NHS Digital)
+
+
+
+
+Female Genital Mutilation Enhanced Dataset
+
+	
+
+Standard and a Collection
+
+	
+
+SCCI2026 Guidance (NHS Digital)
+
+
+FFP3 resilience data collection	Collection	DAPB4055 (no guidance published) Department of Health and Social Care
+
+
+FGM - Information Sharing (FGM-IS) Local System Integration
+
+	
+
+Standard
+
+	
+
+DCB2112 Guidance (NHS Digital)
+
+
+
+
+Fill Rate Indicator Return, Staffing, Nursing, Midwifery, Allied Health Professional and Care Staff
+
+	
+
+Collection
+
+	
+
+DCB2039 Guidance (NHS Digital)
+
+
+Fleet data for Model Ambulance	Collection	DAPB4035 (no guidance published) NHS England and NHS Improvement)
+
+
+Friends and Family Test
+
+	
+
+Collection
+
+	
+
+DCB2054 Guidance (NHS Digital)
+
+
+Friends and Family Test: Post-COVID Assessment Clinics	Collection	DAPB2054-4026 Guidance (NHS England and NHS Improvement)
+Friends and Family Test: Quarterly Staff Survey (National Quarterly Pulse Survey (NQPS)) 	Collection	DAPB2054-3144 Guidance (NHS Digital)
+General Practice and Primary Care Network Workforce	Collection	DAPB4034 (no guidance published) Department of Health and Social Care
+General Practice (including Dental) Complaints (KO41b)	Collection	DAPB2126 Guidance (NHS Digital)
+General Practice Pay Transparency	Collection	DAPB4023 Guidance (NHS England and NHS Improvement)
+
+
+Genetic Testing Rates
+
+	
+
+Collection
+
+	
+
+SCCI2035 Guidance (NHS Digital)
+
+
+
+
+GP Appointments
+
+	
+
+Collection
+
+	
+
+DCB3018 Guidance (NHS Digital)
+
+
+
+
+GP Workload Tool
+
+	
+
+Collection
+
+	
+
+DAPB2236 Guidance (NHS Digital)
+
+
+GPES: 6-in-1 vaccination programme	Extraction	DCB2090-3141 Guidance (NHS Digital)
+GPES: Cardiovascular Disease Prevention Audit
+(CVDPREVENT)	Extraction	DCB2090-3109 documentation
+
+
+GPES: Childhood Seasonal Influenza Vaccination Programme
+
+	
+
+Extraction
+
+	
+
+DAPB2090-2206 Guidance (NHS Digital)
+
+
+
+
+GPES: Core Contract
+
+	
+
+Extraction
+
+	
+
+DAPB2090-3010 Guidance (NHS Digital)
+
+
+GPES: COVID-19 At Risk Patients data collection	Extraction	DCB2090-3114 Guidance (NHS Digital)
+
+
+GPES: Indicators no longer in the Quality and Outcomes Framework (QOF)
+
+	
+
+Extraction
+
+	
+
+DAPB2090-2232 Guidance (NHS Digital)
+
+
+GPES: Learning Disabilities Data	Extraction	DAPB2090-2171 Guidance (NHS Digital)
+
+
+GPES: Learning disabilities health check scheme
+
+	
+
+Extraction
+
+	
+
+DAPB2090-2191 Guidance (NHS Digital)
+
+
+
+
+GPES: Meningococcal ACWY Vaccination Programme
+
+	
+
+Extraction
+
+	
+
+DAPB2090-2133 Guidance (NHS Digital)
+
+
+
+
+GPES: Meningococcal B Vaccination Programme
+
+	
+
+Extraction
+
+	
+
+DAPB2090-2187 Guidance (NHS Digital)
+
+
+GPES: Network Contract Directed Enhanced Services (DES)   	Extraction	DAPB2090-3084 Guidance (NHS Digital)
+GPES: PCV HIB MenC Vaccination Programme	Extraction	DAPB2090-2225 Guidance (NHS Digital)
+
+
+GPES: Pertussis in pregnant women vaccination programme
+
+	
+
+Extraction
+
+	
+
+DCB2090-2180 Guidance (NHS Digital)
+
+
+GPES: Physical Health Checks for People with Serious Mental Illness	Extraction	DCB2090-3038 Guidance (NHS Digital)
+
+
+GPES: Pneumococcal polysaccharide vaccination programme
+
+	
+
+Extraction
+
+	
+
+DAPB2090-2181 Guidance (NHS Digital)
+
+
+
+
+GPES: Quality and Outcomes Framework (QOF)
+
+	
+
+Extraction
+
+	
+
+DAPB2090-2183 Guidance (NHS Digital)
+
+
+
+
+GPES: Rotavirus (routine childhood immunisation) Vaccination Programme
+
+	
+
+Extraction
+
+	
+
+DAPB2090-2182 Guidance (NHS Digital)
+
+
+
+
+GPES: Seasonal Influenza Vaccination Programme
+
+	
+
+Extraction
+
+	
+
+DAPB2090-2207 Guidance (NHS Digital)
+
+
+
+
+GPES: Shingles Combined Vaccination Programme
+
+	
+
+Extraction
+
+	
+
+DAPB2090-2208 Guidance (NHS Digital)
+
+
+Greener NHS - Fleet data collection	Collection	DAPB4058 Guidance (NHS England and NHS Improvement) (login required)
+Greener NHS quarterly data collection	Collection	DAPB4062 (no guidance published) NHS England and NHS Improvement
+
+
+GUMCAD STI Surveillance System
+
+	
+
+Standard and a collection
+
+	
+
+DCB0139 Guidance (Public Health England)
+
+
+
+
+HA/GP Links
+
+	
+
+Standard
+
+	
+
+ISB 1558 Guidance
+
+
+
+
+Health and Social Care Organisation Reference Data
+
+	
+
+Standard
+
+	
+
+DAPB0090 Guidance (NHS Digital)
+
+
+
+
+Healthcare Resource Groups (HRG)
+
+	
+
+Standard
+
+	
+
+ISB 0070 Guidance
+
+
+
+
+Healthy Child Programme 
+
+	
+
+Standard 
+
+	
+
+DAPB3009 Guidance (NHS Digital)
+
+
+
+
+Hepatitis B (new born) Babies Vaccination Programme (CQRS)
+
+	
+
+Extraction
+
+	
+
+DCB2090-2178 Guidance (NHS Digital)
+
+
+
+
+HIV and AIDs Reporting System (HARS)
+
+	
+
+Standard and a Collection
+
+	
+
+SCCI1570 Guidance (Public Health England)
+
+
+
+
+Hospital and Community Health Services Written Complaints Collection (KO41a)
+
+	
+
+Collection
+
+	
+
+SCCI2125 Guidance (NHS Digital)
+
+
+
+
+HPV Booster Vaccination Programme (CQRS)
+
+	
+
+Collection
+
+	
+
+DCB2176 Guidance (NHS Digital)
+
+
+
+
+Identity Verification and Authentication Standard for Digital Health and Care Services
+
+	
+
+Standard
+
+	
+
+DCB3051 Guidance (NHS Digital)
+
+
+
+
+Improving Access to Psychological Therapies Data Set
+
+	
+
+Standard and a Collection
+
+	
+
+DAPB1520 Guidance (NHS Digital)
+
+
+Influenza and COVID-19 vaccine uptake in Frontline Healthcare Workers (HCWs) survey	Collection	DAPB2204 Guidance (Public Health England)
+
+
+Information Governance Standards Framework
+
+	
+
+Standard
+
+	
+
+ISB 1512 Guidance
+
+
+
+
+ISB 1594 Guidance
+
+
+
+
+Integrated Urgent Care Aggregate Data Collection
+
+	
+
+Collection
+
+	
+
+DAPB3031 Guidance (NHS Digital)
+
+
+Integrated Urgent Care Forecasting and Capacity Planning	Collection	DCB3076 documentation
+Integrating Flu/ COVID Hospitalisation Surveillance	Collection	DCB2043 (no guidance published) 
+
+
+Interim Clinical Imaging Procedure Codes
+
+	
+
+Standard
+
+	
+
+ISB 0148 Guidance
+
+
+
+
+International Statistical Classification of Diseases and Related Health Problems (ICD-10)
+
+	
+
+Standard
+
+	
+
+SCCI0021 Guidance (NHS Digital)
+
+
+
+
+Inter-Provider Transfer Administrative Minimum Data Set
+
+	
+
+Standard
+
+	
+
+ISB 0112 Guidance
+
+
+
+
+Junior Doctors – Rota Notification
+
+	
+
+Collection
+
+	
+
+DCB3042 Guidance (NHS Digital)
+
+
+
+
+KH03: Bed Availability and Occupancy
+
+	
+
+Collection
+
+	
+
+DCB1576 Guidance (NHS Digital)
+
+
+Legal Services Target Operating Model (LSTOM) data collection	Collection	DAPB4007 (no guidance published) NHS England and NHS Improvement
+Long Length of Stay Discharge Patient Tracking List	Collection	DCB3079 Guidance (NHS Digital)
+
+
+Maternity Services Data Set
+
+	
+
+Standard and a Collection
+
+	
+
+DCB1513 Guidance (NHS Digital)
+
+
+Measles, Mumps and Rubella (MMR) vaccine coverage collection	Extraction	DAPB4049 (no guidance published) UKHSA
+
+
+Measles, Mumps, Rubella (MMR) Vaccination Programme (CQRS)
+
+	
+
+Collection
+
+	
+
+DAPB2179 Guidance (NHS Digital)
+
+
+Medical Revalidation Annual Organisational Audit	Collection	DCB3077 Guidance (NHS England and NHS Improvement)
+Medication in Children and Young People Inpatient Audit	Collection	DAPB4056 (no guidance published) NHS England and NHS Improvement
+Medicine and Allergy/Intolerance Data Transfer	Standard	DAPB4013 Guidance (NHS Digital)
+Meningococcal ACWY (MenACWY) vaccine coverage vaccine coverage collection	Extraction	DAPB4047 (no guidance published) UKHSA
+Meningococcal B (MenB) vaccine coverage vaccine coverage collection	Extraction	DAPB4048 (no guidance published) UKHSA
+
+
+Mental Health Services Data Set
+
+	
+
+Standard and a Collection
+
+	
+
+DCB0011 Guidance (NHS Digital)
+
+
+Mental Health Staff data collection	Collection	DCB3089 documentation
+
+
+Mixed-Sex Accommodation
+
+	
+
+Collection
+
+	
+
+DCB1573 Guidance (NHS Digital)
+
+
+Model Health System procurement metrics	Collection	DAPB4061 (no guidance published ) NHS England and NHS Improvement
+
+
+Monthly Referral Return
+
+	
+
+Collection
+
+	
+
+DCB3023-01 Guidance (NHS England and NHS Improvement)
+
+
+
+
+Monthly Situation Report – Critical Care and Urgent Cancelled Operations
+
+	
+
+Collection
+
+	
+
+DCB3025 Guidance (NHS Digital)
+
+
+
+
+Monthly Situation Report – Emergency Care
+
+	
+
+Collection
+
+	
+
+DCB1607 Guidance (NHS Digital)
+
+
+
+
+National Cancer Waiting Times Monitoring Data Set
+
+	
+
+Standard and a Collection
+
+	
+
+DCB0147 Guidance (NHS Digital)
+
+
+National COVID-19 Chest Imaging Database (NCCID)	Collection	DAPB4032 Guidance (NHSX)
+
+
+National Diabetes Audit
+
+	
+
+Collection
+
+	
+
+DCB2235-01 Guidance (NHS Digital)
+
+
+
+
+National Diabetes Footcare Audit
+
+	
+
+Collection
+
+	
+
+DCB2235-03 Guidance (NHS Digital)
+
+
+National Diabetes Inpatient Safety Audit (NDISA)	
+
+Collection
+
+	
+
+DCB2235-05 Guidance (NHS Digital) 
+
+
+
+
+National Drug and Alcohol Treatment Monitoring System (NDTMS) Data Set
+
+	
+
+Standard and a Collection
+
+	
+
+DAPB0107 Guidance (Public Health England)
+
+
+
+
+National Joint Registry Data Set
+
+	
+
+Standard and a Collection
+
+	
+
+DCB1567 Guidance (National Joint Registry (NJR))
+
+
+
+
+National Pregnancy in Diabetes Audit
+
+	
+
+Collection
+
+	
+
+DCB2235-02 Guidance (NHS Digital)
+
+
+National Waiting List Weekly Minimum Data Set	Collection	DCB3145 documentation
+National Wheelchair Data Collection	Collection	DCB2097 Guidance (NHS Digital)
+
+
+National Workforce Data Set
+
+	
+
+Standard
+
+	
+
+DAPB1067 Guidance (NHS Digital)
+
+
+
+
+Neonatal Critical Care Minimum Data Set
+
+	
+
+Standard and a Collection
+
+	
+
+SCCI0075 Guidance (NHS Digital)
+
+
+
+
+Neonatal Data Set
+
+	
+
+Standard and a Collection
+
+	
+
+DAPB1595 Guidance (Imperial College London)
+
+
+NHS Continuing Healthcare (CHC) Deferred Assessments SitRep	Collection	DCB3127 Guidance (NHS Digital)
+NHS Continuing Healthcare (CHC) Patient-Level Data Set	Standard and a Collection	DCB3085 Guidance (NHS Digital)
+
+
+NHS Continuing Healthcare quarterly collection
+
+	
+
+Collection
+
+	
+
+DCB2117 Guidance (NHS Digital)
+
+
+
+
+NHS 111 Pathways
+
+	
+
+Collection
+
+	
+
+DCB2228 documentation
+
+
+
+
+NHS 111 Patient Experience Survey
+
+	
+
+Collection
+
+	
+
+DAPB3029 Guidance (NHS Digital)
+
+
+NHS Health Care Worker (HCW) CCG COVID-19 vaccination uptake SitRep	Collection	DAPB3146-01 documentation
+NHS Health Care Worker (HCW) Trust COVID-19 vaccination uptake SitRep	Collection	DAPB3146-02 documentation
+
+
+NHS Health Check
+
+	
+
+Standard and a Collection
+
+	
+
+ISB 1080 Guidance
+
+
+
+
+NHS Number
+
+	
+
+Standard
+
+	
+
+ISB 0149 Guidance
+
+
+
+
+NHS Number for General Practice
+
+	
+
+Standard
+
+	
+
+ISB 0149-01 Guidance
+
+
+
+
+NHS Number for Secondary Care
+
+	
+
+Standard
+
+	
+
+ISB 0149-02 Guidance
+
+
+NHS Premises Assurance Model online system	Collection	DAPB4021 Guidance (NHS England and NHS Improvement)
+NHS Staff Survey	Collection	DAPB3078 Guidance (NHS England and NHS Improvement)
+NHS Surplus Land	Collection	DCB2154 Guidance (NHS Digital)
+NHS Trust and CCG Governing Bodies - 2020 Board Membership and Diversity Survey (England)	Collection	DCB3133 documentation
+Non-Emergency Patient Transport Services Data Set	Collection	DAPB4030 (no guidance published) NHS England and NHS Improvement
+Online and Video Consultation in General Practices	Collection	DAPB4031 Guidance (NHS Digital)
+
+
+OPCS Classification of Interventions and Procedures
+
+	
+
+Standard
+
+	
+
+DCB0084 Guidance (NHS Digital)
+
+
+
+
+Out of Area Placements (OAPs)
+
+	
+
+Collection
+
+	
+
+SCCI2213 Guidance (NHS Digital)
+
+
+
+
+Overseas Visitor Charging Category (OVCC)
+
+	
+
+Standard
+
+	
+
+DCB3017 Guidance (NHS Digital)
+
+
+
+
+Paediatric Critical Care Minimum Data Set
+
+	
+
+Standard and a Collection
+
+	
+
+SCCI0076 Guidance (NHS Digital)
+
+
+
+
+Palliative Care Co-ordination: Core Content
+
+	
+
+Standard
+
+	
+
+SCCI1580 Guidance (Public Health England)
+
+
+Pathology Test and Results Standard	Standard	DAPB4017 Guidance (NHS Digital)
+
+
+Patient Identifiers for Identity Bands
+
+	
+
+Standard
+
+	
+
+ISB 0099 Guidance
+
+
+
+
+Patient-Led Assessments of the Care Environment (PLACE)
+
+	
+
+Collection
+
+	
+
+DAPB2085 Guidance (NHS Digital)
+
+
+Patient Level Contract Monitoring	Standard and a Collection	DCB3003 Guidance (NHS England and NHS Improvement)
+Patient Level Information and Costing Systems (PLICS) Integrated Data Set	Standard and a Collection	DAPB4000 Guidance (NHS England and NHS Improvement)
+Patient-Level Information and Costing Systems (PLICS) Ambulance Data Set	Standard and a Collection	DAPB4001 Guidance (NHS England and NHS Improvement)
+
+
+Personal Health Budgets
+
+	
+
+Collection
+
+	
+
+DCB2184 Guidance (NHS Digital)
+
+
+Personal Social Services Adult Social Care Survey, England	Collection	DAPB2153 Guidance (NHS Digital) 
+
+
+Personal Social Services Survey of Adult Carers in England
+
+	
+
+Collection
+
+	
+
+DAPB2169 Guidance (NHS Digital)
+
+
+Personalised Care and Support Plan	Standard	DAPB4022 Guidance (Professional Record Standards Body (PRSB))
+
+
+Physical healthcare for people with serious mental illness (SMI): Primary care data collection
+
+	
+
+Collection
+
+	
+
+DCB3038 Guidance (NHS Digital)
+
+
+Physiological Measurements Services data collection	Collection	DAPB4043 (no guidance published) NHS England and NHS Improvement
+Plastics Reduction Pledge	Collection	DCB3091 Guidance (NHS England and NHS Improvement) 
+Pneumococcal Polysaccharide Vaccine (PPV) vaccine coverage collection	Extraction	DAPB4050 (no guidance published) UKHSA
+Post-COVID Assessment Clinic Patient List	Collection	DAPB4027 Guidance (NHS England and NHS Improvement) (login required)
+Prenatal Pertussis vaccine coverage collection	Extraction	DAPB4037 (no guidance published) UKHSA
+
+
+Prevent Training Reports
+
+	
+
+Collection
+
+	
+
+SCCI2193 Guidance (NHS Digital) 
+
+
+
+
+Primary care Commissioning Activity Report (PCAR)
+
+	
+
+Collection
+
+	
+
+DCB2197 Guidance (NHS Digital)
+
+
+Primary Care Monitoring Survey	Collection	DAPB3128 Guidance NHS England and NHS Improvement (login required)
+
+
+Programme Budgeting
+
+	
+
+Collection
+
+	
+
+DCB3007 documentation
+
+
+Provider Elective Recovery Outpatient Collection (Provider EROC)	Collection	DAPB4033 Guidance (NHS England and NHS Improvement) (login required)
+Public Health Specialist Workforce data collection	Collection	DCB3082 documentation
+Public Sector Apprenticeship Target: Statutory annual reporting	Collection	DCB3071 Guidance (Department for Education)
+
+
+Quarterly Monitoring Cancelled Operations
+
+	
+
+Collection
+
+	
+
+DCB0143 Guidance (NHS Digital)
+
+
+
+
+Radiotherapy Data Set
+
+	
+
+Standard and a Collection
+
+	
+
+DAPB0111 Guidance (Public Health England)
+
+
+Referral to Treatment (RTT) Weekly Patient Tracking List (PTL)	Collection	
+
+DCB3090 documentation
+
+
+Rotavirus vaccine coverage collection	Extraction	DAPB4051 (no guidance published) UKHSA
+
+
+Safeguarding Adults Collection (SAC)
+
+	
+
+Collection
+
+	
+
+DCB2172 Guidance (NHS Digital)
+
+
+Safeguarding Case Review Tracker	Collection	DCB3124 documentation
+Seasonal Influenza Vaccine Uptake (GP Patient) Survey (Main)	
+
+Collection
+
+	
+
+DCB2205 Guidance (Public Health England)
+
+
+Seasonal Influenza Vaccine Uptake (GP Patient) Survey (Child)	
+
+Collection
+
+	
+
+DCB2211 Guidance (Public Health England)
+
+
+
+
+Secure Email
+
+	
+
+Standard
+
+	
+
+DCB1596 Guidance (NHS Digital)
+
+
+
+
+Seven Day Services Survey
+
+	
+
+Collection
+
+	
+
+SCCI2173 documentation
+
+
+
+
+Sexual and Reproductive Health Activity Dataset
+
+	
+
+Standard and a Collection
+
+	
+
+SCCI1518 Guidance (Public Health England)
+
+
+
+
+Sexual Orientation Monitoring
+
+	
+
+Standard
+
+	
+
+DCB2094 Guidance (NHS England and NHS Improvement)
+
+
+Shingles annual vaccine coverage collection	Extraction	DAPB4053 (no guidance published) UKHSA
+Shingles quarterly vaccine coverage collection	Extraction	DAPB4052 (no guidance published) UKHSA
+Shingles Shingrix quarterly vaccine coverage collection	Extraction	DAPB4054 (no guidance published) UKHSA
+
+
+Short and Long Term Return (SALT)
+
+	
+
+Collection
+
+	
+
+DAPB2161 Guidance (NHS Digital)
+
+
+
+
+SNOMED CT
+
+	
+
+Standard
+
+	
+
+SCCI0034 Guidance (NHS Digital)
+
+
+
+
+Specialised Services National Definitions Set
+
+	
+
+Standard
+
+	
+
+ISB 0005 Guidance
+
+
+Spend Comparison: Accounts Payable data 	Collection	DCB3080-02 Guidance (NHS Digital)
+Spend Comparison: Purchase Order data	Collection	DCB3080-01 Guidance (NHS Digital)
+Staff Networks Maturity Framework	Collection	DAPB4040 (no guidance published) NHS England and NHS Improvement
+
+
+Stop Smoking Service Quarterly Monitoring Return
+
+	
+
+Collection
+
+	
+
+DCB0155 Guidance (NHS Digital)
+
+
+Sugar Sweetened Beverages collection	Collection	DCB3099 documentation
+Surgical Devices and Implants Core Data Set	Standard and a Collection	DAPB3103 Guidance (NHS Digital)
+Surgical Devices and Implants, Phase 1: Pelvic Floor Registry	Collection	DCB3103-01 Guidance (NHS Digital)
+
+
+Surveillance of Healthcare Associated Infections
+
+	
+
+Standard and a Collection
+
+	
+
+DCB0134 Guidance (Public Health England)
+
+
+System Elective Recovery Outpatient Collection (System EROC)	Collection	DAPB4039 Guidance (NHS England and NHS Improvement) (login required)
+
+
+Systemic Anti-Cancer Therapy Data Set
+
+	
+
+Standard and a Collection
+
+	
+
+DCB1533 Guidance (Public Health England)
+
+
+Tobacco Dependence Programme Patient Level Data Collection	Collection	DAPB4041 Guidance (NHS Digital)
+Transfer of Care - Acute Inpatient Discharge 	Standard	DAPB4042 Guidance (NHS Digital)
+
+
+Trauma Audit and Research Network Notification Data Set
+
+	
+
+Standard and a Collection
+
+	
+
+ISB 1606 Guidance
+
+
+Treatment Function and Main Specialty Standard	Standard	DCB0028 Guidance (NHS Digital)
+Under 16 Cancer Patient Experience Survey 2020-23	Collection	DCB3131 Guidance (NHS England and NHS Improvement)
+UK Core Fast Healthcare Interoperability Resources (FHIR) Release 4 (R4) Governance	Standard	DAPB4020 Guidance (NHS Digital)
+Urgent and Emergency Mental Health Care and Intensive Home Treatment for Children and Young People – Third National Survey	Collection	DCB3093 documentation
+
+
+Venous Thromboembolism (VTE) Risk Assessment
+
+	
+
+Collection
+
+	
+
+DCB1593 Guidance (NHS Digital)
+
+
+Violence Against Staff	Collection	DCB3100 (no guidance published) NHS England and NHS Improvement
+Virtual Wards data collection	Collection	DAPB4068 Guidance (NHS England and NHS Improvement) (login required)
+Volunteer numbers supporting NHS Trusts Survey	Collection	DAPB4057 (no guidance published) NHS England and NHS Improvement
+
+
+Weekly Diagnostic Activity Collection
+
+	
+
+Collection
+
+	
+
+SCCI2163 Guidance (NHS England and NHS Improvement)
+
+
+
+
+Workforce Disability Equality Standard (WDES)
+
+	
+
+Collection
+
+	
+
+DAPB3048 Guidance (NHS England and NHS Improvement)
+
+
+
+
+Workforce Race Equality Standard (WRES)
+
+	
+
+Collection
+
+	
+
+DAPB3040 Guidance (NHS Digital)
+
+How to use the list
+
+For each item you can see:
+
+title - the name of the standard or collection
+ISCE - shows whether this is a standard or a collection
+documentation - the reference number for the ISCE (a unique identifier with a prefix indicating who approved it) with a link to published guidance for the ISCE (where available)
+Approvals and acceptance
+Prefix	Approved or accepted by
+DAPB	Data Alliance Partnership Board
+DCB	Data Coordination Board (legacy)
+ISB	Information Standards Board (legacy)
+SCCI	Standardisation committee for care information (legacy)
+ISCE values
+Value
+	
+Meaning
+
+Standard	an information standard
+Standard and collection	an information standard which incorporates a collection
+Standard and an extraction	an information standard which incorporates a data extraction
+Collection	a data collection
+Extraction	a data extraction
+ 
+Other resources
+ARTICLE
+
+Information Standards Notices
+
+Information Standards Notices (ISNs) are published to announce new or changes to information standards published under section 250 of the Health and Social Care Act 2012.
+
+ARTICLE
+
+Withdrawn standards and collections
+
+A list of withdrawn and deprecated information standards and collections.
+
+ARTICLE
+
+Publications and notifications
+
+View recent DAPB notifications with details of consultation and publication activity, including new Information Standards Notices.
+
+ARTICLE
+
+Standards assurance activity
+
+View a summary of standards assurance activity being presented to upcoming meetings of the Data Alliance Partnership Board (DAPB).
+
+ARTICLE
+
+Contact the Data Standards Assurance Service (DSAS)
+
+Contact DSAS with any queries regarding standards assurance, or sign up to our mailing list to receive notifications with details of consultation and publication activity, including new Information Standards Notices.
+
+Last edited: 13 October 2022 10:17 pm

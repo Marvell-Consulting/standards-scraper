@@ -31,6 +31,7 @@ Royal College of Nursing
 Royal College of Occupational Therapists
 Royal College of Physicians
 Royal Pharmaceutical Society
+View the standard
 Urgent transfer from care home to hospital v1.2
 V1.2 View the standard
 V1.2 Download the standard (xlsx file)
@@ -38,7 +39,7 @@ V1.2 Release notes
 Supporting documents
 Implementation guidance
 Digital social care final report
-Survey 2 Report
+Hazard log
 Hazard log
 Safety case report
 IHRIM record correction guidance

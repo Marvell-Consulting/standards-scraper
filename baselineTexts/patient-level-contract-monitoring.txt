@@ -1,0 +1,152 @@
+Contract Monitoring
+
+A set of four information standards for Contract Monitoring to enable national consistency of the flow of cost and activity information from providers to commissioners.
+
+Page contents
+Top of page
+About this information standard
+Current releases
+Previous releases
+Updates
+About this information standard
+
+The Contract Monitoring information standards are a set of standards being introduced by NHS England and NHS Improvement to enable national consistency of the flow of cost and activity information from providers to commissioners. The standards are:
+
+DCB2050 Aggregate Contract Monitoring 
+DCB3003 Patient Level Contract Monitoring
+DCB3002 Devices Patient Level Contract Monitoring
+DCB2212 Drugs Patient Level Contract Monitoring.
+
+Having national standards to support contract monitoring will:
+
+reduce burden
+allow simpler and more consistent reporting
+allow easier reconciliation and validation of invoices
+provide support for service change planning and hospital capacity analysis
+improve forecasting
+allow greater monitoring of equity of access to services.
+
+These information standards are published under section 250 of the Health and Social Care Act 2012.  An Information Standards Notice for each standard (see below) provides an overview of scope and implementation timescales, and the other documents provide further detail for those who have to implement the information standards. Note that while the NHS Data Model and Dictionary documents are listed under each standard, they are consolidation documents encompassing all four standards.
+
+Additional guidance documentation is available on the NHS England website: https://www.england.nhs.uk/nhs-standard-contract/dc-reporting
+
+In the event of issues or questions about any of these standards, please contact the developers at NHS England and NHS Improvement: england.nccis@nhs.net.
+
+Future development of the standards
+
+The contract monitoring standards became national data standards in April 2021 and had an implementation date of September 2021 for reporting of activity in October 2021.
+
+Given the mid-year implementation date, it has been decided that there will be no alterations to these standards during 2021-22 or 2022-23 in order for reporting systems to bed-in and become mature.
+
+Consideration of suggested changes and/or developments to the four standards will start in 2022-23. Users may submit suggestions from April 2022 to england.nccis@nhs.net 
+
+Suggestions will be considered by a multi-disciplinary working party comprising representation from suitable relevant stakeholders during September-October 2022. Those suggested changes considered by the group to be essential or of merit will then go out to national consultation in December 2022 as required for all suggested changes to national data standards.
+
+Current releases
+DCB2050 Aggregate Contract Monitoring (ACM) Version 2.0
+Release date	08/04/2021
+Release number	Amd 73/2020
+Key documents	
+Change Specification (Amd 73/2020)
+Requirements Specification (Amd 73/2020)
+Implementation Guidance (Amd 73/2020)
+Information Standards Notice (Amd 73/2020)
+
+Supporting documents	
+Technical Details Specification v2.1 (Amd 73/2020)
+NHS Data Model and Dictionary Change Request 1814 (Basic CR) (Amd 73/2020)
+NHS Data Model and Dictionary Change Request 1814 (Data Set CR) (Amd 73/2020)
+User Guidance v1.3 (Amd 73/2020)
+DCB3003 Patient Level Contract Monitoring (PLCM) Version 2.0
+Release date 	08/04/2021
+Release number	Amd 76/2020
+Key documents 	
+Change Specification (Amd 76/2020)
+Requirements Specification (Amd 76/2020)
+Implementation Guidance (Amd 76/2020)
+Information Standards Notice (Amd 76/2020)
+
+Supporting documents	
+Technical Details Specification v2.1 (Amd 76/2020)
+NHS Data Model and Dictionary Change Request 1814 (Basic CR) (Amd 76/2020)
+NHS Data Model and Dictionary Change Request 1814 (Data Set CR) (Amd 76/2020) 
+User Guidance v1.2 (Amd 76/2020)
+DCB3002 Devices Patient Level Contract Monitoring (DePLCM) Version 2.0
+Release date	08/04/2021
+Release number	Amd 75/2020
+Key documents	
+Change Specification (Amd 75/2020)
+Requirements Specification (Amd 75/2020)
+Implementation Guidance (Amd 75/2020)
+Information Standards Notice (Amd 75/2020) 
+
+Supporting documents	
+Technical Details Specification v2.2 (Amd 75/2020)
+NHS Data Model and Dictionary Change Request 1814 (Basic CR) (Amd 75/2020)
+NHS Data Model and Dictionary Change Request 1814 (Data Set CR) (Amd 75/2020) 
+User Guidance v1.1 (Amd 75/2020)
+DCB2212 Drugs Patient Level Contract Monitoring (DrPLCM) Version 2.0
+Release date	08/04/2021
+Release number	Amd 74/2020
+Key documents	
+Change Specification (Amd 74/2020)
+Requirements Specification (Amd 74/2020)
+Implementation Guidance (Amd 74/2020)
+Information Standards Notice (Amd 74/2020)
+
+Supporting documents	
+Technical Details Specification v2.6 (Amd 74/2020)
+NHS Data Model and Dictionary Change Request 1814 (Basic CR) (Amd 74/2020)
+NHS Data Model and Dictionary Change Request 1814 (Data Set CR) (Amd 74/2020)
+User Guidance v1.2 (Amd 74/2020) 
+Previous releases
+
+Documents for earlier releases of the Contract Monitoring information standards can be viewed on our Contract Monitoring archive page.
+
+Updates
+
+11 October 2022: Minor changes have been made to the user guidance for clarification, for contract monitoring standards DCB2050 Aggregate Contract Monitoring (ACM) (see section 7 and section 8 (FAQs) Q16) and DCB3003 Patient Level Contract Monitoring (PLCM) (see section 8 (FAQs) Q8). 
+
+There has also been a minor change made to the Technical Details Specification document for DCB2212 Drugs Patient Level Contract Monitoring (DrPLCM). This is an update to the drug taxonomy reference table, which now matches the latest (v17.2) list of medicines not reimbursed through national prices that are directly commissioned by NHS England.
+
+ 
+
+8 July 2022: A minor change has been made to the Technical Details Specification document for DCB2212 Drugs Patient Level Contract Monitoring (DrPLCM). This is an update to the drug taxonomy reference table, which now matches the latest (v17.1) list of medicines not reimbursed through national prices that are directly commissioned by NHS England.
+
+ 
+
+12 May 2022: A minor change has been made to the Technical Details Specification documents for each of the contract monitoring standards (DCB2050 Aggregate Contract Monitoring (ACM), DCB2212 Drugs Patient Level Contract Monitoring (DrPLCM), DCB3002 Devices Patient Level Contract Monitoring (DePLCM) and DCB3003 Patient Level Contract Monitoring (PLCM)). This update relates to the addition of a new code (code 32) in the Commissioned Service Category Code reference table of each document, to accommodate the forthcoming introduction of the NHS England Innovative Medicines Fund.
+
+There has also been a further change to the Technical Details Specification document for DCB3002 Devices Patient Level Contract Monitoring (DePLCM), with an update to the device taxonomy reference table. This change has been made as in the final 2022/23 tariff guidance the Stent Retriever (DEV54) category was combined into the Mechanical Thrombectomy category (DEV51) and as such the code DEV54 for Stent Retriever is not required separately. The Mechanical Thrombectomy category (DEV51) has been renamed as “Mechanical Thrombectomy Stent Retrievers and Clot Retrievers” as per the National Tariff Guidance.
+
+ 
+
+21 April 2022: Minor changes have been made to the Technical Details Specification documents for each of the contract monitoring standards (DCB2050 Aggregate Contract Monitoring (ACM), DCB2212 Drugs Patient Level Contract Monitoring (DrPLCM), DCB3002 Devices Patient Level Contract Monitoring (DePLCM) and DCB3003 Patient Level Contract Monitoring (PLCM)). These updates relate to the addition of a new code (code 12) in the Commissioned Service Category Code reference table of each document, to accommodate the forthcoming introduction of Integrated Care Boards (ICBs), following approval of the legislation.
+
+There have also been several new ‘High Level Codes’ added to the Taxonomy reference table in the DCB3002 DePLCM Technical Details Specification.
+
+ 
+
+2 March 2022: A minor change has been made to the Technical Details Specification documents for both DCB2212 Drugs Patient Level Contract Monitoring (DrPLCM) and DCB3002 Devices Patient Level Contract Monitoring (DePLCM). This update relates to the the 'Point of Delivery Code' tab in each document. 
+
+ 
+
+2 February 2022: A minor change has been made to the Technical Details Specification for DCB2212 Drugs Patient Level Contract Monitoring (DrPLCM). This is an update to the drug taxonomy list to reflect the 2021-22 list (v16.1) of drugs not reimbursed through national prices and directly commissioned by NHS England.
+
+ 
+
+16 November 2021: Copies of the User Guidance for each of the four standards, originally published on the NHS England and NHS Improvement website, have been added to the 'Supporting documents' sections above. 
+
+ 
+
+8 July 2021: A minor change has been made to the Technical Details Specification for DCB2212 Drugs Patient Level Contract Monitoring (DrPLCM). This is an update to the drug taxonomy list to finally reflect the 2021-22 list (v16) of high cost drugs that are outside the National Tariff.
+
+ 
+
+30 June 2021: A minor change has been made to the Technical Details Specification for DCB3002 Devices Patient Level Contract Monitoring (DePLCM), in relation to the taxonomy supporting reference table within the workbook.  
+
+ 
+
+28 April 2021: Links to the NHS Data Model and Dictionary have been updated in the specification and technical specification documents above, following a recent change in platform.
+
+Last edited: 11 October 2022 5:56 pm

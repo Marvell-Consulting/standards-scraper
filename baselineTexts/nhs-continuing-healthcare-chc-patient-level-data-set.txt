@@ -1,0 +1,52 @@
+DCB3085: NHS Continuing Healthcare (NHS CHC) Patient-Level Data Set
+
+An information standard which sets out the rules for an end to end, patient level data set that captures data relating to patient details, NHS CHC eligibility, activity, reviews and care packages.
+
+Page contents
+Top of page
+About this information standard
+Current release
+Change control
+About this information standard
+
+NHS Continuing Healthcare (NHS CHC) means a package of ongoing care that is arranged and funded solely by the NHS where the individual has been assessed and found to have a ‘primary health need’ as set out in the National Framework for NHS Continuing Healthcare and NHS-funded Nursing in England.
+
+This new standard, the NHS Continuing Healthcare (NHS CHC) Patient-Level Data Set, sets out the rules for an end to end, patient level data set that captures data relating to patient details, NHS CHC eligibility, activity, reviews and care packages.
+
+The existing NHS CHC quarterly collection of aggregate data (DCB2117) will continue to be submitted by providers as normal until the quality of data submitted in DCB3085 reaches an adequate level to allow the quarterly collection to be retired.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales and the other listed documents provide further detail for those who have to implement the information standard.
+
+Current release
+Release date	07/05/2020
+Release number	Amd 51/2019
+Release title	Initial Standard, Version 1.0
+Stage	Implementation
+Key documents	
+Information Standards Notice (Amd 51/2019)
+Corrigendum (Amd 51/2019) (August 2021)
+Second Corrigendum (Amd 51/2019) (September 2022)
+Requirements Specification v1.1 (Amd 51/2019) (September 2022)
+Data Set Specification v1.2 (Amd 51/2019) (September 2022)
+Implementation Guidance v1.1 (Amd 51/2019) (September 2022)
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request 1873 (Basic CR) (Amd 51/2019) (September 2022)
+NHS Data Model and Dictionary Change Request 1873 (Data Set CR) (Amd 51/2019) (September 2022)
+NHS Data Model and Dictionary Change Request 1829 (Basic CR) (Amd 51/2019) (August 2021)
+NHS Data Model and Dictionary Change Request 1829 (Data Set CR) (Amd 51/2019) (August 2021)
+XML schema (external link)
+
+Further information	
+
+More guidance is available on the NHS Digital website
+
+Change control
+
+28 September 2022: Publication for Corrigendum in respect of Version 1.0, supported by changes to the Data Set Specification (uplifted to document version 1.2) and to the Requirements Specification and Implementation Guide (uplifted to document version 1.1). See Corrigendum above for full details.
+
+31 August 2021: Publication of Corrigendum in respect of Version 1.0, supported by changes to the Data Set Specification (uplifted to document version 1.1). See Corrigendum above for full details.
+
+27 April 2021: At the time of publication of version 1.0 of DCB3085 (7 May 2020) the implementation and conformance dates of this standard were noted by the DCB as being subject to change depending on the need for continuing frontline investment in COVID-19 activity. The implementation and conformance dates have been extended by 12 months and the implementation completion date is now 1 April 2022 with full conformance expected by 31 May 2022, in line with the submission of the April 2022 reporting activity. The Requirements Specification and Implementation Guidance have been updated to reflect this.
+
+Last edited: 28 September 2022 11:01 pm

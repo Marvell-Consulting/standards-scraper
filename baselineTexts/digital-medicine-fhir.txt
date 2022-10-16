@@ -1,0 +1,151 @@
+Digital Medicine - FHIR
+
+Notify a patient's registered GP practice about care services delivered at a pharmacy, such as an immunisation.
+
+Page contents
+Top of page
+Overview
+Who can use this
+Related APIs
+Status
+Service level
+Technology
+Network access
+Security and authorisation
+Environments and testing
+Onboarding
+Interactions
+
+Three use cases for this integration are now retired.
+
+For more details, see status.
+
+Overview
+Pharmacy system
+MESH
+Patient's registered GP system
+send  care notifications
+receive care notifications
+
+ 
+
+Use this integration to notify a patient's registered GP practice about care services delivered at a pharmacy.
+
+You can send notifications about:
+
+an immunisation given
+
+an emergency medication dispensed without a prescription
+
+a minor illness referral consultation
+
+This integration uses MESH to send and receive messages.
+
+The following use cases are now retired and you cannot use them:
+
+a medication review
+
+an appliance use review
+
+a New Medicine Service (NMS) appointment
+
+For more details, see status.
+
+Who can use this
+
+This integration can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development.
+
+You must do this before you can go live (see ‘Onboarding’ below).
+
+Related APIs
+
+The following API is related to this integration:
+
+Message Exchange for Social Care and Health (MESH) API - use this API to transfer messages and large files securely across health and social care organisations
+
+Additionally, use the following API standard to implement this integration:
+
+Interoperability Toolkit 3 Messaging Distribution FHIR API standards - use this API standard to implement a set of generic messaging components using HL7 FHIR STU3 to create a unified approach to NHS message and document flows across England
+Status
+
+This integration consists of six different notification types. The status of each message type is as follows:
+
+Notification type	Status
+immunisation	private beta - in active use, but with a limited number of connecting applications 
+emergency medication dispensed without prescription	private beta - in active use, but with a limited number of connecting applications
+minor illness referral consultation	private beta - in active use, but with a limited number of connecting applications
+medication review	now retired
+appliance use review	now retired
+New Medicine Service (NMS) review	now retired
+
+If you would like to be involved in our beta programme, contact us.
+
+Service level
+
+This integration uses MESH which is a silver service, meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
+
+For more details, see service levels.
+
+Technology
+
+This is an asynchronous messaging integration. The notifications take the form of FHIR STU3 messages sent via MESH.
+
+For more details, see FHIR and MESH.
+
+Network access
+
+You can access this integration via:
+
+the Health and Social Care Network (HSCN)
+
+the internet
+
+For more details, see Network access for APIs.
+
+Security and authorisation
+
+This integration uses MESH which is an application-restricted API.
+
+The integration does not perform any end user authentication or authorisation checks. Rather, the calling system is expected to perform them. The authorisation rules are specified in our national Role Based Access Control (RBAC) database.
+
+For more details see our national RBAC database on the registration authorities and smartcards page.
+
+Environments and testing
+
+This integration uses MESH.
+
+As a developer, you are most likely to want to connect to MESH using either the MESH client or the MESH API.
+
+For more details about using the MESH client, see MESH client.
+
+For the MESH API, there are several independent, externally accessible instances of MESH you can use for testing. For full details, see MESH API - Environments and testing.
+
+Onboarding
+
+You need to get your software approved by us before it can go live with this integration. We call this onboarding. The onboarding process can sometimes be quite long, so it’s worth planning well ahead.
+
+To onboard for this API, contact us.
+
+Interactions
+
+For details on the general structure of the interactions, see FHIR.
+
+The following versions are published:
+
+Status	Release version	Release date	Details
+Private beta	1.2.7-Private Beta	29 September 2022	Clarification of Minor Illness Referral Consultation specification
+Private beta	1.2.6-Private Beta	22 April 2022	Clarification around implementation of Emergency Supply
+Private beta	1.2.5-Private Beta	19 March 2021	Change from Digital Minor Illness Referral Service to Minor Illness Referral Consultation
+Private beta	1.2.4-Private Beta	3 March 2021	Example scenarios for COVID vaccination flows
+Private beta	1.2.3-Private Beta	4 May 2020	 
+Private beta	1.2.2-Private-Beta	1 April 2020	Current Private Beta version of the specification
+Private beta	1.2.1-Private-Beta	2 December 2019	Version 1.2.1-Private-Beta
+Private beta	1.2.0-Private-Beta	30 September 2019	Version 1.2.0-Private-Beta
+Alpha	1.1.3-Alpha	9 August 2019	Version 1.1.3-Alpha
+Alpha	1.1.2-Alpha	26 July 2019	Version 1.1.2-Alpha
+Alpha	1.1.1-Alpha	8 July 2019	Version 1.1.1-Alpha
+Alpha	1.1.0-Alpha	19 March 2019	Version 1.1.0-Alpha
+
+ 
+
+Last edited: 29 September 2022 4:45 pm

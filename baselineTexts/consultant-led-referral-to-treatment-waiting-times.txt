@@ -1,0 +1,53 @@
+DCB0095: Consultant-led referral to treatment (RTT) waiting times
+
+Monthly aggregate data collection to monitor consultant-led referral to treatment (RTT) waiting times
+
+Page contents
+Top of page
+About this information standard
+Current release
+Previous releases
+About this information standard
+
+In England, under the NHS Constitution, patients have ‘the right to access certain services commissioned by NHS bodies within maximum waiting times’.  This information standard outlines the specification and requirements for an aggregate monthly data collection to monitor waiting times performance against the standards set out in the National Health Service Commissioning Board and Clinical Commissioning Groups (Responsibilities and Standing Rules) Regulations 2012, and the 2015 amendment.
+
+Data are submitted to NHS England and NHS Improvement via NHS Digital’s Strategic Data Collection Service (SDCS) and form the basis of National Statistics for Consultant-led Referral to Treatment Waiting Times published by NHS England and NHS Improvement.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the Specification and Implementation Guidance document provides further detail for those who have to implement the information standard.
+
+Current release
+Release date	11 March 2021
+Release number	Amd 2/2020
+Release title	Version 2.0
+Stage	Implementation
+Key documents	
+Information Standards Notice (Amd 2/2020)
+Requirements Specification and Implementation Guidance (Amd 2/2020)
+
+Supporting documents	
+DSCN 44/2007 Data Standards; Inter-Provider Transfer Administrative Minimum Data set
+DSCN 07/2008 Data Standards: Inter-Provider Transfer Administrative Minimum Data Set (IPTAMDS)
+DSCN 16/2009 Commissioning Data Sets: Mandation of 18 Week Referral To Treatment Data Items
+
+
+
+Further information
+
+	
+
+More information about the RTT Rules is available on the NHS England and NHS Improvement website.
+
+Information about submitting DCB0095 data to the Strategic Data Collection Service is available on the NHS Digital website. 
+
+ 
+
+Previous releases
+Release date	04/08/2006
+Release number	DSCN 17/2006
+Stage	Superseded by DCB0095 Amd 2/2020
+Key documents	
+DSCN 17/2006  Introduction of new data collection to monitor referral to treatment (RTT) times to support delivery of 18 weeks 
+
+ 
+
+Last edited: 18 August 2021 8:12 am

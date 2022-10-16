@@ -2,6 +2,9 @@ Message Exchange for Social Care and Health (MESH) API
 
 Transfer messages and large files securely across health and social care organisations using the Message Exchange for Social Care and Health (MESH) API.
 
+This specification is written from an OAS file.
+
+Get OAS file
 Page content
 Top of page
 Overview
@@ -10,25 +13,28 @@ Prerequisites
 Related APIs
 API status and roadmap
 Service level
-Service level
 Technology
 Network access
 Environments and testing
 MESH Authorization header
 MESH API pseudocode
 Onboarding
-Endpoints
+Endpoints: Handshake
+Validate a mailbox (Handshake)
+Endpoints: Inbox
 Acknowledge message
 Check an inbox
 Check an inbox count (deprecated)
 Download message
 Download message chunk
+Endpoints: Lookup
 Look up MESH address
-Track outbox
-Track outbox (deprecated)
+Endpoints: Outbox
 Send chunked message
 Send message
-Validate a mailbox (Handshake)
+Endpoints: Tracking
+Track outbox
+Track outbox (deprecated)
 Overview
 
 Use this API to securely transfer healthcare data between organisations using the Message Exchange for Social Care and Health (MESH), which is a component of Spine.
@@ -83,12 +89,6 @@ To see our roadmap, or to suggest, comment or vote on features for this API, see
 Service level
 
 This API is a silver service, meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding Bank Holidays.
-
-For more details, see service levels.
-
-Service level
-
-This API is a silver service, meaning it is operational 24 x 7 x 365 but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
 
 For more details, see service levels.
 
@@ -151,7 +151,7 @@ The authorisation token is made up of six elements. With the exception of the fi
 
 Name	Description
 NHSMESH	The name of the Custom Authentication Schema. The space at the end of the schema is important.
-mailbox_id	ID of the mailbox sending the HTTP Request. Must be uppercase.
+mailbox_id	The mailbox identifier sending the HTTP Request. Must be uppercase.
 nonce	A GUID used as an encryption nonce.
 nonce_count	The number of times that the same nonce has been used.
 timestamp	The current date and time in yyyyMMddHHmm format.
@@ -159,13 +159,13 @@ hash	HMAC-SHA256 hash - see the list below.
 
 The hash is compiled of the following items:
 
-The key is the MESH environment shared secret
+The key is the MESH environment shared secret, provided by itoc.supportdesk@nhs.net as part of onboarding to the PTL environment.
 The message is the concatenation of the 5 following elements, joined by a colon (:):
-mailbox_id - same as element 2
-nonce - same as element 3
-nonce_count - same as element 4
-mailbox_password - The password for the MESH mailbox
-timestamp - same as element 5
+mailbox_id
+nonce
+nonce_count
+mailbox_password
+timestamp
 
 Changing the nonce and/or nonce_count elements between requests ensures the Authorization header is unique and valid.
 
@@ -223,12 +223,12 @@ Validate your mailbox once every 24 hours using the 'Validate a mailbox' endpoin
 
 Inbox poll cycle
 
-Spine gives each message a unique messageID after you post it to your outbox. It is the primary identifier for the message during MESH transit.
+Spine gives each message a unique message identifier after you post it to your outbox. It is the primary identifier for the message during MESH transit.
 
 Poll your mailbox at most every 5 minutes, but at least every 24 hours. The pseudocode for a mailbox poll is:
 
 Poll to get the messageIds of messages ready to download from the 'Check an inbox' endpoint.
-For each messageID returned in step 1:
+For each message identifier returned in step 1:
 download the message with the 'Download message' endpoint
 if it's identified as a chunked message, download all remaining chunks with the 'Download message chunk' endpoint
 acknowledge receipt of the message via the 'Acknowledge message' endpoint
@@ -238,26 +238,29 @@ Asynchronous error reporting
 
 Most problems with message transfer are indicated synchronously (immediately) when you call the 'Send Message' endpoint. However, some errors might occur after a successful request (asynchronously). You get any error reports as messages in your inbox, which you need to receive as part of your inbox poll cycle. Error reports differ from regular messages in these ways:
 
-the 'Download message endpoint' has a different value for the Mex-Messagetype header:
+the 'Download message endpoint' has a different value for the Mex-MessageType header:
 DATA for a normal organisation-to-organisation message
 REPORT for an error report
 the Download message response body of an error report message is empty
 
-We strongly recommend you check the value of Mex-Messagetype after downloading each message so you can take appropriate action if needed.
+We strongly recommend you check the value of Mex-MessageType after downloading each message, so that you can take appropriate action if needed.
 
 Error Report Header	Description
-Mex-Statusevent	Step in the MESH server side process when the error occurred
-Mex-Linkedmsgid	The messageId of the undelivered message
-Mex-Workflowid	The workflowId of the undelivered message
-Mex-Statustimestamp	Time the error occurred
-Mex-Localid	Sender assigned localId of the unacknowledged message
-Mex-Statuscode	Indicate the status of the message, non-00 indicates error
-Mex-Messageid	The messageId of the error report (not the undelivered message)
-Mex-Statussuccess	SUCCESS or ERROR (is always ERROR in an error report)
-Mex-Statusdescription	Indicate the status the message, non-00 indicates error
+Mex-StatusEvent	Step in the MESH server side process when the error occurred
+Mex-LinkedMsgID	The message identifier of the undelivered message
+Mex-WorkflowID	The workflow identifier of the undelivered message
+Mex-StatusTimestamp	Time the error occurred
+Mex-LocalID	Sender assigned local identifier of the unacknowledged message
+Mex-StatusCode	Indicate the status of the message, non-00 indicates error
+Mex-MessageID	The message identifier of the error report (not the undelivered message)
+Mex-StatusSuccess	SUCCESS or ERROR (is always ERROR in an error report)
+Mex-StatusDescription	Indicate the status the message, non-00 indicates error
 Mex-To	Intended receiver of the undelivered message
-Mex-Messagetype	REPORT
+Mex-MessageType	REPORT
 Mex-Subject	The subject of the undelivered message
+
+Note: Headers should be treated case insensitively, most http clients will do this for you automatically, but please do not rely on explicit case.
+
 Error codes
 
 Some of the below errors are only applicable for some API calls. For example, error code 15 would only be found when calling 'Child Protection Information Services' (CP-IS).
@@ -272,22 +275,21 @@ Error code	Typical description
 14	Undelivered message
 15	Bad 'Child Protection - Information Sharing' (CP-IS) File
 16	Sender is not allowed to send messages of this type
-17	Receiver not registered for workflowId
-19	workflowId does not support chunked files
+17	Workflow ID not registered for mailbox
 Outbox workflow
 
-The maximum amount of data allowed by MESH in a single request message is 100MB over HSCN conections or 20MB over the internet. You can send larger messages by breaking them into "chunks" that are transmitted as a single message over multiple requests. The upper limit of a single chunked message is 20GB.
+The maximum amount of data allowed by MESH in a single request message is 100MB over HSCN connections or 20MB over the internet. You can send larger messages by breaking them into "chunks" that are transmitted as a single message over multiple requests. The upper limit of a single chunked message is 20GB.
 
-The MESH UI and older versions of the MESH client do not support chunking. Check that the receiver's interface to MESH for your workflowId handles chunked messages prior to sending. To do this:
+The MESH UI and older versions of the MESH client do not support chunking. Check that the receiver's interface to MESH for your workflow identifier handles chunked messages prior to sending. To do this:
 
-Determine the size of your message data (after compression) with a standard algorithm (such as gzip). If the compressed message is larger than 100MB or 20MB if sending over the internet, is smaller than 20GB, and the receiving mailbox / workflowId supports chunking, then you can send a chunked message. To prepare for this:
+Determine the size of your message data (after compression) with a standard algorithm (such as gzip). If the compressed message is larger than 100MB or 20MB if sending over the internet, is smaller than 20GB, and the receiving mailbox / workflow identifier supports chunking, then you can send a chunked message. To prepare for this:
 split the uncompressed data into ordered chunks
 independently compress each chunk with the same compression algorithm (such as gzip) such that each chunk is smaller than 100MB
 use the first chunk (after compression) as the initial message data
-Send a message with appropriate workflowId, receiver and mailboxId. To do this:
-optionally include localId from step 2 for tracking. This field must not contain PID.
+Send a message with appropriate workflow identifier and Mex-To (recipient mailbox) header. To do this:
+optionally include a local identifier from step 2 for tracking. This field must not contain PID.
 if sending a chunked message, include an extra header to indicate that this is the first in a series of chunks, then submit the subsequent chunks via the 'Send Chunked Message' endpoint
-A messageID will be returned which is the unique identifer and can be used for tracking and helping with incident resolution. It would be good practice to log this identifier.
+A message identifier will be returned which is the unique identifier and can be used for tracking and helping with incident resolution. It would be good practice to log this identifier.
 Message expiration
 
 Messages that are not downloaded and acknowledged within five days of delivery are removed from your inbox. The sending organisation receives an error report explaining that the receiver did not collect the message. Uncollected messages are completely deleted from the MESH server 30 days after the initial delivery. If the sending organisation cannot re-send the message within the intervening time, it may contact the NHS Digital national service desk with the error report details and ask for the message to be placed in your inbox again.
@@ -296,61 +298,43 @@ Onboarding
 
 You need to get your software approved by us before it can go live with this API. We call this onboarding. The onboarding process can sometimes be quite long, so it's worth planning well ahead:
 
-request a Test mailbox using the form
+apply for a Testing (Path to Live) mailbox using the form
 read carefully how to request your certificate
-send your business use case to sa.servicedesk@nhs.net
-when you receive your SCAL (Supplier Conformance Assessment List), fill in and return it to sa.servicedesk@nhs.net
-our solutions assurance team certificates your integration and it's ready to go live
+
+This API uses our online digital onboarding process.
+
+For more details, and to get started, see digital onboarding.
 
 For any other queries, contact our support mailbox ssd.nationalservicedesk@nhs.net.
 
-Endpoints
-Acknowledge message
-PUT /messageexchange/{mailboxID}/inbox/{messageID}/status/acknowledged
+Endpoints: Handshake
+Validate a mailbox (Handshake)
+GET /messageexchange/{mailbox_id}
 Overview
 
-Use this endpoint to acknowledge the successful download of a message.
-
-This operation:
-
-closes the message transaction on Spine
-removes the message from your mailbox inbox, which means that the messageId does not appear in subsequent calls to the 'Check inbox' endpoint and cannot be downloaded again
-
-If you fail to acknowledge a message after five days in the inbox this sends a non-delivery report to the sender's inbox.
+Use this endpoint to check that MESH can be reached and that the authentication you are using is correct. This endpoint only needs to be called once every 24 hours. This endpoint updates the details of the connection history held for your mailbox and is similar to a keep-alive or ping message, in that it allows monitoring on the Spine to be aware of the active use of a mailbox despite a lack of traffic.
 
 Request
 
 SHELL
 
 Copy
-      curl -k \
-      --request 'PUT' \
-      --cacert 'mesh-ca.pem' \
-      --key 'mesh-client-key.pem' \
-      --cert 'mesh-client-cert.pem' \
-      --header 'Authorization: NHSMESH X26HC005:bb59be38-e50b-4e5a-9f11-e566e7509552:0:202006041718:8c415905280304918033bcab054909e4582e5fdf544eb18a9dd7366fb868bcf3' \
-      https://mesh-sync.spineservices.nhs.uk/messageexchange/X26HC005/inbox/\
-      20200529155357895317_3573F8/status/acknowledged
-
-Response
-
-JSON
-
-Copy
-  { "messageId" : "20200529155357895317_3573F8" }
+curl -k \
+  --request 'GET' \
+  --cacert 'mesh-ca.pem' \
+  --key 'mesh-client-key.pem' \
+  --cert 'mesh-client-cert.pem' \
+  --header 'Authorization: NHSMESH X26HC005:1c820cd4-be3e-43ff-807f-e65362892722:0:202006041718:3cded68a9e0f9b83f2c5de1b79fc4dac45004523e6658d46145156fa6a03eced' \
+  --header 'Mex-ClientVersion: ApiDocs==0.0.1' \
+  --header 'Mex-OSArchitecture: x86_64' \
+  --header 'Mex-OSName: Linux' \
+  --header 'Mex-OSVersion: #44~18.04.2-Ubuntu' \
+  https://mesh-sync.spineservices.nhs.uk/messageexchange/X26HC005
 
 Request
 Path parameters
 Name	Description
-messageID	
-
-String
-
-The ID of the message
-
-Required
-
-mailboxID	
+mailbox_id	
 
 String
 
@@ -367,7 +351,149 @@ String
 
 Authentication headers
 
-Example: Authorization: NHSMESH NONFUNC01:jt81ti68rlvta7379p3ng949rv:1:201511201038:291259e6a73cde3278f99cd5bd3c7ec9b3d1d5479077a8f711bddf58073d5555
+Example: Authorization: NHSMESH NONFUNC01:jt81ti68rlvta7379p3ng949rv:1:201511201038:3cded68a9e0f9b83f2c5de1b79fc4dac45004523e6658d46145156fa6a03eced
+
+Required
+
+Mex-ClientVersion	
+
+String
+
+Client version number
+
+Example: ApiDocs==0.0.1
+
+Required
+
+Mex-OSName	
+
+String
+
+Operating system name
+
+Example: Linux
+
+Required
+
+Mex-OSVersion	
+
+String
+
+Operating system version
+
+Example: #44~18.04.2-Ubuntu
+
+Required
+
+Mex-OSArchitecture	
+
+String
+
+{Operating System Architecture}
+
+
+Mex-JavaVersion	
+
+String
+
+{JVM Version Number}
+
+Response
+HTTP status: 200
+
+OK
+
+HTTP status: 400
+
+Bad Request
+
+Body
+
+Content type: application/json
+
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+HTTP status: 403
+
+Authentication failed
+
+Body
+
+Content type: application/json
+
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+Endpoints: Inbox
+Acknowledge message
+PUT /messageexchange/{mailbox_id}/inbox/{message_id}/status/acknowledged
+Overview
+
+Use this endpoint to acknowledge the successful download of a message.
+
+This operation:
+
+closes the message transaction on Spine
+removes the message from your mailbox inbox, which means that the message identifier does not appear in subsequent calls to the 'Check inbox' endpoint and cannot be downloaded again
+
+Note: If you fail to acknowledge a message after five days in the inbox this sends a non-delivery report to the sender's inbox.
+
+Request
+
+SHELL
+
+Copy
+curl -k \
+--request 'PUT' \
+--cacert 'mesh-ca.pem' \
+--key 'mesh-client-key.pem' \
+--cert 'mesh-client-cert.pem' \
+--header 'Authorization: NHSMESH X26HC005:bb59be38-e50b-4e5a-9f11-e566e7509552:0:202006041718:3cded68a9e0f9b83f2c5de1b79fc4dac45004523e6658d46145156fa6a03eced' \
+https://mesh-sync.spineservices.nhs.uk/messageexchange/X26HC005/inbox/20200529155357895317_3573F8/status/acknowledged
+
+Response
+
+JSON
+
+Copy
+{ "messageId" : "20200529155357895317_3573F8" }
+
+Request
+Path parameters
+Name	Description
+message_id	
+
+String
+
+The ID of the message
+
+Required
+
+mailbox_id	
+
+String
+
+The ID of the mailbox
+
+Example: MAILBOX01
+
+Required
+Headers
+Name	Description
+Authorization	
+
+String
+
+Authentication headers
+
+Example: Authorization: NHSMESH NONFUNC01:jt81ti68rlvta7379p3ng949rv:1:201511201038:3cded68a9e0f9b83f2c5de1b79fc4dac45004523e6658d46145156fa6a03eced
 
 Required
 Response
@@ -394,83 +520,38 @@ HTTP status: 403
 
 Authentication failed
 
-Body
-
-Content type: application/json
-
-Schema
-Collapse all Expand all
-Name	Description
-
-object
-	
-
-messageID
-string
-	
-
-ID of the allocated message
-
-Example: 20200529155357895317_3573F8
-
-
-errorEvent
-string
-	
-
-Status event
-
-Example: status event
-
-
-errorCode
-integer
-	
-
-Status code
-
-Example: 403
-
-
-errorDescription
-string
-	
-
-Description of the status
-
-Example: Description of the status
 Check an inbox
-GET /messageexchange/{mailboxID}/inbox
+GET /messageexchange/{mailbox_id}/inbox
 Overview
 
-Use this endpoint to return the messageId of messages in the mailbox inbox ready for download. Client systems MUST poll their assigned inbox a minimum of once a day and a maximum of once every five minutes for messages (unless there are more messages waiting to download).
+Use this endpoint to return the message identifier of messages in the mailbox inbox ready for download. Client systems MUST poll their assigned inbox a minimum of once a day and a maximum of once every five minutes for messages (unless there are more messages waiting to download).
 
-A maximum of 500 messageId are returned in every request. Continue the polling and download cycle until you empty the mailbox and you receive less than 500 messages in the response.
+A maximum of 500 message identifier are returned in every request. Continue the polling and download cycle until you empty the mailbox and you receive less than 500 messages in the response.
 
 Request
 
 SHELL
 
 Copy
-  curl -k \
-  --request 'GET' \
-  --cacert 'mesh-ca.pem' \
-  --key 'mesh-client-key.pem' \
-  --cert 'mesh-client-cert.pem' \
-  --header 'Authorization: NHSMESH X26HC005:66eef28b-e097-421d-998d-ea0c92c2c2fb:0:202006041718:60e25fb4c6b400d7e3dfa901b68715b2fda4cfbcd27b8bff3d21dbaae06a65d5' \
-  https://mesh-sync.spineservices.nhs.uk/messageexchange/X26HC005/inbox
+curl -k \
+--request 'GET' \
+--cacert 'mesh-ca.pem' \
+--key 'mesh-client-key.pem' \
+--cert 'mesh-client-cert.pem' \
+--header 'Authorization: NHSMESH X26HC005:66eef28b-e097-421d-998d-ea0c92c2c2fb:0:202006041718:3cded68a9e0f9b83f2c5de1b79fc4dac45004523e6658d46145156fa6a03eced' \
+https://mesh-sync.spineservices.nhs.uk/messageexchange/X26HC005/inbox
 
 Response
 
 JSON
 
 Copy
- {"messages": []}
+{"messages": []}
 
 Request
 Path parameters
 Name	Description
-mailboxID	
+mailbox_id	
 
 String
 
@@ -487,7 +568,7 @@ String
 
 Authentication headers
 
-Example: Authorization: NHSMESH NONFUNC01:jt81ti68rlvta7379p3ng949rv:1:201511201038:291259e6a73cde3278f99cd5bd3c7ec9b3d1d5479077a8f711bddf58073d5555
+Example: Authorization: NHSMESH NONFUNC01:jt81ti68rlvta7379p3ng949rv:1:201511201038:3cded68a9e0f9b83f2c5de1b79fc4dac45004523e6658d46145156fa6a03eced
 
 Required
 Response
@@ -567,7 +648,7 @@ Description of the status
 
 Example: Description of the status
 Check an inbox count (deprecated)
-GET /messageexchange/{mailboxID}/count
+GET /messageexchange/{mailbox_id}/count
 Overview
 
 Use this endpoint to check the number of messages currently held in the MESH mailbox that are ready to download.
@@ -577,7 +658,7 @@ This endpoint is now deprecated as it is not needed as part of the polling cycle
 Request
 Path parameters
 Name	Description
-mailboxID	
+mailbox_id	
 
 String
 
@@ -594,7 +675,7 @@ String
 
 Authentication headers
 
-Example: Authorization: NHSMESH NONFUNC01:jt81ti68rlvta7379p3ng949rv:1:201511201038:291259e6a73cde3278f99cd5bd3c7ec9b3d1d5479077a8f711bddf58073d5555
+Example: Authorization: NHSMESH NONFUNC01:jt81ti68rlvta7379p3ng949rv:1:201511201038:3cded68a9e0f9b83f2c5de1b79fc4dac45004523e6658d46145156fa6a03eced
 
 Required
 Response
@@ -654,47 +735,13 @@ HTTP status: 403
 
 Authentication failed
 
-Body
-
-Content type: application/json
-
-Schema
-Collapse all Expand all
-Name	Description
-
-object
-	
-
-errorEvent
-string
-	
-
-Status event
-
-Example: status event
-
-
-errorCode
-integer
-	
-
-Status code
-
-Example: 403
-
-
-errorDescription
-string
-	
-
-Description of the status
-
-Example: Description of the status
 Download message
-GET /messageexchange/{Recipient}/inbox/{messageID}
+GET /messageexchange/{mailbox_id}/inbox/{message_id}
 Overview
 
-Use this endpoint to retrieve a message based on the messageid obtained from the 'Check Inbox' endpoint.
+Use this endpoint to retrieve a message based on the message identifier obtained from the 'Check Inbox' endpoint.
+
+Note: Headers should be treated case insensitively, most http clients will do this for you automatically, but please do not rely on explicit case.
 
 Message expiration
 
@@ -702,10 +749,10 @@ Messages you do not download and acknowledge within five days of delivery are re
 
 Report Messages
 
-The Mex-Messagetype header indicates if the payload is a DATA message or a REPORT.
+The Mex-MessageType header indicates if the payload is a DATA message or a REPORT.
 Error reports differ from regular messages in these ways:
 
-the Download message endpoint has a different value for the Mex-Messagetype header
+the Download message endpoint has a different value for the Mex-MessageType header
 DATA for a normal organisation-to-organisation message
 REPORT for an error report
 the Download message response body of an error report message is empty
@@ -714,25 +761,25 @@ Request
 SHELL
 
 Copy
-  curl -k \
-  --request 'GET' \
-  --cacert 'mesh-ca.pem' \
-  --key 'mesh-client-key.pem' \
-  --cert 'mesh-client-cert.pem' \
-  --header 'Authorization: NHSMESH X26HC005:2942264f-46e5-450f-90fc-22a0c09efa37:0:202006041718:bba1c9550e6ce5f2fff2c98712b27c4bf7f8b8bf9dfda3f52e27e6db71dd8f9d' \
-  https://msg.int.spine2.ncrs.nhs.uk/messageexchange/recipient/inbox/messageID
+curl -k \
+--request 'GET' \
+--cacert 'mesh-ca.pem' \
+--key 'mesh-client-key.pem' \
+--cert 'mesh-client-cert.pem' \
+--header 'Authorization: NHSMESH X26HC005:2942264f-46e5-450f-90fc-22a0c09efa37:0:202006041718:3cded68a9e0f9b83f2c5de1b79fc4dac45004523e6658d46145156fa6a03eced' \
+https://msg.int.spine2.ncrs.nhs.uk/messageexchange/X26HC005/inbox/20200529155357895317_3573F8
 
 Response
 
 JSON
 
 Copy
-  {"messages": ["20200529155357895317_3573F8"]}
+{"messages": ["20200529155357895317_3573F8"]}
 
 Request
 Path parameters
 Name	Description
-messageID	
+message_id	
 
 String
 
@@ -740,13 +787,13 @@ The ID of the message
 
 Required
 
-Recipient	
+mailbox_id	
 
 String
 
-Recipient mailbox ID
+Mailbox ID
 
-Example: {Recipient Mailbox ID}
+Example: {Mailbox ID}
 
 Required
 Headers
@@ -757,7 +804,7 @@ String
 
 Authentication headers
 
-Example: Authorization: NHSMESH NONFUNC01:jt81ti68rlvta7379p3ng949rv:1:201511201038:291259e6a73cde3278f99cd5bd3c7ec9b3d1d5479077a8f711bddf58073d5555
+Example: Authorization: NHSMESH NONFUNC01:jt81ti68rlvta7379p3ng949rv:1:201511201038:3cded68a9e0f9b83f2c5de1b79fc4dac45004523e6658d46145156fa6a03eced
 
 Required
 Response
@@ -793,51 +840,6 @@ HTTP status: 403
 
 Authentication failed
 
-Body
-
-Content type: application/json
-
-Schema
-Collapse all Expand all
-Name	Description
-
-object
-	
-
-messageID
-string
-	
-
-ID of the allocated message
-
-Example: 20200529155357895317_3573F8
-
-
-errorEvent
-string
-	
-
-Status event
-
-Example: status event
-
-
-errorCode
-integer
-	
-
-Status code
-
-Example: 403
-
-
-errorDescription
-string
-	
-
-Description of the status
-
-Example: Description of the status
 HTTP status: 410
 
 Gone, message has already been downloaded and acknowledged
@@ -853,15 +855,17 @@ Name	Description
 object
 	
 Download message chunk
-GET /messageexchange/{Recipient}/inbox/{messageID}/{chunkNo}
+GET /messageexchange/{mailbox_id}/inbox/{message_id}/{chunkNo}
 Overview
 
-Use this endpoint to download a chunked message. Initially, call the 'Download Message' endpoint with the messageId given by the 'Check Inbox' endpoint as usual. When the message is chunked, the 'Download message' endpoint response differs in two ways:
+Use this endpoint to download a chunked message. Initially, call the 'Download Message' endpoint with the message identifier given by the 'Check Inbox' endpoint as usual. When the message is chunked, the 'Download message' endpoint response differs in two ways:
 
 the response code is '206: Partial Content' (instead of '200: OK')
 the response headers contain Mex-Chunk-Range: 1:n
 
 This endpoint is used to download the remaining n-1 chunks.
+
+Note: Headers should be treated case insensitively, most http clients will do this for you automatically, but please do not rely on explicit case.
 
 Request
 
@@ -870,13 +874,13 @@ Following on from the example in the 'Send chunked message' endpoint, Alice chec
 SHELL
 
 Copy
-  curl -k \
-  --cacert 'mesh-ca.pem' \
-  --key 'mesh-client-key.pem' \
-  --cert 'mesh-client-cert.pem' \
-  --request 'GET' \
-  --header 'Authorization: NHSMESH X26HC005:142b8a1e-e953-4e5e-98a8-b27741e15747:0:202006041718:0ab046e6c9ed7ed0e47eef3e04725846047d7ee3e71e868c84ffda32e24926f4' \
-  https://mesh-sync.spineservices.nhs.uk/messageexchange/X26HC005/inbox
+curl -k \
+--cacert 'mesh-ca.pem' \
+--key 'mesh-client-key.pem' \
+--cert 'mesh-client-cert.pem' \
+--request 'GET' \
+--header 'Authorization: NHSMESH X26HC005:142b8a1e-e953-4e5e-98a8-b27741e15747:0:202006041718:3cded68a9e0f9b83f2c5de1b79fc4dac45004523e6658d46145156fa6a03eced' \
+https://mesh-sync.spineservices.nhs.uk/messageexchange/X26HC005/inbox
 
 
 She downloads the first part of the message. Note this use of curl uses the --include argument, to show the value of the HTTP headers in the MESH response.
@@ -884,50 +888,49 @@ She downloads the first part of the message. Note this use of curl uses the --in
 SHELL
 
 Copy
-  curl -k \
-  --include \
-  --request 'GET' \
-  --cacert 'mesh-ca.pem' \
-  --key 'mesh-client-key.pem' \
-  --cert 'mesh-client-cert.pem' \
-  --header 'Authorization: NHSMESH X26HC005:777670ce-02f7-44fe-a53b-eb33eb1cb564:0:202006041718:8d22e541bbfd55baeccb6e088704320c75ea150fc8fa7dc137121cbdf939a7bb' \
-  https://mesh-sync.spineservices.nhs.uk/messageexchange/X26HC005/inbox/\
-  20200601122152994285_D59900 | tr -d '\r'
+curl -k \
+--include \
+--request 'GET' \
+--cacert 'mesh-ca.pem' \
+--key 'mesh-client-key.pem' \
+--cert 'mesh-client-cert.pem' \
+--header 'Authorization: NHSMESH X26HC005:777670ce-02f7-44fe-a53b-eb33eb1cb564:0:202006041718:3cded68a9e0f9b83f2c5de1b79fc4dac45004523e6658d46145156fa6a03eced' \
+https://mesh-sync.spineservices.nhs.uk/messageexchange/X26HC005/inbox/20200601122152994285_D59900
 
 
 SHELL
 
 Copy
-  HTTP/1.1 206 Partial Content
-  Server: nginx
-  Date: Mon, 01 Jun 2020 12:24:09 GMT
-  Content-Type: application/octet-stream
-  Content-Length: 100
-  Connection: keep-alive
-  Mex-Chunk-Range: 1:2
-  Mex-Workflowid: API-DOCS-TEST
-  Mex-Content-Compressed: N
-  Mex-Addresstype: ALL
-  Mex-Statussuccess: SUCCESS
-  Mex-Statusdescription: Transferred to recipient mailbox
-  Mex-Messagetype: DATA
-  Mex-Statusevent: TRANSFER
-  Mex-Tosmtp: x26hc005@dts.nhs.uk
-  Mex-Version: 1.0
-  Mex-Fromsmtp: x26hc006@dts.nhs.uk
-  Mex-To: X26HC005
-  Mex-Statustimestamp: 20200601122152
-  Mex-Localid: api-docs-bob-sends-alice-a-chunked-file
-  Mex-Statuscode: 00
-  Mex-Filename: message.txt.gz
-  Mex-Messageid: 20200601122152994285_D59900
-  Mex-From: X26HC006
+HTTP/1.1 206 Partial Content
+Server: nginx
+Date: Mon, 01 Jun 2020 12:24:09 GMT
+Content-Type: application/octet-stream
+Content-Length: 100
+Connection: keep-alive
+Mex-Chunk-Range: 1:2
+Mex-WorkflowID: API-DOCS-TEST
+Mex-Content-Compressed: N
+Mex-AddressType: ALL
+Mex-StatusSuccess: SUCCESS
+Mex-StatusDescription: Transferred to recipient mailbox
+Mex-MessageType: DATA
+Mex-StatusEvent: TRANSFER
+Mex-ToSMTP: x26hc005@dts.nhs.uk
+Mex-Version: 1.0
+Mex-FromSMTP: x26hc006@dts.nhs.uk
+Mex-To: X26HC005
+Mex-StatusTimestamp: 20200601122152
+Mex-LocalID: api-docs-bob-sends-alice-a-chunked-file
+Mex-StatusCode: 00
+Mex-FileName: message.txt.gz
+Mex-MessageID: 20200601122152994285_D59900
+Mex-From: X26HC006
 
-  Hi Alice,
+Hi Alice,
 
-  This is Bob. It's really nice that we can communicate via SPINE!
+This is Bob. It's really nice that we can communicate via SPINE!
 
-  I hope to hear more fro
+I hope to hear more fro
 
 
 Here we have added the --include argument to curl which prints more response information, including the HTTP response code and response headers. (tr -d '\r' invokes a linux utility to strip carriage returns from the end of each of the lines added to the curl --include argument).
@@ -939,43 +942,42 @@ Alice makes another call to retrieve the second part of the message.
 SHELL
 
 Copy
-  curl -k \
-  --include \
-  --cacert 'mesh-ca.pem' \
-  --key 'mesh-client-key.pem' \
-  --cert 'mesh-client-cert.pem' \
-  --header 'Authorization: NHSMESH X26HC005:71139532-9215-4ff8-8a74-d602386bac30:0:202006041718:a23d903df6b10388e9c0b12d651ce3cc0e2016006dc72e2f9671f596c9bb70c4' \
-  https://mesh-sync.spineservices.nhs.uk/messageexchange/X26HC005/inbox/\
-  20200601122152994285_D59900/2 | tr -d '\r'
+curl -k \
+--include \
+--cacert 'mesh-ca.pem' \
+--key 'mesh-client-key.pem' \
+--cert 'mesh-client-cert.pem' \
+--header 'Authorization: NHSMESH X26HC005:71139532-9215-4ff8-8a74-d602386bac30:0:202006041718:3cded68a9e0f9b83f2c5de1b79fc4dac45004523e6658d46145156fa6a03eced' \
+https://mesh-sync.spineservices.nhs.uk/messageexchange/X26HC005/inbox/20200601122152994285_D59900/2
 
 
 SHELL
 
 Copy
-  HTTP/1.1 200 OK
-  Server: nginx
-  Date: Mon, 01 Jun 2020 12:24:17 GMT
-  Content-Type: application/octet-stream
-  Content-Length: 27
-  Connection: keep-alive
-  Mex-Content-Compressed: N
-  Mex-Addresstype: ALL
-  Mex-Localid: api-docs-bob-sends-alice-a-chunked-file
-  Mex-Tosmtp: x26hc005@dts.nhs.uk
-  Mex-Chunk-Range: 2:2
-  Etag: "866243ab74e0107a4d5835f8d6552e7f20c39ee1"
-  Mex-Filename: message.txt.gz
-  Mex-Version: 1.0
-  Mex-Fromsmtp: x26hc006@dts.nhs.uk
-  Mex-Workflowid: API-DOCS-TEST
-  Mex-To: X26HC005
-  Mex-Messagetype: DATA
-  Mex-Messageid: 20200601122152994285_D59900
-  Mex-From: X26HC006
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 01 Jun 2020 12:24:17 GMT
+Content-Type: application/octet-stream
+Content-Length: 27
+Connection: keep-alive
+Mex-Content-Compressed: N
+Mex-AddressType: ALL
+Mex-LocalID: api-docs-bob-sends-alice-a-chunked-file
+Mex-ToSMTP: x26hc005@dts.nhs.uk
+Mex-Chunk-Range: 2:2
+Etag: "866243ab74e0107a4d5835f8d6552e7f20c39ee1"
+Mex-FileName: message.txt.gz
+Mex-Version: 1.0
+Mex-FromSMTP: x26hc006@dts.nhs.uk
+Mex-WorkflowID: API-DOCS-TEST
+Mex-To: X26HC005
+Mex-MessageType: DATA
+Mex-MessageID: 20200601122152994285_D59900
+Mex-From: X26HC006
 
-  m you in the future,
+m you in the future,
 
-  Bob.
+Bob.
 
 
 That this is the final part of the message is indicated in two ways:
@@ -985,7 +987,7 @@ the Mex-Chunk-Range response header is 2:2
 Request
 Path parameters
 Name	Description
-Recipient	
+mailbox_id	
 
 String
 
@@ -995,7 +997,7 @@ Example: {Recipient Mailbox ID}
 
 Required
 
-messageID	
+message_id	
 
 String
 
@@ -1020,7 +1022,7 @@ String
 
 Authentication headers
 
-Example: Authorization: NHSMESH NONFUNC01:jt81ti68rlvta7379p3ng949rv:1:201511201038:291259e6a73cde3278f99cd5bd3c7ec9b3d1d5479077a8f711bddf58073d5555
+Example: Authorization: NHSMESH NONFUNC01:jt81ti68rlvta7379p3ng949rv:1:201511201038:3cded68a9e0f9b83f2c5de1b79fc4dac45004523e6658d46145156fa6a03eced
 
 Required
 Response
@@ -1056,51 +1058,6 @@ HTTP status: 403
 
 Authentication failed
 
-Body
-
-Content type: application/json
-
-Schema
-Collapse all Expand all
-Name	Description
-
-object
-	
-
-messageID
-string
-	
-
-ID of the allocated message
-
-Example: 20200529155357895317_3573F8
-
-
-errorEvent
-string
-	
-
-Status event
-
-Example: status event
-
-
-errorCode
-integer
-	
-
-Status code
-
-Example: 403
-
-
-errorDescription
-string
-	
-
-Description of the status
-
-Example: Description of the status
 HTTP status: 404
 
 Message does not exist
@@ -1115,11 +1072,12 @@ Name	Description
 
 object
 	
+Endpoints: Lookup
 Look up MESH address
-GET /endpointlookup/mesh/{odsCode}/{Mex-workflowid}
+GET /messageexchange/endpointlookup/{ods_code}/{workflow_id}
 Overview
 
-Use this endpoint to search for the mailbox of the organisation you want to send data to, using their unique Organisation Data Service (ODS) code, their MESH mailboxID and the agreed workflowId for the data.
+Use this endpoint to search for the mailbox of the organisation you want to send data to, using their unique Organisation Data Service (ODS) code, their MESH mailbox and the agreed workflow identifier for the data.
 
 An example call:
 
@@ -1132,8 +1090,7 @@ curl -k \
 --cacert 'mesh-ca.pem' \
 --key 'mesh-client-key.pem' \
 --cert 'mesh-client-cert.pem' \
---header 'Authorization: NHSMESH X26HC005:a5d25a21-57c3-40d1-8794-bea42e82039b:0:202006041718:725665f0956b73c5f9ec5e0e0d413046fc0729e3b893864b6d5f672dda2bfd13' \
-https://mesh-sync.spineservices.nhs.uk/endpointlookup/mesh/SCREEN2/SPINE_GPCAPITATION_EXTRACT
+https://mesh-sync.spineservices.nhs.uk/messageexchange/endpointlookup/SCREEN2/SPINE_GPCAPITATION_EXTRACT
 
 Response
 
@@ -1162,12 +1119,12 @@ Copy
 }
 
 
-Note: neither the ods-code nor workflowId in this example are real.
+Note: neither the ODS code or workflow identifier in this example are real.
 
 Request
 Path parameters
 Name	Description
-odsCode	
+ods_code	
 
 String
 
@@ -1177,7 +1134,7 @@ Example: SCREEN2
 
 Required
 
-Mex-workflowid	
+workflow_id	
 
 String
 
@@ -1194,7 +1151,7 @@ String
 
 Authentication headers
 
-Example: Authorization: NHSMESH NONFUNC01:jt81ti68rlvta7379p3ng949rv:1:201511201038:291259e6a73cde3278f99cd5bd3c7ec9b3d1d5479077a8f711bddf58073d5555
+Example: Authorization: NHSMESH NONFUNC01:jt81ti68rlvta7379p3ng949rv:1:201511201038:3cded68a9e0f9b83f2c5de1b79fc4dac45004523e6658d46145156fa6a03eced
 
 Required
 Response
@@ -1222,9 +1179,174 @@ Example: 20200601131040203367_A441C2_1573484974
 results
 array
 	
-HTTP status: 403
+Endpoints: Outbox
+Send chunked message
+POST /messageexchange/{mailbox_id}/outbox/{message_id}/{chunkNo}
+Overview
 
-Message does not exist
+Use this endpoint to send a chunked message. The 'Send Message' endpoint has a maximum single request message payload size of 100MB over HSCN or 20MB over the internet. However, you can send much larger messages (up to 20GB) by breaking up the message into chunks and transmitting it over multiple requests.
+
+Note: Some workflow ids do not support chunking because it is not currently supported in the MESH UI and older versions of the MESH client. Check with your receiving organisation before sending messages with this endpoint.
+
+To send a chunked message:
+
+Split it into separate files
+Compress the individual chunks separately with the same compression program (e.g. gzip).
+DO NOT compress a large file and then split the compressed version
+Upload the first file using the normal 'Send message' endpoint.
+include the Mex-Chunk-Range header with a value of 1:n where n is the number of separate files your big data is split into
+capture the message identifier field in the returned JSON
+Upload subsequent files in the correct order using the chunked message endpoint
+
+Note: fewer headers are required for the chunked message endpoint because Spine uses the relevant metadata from the initial (Mex-Chunk-Header=1:n) call to the 'Send message' endpoint.
+
+Request
+
+Suppose Bob has a large file to send to Alice. In this example we will use message.txt. It is easily small enough to send in a single request, but we will chunk it anyway to illustrate the API calls.
+
+SHELL
+
+Copy
+ls -sh message.txt
+4.0kb message.txt
+
+
+SHELL
+
+Copy
+cat message.txt
+
+Hi Alice,
+
+This is Bob. It's really nice that we can communicate via SPINE!
+
+I hope to hear more from you in the future,
+
+Bob.
+
+
+First we break up our one "large" file into two smaller files. We will transmit one per request.
+
+SHELL
+
+Copy
+split -b 100 message.txt message.txt_
+ls -sh message.txt_*
+
+
+Large messages should be compressed to reduce the bandwidth and storage requirements for Spine.
+
+SHELL
+
+Copy
+for chunk_file in message.txt_*; do
+    gzip -k -f $chunk_file;
+done
+ls -sh message.txt_*.gz
+
+4.0kb message.txt_aa.gz
+4.0kb message.txt_ab.gz
+
+
+SHELL
+
+Copy
+curl -k \
+--cacert 'mesh-ca.pem' \
+--key 'mesh-client-key.pem' \
+--cert 'mesh-client-cert.pem' \
+--request 'POST' \
+--header 'Authorization: NHSMESH X26HC006:2c6e938e-9a72-4a7a-9664-96ac1f341331:0:202006041718:3cded68a9e0f9b83f2c5de1b79fc4dac45004523e6658d46145156fa6a03eced' \
+--header 'Content-Type: application/octet-stream' \
+--header 'Mex-From: X26HC006' \
+--header 'Mex-To: X26HC005' \
+--header 'Mex-WorkflowID: API-DOCS-TEST' \
+--header 'Mex-FileName: message.txt.gz' \
+--header 'Mex-LocalID: api-docs-bob-sends-alice-a-chunked-file' \
+--header 'Mex-Chunk-Range: 1:2' \
+--header 'Content-Encoding: gzip' \
+--data-binary '@message.txt_aa.gz' \
+https://mesh-sync.spineservices.nhs.uk/messageexchange/X26HC006/outbox
+
+
+SHELL
+
+Copy
+curl -k \
+--cacert 'mesh-ca.pem' \
+--key 'mesh-client-key.pem' \
+--cert 'mesh-client-cert.pem' \
+--request 'POST' \
+--header 'Authorization: NHSMESH X26HC006:06bf0527-ba77-47f0-b22f-d7d08a88ad26:0:202006041718:3cded68a9e0f9b83f2c5de1b79fc4dac45004523e6658d46145156fa6a03eced' \
+--header 'Mex-Chunk-Range: 2:2' \
+--data-binary '@./message.txt_ab.gz' \
+https://mesh-sync.spineservices.nhs.uk/messageexchange/X26HC006/outbox/20200601122152994285_D59900/2
+
+Request
+Path parameters
+Name	Description
+mailbox_id	
+
+String
+
+The ID of the mailbox
+
+Example: MAILBOX01
+
+Required
+
+message_id	
+
+String
+
+The ID of the message
+
+Required
+
+chunkNo	
+
+Integer
+
+The index number of the chunk
+
+Example: 1
+
+Required
+Headers
+Name	Description
+Authorization	
+
+String
+
+Authentication headers
+
+Example: Authorization: NHSMESH NONFUNC01:jt81ti68rlvta7379p3ng949rv:1:201511201038:3cded68a9e0f9b83f2c5de1b79fc4dac45004523e6658d46145156fa6a03eced
+
+Required
+
+Content-Type	
+
+String
+
+Type of sent content
+
+Example: application/octet-stream
+
+Required
+
+Mex-Chunk-Range	
+
+String (integer:integer)
+
+describes which chunk of the range is sent.
+
+Example: 124
+
+Required
+Response
+HTTP status: 202
+
+Accepted
 
 Body
 
@@ -1236,15 +1358,276 @@ Name	Description
 
 object
 	
-Track outbox
-GET /messageexchange/{mailboxID}/outbox/tracking
+
+messageID
+string
+	
+
+Unique message ID, identical to initial Send message endpoint
+
+Example: 20200529155357895317_3573F8
+
+
+blockId
+integer
+	
+
+chunkNo assigned to the chunk as supplied in the Mex-chunk-range header, maintained for legacy support
+
+HTTP status: 403
+
+Authentication failed
+
+Send message
+POST /messageexchange/{mailbox_id}/outbox
 Overview
 
-Use this endpoint to enquire about the status of messages sent from your outbox. When determining the frequency of the calling of this endpoint consider that MESH is asynchronous and it might be some hours until the recipient downloads your message. You must not poll this endpoint frequently.
+Use this endpoint to send a message via MESH. Use the POST command to your virtual outbox. Specify the message recipient in the request headers, with the message contained in the request body.
 
-The messageId is the value returned in the response to a message upload.
+Messages larger than 100MB
 
-Do not use this endpoint to replace a business ack message. If the business process requires confirmation that the recipient has processed the message then send a business ACK over MESH. The convention is to use the same workflowId appended with _ACK).
+100MB (20MB on internet) is the largest data payload the MESH API accepts in a single request. Compress larger messages to reduce bandwidth and data storage on Spine. If compression does not sufficiently reduce the message size enough for transmission in a single request then you can break it up into smaller chunks and transmit them separately provided:
+
+The total compressed size of the message is < 100MB - this is the Spine upper limit for a single message.
+The receiver mailbox and workflow identifier support the downloading of chunked messages. MESH UI and older versions of the MESH client do not support this.
+
+To correctly break the outbound message into valid chunks:
+
+Split the uncompressed message into n ordered chunks such that each (compressed) chunk is smaller than 20MB.
+Independently compress each chunk with the same compression algorithm (e.g. gzip).
+The first (compressed) chunk of the message should be transmitted using this endpoint (the normal send message endpoint). Include the optional Mex-Chunk-Range header with a value 1:n to tell Spine that this is a chunked message and to wait for n-1 other requests before delivering the message. The message identifier of this initial server response must be captured as it is a required path element of the Send chunked message URL.
+
+Always set the workflow identifier as some workflows are restricted which means the mailbox sender and recipient must be configured for the workflow identifier you send.
+
+To discover the recipient mailbox either use the endpointlookup endpoint or for certain workflows you can include demographic details in the Mex-To field.
+
+It is good practice to capture the returned message identifier as this provides a unique identifier which you can use for message tracking.
+
+Request
+
+SHELL
+
+Copy
+curl -k \
+--request 'POST' \
+--cacert 'mesh-ca.pem' \
+--key 'mesh-client-key.pem' \
+--cert 'mesh-client-cert.pem' \
+--header 'Authorization: NHSMESH X26HC006:c1f2df9c-fe9e-4d11-ba78-49a8bc705eb4:0:202006041718:3cded68a9e0f9b83f2c5de1b79fc4dac45004523e6658d46145156fa6a03eced' \
+--header 'Content-Type: application/octet-stream' \
+--header 'Mex-From: X26HC006' \
+--header 'Mex-To: X26HC005' \
+--header 'Mex-WorkflowID: API-DOCS-TEST' \
+--header 'Mex-FileName: None' \
+--header 'Mex-LocalID: api-docs-bob-greets-alice' \
+--data 'This is a message' \
+https://mesh-sync.spineservices.nhs.uk/messageexchange/X26HC006/outbox
+
+Response
+
+JSON
+
+Copy
+{"messageID": "20200529155357895317_3573F8"}
+
+Request
+Path parameters
+Name	Description
+mailbox_id	
+
+String
+
+The ID of the mailbox
+
+Example: MAILBOX01
+
+Required
+Headers
+Name	Description
+Authorization	
+
+String
+
+Authentication headers
+
+Example: Authorization: NHSMESH NONFUNC01:jt81ti68rlvta7379p3ng949rv:1:201511201038:3cded68a9e0f9b83f2c5de1b79fc4dac45004523e6658d46145156fa6a03eced
+
+Required
+
+Content-Type	
+
+String
+
+Type of sent content
+
+Example: application/octet-stream
+
+Required
+
+Content-Encoding	
+
+String
+
+Algorithm used to compress the file e.g. 'gzip'
+
+
+Mex-FileName	
+
+String
+
+{Original File Name}
+
+Example: {Message content should have this file name after receipt}
+
+Required
+
+Mex-From	
+
+String
+
+Sending organisation's mailbox ID
+
+Example: {Sending organisation's mailbox ID}
+
+Required
+
+Mex-To	
+
+String
+
+Recipient mailbox ID
+
+Example: {Recipient Mailbox ID}
+
+Required
+
+Mex-WorkflowID	
+
+String
+
+Identifies the Business Workflow associated with the message
+
+Example: {Workflow ID}
+
+Required
+
+Mex-Chunk-Range	
+
+String
+
+1:{n} {if first of n chunks, see Send chunked message}
+
+
+Mex-LocalID	
+
+String
+
+A unique ID generated by you, must not contain Patient Identifiable Data PID
+
+
+Mex-Subject	
+
+String
+
+Message subject information, avoid including PID
+
+
+Mex-Content-Checksum	
+
+String
+
+Checksum of the original file contents
+
+
+Mex-Content-Encrypted	
+
+String
+
+Indicate to the receiver that contents are encrypted
+
+Response
+HTTP status: 202
+
+Accepted
+
+Body
+
+Content type: application/json
+
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+messageID
+string
+	
+
+Unique Id assigned by the MESH server
+
+Example: 20200529155357895317_3573F8
+HTTP status: 403
+
+Authentication failed
+
+HTTP status: 417
+
+Invalid Recipient or the workflow is restricted
+
+Body
+
+Content type: application/json
+
+Schema
+Collapse all Expand all
+Name	Description
+
+object
+	
+
+messageID
+string
+	
+
+ID of the allocated message
+
+
+
+errorEvent
+string
+	
+
+Status event
+
+
+
+errorCode
+integer
+	
+
+Status code
+
+Example: 417
+
+
+errorDescription
+string
+	
+
+Description of the status
+
+Endpoints: Tracking
+Track outbox
+GET /messageexchange/{mailbox_id}/outbox/tracking
+Overview
+
+Use this endpoint to enquire about the status of messages sent from your outbox. When determining the frequency of the calling of this endpoint consider that MESH is asynchronous, and it might be some hours until the recipient downloads your message. You must not poll this endpoint frequently.
+
+The message identifier is the value returned in the response to a message upload.
+
+Do not use this endpoint to replace a business ack message. If the business process requires confirmation that the recipient has processed the message then send a business ACK over MESH. The convention is to use the same workflow identifier appended with _ACK.
 
 Request
 
@@ -1253,60 +1636,60 @@ It is possible for Bob to check the status of the chunked message he sent to Ali
 SHELL
 
 Copy
-  curl -k \
-  --cacert 'mesh-ca.pem' \
-  --key 'mesh-client-key.pem' \
-  --cert 'mesh-client-cert.pem' \
-  --header 'Authorization: NHSMESH X26HC006:1f6c9442-eb9a-440c-b4ed-ee4fd525e176:0:202006041718:c2d92e6abd637e664fd8bdbf1d753c7d42a16ee2bc317f62a654ef649a9956d7' \
-  https://mesh-sync.spineservices.nhs.uk/messageexchange/X26HC006/outbox/tracking?messageID=20210311101813838554_1B8F53
+curl -k \
+--cacert 'mesh-ca.pem' \
+--key 'mesh-client-key.pem' \
+--cert 'mesh-client-cert.pem' \
+--header 'Authorization: NHSMESH X26HC006:1f6c9442-eb9a-440c-b4ed-ee4fd525e176:0:202006041718:3cded68a9e0f9b83f2c5de1b79fc4dac45004523e6658d46145156fa6a03eced' \
+https://mesh-sync.spineservices.nhs.uk/messageexchange/X26HC006/outbox/tracking?messageID=20210311101813838554_1B8F53
 
 Response
 
 JSON
 
 Copy
-  {
-    "processId": null,
-    "addressType": "ALL",
-    "localId": "api-docs-bob-sends-alice-a-chunked-file",
-    "recipientBillingEntity": "England",
-    "dtsId": "20210311101813838554_1B8F53",
-    "statusSuccess": null,
-    "messageType": "DATA",
-    "statusTimestamp": null,
-    "senderBillingEntity": "England",
-    "senderOdsCode": "X26",
-    "partnerId": null,
-    "recipientName": "APIM bebop",
-    "senderName": "APIM bebop",
-    "subject": null,
-    "statusEvent": null,
-    "version": "1.0",
-    "encryptedFlag": null,
-    "statusDescription": null,
-    "senderOrgName": "TEST Org Partnership Trust",
-    "status": "Accepted",
-    "workflowId": "API-DOCS-TEST",
-    "senderOrgCode": "TestOrg",
-    "recipientOrgName": "TEST Org Partnership Trust",
-    "expiryTime": "20200606122153",
-    "senderSmtp": "x26hc006@dts.nhs.uk",
-    "fileName": "message.txt.gz",
-    "recipientSmtp": "x26hc005@dts.nhs.uk",
-    "meshRecipientOdsCode": "X26",
-    "compressFlag": null,
-    "uploadTimestamp": "20200601122152",
-    "recipient": "X26HC005",
-    "contentsBase64": true,
-    "sender": "X26HC006",
-    "checksum": null,
-    "isCompressed": null,
-    "contentEncoding": "gzip",
-    "recipientOrgCode": "TestOrg",
-    "messageId": "20210311101813838554_1B8F53",
+{
+  "processId": null,
+  "addressType": "ALL",
+  "localId": "api-docs-bob-sends-alice-a-chunked-file",
+  "recipientBillingEntity": "England",
+  "dtsId": "20210311101813838554_1B8F53",
+  "statusSuccess": null,
+  "messageType": "DATA",
+  "statusTimestamp": null,
+  "senderBillingEntity": "England",
+  "senderOdsCode": "X26",
+  "partnerId": null,
+  "recipientName": "APIM bebop",
+  "senderName": "APIM bebop",
+  "subject": null,
+  "statusEvent": null,
+  "version": "1.0",
+  "encryptedFlag": null,
+  "statusDescription": null,
+  "senderOrgName": "TEST Org Partnership Trust",
+  "status": "Accepted",
+  "workflowId": "API-DOCS-TEST",
+  "senderOrgCode": "TestOrg",
+  "recipientOrgName": "TEST Org Partnership Trust",
+  "expiryTime": "20200606122153",
+  "senderSmtp": "x26hc006@dts.nhs.uk",
+  "fileName": "message.txt.gz",
+  "recipientSmtp": "x26hc005@dts.nhs.uk",
+  "meshRecipientOdsCode": "X26",
+  "compressFlag": null,
+  "uploadTimestamp": "20200601122152",
+  "recipient": "X26HC005",
+  "contentsBase64": true,
+  "sender": "X26HC006",
+  "checksum": null,
+  "isCompressed": null,
+  "contentEncoding": "gzip",
+  "recipientOrgCode": "TestOrg",
+  "messageId": "20210311101813838554_1B8F53",
   "statusCode": null,
-    "fileSize": 187
-  }
+  "fileSize": 187
+}
 
 
 Suppose Alice only now acknowledges the message Bob sent.
@@ -1316,21 +1699,20 @@ Request
 SHELL
 
 Copy
-  curl -k \
-  --request 'PUT' \
-  --cacert 'mesh-ca.pem' \
-  --key 'mesh-client-key.pem' \
-  --cert 'mesh-client-cert.pem' \
-  --header 'Authorization: NHSMESH X26HC005:57db9dd2-2156-4c02-90d4-66e7082179db:0:202006041718:aae81ea5fc3757a6218df2a6dc9991d447dbd406dba15e1ca67540f9411e7388' \
-  https://mesh-sync.spineservices.nhs.uk/messageexchange/X26HC005/inbox/\
-  20210311101813838554_1B8F53/status/acknowledged
+curl -k \
+--request 'PUT' \
+--cacert 'mesh-ca.pem' \
+--key 'mesh-client-key.pem' \
+--cert 'mesh-client-cert.pem' \
+--header 'Authorization: NHSMESH X26HC005:57db9dd2-2156-4c02-90d4-66e7082179db:0:202006041718:3cded68a9e0f9b83f2c5de1b79fc4dac45004523e6658d46145156fa6a03eced' \
+https://mesh-sync.spineservices.nhs.uk/messageexchange/X26HC005/inbox/20210311101813838554_1B8F53/status/acknowledged
 
 Response
 
 JSON
 
 Copy
-  {"messageId" : "20210311101813838554_1B8F53" }
+{"messageId" : "20210311101813838554_1B8F53" }
 
 
 The next call to Track outbox by Bob
@@ -1340,31 +1722,31 @@ Request
 SHELL
 
 Copy
-  curl -k \
-  --cacert 'mesh-ca.pem' \
-  --key 'mesh-client-key.pem' \
-  --cert 'mesh-client-cert.pem' \
-  --header 'Authorization: NHSMESH X26HC006:dd3f8609-b2c3-4f5a-aa62-c456579b8f77:0:202006041718:9d5dc80e4ac8d89c1ce0e8feaa1e14b2c3ab9ee3ccc95f3f8483086e2ed40bd8' \
-  https://mesh-sync.spineservices.nhs.uk/messageexchange/X26HC006/outbox/tracking?messageID=20210311101813838554_1B8F53
+curl -k \
+--cacert 'mesh-ca.pem' \
+--key 'mesh-client-key.pem' \
+--cert 'mesh-client-cert.pem' \
+--header 'Authorization: NHSMESH X26HC006:dd3f8609-b2c3-4f5a-aa62-c456579b8f77:0:202006041718:3cded68a9e0f9b83f2c5de1b79fc4dac45004523e6658d46145156fa6a03eced' \
+https://mesh-sync.spineservices.nhs.uk/messageexchange/X26HC006/outbox/tracking?messageID=20210311101813838554_1B8F53
 
 Response
 
 JSON
 
 Copy
-  {
-    "downloadTimestamp": "20200601122957",
-    "status": "Acknowledged",
-    "messageId": "20210311101813838554_1B8F53"
-  }
+{
+  "downloadTimestamp": "20200601122957",
+  "status": "Acknowledged",
+  "messageId": "20210311101813838554_1B8F53"
+}
 
 
-This shows the status field of the response has changed from Accepted to Acknowledged. All of the fields in the previous response are also included.
+This shows the status field of the response has changed from Accepted to Acknowledged. All the fields in the previous response are also included.
 
 Request
 Path parameters
 Name	Description
-mailboxID	
+mailbox_id	
 
 String
 
@@ -1392,7 +1774,7 @@ String
 
 Authentication headers
 
-Example: Authorization: NHSMESH NONFUNC01:jt81ti68rlvta7379p3ng949rv:1:201511201038:291259e6a73cde3278f99cd5bd3c7ec9b3d1d5479077a8f711bddf58073d5555
+Example: Authorization: NHSMESH NONFUNC01:jt81ti68rlvta7379p3ng949rv:1:201511201038:3cded68a9e0f9b83f2c5de1b79fc4dac45004523e6658d46145156fa6a03eced
 
 Required
 Response
@@ -1634,7 +2016,7 @@ Name	Description
 object
 	
 Track outbox (deprecated)
-GET /messageexchange/{mailboxID}/outbox/tracking/{localID}
+GET /messageexchange/{mailbox_id}/outbox/tracking/{local_id}
 Overview
 
 This endpoint is now deprecated tracking?messageID should be used instead.
@@ -1642,7 +2024,7 @@ This endpoint is now deprecated tracking?messageID should be used instead.
 Request
 Path parameters
 Name	Description
-mailboxID	
+mailbox_id	
 
 String
 
@@ -1652,7 +2034,7 @@ Example: MAILBOX01
 
 Required
 
-localID	
+local_id	
 
 String
 
@@ -1669,7 +2051,7 @@ String
 
 Authentication headers
 
-Example: Authorization: NHSMESH NONFUNC01:jt81ti68rlvta7379p3ng949rv:1:201511201038:291259e6a73cde3278f99cd5bd3c7ec9b3d1d5479077a8f711bddf58073d5555
+Example: Authorization: NHSMESH NONFUNC01:jt81ti68rlvta7379p3ng949rv:1:201511201038:3cded68a9e0f9b83f2c5de1b79fc4dac45004523e6658d46145156fa6a03eced
 
 Required
 Response
@@ -1924,727 +2306,5 @@ Name	Description
 
 object
 	
-Send chunked message
-POST /messageexchange/{mailboxID}/outbox/{messageID}/{chunkNo}
-Overview
 
-Use this endpoint to send a chunked message. The 'Send Message' endpoint has a maximum single request message payload size of 100MB over HSCN or 20MB over the internet. However, you can send much larger messages (up to 20GB) by breaking up the message into chunks and transmitting it over multiple requests.
-
-Note: Some workflowIDs do not support chunking because it is not currently supported in the MESH UI and older versions of the MESH client. Check with your receiving organisation before sending messages with this endpoint. To send a chunked message:
-
-Split it into separate files
-Compress the individual chunks separately with the same compression program (e.g. gzip).
-DO NOT compress a large file and then split the compressed version
-Upload the first file using the normal 'Send message' endpoint.
-include the Mex-Chunk-Range header with a value of 1:n where n is the number of separate files your big data is split into
-capture the messageId field in the returned JSON
-Upload subsequent files in the correct order using the chunked message endpoint
-
-Note: fewer headers are required for the chunked message endpoint because Spine uses the relevant metadata from the initial (Mex-Chunk-Header=1:n) call to the 'Send message' endpoint.
-
-Request
-
-Suppose Bob has a large file to send to Alice. In this example we will use message.txt. It is easily small enough to send in a single request but we will chunk it anyway to illustrate the API calls.
-
-SHELL
-
-Copy
-    ls -sh message.txt
-    4.0kb message.txt
-
-
-SHELL
-
-Copy
-  cat message.txt
-    
-    Hi Alice,
-
-    This is Bob. It's really nice that we can communicate via SPINE!
-
-    I hope to hear more from you in the future,
-
-    Bob.
-
-
-First we break up our one "large" file into two smaller files. We will transmit one per request.
-
-SHELL
-
-Copy
-    split -b 100 message.txt message.txt_
-    ls -sh message.txt_*
-
-
-Large messages should be compressed to reduce the bandwidth and storage requirements for Spine.
-
-SHELL
-
-Copy
-    for chunk_file in message.txt_*; do
-        gzip -k -f $chunk_file;
-    done
-    ls -sh message.txt_*.gz
-    
-    4.0kb message.txt_aa.gz
-    4.0kb message.txt_ab.gz
-
-
-SHELL
-
-Copy
-    curl -k \
-    --cacert 'mesh-ca.pem' \
-    --key 'mesh-client-key.pem' \
-    --cert 'mesh-client-cert.pem' \
-    --request 'POST' \
-    --header 'Authorization: NHSMESH X26HC006:2c6e938e-9a72-4a7a-9664-96ac1f341331:0:202006041718:8a2bb02f280f544423503c465df23359e8302c039e5113cc0d88e3c1b7283482' \
-    --header 'Content-Type: application/octet-stream' \
-    --header 'Mex-From: X26HC006' \
-    --header 'Mex-To: X26HC005' \
-    --header 'Mex-WorkflowID: API-DOCS-TEST' \
-    --header 'Mex-FileName: message.txt.gz' \
-    --header 'Mex-LocalID: api-docs-bob-sends-alice-a-chunked-file' \
-    --header 'Mex-Chunk-Range: 1:2' \
-    --header 'Content-Encoding: gzip' \
-    --data-binary '@message.txt_aa.gz' \
-    https://mesh-sync.spineservices.nhs.uk/messageexchange/X26HC006/outbox
-
-
-SHELL
-
-Copy
-    curl -k \
-    --cacert 'mesh-ca.pem' \
-    --key 'mesh-client-key.pem' \
-    --cert 'mesh-client-cert.pem' \
-    --request 'POST' \
-    --header 'Authorization: NHSMESH X26HC006:06bf0527-ba77-47f0-b22f-d7d08a88ad26:0:202006041718:d41a9c41e98159e180234ba7940a3a208c67389dc2cb22516dd4a11f57ccfabc' \
-    --header 'Mex-Chunk-Range: 2:2' \
-    --data-binary '@./message.txt_ab.gz' \
-    https://mesh-sync.spineservices.nhs.uk/messageexchange/X26HC006/outbox/\
-    20200601122152994285_D59900/2
-
-Request
-Path parameters
-Name	Description
-mailboxID	
-
-String
-
-The ID of the mailbox
-
-Example: MAILBOX01
-
-Required
-
-messageID	
-
-String
-
-The ID of the message
-
-Required
-
-chunkNo	
-
-Integer
-
-The index number of the chunk
-
-Example: 1
-
-Required
-Headers
-Name	Description
-Authorization	
-
-String
-
-Authentication headers
-
-Example: Authorization: NHSMESH NONFUNC01:jt81ti68rlvta7379p3ng949rv:1:201511201038:291259e6a73cde3278f99cd5bd3c7ec9b3d1d5479077a8f711bddf58073d5555
-
-Required
-
-Content-Type	
-
-String
-
-Type of sent content
-
-Example: application/octet-stream
-
-Required
-
-Mex-Chunk-Range	
-
-String (integer:integer)
-
-describes which chunk of the range is sent.
-
-Example: 124
-
-Required
-Response
-HTTP status: 202
-
-Accepted
-
-Body
-
-Content type: application/json
-
-Schema
-Collapse all Expand all
-Name	Description
-
-object
-	
-
-messageID
-string
-	
-
-Unique message ID, identical to initial Send message endpoint
-
-Example: 20200529155357895317_3573F8
-
-
-blockId
-integer
-	
-
-chunkNo assigned to the chunk as supplied in the Mex-chunk-range header, maintained for legacy support
-
-HTTP status: 403
-
-Authentication failed
-
-Body
-
-Content type: application/json
-
-Schema
-Collapse all Expand all
-Name	Description
-
-object
-	
-
-messageID
-string
-	
-
-ID of the allocated message
-
-Example: 20200529155357895317_3573F8
-
-
-errorEvent
-string
-	
-
-Status event
-
-Example: status event
-
-
-errorCode
-integer
-	
-
-Status code
-
-Example: 403
-
-
-errorDescription
-string
-	
-
-Description of the status
-
-Example: Description of the status
-Send message
-POST /messageexchange/{mailboxID}/outbox
-Overview
-
-Use this endpoint to send a message via MESH. Use the POST command to your virtual outbox. Specify the message recipient in the request headers, with the message contained in the request body.
-
-Messages larger than 100MB
-
-100MB (20MB on internet) is the largest data payload the MESH API accepts in a single request. Compress larger messages to reduce bandwidth and data storage on Spine. If compression does not sufficiently reduce the message size enough for transmission in a single request then you can break it up into smaller chunks and transmit them separately provided:
-
-The total compressed size of the message is < 100MB - this is the Spine upper limit for a single message.
-The receiver mailboxId and workflowId support the downloading of chunked messages. MESH UI and older versions of the MESH client do not support this.
-
-To correctly break the outbound message into valid chunks:
-
-Split the uncompressed message into n ordered chunks such that each (compressed) chunk is smaller than 20MB.
-Independently compress each chunk with the same compression algorithm (e.g. gzip).
-The first (compressed) chunk of the message should be transmitted using this endpoint (the normal send message endpoint). Include the optional Mex-Chunk-Range header with a value 1:n to tell Spine that this is a chunked message and to wait for n-1 other requests before delivering the message. The messageId of this initial server response must be captured as it is a required path element of the Send chunked message URL.
-
-Always set the workflowId as some workflowIds are restricted which means the mailbox sender and recipient must be configured for the workflowId you send.
-
-To discover the recipient mailbox either use the endpointlookup endpoint or for certain workflows you can include demographic details in the Mex-To field.
-
-It is good practice to capture the returned messageId as this provides a unique identifer which you can use for message tracking.
-
-Request
-
-SHELL
-
-Copy
-    curl -k \
-    --request 'POST' \
-    --cacert 'mesh-ca.pem' \
-    --key 'mesh-client-key.pem' \
-    --cert 'mesh-client-cert.pem' \
-    --header 'Authorization: NHSMESH X26HC006:c1f2df9c-fe9e-4d11-ba78-49a8bc705eb4:0:202006041718:b2539ba3a3d086ea01c8f18488e227a5e8b0418b95870c73fd83a368e6642d49' \
-    --header 'Content-Type: application/octet-stream' \
-    --header 'Mex-From: X26HC006' \
-    --header 'Mex-To: X26HC005' \
-    --header 'Mex-WorkflowID: API-DOCS-TEST' \
-    --header 'Mex-FileName: None' \
-    --header 'Mex-LocalID: api-docs-bob-greets-alice' \
-    --data 'This is a message' \
-    https://mesh-sync.spineservices.nhs.uk/messageexchange/X26HC006/outbox
-
-Response
-
-JSON
-
-Copy
- {"messageID": "20200529155357895317_3573F8"}
-
-Request
-Path parameters
-Name	Description
-mailboxID	
-
-String
-
-The ID of the mailbox
-
-Example: MAILBOX01
-
-Required
-Headers
-Name	Description
-Authorization	
-
-String
-
-Authentication headers
-
-Example: Authorization: NHSMESH NONFUNC01:jt81ti68rlvta7379p3ng949rv:1:201511201038:291259e6a73cde3278f99cd5bd3c7ec9b3d1d5479077a8f711bddf58073d5555
-
-Required
-
-Content-Type	
-
-String
-
-Type of sent content
-
-Example: application/octet-stream
-
-Required
-
-Mex-FileName	
-
-String
-
-{Original File Name}
-
-Example: {Message content should have this file name after receipt}
-
-Required
-
-Mex-From	
-
-String
-
-Sending organisation's mailbox ID
-
-Example: {Sending organisation's mailbox ID}
-
-Required
-
-Mex-To	
-
-String
-
-Recipient mailbox ID
-
-Example: {Recipient Mailbox ID}
-
-Required
-
-Mex-WorkflowID	
-
-String
-
-Identifies the Business Workflow associated with the message
-
-Example: {Workflow ID}
-
-Required
-
-Mex-Chunk-Range	
-
-String
-
-1:{n} {if first of n chunks, see Send chunked message}
-
-
-Mex-Content-Compress	
-
-String
-
-Flag to indicate that the contents have been automically compressed by the client using GZip compression
-
-
-Mex-Content-Encrypted	
-
-String
-
-Indicate to the receiver that contents are encrypted
-
-
-Mex-Localid	
-
-String
-
-A unique ID generated by you, must not contain Patient Identifiable Data PID
-
-
-Mex-Subject	
-
-String
-
-Subject line for message to SMTP MESH mailboxes
-
-
-Content-Encoding	
-
-String
-
-Algorithm used to compress the file e.g. 'gzip'
-
-
-Mex-MessageType	
-
-String
-
-DATA
-
-Required
-
-Mex-ProcesslID	
-
-String
-
-{Local process identifer}
-
-
-mex-Content-Checksum	
-
-String
-
-Checksum of the original file contents
-
-Response
-HTTP status: 202
-
-Accepted
-
-Body
-
-Content type: application/json
-
-Schema
-Collapse all Expand all
-Name	Description
-
-object
-	
-
-messageID
-string
-	
-
-Unique Id assigned by the MESH server
-
-Example: 20200529155357895317_3573F8
-HTTP status: 403
-
-Authentication failed
-
-Body
-
-Content type: application/json
-
-Schema
-Collapse all Expand all
-Name	Description
-
-object
-	
-
-messageID
-string
-	
-
-ID of the allocated message
-
-Example: 20200529155357895317_3573F8
-
-
-errorEvent
-string
-	
-
-Status event
-
-Example: status event
-
-
-errorCode
-integer
-	
-
-Status code
-
-Example: 403
-
-
-errorDescription
-string
-	
-
-Description of the status
-
-Example: Description of the status
-HTTP status: 417
-
-Invalid Recipient or the workflow is restricted
-
-Body
-
-Content type: application/json
-
-Schema
-Collapse all Expand all
-Name	Description
-
-object
-	
-
-messageID
-string
-	
-
-ID of the allocated message
-
-
-
-errorEvent
-string
-	
-
-Status event
-
-
-
-errorCode
-integer
-	
-
-Status code
-
-Example: 417
-
-
-errorDescription
-string
-	
-
-Description of the status
-
-Validate a mailbox (Handshake)
-GET /messageexchange/{mailboxID}
-Overview
-
-Use this endpoint to check that MESH can be reached and that the authentication you are using is correct. This endpoint only needs to be called once every 24 hours. This endpoint updates the details of the connection history held for your mailbox and is similar to a keep-alive or ping message, in that it allows monitoring on the Spine to be aware of the active use of a mailbox despite a lack of traffic.
-
-Request
-
-SHELL
-
-Copy
-curl -k \
-  --request 'GET' \
-  --cacert 'mesh-ca.pem' \
-  --key 'mesh-client-key.pem' \
-  --cert 'mesh-client-cert.pem' \
-  --header 'Authorization: NHSMESH X26HC005:1c820cd4-be3e-43ff-807f-e65362892722:0:202006041718:3401727c81320539a9b3cf835d1e7748f18bc49ab333a6c1841b67df88f2e5f7' \
-  --header 'Mex-ClientVersion: ApiDocs==0.0.1' \
-  --header 'Mex-OSArchitecture: x86_64' \
-  --header 'Mex-OSName: Linux' \
-  --header 'Mex-OSVersion: #44~18.04.2-Ubuntu' \
-  https://mesh-sync.spineservices.nhs.uk/messageexchange/X26HC005
-
-Response
-
-JSON
-
-Copy
-  {"mailboxId" : "X26HC005"}
-
-Request
-Path parameters
-Name	Description
-mailboxID	
-
-String
-
-The ID of the mailbox
-
-Example: MAILBOX01
-
-Required
-Headers
-Name	Description
-Authorization	
-
-String
-
-Authentication headers
-
-Example: Authorization: NHSMESH NONFUNC01:jt81ti68rlvta7379p3ng949rv:1:201511201038:291259e6a73cde3278f99cd5bd3c7ec9b3d1d5479077a8f711bddf58073d5555
-
-Required
-
-Mex-ClientVersion	
-
-String
-
-Client version number
-
-Example: ApiDocs==0.0.1
-
-Required
-
-Mex-OSName	
-
-String
-
-Operating system name
-
-Example: Linux
-
-Required
-
-Mex-OSVersion	
-
-String
-
-Operating system version
-
-Example: #44~18.04.2-Ubuntu
-
-Required
-
-Mex-OSArchitecture	
-
-String
-
-{Operating System Architecture}
-
-
-Mex-JavaVersion	
-
-String
-
-{JVM Version Number}
-
-Response
-HTTP status: 200
-
-OK
-
-Body
-
-Content type: application/json
-
-Schema
-Collapse all Expand all
-Name	Description
-
-object
-	
-HTTP status: 400
-
-Bad Request
-
-Body
-
-Content type: application/json
-
-Schema
-Collapse all Expand all
-Name	Description
-
-object
-	
-HTTP status: 403
-
-Authentication failed
-
-Body
-
-Content type: application/json
-
-Schema
-Collapse all Expand all
-Name	Description
-
-object
-	
-
-messageID
-string
-	
-
-ID of the allocated message
-
-Example: 20200529155357895317_3573F8
-
-
-errorEvent
-string
-	
-
-Status event
-
-Example: status event
-
-
-errorCode
-integer
-	
-
-Status code
-
-Example: 403
-
-
-errorDescription
-string
-	
-
-Description of the status
-
-Example: Description of the status
+Last edited: 14 October 2022 6:21 am

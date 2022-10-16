@@ -1,0 +1,67 @@
+DAPB0111: Radiotherapy Data Set
+
+Providers of NHS-funded radiotherapy services are required to submit a monthly return on their delivery of radiotherapy treatments.
+
+Page contents
+Top of page
+About this information standard
+Current release
+Previous releases
+Updates
+About this information standard
+
+The purpose of the Radiotherapy Data Set is to:
+
+collect consistent and comparable data across all NHS acute trust providers of radiotherapy services and all private facilities where delivery is funded by the NHS
+provide nationally comparable data to inform the planning, provision and commissioning of radiotherapy services across the NHS.
+
+It has been a mandatory standard since April 2009 and collects information for every patient receiving treatment of:
+
+external beam radiotherapy (teletherapy)
+brachytherapy
+proton therapy
+radioisotope therapy (including radioiodine)
+molecular radiotherapy.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales. The other key documents (Change Request, Specification and Implementation Guide) provide further detail for those who have to implement the information standard.
+
+Current release
+Release date	20 July 2021
+Release number	Amd 84/2020
+Release title	Version 6.0
+Stage	Implementation (April 2022 start date)
+Key documents	
+Information Standards Notice (Amd 84/2020)
+Specification (Amd 84/2020)
+Change Request (Amd 84/2020)
+Implementation Guide (Amd 84/2020)
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request 1736 (Basic CR) (Amd 84/2020) (2022)
+NHS Data Model and Dictionary Change Request 1736 (Data Set CR) (Amd 84/2020) (2022)
+
+Further information	
+National Cancer Registration and Analysis Service (NCRAS) Radiotherapy Data Set
+Previous releases
+Release date	19 November 2015
+Release number	Amd 13/2015
+Release title	Version 5.0
+Stage	Maintenance (until version 6.0 comes into force)
+Key documents	
+Requirements Specification (Amd 13/2015) [Archive Content]
+Change Specification (Amd 13/2015)
+Implementation Guidance (Amd 13/2015)
+Information Standards Notice (Amd 13/2015)
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request 1544 (Basic CR) (Amd 13/2015)
+NHS Data Model and Dictionary Change Request 1544 (Data Set CR) (Amd 13/2015)
+
+Previous releases	The initial and subsequent releases approved by the Information Standards Board (ISB) can be found on the ISB archive site.
+Updates
+
+21 April 2022: The NHS Data Model and Dictionary Change Requests (DDCRs) for Version 6.0 (Amd 84/2020) have been updated in the table above.  
+
+At the time of publication of Version 6.0, 20 July 2021, the associated DDCRs noted that the publication of SNOMED CT Refset Metadata for use with the data item RADIOPHARMACEUTICAL PROCEDURE (SNOMED CT) was yet to be confirmed (TBC). The refset metadata is now available on the National Disease Registration Service website, as part of the National Radiotherapy Dataset (RTDS) user guide, and the Data Dictionary has been updated to reflect this.
+
+Last edited: 8 June 2022 1:32 pm

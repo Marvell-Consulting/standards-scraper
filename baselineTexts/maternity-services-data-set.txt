@@ -1,0 +1,35 @@
+DCB1513: Maternity Services Data Set
+
+The Maternity Services Data Set (MSDS) is the national information standard for data relating to NHS-funded maternity services
+
+Page contents
+Top of page
+About this information standard
+Current release
+About this information standard
+
+The Maternity Services Data Set (MSDS) sets out requirements for the collection and submission of operational and clinical data relating to each stage of the maternity care pathway. The data will be used, locally and nationally, to support commissioning, payment, planning, outcomes monitoring and addressing health inequalities. Version 2.0 of the standard is a significant change and brings the MSDS into line with the structures of other national data sets managed by NHS Digital.
+
+This information standard is published under section 250 of the Health and Social Care Act 2012. An Information Standards Notice (see below) provides an overview of scope and implementation timescales, and the other documents provide further detail for those who have to implement the information standard.
+
+Current release
+Release date	14/09/2018
+Release number	Amd 10/2018
+Release title	Version 2.0
+Stage	Implementation
+Key documents	
+Information Standards Notice (Amd 10/2018)
+Change Specification (Amd 10/2018)
+Requirements Specification (Amd 10/2018)
+Implementation Guidance (Amd 10/2018)
+Data Set Specification (Amd 10/2018) [Archive Content]
+
+Supporting documents	
+NHS Data Model and Dictionary Change Request 1550 (Basic CR) (Amd 10/2018)
+NHS Data Model and Dictionary Change Request 1550 (Data Set CR) (Amd 10/2018)
+XML Schema (Amd 10/2018)
+
+Further information	    NHS Digital MSDS pages
+Previous release	Go to the ISB website for information about the previous release
+
+Last edited: 5 November 2018 12:39 pm

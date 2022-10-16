@@ -51,9 +51,9 @@ Related APIs
 
 The following APIs are related to these API standards:
 
-Summary Care Record - FHIR API - use this API to access a patient's SCR using our FHIR API.
-Summary Care Record - HL7 V3 API - use this to access a patient's SCR using our HL7 V3 API.
-Legitimate Relationship Service - HL7 V3 API - use this API to access a patient's Legitimate Relationships, using our HL7 V3 API.
+Summary Care Record - FHIR API - use this API to access a patient's SCR using our FHIR API
+Summary Care Record - HL7 V3 API - use this to access a patient's SCR using our HL7 V3 API
+Legitimate Relationship Service - HL7 V3 API - this API is now deprecated
 API status
 
 These API standards are stable.
@@ -68,8 +68,6 @@ PSIS Document List Data Request
 PSIS Document Data Request
 
 For more details, see HL7 V3.
-
- 
 
 Network access
 
@@ -170,4 +168,4 @@ SMSP Response Codes - 24/07/2014 XLS
 
 XLSX 17 KB
 
-Last edited: 18 November 2021 4:56 pm
+Last edited: 14 October 2022 9:13 am
